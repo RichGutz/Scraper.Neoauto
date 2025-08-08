@@ -1,0 +1,392 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Toyota Yaris</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Toyota Yaris</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $11,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 23.65%</p>
+            <p><strong>Anuncios Únicos:</strong> 148</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABAn0A0JObtDEGfQGdIzNsZQp9Am2yyySZDn0DPkJi3M0SfQAO1fqVARZ9ANtlkk01Gn0Bq\u002fUqBWkefQJ4hMW9nSJ9A0UUXXXRJn0AFav1KgUqfQDmO4ziOS59AbbLJJptMn0Cg1q8UqE2fQNT6lQK1Tp9ACB988MFPn0A7Q2LezlCfQG9nSMzbUZ9Ao4suuuhSn0DXrxSo9VOfQArU+pUCVZ9APvjggw9Wn0ByHMdxHFefQKVArV8pWJ9A2WSTTTZZn0ANiXk7Q1qfQEGtXylQW59AdNFFF11cn0Co9SsFal2fQNwZEvN2Xp9AED744INfn0BDYt7OkGCfQHeGxLydYZ9Aq6qqqqpin0DezpCYt2OfQBLzdobEZJ9ARhdddNFln0B6O0Ni3mafQK1fKVDrZ59A4YMPPvhon0AVqPUrBWqfQEjM2xkSa59AfPDBBx9sn0CwFKj1K22fQOQ4juM4bp9AF1100UVvn0BLgVq\u002fUnCfQH+lQK1fcZ9Asskmm2xyn0Dm7QyJeXOfQBoS83aGdJ9ATjbZZJN1n0CBWr9SoHafQLV+pUCtd59A6aKLLrp4n0Acx3Ecx3mfQFDrVwrUep9AhA8++OB7n0C4MyTm7XyfQOtXCtT6fZ9AH3zwwQd\u002fn0BToNavFICfQIbEvJ0hgZ9Auuiiiy6Cn0DuDIl5O4OfQCIxb2dIhJ9AVVVVVVWFn0CJeTtDYoafQL2dITFvh59A8MEHH3yIn0Ak5u0MiYmfQFgK1PqVip9AjC666KKLn0C\u002fUqDWr4yfQPN2hsS8jZ9AJ5tsssmOn0Bbv1Kg1o+fQI7jOI7jkJ9AwgcffPCRn0D2KwVq\u002fZKfQClQ61cKlJ9AXXTRRReVn0CRmLczJJafQMW8nSExl59A+OCDDz6Yn0AsBWr9SpmfQGApUOtXmp9Ak0022WSbn0DHcRzHcZyfQPuVArV+nZ9AL7rooouen0Bi3s6QmJ+fQJYCtX6loJ9AyiabbLKhn0D9SoFav6KfQDFvZ0jMo59AZZNNNtmkn0CZtzMk5qWfQMzbGRLzpp9AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAABAr0Dkob+CUAayQPfShej2yLNAXSBhTc76tED3EWDNsa61QJoxkYR897VAVgkDjwnotUDSIsQINJO1QNUH4w3XC7VA2UJuus1ktEBqXHQq87CzQPjeA3oiA7NA4gLYTsFtskBpZ750rPuxQOGnixqXsbFAhvU7HAaUsUC75zRMJqexQFVTYHxV7LFA7iDBZpJjskCxadZk2QyzQOBFH9Am6LNAR9AaAnf1tEBaIUhUxjS2QLpc6YQGprdAC8QhLNk3uUCkmZmV2qy6QCYCPGnCwLtADnCbkYMwvEDAcdl6kfy7QGG8QDd8irtAhDwHgSBIu0By39d\u002fNZ67QFCjIBj+kbxAuUIkecjOvUAqe5EYpfy+QPHDJdKKyb9Az3cvoRwNwECVnrZ4K\u002fG\u002fQNNakgwoUb9AmH4OR4RJvkDYCiy45ii9QLfRo0\u002ffUbxAbnqz4vEmvECDF0evlNm8QPOla4TiD75AAM38sGFXv0Cw8\u002fzZSR\u002fAQDl+o\u002fOvTcBAu61PJhxdwECQZwoLXnnAQI1a9G6nzMBA3VBRzfxbwUBDL4hPNQfCQBCmF1OKrMJAmopChR4uw0C7WubLkJfDQFXpyqF8DcRAMa7RadW0xECtVEFDpaPFQJlySUNsm8ZAag60mOg\u002fx0Ctz5iG1DTHQK6K7gqeTsZAQoVPnJH8xEBOiJaNsszDQBu0YsA3TMNAm8WM5923w0AiOYhoGLjEQD6ZtWhi5cVA5x1NKS\u002faxkAIdp5FmWfHQOLRqAQom8dAHDb3LoOFx0DE6YHHhDjHQHSyS5eZ1MZA4C1IDumDxkBYPLoMyHDGQAgtL7SUvcZAMOGRXdFZx0CpUBbH\u002fyDIQNHw05CV7shAB8MJcIKoyUCRMSQYD1rKQExyAsvVFstAOj6k+1Hyy0DvkK+kOO7MQCIFxN\u002fX581AIw0ZvAi4zkCsr\u002f+HxDjPQIT4NDFdas9AS4fZ1AZ8z0CQgjh30J\u002fPQImPns2xAtBAfzJaYlNd0EARFg2xRdrQQEkx6oy2c9FA3nkkydMj0kDn5e44y+TSQLxqfK\u002fKsNNAAAAAAACC1EA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABAn0A0JObtDEGfQGdIzNsZQp9Am2yyySZDn0DPkJi3M0SfQAO1fqVARZ9ANtlkk01Gn0Bq\u002fUqBWkefQJ4hMW9nSJ9A0UUXXXRJn0AFav1KgUqfQDmO4ziOS59AbbLJJptMn0Cg1q8UqE2fQNT6lQK1Tp9ACB988MFPn0A7Q2LezlCfQG9nSMzbUZ9Ao4suuuhSn0DXrxSo9VOfQArU+pUCVZ9APvjggw9Wn0ByHMdxHFefQKVArV8pWJ9A2WSTTTZZn0ANiXk7Q1qfQEGtXylQW59AdNFFF11cn0Co9SsFal2fQNwZEvN2Xp9AED744INfn0BDYt7OkGCfQHeGxLydYZ9Aq6qqqqpin0DezpCYt2OfQBLzdobEZJ9ARhdddNFln0B6O0Ni3mafQK1fKVDrZ59A4YMPPvhon0AVqPUrBWqfQEjM2xkSa59AfPDBBx9sn0CwFKj1K22fQOQ4juM4bp9AF1100UVvn0BLgVq\u002fUnCfQH+lQK1fcZ9Asskmm2xyn0Dm7QyJeXOfQBoS83aGdJ9ATjbZZJN1n0CBWr9SoHafQLV+pUCtd59A6aKLLrp4n0Acx3Ecx3mfQFDrVwrUep9AhA8++OB7n0C4MyTm7XyfQOtXCtT6fZ9AH3zwwQd\u002fn0BToNavFICfQIbEvJ0hgZ9Auuiiiy6Cn0DuDIl5O4OfQCIxb2dIhJ9AVVVVVVWFn0CJeTtDYoafQL2dITFvh59A8MEHH3yIn0Ak5u0MiYmfQFgK1PqVip9AjC666KKLn0C\u002fUqDWr4yfQPN2hsS8jZ9AJ5tsssmOn0Bbv1Kg1o+fQI7jOI7jkJ9AwgcffPCRn0D2KwVq\u002fZKfQClQ61cKlJ9AXXTRRReVn0CRmLczJJafQMW8nSExl59A+OCDDz6Yn0AsBWr9SpmfQGApUOtXmp9Ak0022WSbn0DHcRzHcZyfQPuVArV+nZ9AL7rooouen0Bi3s6QmJ+fQJYCtX6loJ9AyiabbLKhn0D9SoFav6KfQDFvZ0jMo59AZZNNNtmkn0CZtzMk5qWfQMzbGRLzpp9AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAABAr0CA9Qpa3aOxQFzxMevpU7NAemL8It+ytEDVsvFwdsO1QCFOmURpiLZAxp96DXEEt0BiFB07Rzq3QBgXCD2lLLdACBTDgkTetkBQdtV73lG2QNmpxpcsirVAEbYbAGKLtEAc2qKH7HGzQOiF+C0LbrJAyrSL6ZGwsUCI0TSPH2WxQE1VEUXLjLFAFYZFqucTskACU1tfo+ayQCmq3AQt8bNAuHxTO7MftUDxuEmjZF62QMqR9ql2mbdAvi\u002fmFTjIuEAncccqMP65QF7nZHFRU7tAZ67n5M7evEBoUhjP146+QCfCPPAVCsBAeu1u6z+NwECFnONMTKnAQNPp+s6IZ8BAU2so2gT7v0BuFzGDvES\u002fQJu1QYs1Db9AQ\u002fRTeOk5v0BGp4V3SW2\u002fQHYBRWwcSb9AdjSHhxSHvkBpUUcsf1m9QIqM4CSXGLxAhOY015ocu0CLRjQrAr66QMCwXGnoVbtAS15Eq4U9vUDwL6rN5GXAQE0PEZXC2MJAYEZgKN1FxUBgA\u002fL6tO7GQPlKREGAHcdAaRgOisnkxUC8XD++bx\u002fEQFjh64cHscJAVnBjDpVowkAzW1hw\u002fzrDQDRo9AjPmcRACmV8Bb70xUDzxD4z3M7GQLQ+CFrXGMdAteMo8vLpxkBUb+gxflnGQC4Km\u002fLlhsVAPqppyWWrxEA2Si2SVwXEQLUb11i00sNAML\u002fjJlkrxEAvn1e76uDEQD0aXd99vcVAM+soIK+LxkCaufcr0yTHQJIBkLCEcsdA81UG8zVfx0CtLT9xbNrGQKJddw+CEcZA7detrhdbxUAKjM33jg7FQNbcWiswc8VAekrsgHNpxkBSM0isYanHQFUdftLq6shAsrCRs3j2yUAc9YLUL8\u002fKQAZpunpJhctAPsR4QP4ozECTtLb\u002fI8rMQEjHGFfGd81AJRstIthAzkBl2L6a1zPPQAtMIXbfJ9BAFAoh70fA0EBZuCk9kljRQAUVACSg5tFAyx\u002fZG8Bm0kBI4b1pANrSQGxXV9OLQdNA435OHo2e00DFVEwQL\u002fLTQOzV+W6cPdRAAAAAAACC1EA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2023-1841757",25],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2015-1841633",38],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2023-1840532",69],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2023-1840440",119],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2018-1841349",126],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2021-1841303",144],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2007-1840844",158],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2014-1840038",262],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2014-1841788",288],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2016-1837181",305],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2023-1840389",368],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2015-1840546",482],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2017-1840499",690],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2024-1823609",722],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2008-1841441",812],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2011-1840227",922],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2018-1840278",939],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2024-1839069",1002],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2022-1841376",1095],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2021-1840407",1260],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2015-1839884",1326],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2015-1840244",1348],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2025-1828768",1352],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2022-1839073",1455],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-yaris-2023-1839232",1673]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5wcAAN8HAADnBwAA5wcAAOIHAADlBwAA1wcAAN4HAADeBwAA4AcAAOcHAADfBwAA4QcAAOgHAADYBwAA2wcAAOIHAADoBwAA5gcAAOUHAADfBwAA3wcAAOkHAADmBwAA5wcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAAA+x0AAAAAAAJrgQAAAAAAAUsxAAAAAAADuy0AAAAAAAFjLQAAAAAAATM1AAAAAAACawEAAAAAAAI7CQAAAAAAAiLNAAAAAAAA+x0AAAAAAAE\u002fQQAAAAAAAiMNAAAAAAABqyEAAAAAAAEzNQAAAAAAAQL9AAAAAAABauUAAAAAAAObEQAAAAAAAEdJAAAAAAAAazUAAAAAAAGTJQAAAAAAAMslAAAAAAABqyEAAAAAAAOXQQAAAAAAAXspAAAAAAAAd0EA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Toyota Yaris - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (25)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-25" data-point-index="25">
+                <td>$11,900</td>
+                <td>108,000</td>
+                <td>2023</td>
+                <td>San Luis</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2023-1841757" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-38" data-point-index="38">
+                <td>$34,000</td>
+                <td>1,300</td>
+                <td>2015</td>
+                <td>Ate</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2015-1841633" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-69" data-point-index="69">
+                <td>$14,500</td>
+                <td>79,000</td>
+                <td>2023</td>
+                <td>San Miguel</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2023-1840532" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-119" data-point-index="119">
+                <td>$14,300</td>
+                <td>66,000</td>
+                <td>2023</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2023-1840440" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-126" data-point-index="126">
+                <td>$14,000</td>
+                <td>49,500</td>
+                <td>2018</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2018-1841349" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-144" data-point-index="144">
+                <td>$15,000</td>
+                <td>24,000</td>
+                <td>2021</td>
+                <td>Arequipa</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2021-1841303" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-158" data-point-index="158">
+                <td>$8,500</td>
+                <td>220,000</td>
+                <td>2007</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2007-1840844" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-262" data-point-index="262">
+                <td>$9,500</td>
+                <td>103,127</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2014-1840038" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-288" data-point-index="288">
+                <td>$5,000</td>
+                <td>97,800</td>
+                <td>2014</td>
+                <td>Villa El Salvador</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2014-1841788" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-305" data-point-index="305">
+                <td>$11,900</td>
+                <td>49,000</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2016-1837181" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-368" data-point-index="368">
+                <td>$16,700</td>
+                <td>19,800</td>
+                <td>2023</td>
+                <td>Ica</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2023-1840389" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-482" data-point-index="482">
+                <td>$10,000</td>
+                <td>197,000</td>
+                <td>2015</td>
+                <td>Carabayllo</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2015-1840546" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-690" data-point-index="690">
+                <td>$12,500</td>
+                <td>70,000</td>
+                <td>2017</td>
+                <td>Vista Alegre</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2017-1840499" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-722" data-point-index="722">
+                <td>$15,000</td>
+                <td>10,200</td>
+                <td>2024</td>
+                <td>San Martin de Porres</td>
+                <td>16</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2024-1823609" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-812" data-point-index="812">
+                <td>$8,000</td>
+                <td>178,000</td>
+                <td>2008</td>
+                <td>San Juan de Lurigancho</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2008-1841441" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-922" data-point-index="922">
+                <td>$6,490</td>
+                <td>195,000</td>
+                <td>2011</td>
+                <td>Trujillo</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2011-1840227" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-939" data-point-index="939">
+                <td>$10,700</td>
+                <td>55,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2018-1840278" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1002" data-point-index="1002">
+                <td>$18,500</td>
+                <td>12,100</td>
+                <td>2024</td>
+                <td>Rioja</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2024-1839069" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1095" data-point-index="1095">
+                <td>$14,900</td>
+                <td>28,900</td>
+                <td>2022</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2022-1841376" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1260" data-point-index="1260">
+                <td>$13,000</td>
+                <td>240,000</td>
+                <td>2021</td>
+                <td>San Juan de Lurigancho</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2021-1840407" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1326" data-point-index="1326">
+                <td>$12,900</td>
+                <td>80,000</td>
+                <td>2015</td>
+                <td>Lima</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2015-1839884" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1348" data-point-index="1348">
+                <td>$12,500</td>
+                <td>56,000</td>
+                <td>2015</td>
+                <td>La Molina</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2015-1840244" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1352" data-point-index="1352">
+                <td>$17,300</td>
+                <td>16,400</td>
+                <td>2025</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2025-1828768" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1455" data-point-index="1455">
+                <td>$13,500</td>
+                <td>65,000</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2022-1839073" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1673" data-point-index="1673">
+                <td>$16,500</td>
+                <td>35,000</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-yaris-2023-1839232" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

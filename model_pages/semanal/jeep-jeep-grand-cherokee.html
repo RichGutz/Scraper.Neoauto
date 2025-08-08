@@ -1,0 +1,512 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Jeep Grand Cherokee</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Jeep Grand Cherokee</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $22,900</p>
+            <p><strong>Ratio Venta Rápida:</strong> 13.73%</p>
+            <p><strong>Anuncios Únicos:</strong> 102</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABEn0CO4ziO40SfQBzHcRzHRZ9Aq6qqqqpGn0A5juM4jkefQMdxHMdxSJ9AVVVVVVVJn0DkOI7jOEqfQHIcx3EcS59AAAAAAABMn0CO4ziO40yfQBzHcRzHTZ9Aq6qqqqpOn0A5juM4jk+fQMdxHMdxUJ9AVVVVVVVRn0DkOI7jOFKfQHIcx3EcU59AAAAAAABUn0CO4ziO41SfQBzHcRzHVZ9Aq6qqqqpWn0A5juM4jlefQMdxHMdxWJ9AVVVVVVVZn0DkOI7jOFqfQHIcx3EcW59AAAAAAABcn0CO4ziO41yfQBzHcRzHXZ9Aq6qqqqpen0A5juM4jl+fQMdxHMdxYJ9AVVVVVVVhn0DkOI7jOGKfQHIcx3EcY59AAAAAAABkn0CO4ziO42SfQBzHcRzHZZ9Aq6qqqqpmn0A5juM4jmefQMdxHMdxaJ9AVVVVVVVpn0DkOI7jOGqfQHIcx3Eca59AAAAAAABsn0CO4ziO42yfQBzHcRzHbZ9Aq6qqqqpun0A5juM4jm+fQMdxHMdxcJ9AVVVVVVVxn0DkOI7jOHKfQHIcx3Ecc59AAAAAAAB0n0CO4ziO43SfQBzHcRzHdZ9Aq6qqqqp2n0A5juM4jnefQMdxHMdxeJ9AVVVVVVV5n0DkOI7jOHqfQHIcx3Ece59AAAAAAAB8n0CO4ziO43yfQBzHcRzHfZ9Aq6qqqqp+n0A5juM4jn+fQMdxHMdxgJ9AVVVVVVWBn0DkOI7jOIKfQHIcx3Ecg59AAAAAAACEn0CO4ziO44SfQBzHcRzHhZ9Aq6qqqqqGn0A5juM4joefQMdxHMdxiJ9AVVVVVVWJn0DkOI7jOIqfQHIcx3Eci59AAAAAAACMn0CO4ziO44yfQBzHcRzHjZ9Aq6qqqqqOn0A5juM4jo+fQMdxHMdxkJ9AVVVVVVWRn0DkOI7jOJKfQHIcx3Eck59AAAAAAACUn0CO4ziO45SfQBzHcRzHlZ9Aq6qqqqqWn0A5juM4jpefQMdxHMdxmJ9AVVVVVVWZn0DkOI7jOJqfQHIcx3Ecm59AAAAAAACcn0A="},"y":{"dtype":"f8","bdata":"AAAAAABEtkAjgPIvNRy8QALSga+mV8BAsOg8OjkNwkCNsc0rZz3DQBNg13fF9sNAfiX9EelHxEDVMuLtZj\u002fEQHa5Kf\u002fT68NAxep2OcVbw0AB+GyQz53CQGASr\u002feHwMFAFmrgYoPSwEAGZUiLrcS\u002fQL43Oycu\u002fb1A1K7fgLJrvECMK3x\u002fZC27QFATVwpuX7pA+sa2CPkeukAEqeFhL4m6QPEbHv06u7tAGIWywUXSvUAuoXLLvHXAQKU6lfyBkMJACh8JZjIkxUDvYSQtN\u002fnHQLnr00F71spAaq4ElOmCzUD8mKMTbcXPQC\u002fNTlh4stBA6dBvrS8U0UAwTisBUuvQQEFXtR5+HdBA06qVlxKEzUCrD2OR\u002fkPKQCGb2VEqEcdAAAAAAACCxEClgNfWSwXDQPSPS2Fia8JAES1CPvpcwkDQVqEMyoLCQOaqW\u002fxLicJAFxCGRYxzwkBYtlcoKZvCQChsFHaEXcNAAAAAAAAYxUBYlmj3b\u002fbHQIurxQ1yXstAARWZVBaEzkCaTrJutk3QQEPUUrHVcNBAJF5zzWlmz0AsqX41ogvNQN4LdFt0vMpAAQAAAABkyUATkfA7aLDJQCoImojdW8tA6EByt5PjzUDMhvdMX2LQQMO54r67v9FAgqEr7Trr0kD2jVmoh+fTQAhhE3+\u002fuNRAAAAAAABj1UA\u002fxikdpOnVQEjsKFb8TNZAFiL5jZaM1kDmFpanAKjWQII5Hggfn9ZAHhnPxZt51kBxZQWo5kbWQJyNQPjFFtZAAAAAAAD51UBSoyrGLf3VQKk+RUczMtZA4RE8Pcem1kAuW\u002fthoGnXQJN\u002fkSvfh9hA7UAe9yPq2UDYv9IIj1TbQHk9AmGqidxAAAAAAABM3UB4uAEf63jdQAvKxtoLWd1AiATxiNNP3UAJOCJ\u002fs8DdQHZKHCTWCt9AkJJBNIOV4EDMW27j193hQFN\u002fZ2V7KeNAAQAAAIBD5EAr4mKidAPlQJs1G+HacuVAEg0M+rCn5UDSehgr9bflQNKRI7KlueVAuWQQzcDC5UBqBsK5ROnlQEOJG7YvQ+ZAAAAAAIDm5kA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABEn0CO4ziO40SfQBzHcRzHRZ9Aq6qqqqpGn0A5juM4jkefQMdxHMdxSJ9AVVVVVVVJn0DkOI7jOEqfQHIcx3EcS59AAAAAAABMn0CO4ziO40yfQBzHcRzHTZ9Aq6qqqqpOn0A5juM4jk+fQMdxHMdxUJ9AVVVVVVVRn0DkOI7jOFKfQHIcx3EcU59AAAAAAABUn0CO4ziO41SfQBzHcRzHVZ9Aq6qqqqpWn0A5juM4jlefQMdxHMdxWJ9AVVVVVVVZn0DkOI7jOFqfQHIcx3EcW59AAAAAAABcn0CO4ziO41yfQBzHcRzHXZ9Aq6qqqqpen0A5juM4jl+fQMdxHMdxYJ9AVVVVVVVhn0DkOI7jOGKfQHIcx3EcY59AAAAAAABkn0CO4ziO42SfQBzHcRzHZZ9Aq6qqqqpmn0A5juM4jmefQMdxHMdxaJ9AVVVVVVVpn0DkOI7jOGqfQHIcx3Eca59AAAAAAABsn0CO4ziO42yfQBzHcRzHbZ9Aq6qqqqpun0A5juM4jm+fQMdxHMdxcJ9AVVVVVVVxn0DkOI7jOHKfQHIcx3Ecc59AAAAAAAB0n0CO4ziO43SfQBzHcRzHdZ9Aq6qqqqp2n0A5juM4jnefQMdxHMdxeJ9AVVVVVVV5n0DkOI7jOHqfQHIcx3Ece59AAAAAAAB8n0CO4ziO43yfQBzHcRzHfZ9Aq6qqqqp+n0A5juM4jn+fQMdxHMdxgJ9AVVVVVVWBn0DkOI7jOIKfQHIcx3Ecg59AAAAAAACEn0CO4ziO44SfQBzHcRzHhZ9Aq6qqqqqGn0A5juM4joefQMdxHMdxiJ9AVVVVVVWJn0DkOI7jOIqfQHIcx3Eci59AAAAAAACMn0CO4ziO44yfQBzHcRzHjZ9Aq6qqqqqOn0A5juM4jo+fQMdxHMdxkJ9AVVVVVVWRn0DkOI7jOJKfQHIcx3Eck59AAAAAAACUn0CO4ziO45SfQBzHcRzHlZ9Aq6qqqqqWn0A5juM4jpefQMdxHMdxmJ9AVVVVVVWZn0DkOI7jOJqfQHIcx3Ecm59AAAAAAACcn0A="},"y":{"dtype":"f8","bdata":"AAAAAABEtkAkdJBop1a8QB2iZq\u002frisBAkoUm6gNQwkBLLFNd2InDQGPktwGlR8RAnPkf0KWYxECDt1bBFozEQAZqJ84zMcRAE11d7ziXw0Bt3MMdYs3CQNozJlLr4sFABK5PhRDnwEDqMRdgG9K\u002fQL5+SpY98L1AEtrPnv9GvEAv2j1r2fS6QLwZK+1CGLpAkC4uFrTPuUA2sN3XpDm6QEI20CONdLtAO1uc6+SevUD3WGwQkmvAQAV4ZDhJnMJAbimfspBKxUDy00sytjrIQERicEhvL8tAHskShnHrzUADfRw+uRjQQEFz9N0T4tBAF0AUayMz0UB12\u002f6tQu3QQLwf1QeL6M9ARuFTTMHJzEDvsFdUUynJQD3zJHRet8VAAQAAAAAkw0CE9XnS2O3BQEz8Vt+XzcFALACooG9KwkCu6n2QkuvCQLerxzfpPMNAb5pmdbc2w0DBdS5+nD3DQDoB0ZXtusNAAAAAAAAYxUDwp8CXn4zHQJL5ZZVyispAymqWyJVRzUDNZ\u002fgAJiLPQAEYeMNZRc9ALIJE3rbVzUCGjc9oEr\u002fLQA7a0C9b9slAAAAAAIBwyUA8FhpOMdjKQIAl8i4mr81Ah1uwr2uW0EDBIx\u002fOXkTSQKoMSi1RgNNA4Armzccx1ECFaNj254jUQKbLHkv\u002fuNRAbtu2bVv11ECGUq6NgmPVQLI7Uwrd8dVAUbYDzwuB1kDP3x3Hr\u002fHWQJgSh\u002f6XJddAy\u002fRKbbgZ10CdeJv3KebWQBHMMaIzpNZAcxzHcRxt1kBuMimgwVrWQJhDeDtZidZAkyHphq8V10AInLDFkBzYQDAaL50JuNlAxH2vhO\u002fC20CcJWfF4NjdQFX\u002ftgq8kt9AAAAAALBE4EBh8A9WXj7gQJl054MHyd9ALVSkV4fx3kBSG6T3gnneQI5Lo\u002f5c395AK6uqm3sY4EArTzJO2QXhQDs0dfkFBOJAAQAAAEDf4kBXWUagg3PjQKPvV4jE2+NA6HQrQrRC5EDymbdXBNPkQKwQ81Jmt+VAoIrUvYsa50ARvFIiJifpQA1SZArnB+xAAAAAAIDn70A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2016-1823546",5],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2001-1841239",13],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2018-1820360",150],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2019-1840359",159],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2018-1838567",192],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-srt-2008-1792225",360],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2017-1838285",370],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2018-1839478",409],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2020-1839049",459],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-2010-1838186",543],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2016-1803446",545],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2020-1784647",593],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2018-1839376",609],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2019-1839802",695],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2021-1838009",700],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2016-1769381",749],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2014-1841427",757],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2017-1833559",856],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2021-1839631",884],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2018-1829303",919],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2015-1606421",1030],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2015-1670954",1039],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-overland-2012-1591612",1042],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2014-1833570",1049],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2023-1841210",1092],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2018-1836982",1107],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2015-1841645",1239],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2017-1810514",1261],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2015-1828101",1331],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2014-1837511",1340],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-srt-2019-1815839",1369],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2015-1833147",1372],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2016-1840565",1375],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2017-1838542",1415],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2014-1841790",1460],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2004-1839454",1467],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2016-1841057",1506],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2013-1839547",1525],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-laredo-2012-1841676",1629],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-grand-cherokee-limited-2016-1836902",1649]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4AcAANEHAADiBwAA4wcAAOIHAADYBwAA4QcAAOIHAADkBwAA2gcAAOAHAADkBwAA4gcAAOMHAADlBwAA4AcAAN4HAADhBwAA5QcAAOIHAADfBwAA3wcAANwHAADeBwAA5wcAAOIHAADfBwAA4QcAAN8HAADeBwAA4wcAAN8HAADgBwAA4QcAAN4HAADUBwAA4AcAAN0HAADcBwAA4AcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAABp1EAAAAAAAES2QAAAAAAAgtRAAAAAAABM3UAAAAAAADPdQAAAAAAAHdBAAAAAAABv00AAAAAAAF3WQAAAAAAARt5AAAAAAACOwkAAAAAAAFHYQAAAAAAAfdlAAAAAAADt10AAAAAAAMPeQAAAAACAQ+RAAAAAAACO0kAAAAAAAEDPQAAAAAAAS9lAAAAAAIDy5EAAAAAAAD\u002fbQAAAAAAAK9ZAAAAAAAAL00AAAAAAAIHQQAAAAAAAF9FAAAAAAIBv5UAAAAAAAP\u002fUQAAAAAAAfNVAAAAAAABq2EAAAAAAABHSQAAAAAAAF9FAAAAAAAD55UAAAAAAAFLMQAAAAAAAadRAAAAAAAD51UAAAAAAAB3QQAAAAAAA3L5AAAAAAADz1kAAAAAAACzKQAAAAAAAmtBAAAAAAABd1kA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Jeep Grand Cherokee - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (40)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-5" data-point-index="5">
+                <td>$20,900</td>
+                <td>68,500</td>
+                <td>2016</td>
+                <td>San Isidro</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2016-1823546" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-13" data-point-index="13">
+                <td>$5,700</td>
+                <td>200,000</td>
+                <td>2001</td>
+                <td>Comas</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2001-1841239" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-150" data-point-index="150">
+                <td>$21,000</td>
+                <td>60,500</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2018-1820360" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-159" data-point-index="159">
+                <td>$30,000</td>
+                <td>48,000</td>
+                <td>2019</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2019-1840359" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-192" data-point-index="192">
+                <td>$29,900</td>
+                <td>56,000</td>
+                <td>2018</td>
+                <td>San Isidro</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2018-1838567" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-360" data-point-index="360">
+                <td>$16,500</td>
+                <td>65,000</td>
+                <td>2008</td>
+                <td>La Molina</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-srt-2008-1792225" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-370" data-point-index="370">
+                <td>$19,900</td>
+                <td>88,600</td>
+                <td>2017</td>
+                <td>Callao</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2017-1838285" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-409" data-point-index="409">
+                <td>$22,900</td>
+                <td>88,335</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2018-1839478" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-459" data-point-index="459">
+                <td>$31,000</td>
+                <td>30,000</td>
+                <td>2020</td>
+                <td>La Molina</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2020-1839049" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-543" data-point-index="543">
+                <td>$9,500</td>
+                <td>226,000</td>
+                <td>2010</td>
+                <td>Ate</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-2010-1838186" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-545" data-point-index="545">
+                <td>$24,900</td>
+                <td>97,000</td>
+                <td>2016</td>
+                <td>La Molina</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2016-1803446" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-593" data-point-index="593">
+                <td>$26,100</td>
+                <td>42,000</td>
+                <td>2020</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2020-1784647" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-609" data-point-index="609">
+                <td>$24,500</td>
+                <td>50,000</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2018-1839376" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-695" data-point-index="695">
+                <td>$31,500</td>
+                <td>45,300</td>
+                <td>2019</td>
+                <td>Miraflores</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2019-1839802" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-700" data-point-index="700">
+                <td>$41,500</td>
+                <td>40,000</td>
+                <td>2021</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2021-1838009" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-749" data-point-index="749">
+                <td>$19,000</td>
+                <td>104,945</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2016-1769381" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-757" data-point-index="757">
+                <td>$16,000</td>
+                <td>110,000</td>
+                <td>2014</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2014-1841427" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-856" data-point-index="856">
+                <td>$25,900</td>
+                <td>64,500</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2017-1833559" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-884" data-point-index="884">
+                <td>$42,900</td>
+                <td>24,000</td>
+                <td>2021</td>
+                <td>Jesus Maria</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2021-1839631" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-919" data-point-index="919">
+                <td>$27,900</td>
+                <td>51,000</td>
+                <td>2018</td>
+                <td>San Borja</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2018-1829303" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1030" data-point-index="1030">
+                <td>$22,700</td>
+                <td>80,000</td>
+                <td>2015</td>
+                <td>San Borja</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2015-1606421" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1039" data-point-index="1039">
+                <td>$19,500</td>
+                <td>39,550</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2015-1670954" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1042" data-point-index="1042">
+                <td>$16,900</td>
+                <td>89,000</td>
+                <td>2012</td>
+                <td>Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-overland-2012-1591612" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1049" data-point-index="1049">
+                <td>$17,500</td>
+                <td>88,000</td>
+                <td>2014</td>
+                <td>Santiago de Surco</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2014-1833570" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1092" data-point-index="1092">
+                <td>$43,900</td>
+                <td>38,000</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2023-1841210" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1107" data-point-index="1107">
+                <td>$21,500</td>
+                <td>95,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2018-1836982" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1239" data-point-index="1239">
+                <td>$22,000</td>
+                <td>103,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2015-1841645" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1261" data-point-index="1261">
+                <td>$25,000</td>
+                <td>70,000</td>
+                <td>2017</td>
+                <td>La Molina</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2017-1810514" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1331" data-point-index="1331">
+                <td>$18,500</td>
+                <td>68,788</td>
+                <td>2015</td>
+                <td>Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2015-1828101" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1340" data-point-index="1340">
+                <td>$17,500</td>
+                <td>130,000</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2014-1837511" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1369" data-point-index="1369">
+                <td>$45,000</td>
+                <td>46,000</td>
+                <td>2019</td>
+                <td>La Molina</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-srt-2019-1815839" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1372" data-point-index="1372">
+                <td>$14,500</td>
+                <td>136,000</td>
+                <td>2015</td>
+                <td>La Molina</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2015-1833147" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1375" data-point-index="1375">
+                <td>$20,900</td>
+                <td>79,000</td>
+                <td>2016</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2016-1840565" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1415" data-point-index="1415">
+                <td>$22,500</td>
+                <td>70,000</td>
+                <td>2017</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2017-1838542" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1460" data-point-index="1460">
+                <td>$16,500</td>
+                <td>77,756</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2014-1841790" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1467" data-point-index="1467">
+                <td>$7,900</td>
+                <td>234,700</td>
+                <td>2004</td>
+                <td>La Molina</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2004-1839454" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1506" data-point-index="1506">
+                <td>$23,500</td>
+                <td>60,000</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2016-1841057" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1525" data-point-index="1525">
+                <td>$13,400</td>
+                <td>149,000</td>
+                <td>2013</td>
+                <td>Miraflores</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2013-1839547" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1629" data-point-index="1629">
+                <td>$17,000</td>
+                <td>83,000</td>
+                <td>2012</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-laredo-2012-1841676" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1649" data-point-index="1649">
+                <td>$22,900</td>
+                <td>61,200</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-grand-cherokee-limited-2016-1836902" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

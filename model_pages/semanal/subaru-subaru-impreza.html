@@ -1,0 +1,376 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Subaru Impreza</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Subaru Impreza</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $12,700</p>
+            <p><strong>Ratio Venta Rápida:</strong> 16.67%</p>
+            <p><strong>Anuncios Únicos:</strong> 120</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAA0n0CGxLydITWfQA2JeTtDNp9Ak0022WQ3n0AaEvN2hjifQKDWrxSoOZ9AJ5tsssk6n0CtXylQ6zufQDQk5u0MPZ9Auuiiiy4+n0BBrV8pUD+fQMdxHMdxQJ9ATjbZZJNBn0DU+pUCtUKfQFu\u002fUqDWQ59A4YMPPvhEn0BnSMzbGUafQO4MiXk7R59AdNFFF11In0D7lQK1fkmfQIFav1KgSp9ACB988MFLn0CO4ziO40yfQBWo9SsFTp9Am2yyySZPn0AiMW9nSFCfQKj1KwVqUZ9AL7roootSn0C1fqVArVOfQDtDYt7OVJ9AwgcffPBVn0BIzNsZElefQM+QmLczWJ9AVVVVVVVZn0DcGRLzdlqfQGLezpCYW59A6aKLLrpcn0BvZ0jM212fQPYrBWr9Xp9AfPDBBx9gn0ADtX6lQGGfQIl5O0NiYp9AED744INjn0CWArV+pWSfQBzHcRzHZZ9Ao4suuuhmn0ApUOtXCmifQLAUqPUraZ9ANtlkk01qn0C9nSExb2ufQENi3s6QbJ9AyiabbLJtn0BQ61cK1G6fQNevFKj1b59AXXTRRRdxn0DkOI7jOHKfQGr9SoFac59A8MEHH3x0n0B3hsS8nXWfQP1KgVq\u002fdp9AhA8++OB3n0AK1PqVAnmfQJGYtzMkep9AF1100UV7n0CeITFvZ3yfQCTm7QyJfZ9Aq6qqqqp+n0Axb2dIzH+fQLgzJObtgJ9APvjggw+Cn0DFvJ0hMYOfQEuBWr9ShJ9A0UUXXXSFn0BYCtT6lYafQN7OkJi3h59AZZNNNtmIn0DrVwrU+omfQHIcx3Eci59A+OCDDz6Mn0B\u002fpUCtX42fQAVq\u002fUqBjp9AjC666KKPn0AS83aGxJCfQJm3MyTmkZ9AH3zwwQeTn0ClQK1fKZSfQCwFav1KlZ9Asskmm2yWn0A5juM4jpefQL9SoNavmJ9ARhdddNGZn0DM2xkS85qfQFOg1q8UnJ9A2WSTTTadn0BgKVDrV56fQObtDIl5n59AbbLJJpugn0DzdobEvKGfQHo7Q2Leop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAAB8tUBYzk0gDW64QIjTl6dECLlAOw8UglPXt0C+gPib5me1QB8te+GqRrJAdSCkfZoArkA0YWZA9UKoQCoVqeO\u002fbaRAl0TYP1Sao0DQ8F8tDOKmQJBQZCdFVq9AmMKeNzNitkCoMmHCgaa+QKQ2l27NvMNAJKWdmIXux0C+XN6zL2nLQNXS8xSSrc1A3IEY+iU+zkA71+TyowzNQHzWyx7IvMpAxsxgnEoCyEBWg3gqlIHFQP3BF1iQaMNAapS9f+WtwUCqpa+27EfAQGdqY0QbXL5AtjUDwXqzvEBtau7eWom7QCLB1Jke0bpA\u002fvNl7Sh+ukDOvVHV3IO6QC6ZPCGc1bpAC0aJW3xlu0DhzuGZfyK8QOCK3Nw1+7xA0bfiAMfbvUDmijYP0JG+QFp304Xv1b5Afd+vgmZgvkBEJKwJKx69QO9mWjaTlbtAtk1kvrNoukBM4W6\u002f0zG6QOxcsQEpCLtAPHOi1ieWvEA13pbT+YK+QMWu8UbkOsBAPFVuzd4KwUAXwutHAYXBQN5SgnKPgMFA4GYsuoQpwUChXsY8lADBQGKamgkgisFA9\u002fU4nrUaw0BmJ+PC6DHFQBRrp54LFMdAn5JSdcEJyEBnXqm6X+rHQPLZZn40OcdADHxF0MqDxkBeZLnvB0DGQC9fmNoWYcZASBEiDjatxkA4qR3nUevGQAS8vjT4BsdA56bo+QAhx0DcuOhCd17HQDFqXttT3MdAPL2KM9l\u002fyEBngxOrxxbJQCWG6i0vb8lAzCOaxWt5yUAMC1qcRmLJQFqZr3yvXMlACzPIl56WyUDiBd1\u002f0BLKQGqYbSG\u002fvcpA34cdo7WDy0BGl++3OFHMQNfVSHJIE81AcAt41fS2zUBn2wOYFCzOQO4z4VRpgc5AXvZ59AbZzkAhiyIERFXPQNeGlQ5pA9BAAMg8JQto0EDVCGl\u002f+sXQQCJ2CpvFC9FAOYCXaSI40UBmuKUH+1XRQBWB45SGcNFAQDz\u002fMPyS0UBXTKf7ksjRQCYTihSCHNJAdfNVmwCa0kCSTrmvRUzTQOyHYnGIPtRAAAAAAAB81UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAA0n0CGxLydITWfQA2JeTtDNp9Ak0022WQ3n0AaEvN2hjifQKDWrxSoOZ9AJ5tsssk6n0CtXylQ6zufQDQk5u0MPZ9Auuiiiy4+n0BBrV8pUD+fQMdxHMdxQJ9ATjbZZJNBn0DU+pUCtUKfQFu\u002fUqDWQ59A4YMPPvhEn0BnSMzbGUafQO4MiXk7R59AdNFFF11In0D7lQK1fkmfQIFav1KgSp9ACB988MFLn0CO4ziO40yfQBWo9SsFTp9Am2yyySZPn0AiMW9nSFCfQKj1KwVqUZ9AL7roootSn0C1fqVArVOfQDtDYt7OVJ9AwgcffPBVn0BIzNsZElefQM+QmLczWJ9AVVVVVVVZn0DcGRLzdlqfQGLezpCYW59A6aKLLrpcn0BvZ0jM212fQPYrBWr9Xp9AfPDBBx9gn0ADtX6lQGGfQIl5O0NiYp9AED744INjn0CWArV+pWSfQBzHcRzHZZ9Ao4suuuhmn0ApUOtXCmifQLAUqPUraZ9ANtlkk01qn0C9nSExb2ufQENi3s6QbJ9AyiabbLJtn0BQ61cK1G6fQNevFKj1b59AXXTRRRdxn0DkOI7jOHKfQGr9SoFac59A8MEHH3x0n0B3hsS8nXWfQP1KgVq\u002fdp9AhA8++OB3n0AK1PqVAnmfQJGYtzMkep9AF1100UV7n0CeITFvZ3yfQCTm7QyJfZ9Aq6qqqqp+n0Axb2dIzH+fQLgzJObtgJ9APvjggw+Cn0DFvJ0hMYOfQEuBWr9ShJ9A0UUXXXSFn0BYCtT6lYafQN7OkJi3h59AZZNNNtmIn0DrVwrU+omfQHIcx3Eci59A+OCDDz6Mn0B\u002fpUCtX42fQAVq\u002fUqBjp9AjC666KKPn0AS83aGxJCfQJm3MyTmkZ9AH3zwwQeTn0ClQK1fKZSfQCwFav1KlZ9Asskmm2yWn0A5juM4jpefQL9SoNavmJ9ARhdddNGZn0DM2xkS85qfQFOg1q8UnJ9A2WSTTTadn0BgKVDrV56fQObtDIl5n59AbbLJJpugn0DzdobEvKGfQHo7Q2Leop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAAB8tUCEibkmLiy3QKabfJUQCLdAr2R+JdaFtUCQEPSvrRuzQJrREg7GP7BAq6IfMpzQqkCvhUBU6RamQBah8jTRPqNAAFaghrE0o0CJAbT75+SmQM4Do6PjNK9Alq6ouG34tUBZlCdQY7i9QEbZfXfB\u002fMJApzbpdX7txkCWn6zOAD7KQCTPHq3gfcxANicSyhY+zUCbSu8FymnMQDsRvN9ufMpAdleV7W7+x0Aa0onhRXLFQNQTdQaMLMNAcEjs9nFswUC\u002fTayMsXDAQOIFoTZxTsBA0Y81ShjKwEC68J0ix57BQA8vDhueh8JAh1G6jr0\u002fw0DrXNbYRYLDQAhgjiuKCsNAjp+slCrMwUBt0AiDNEDAQPD++twT5r1A+5v8Xs\u002fLvECgMDUQORm9QE\u002fWDWd\u002f871Aj4KWdhF8vkB\u002fpo5HLCa+QEAYSp0ZU71AIxZm\u002fDKPvEASStV1p2C8QA8DtQsV5rxAFQAJFCrovUC2BQn8+iy\u002fQB9udhhOPcBA2iP2D5HLwEANiB+bUCTBQPuUGcsaLcFAxmaKU1YFwUDBOpeKQgbBQBJm8KCii8FAa5RefQnPwkCo+Td8znHEQN5liOLt6sVAI0l0vsm0xkAZSuDxEbrGQB19hWzObMZAzOuv4hVHxkAq6E8x5anGQMNd31V2a8dAvqNtDlQyyEBQSPe7KabIQN1wwCIzqshAPiLkNFN4yEB1m1b6QFHIQA5PpMtsa8hAoArHo1i2yEBVRPN8mAPJQC0UkTI2JclAV9eGm4weyUBAjyu22UnJQFRZAKszCspA0\u002f6ay96uy0CMCms3ntrNQCkGf7xi189ATrx2\u002f3l30EA1G1Zjj2jQQMplxQAzBNBAEvvbJI87z0C7mKh6ZATPQC0EW\u002fsebM9AnOCAlM8Q0EBnOTzROGnQQPGlxJJGo9BA36asLJzF0ECXk0iQetzQQHR3zoHL89BA+vkHjoQS0UBFSnsr3TvRQPQVqjL1ctFA9gkWfOy60UAc1EDg4hbSQBghrDf4idJABZ\u002fZWkwX00A++koi\u002f8HTQEPhgWYwjdRAAAAAAAB81UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2018-1841781",31],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2025-1836058",211],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2019-1836434",332],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sedan-2013-1840904",402],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2007-1841833",435],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-wrx-sti-2003-1838842",542],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2020-1838241",612],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2021-1841803",879],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2020-1838346",943],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2018-1841293",949],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2007-1841833",1001],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2015-1840617",1033],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2021-1841809",1221],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-wrx-2016-1557154",1228],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2021-1841332",1368],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2014-1659144",1390],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2014-1835484",1399],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sedan-2018-1838652",1418],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sport-2016-1840007",1456],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2007-1841833",1476],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-sedan-1998-1840422",1493],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2023-1839040",1574],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsubaru-impreza-2019-1841336",1591]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4gcAAOkHAADjBwAA3QcAANcHAADTBwAA5AcAAOUHAADkBwAA4gcAANcHAADfBwAA5QcAAOAHAADlBwAA3gcAAN4HAADiBwAA4AcAANcHAADOBwAA5wcAAOMHAAA="},"y":{"dtype":"f8","bdata":"AAAAAABSzEAAAAAAAHzVQAAAAAAA9MpAAAAAAAAlx0AAAAAAAEy9QAAAAAAAcMdAAAAAAAC2zEAAAAAAAIjTQAAAAAAAxtFAAAAAAABSzEAAAAAAAEy9QAAAAAAATM1AAAAAAAAOz0AAAAAAAIjTQAAAAAAA1s9AAAAAAAAqwkAAAAAAALTEQAAAAAAARs5AAAAAAAAyyUAAAAAAAEy9QAAAAAAAzLBAAAAAAABi0UAAAAAAAEzNQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Subaru Impreza - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (23)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-31" data-point-index="31">
+                <td>$14,500</td>
+                <td>39,500</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2018-1841781" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-211" data-point-index="211">
+                <td>$22,000</td>
+                <td>3,130</td>
+                <td>2025</td>
+                <td>San Isidro</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2025-1836058" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-332" data-point-index="332">
+                <td>$13,800</td>
+                <td>68,000</td>
+                <td>2019</td>
+                <td>Miraflores</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2019-1836434" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-402" data-point-index="402">
+                <td>$11,850</td>
+                <td>65,000</td>
+                <td>2013</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sedan-2013-1840904" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-435" data-point-index="435">
+                <td>$7,500</td>
+                <td>126,000</td>
+                <td>2007</td>
+                <td>Magdalena del Mar</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2007-1841833" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-542" data-point-index="542">
+                <td>$12,000</td>
+                <td>80,000</td>
+                <td>2003</td>
+                <td>Tacna</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-wrx-sti-2003-1838842" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-612" data-point-index="612">
+                <td>$14,700</td>
+                <td>75,100</td>
+                <td>2020</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2020-1838241" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-879" data-point-index="879">
+                <td>$20,000</td>
+                <td>24,500</td>
+                <td>2021</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2021-1841803" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-943" data-point-index="943">
+                <td>$18,200</td>
+                <td>17,200</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2020-1838346" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-949" data-point-index="949">
+                <td>$14,500</td>
+                <td>88,500</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2018-1841293" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1001" data-point-index="1001">
+                <td>$7,500</td>
+                <td>126,000</td>
+                <td>2007</td>
+                <td>Magdalena del Mar</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2007-1841833" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1033" data-point-index="1033">
+                <td>$15,000</td>
+                <td>56,400</td>
+                <td>2015</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2015-1840617" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1221" data-point-index="1221">
+                <td>$15,900</td>
+                <td>44,465</td>
+                <td>2021</td>
+                <td>San Miguel</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2021-1841809" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1228" data-point-index="1228">
+                <td>$20,000</td>
+                <td>50,794</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-wrx-2016-1557154" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1368" data-point-index="1368">
+                <td>$16,300</td>
+                <td>26,000</td>
+                <td>2021</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2021-1841332" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1390" data-point-index="1390">
+                <td>$9,300</td>
+                <td>81,400</td>
+                <td>2014</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2014-1659144" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1399" data-point-index="1399">
+                <td>$10,600</td>
+                <td>61,000</td>
+                <td>2014</td>
+                <td>San Isidro</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2014-1835484" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1418" data-point-index="1418">
+                <td>$15,500</td>
+                <td>19,700</td>
+                <td>2018</td>
+                <td>San Borja</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sedan-2018-1838652" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1456" data-point-index="1456">
+                <td>$12,900</td>
+                <td>57,000</td>
+                <td>2016</td>
+                <td>San Isidro</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sport-2016-1840007" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1476" data-point-index="1476">
+                <td>$7,500</td>
+                <td>126,000</td>
+                <td>2007</td>
+                <td>Magdalena del Mar</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2007-1841833" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1493" data-point-index="1493">
+                <td>$4,300</td>
+                <td>270,000</td>
+                <td>1998</td>
+                <td>Breña</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-sedan-1998-1840422" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1574" data-point-index="1574">
+                <td>$17,800</td>
+                <td>24,000</td>
+                <td>2023</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2023-1839040" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1591" data-point-index="1591">
+                <td>$15,000</td>
+                <td>42,000</td>
+                <td>2019</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/subaru-impreza-2019-1841336" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

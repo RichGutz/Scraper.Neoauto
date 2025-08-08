@@ -1,0 +1,448 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Nissan X-Trail</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Nissan X-Trail</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $17,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 24.63%</p>
+            <p><strong>Anuncios Únicos:</strong> 134</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABkn0CWArV+pWSfQCwFav1KZZ9AwgcffPBln0BYCtT6lWafQO4MiXk7Z59AhA8++OBnn0AaEvN2hmifQLAUqPUraZ9ARhdddNFpn0DcGRLzdmqfQHIcx3Eca59ACB988MFrn0CeITFvZ2yfQDQk5u0MbZ9AyiabbLJtn0BgKVDrV26fQPYrBWr9bp9AjC666KJvn0AiMW9nSHCfQLgzJObtcJ9ATjbZZJNxn0DkOI7jOHKfQHo7Q2Lecp9AED744INzn0ClQK1fKXSfQDtDYt7OdJ9A0UUXXXR1n0BnSMzbGXafQP1KgVq\u002fdp9Ak0022WR3n0ApUOtXCnifQL9SoNaveJ9AVVVVVVV5n0DrVwrU+nmfQIFav1Kgep9AF1100UV7n0CtXylQ63ufQENi3s6QfJ9A2WSTTTZ9n0BvZ0jM232fQAVq\u002fUqBfp9Am2yyySZ\u002fn0Axb2dIzH+fQMdxHMdxgJ9AXXTRRReBn0DzdobEvIGfQIl5O0Nigp9AH3zwwQeDn0C1fqVArYOfQEuBWr9ShJ9A4YMPPviEn0B3hsS8nYWfQA2JeTtDhp9Ao4suuuiGn0A5juM4joefQM+QmLcziJ9AZZNNNtmIn0D7lQK1fomfQJGYtzMkip9AJ5tsssmKn0C9nSExb4ufQFOg1q8UjJ9A6aKLLrqMn0B\u002fpUCtX42fQBWo9SsFjp9Aq6qqqqqOn0BBrV8pUI+fQNevFKj1j59AbbLJJpuQn0ADtX6lQJGfQJm3MyTmkZ9AL7rooouSn0DFvJ0hMZOfQFu\u002fUqDWk59A8MEHH3yUn0CGxLydIZWfQBzHcRzHlZ9Asskmm2yWn0BIzNsZEpefQN7OkJi3l59AdNFFF12Yn0AK1PqVApmfQKDWrxSomZ9ANtlkk02an0DM2xkS85qfQGLezpCYm59A+OCDDz6cn0CO4ziO45yfQCTm7QyJnZ9Auuiiiy6en0BQ61cK1J6fQObtDIl5n59AfPDBBx+gn0AS83aGxKCfQKj1KwVqoZ9APvjggw+in0DU+pUCtaKfQGr9SoFao59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACOwkDMqOCV0YHCQE1znwTXhMJA92qf6x2VwkA4m0Pqs7DCQH4P75+m1cJAONMErAMCw0DZ8eet2DPDQMp2+0QzacNAgm2iECGgw0Bq4T+wr9bDQPXdNsPsCsRAkG7q6OU6xECtnr3AqGTEQLh5E+pChsRAJAtPBMKdxEBfXtOuM6nEQNV+A4mlpsRA+3dCMiWUxEBRAJPOHHDEQLlloENWRMRATnMWff8nxECO5BUJCzPEQAN1v3VrfcRAMuAzURMfxUBILiVrwy\u002fGQOCe85C5r8dARapiwIlxyUC6FonhiELLQICqfdwL8MxA4StXmWdHzkAsnZT98RXPQDW2fDb8O89Afj58cdXYzkA2zi+t2RjOQJX9M+hkKM1A0GQlIdMzzEAdnKBWgGfLQEpKZrUU6spAG+oFlOvAykDyABipUuXKQIydqWmTUMtAqs7HSvf7y0AHo3\u002fBx+DMQE9XOuUt981ALQP93ysrz0DeePTgrDDQQFAQG0Mav9BAwkYOlBwz0UAJG2pR8n7RQJjiilKMldFA4boUf+F50UBZifPO7j7RQBOK05Nj+NBAIflgH++50ECVEkjDQJfQQD6GSz\u002fZo9BAmdIwVHnm0EAZrdQs\u002fFDRQLYgjhNN09FAbTi0Uldd0kA3\u002f500Bt\u002fSQPIsdh9HSNNA\u002fyLgRwCP00AdFLGbl7nTQC3cWlFG0dNAEldPn0Xf00CvYAC8zuzTQOjU390aA9RAVbV2UN8o1EBEfK80rVjUQFoYZBRtidRAZ9SWSAey1EA8+0kqZMnUQKnXfxJsxtRAHqQaVdKi1EC7z00\u002fmXDUQMabs0lHTtRA4w\u002f4Z31a1EC2M8eN3LPUQOQOza4FedVAWG\u002f2Og7G1kBkjet4rYrYQLLUsRXrkNpA3wFqM5yh3ECM0TT0lYXeQCqAGb3WAuBA4q9fksB14EAqv2NbJZLgQFLEKhpWZ+BALOCQpXUG4EAYZ+SoTQHfQIe+VfsYzt1ATAgu8JKV3EAKhiU1AXrbQGl59HepndpACiRTZtEi2kCWx\u002fmtvivaQLGloPy22tpAAAAAAABS3EA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABkn0CWArV+pWSfQCwFav1KZZ9AwgcffPBln0BYCtT6lWafQO4MiXk7Z59AhA8++OBnn0AaEvN2hmifQLAUqPUraZ9ARhdddNFpn0DcGRLzdmqfQHIcx3Eca59ACB988MFrn0CeITFvZ2yfQDQk5u0MbZ9AyiabbLJtn0BgKVDrV26fQPYrBWr9bp9AjC666KJvn0AiMW9nSHCfQLgzJObtcJ9ATjbZZJNxn0DkOI7jOHKfQHo7Q2Lecp9AED744INzn0ClQK1fKXSfQDtDYt7OdJ9A0UUXXXR1n0BnSMzbGXafQP1KgVq\u002fdp9Ak0022WR3n0ApUOtXCnifQL9SoNaveJ9AVVVVVVV5n0DrVwrU+nmfQIFav1Kgep9AF1100UV7n0CtXylQ63ufQENi3s6QfJ9A2WSTTTZ9n0BvZ0jM232fQAVq\u002fUqBfp9Am2yyySZ\u002fn0Axb2dIzH+fQMdxHMdxgJ9AXXTRRReBn0DzdobEvIGfQIl5O0Nigp9AH3zwwQeDn0C1fqVArYOfQEuBWr9ShJ9A4YMPPviEn0B3hsS8nYWfQA2JeTtDhp9Ao4suuuiGn0A5juM4joefQM+QmLcziJ9AZZNNNtmIn0D7lQK1fomfQJGYtzMkip9AJ5tsssmKn0C9nSExb4ufQFOg1q8UjJ9A6aKLLrqMn0B\u002fpUCtX42fQBWo9SsFjp9Aq6qqqqqOn0BBrV8pUI+fQNevFKj1j59AbbLJJpuQn0ADtX6lQJGfQJm3MyTmkZ9AL7rooouSn0DFvJ0hMZOfQFu\u002fUqDWk59A8MEHH3yUn0CGxLydIZWfQBzHcRzHlZ9Asskmm2yWn0BIzNsZEpefQN7OkJi3l59AdNFFF12Yn0AK1PqVApmfQKDWrxSomZ9ANtlkk02an0DM2xkS85qfQGLezpCYm59A+OCDDz6cn0CO4ziO45yfQCTm7QyJnZ9Auuiiiy6en0BQ61cK1J6fQObtDIl5n59AfPDBBx+gn0AS83aGxKCfQKj1KwVqoZ9APvjggw+in0DU+pUCtaKfQGr9SoFao59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACOwkCvzyQaoUbCQNUJLHTxHsJAYC0bU4ITwkBAuff75CDCQGIsx7OqQ8JAtgWPv2R4wkAqxFRkpLvCQK3mHef6CcNALuzvjPlfw0CaU9CaMbrDQOKbxFU0FcRA9EPSApNtxEC\u002fyv7m3r\u002fEQC6vT0epCMVANnDKaINExUDCjHSQ\u002fm\u002fFQL+DUwOsh8VAINRsBh2IxUBbPEyeSG7FQEN6Ew+oQ8VAlWY4om4gxUD6N6zhpx3FQCwlYFdfVMVA2WRFjaDdxUASGwGiRdLGQAyDRP3MM8hA723th1fWyUAM6dPZz4jLQLIB0IogGs1AMcW5MjRZzkCbGr5g9hTPQExJHWrZLs9AxP6zAMvFzkB\u002fiAGOdQXOQPszhXuDGc1At06+Mp8tzEAyJiwdc23LQLZLe7Ws\u002fspA8pOhqwHkykCgS4WFfxPLQKvF71Avg8tA+1SqGxopzEB5TH7zSPvMQDPa+cc0781A0cPvxEP0zkB5RHJ2J\u002fbPQNXi1u9BcNBAc1jngX7P0EDXtwBzmw7RQKokt5r3I9FAejlvCpkS0UCyB14NLerQQKyPtsTtutBAv9GrURWV0EBEznDV3YjQQGz\u002fKFpZptBAbPaSFKDy0ECG+h\u002f\u002fzGDRQBB7LzNQ4tFAWucgyplo0kC3rlPdGeXSQArUpohCSdNAX0JG+zaM00ATeI3w07TTQBOqxnynzNNASg08tD\u002fd00Ch1jerKvDTQAc7BHb2DtRAw9h9inJA1EAHUpzaLn7UQBHueF+9vdRA2XLh3K\u002f01EBUpqMWmBjVQHhOjdAHH9VA\u002fywmkmgA1UBPyDUi4s3UQMDxI75ZpdRAzLyhl8+k1EDsPGDgQ+rUQJaFEMq2k9VA6+vzZ9G81kBIppQUcFjYQMeUkHDHNtpAIjyxOPIm3EAcIcApC\u002fjdQG7IhgAted9AYal66Q094EB2BxNISXTgQOOjgQDwbeBAMq6\u002feTE34EDYq4w1errfQDyVHZWE2t5Ao3ck4ODo3UAjspPk7f\u002fcQNKjXXAKOtxAxKt0UZWx20AOKctV7YDbQMV6U0txwttAAAAAAICQ3EA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1840206",1],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2015-1841321",19],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2014-1840612",248],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2015-1834509",250],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2024-1827929",315],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2018-1840735",348],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2023-1839739",353],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1841560",411],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1837248",439],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2017-1839465",550],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1841657",561],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2024-1839473",638],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2023-1813310",693],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1838753",751],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2024-1834244",759],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2013-1841377",769],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2022-1840484",806],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2025-1830561",845],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1838421",903],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2017-1839419",914],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2010-1840320",1029],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2021-1840566",1045],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2022-1841465",1097],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2024-1840992",1132],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2022-1833893",1181],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2017-1839774",1225],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1838697",1353],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2023-1835856",1400],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2022-1836668",1608],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2022-1832854",1613],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2016-1839812",1647],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-x-trail-2015-1841831",1682]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4AcAAN8HAADeBwAA3wcAAOgHAADiBwAA5wcAAOAHAADgBwAA4QcAAOAHAADoBwAA5wcAAOAHAADoBwAA3QcAAOYHAADpBwAA4AcAAOEHAADaBwAA5QcAAOYHAADoBwAA5gcAAOEHAADgBwAA5wcAAOYHAADmBwAA4AcAAN8HAAA="},"y":{"dtype":"f8","bdata":"AAAAAAAOz0AAAAAAAO7LQAAAAAAADs9AAAAAAACvyUAAAAAAAJbZQAAAAAAAHdBAAAAAAABY20AAAAAAAOXQQAAAAAAAhMxAAAAAAABP0EAAAAAAAGjQQAAAAAAAlOFAAAAAAICN4EAAAAAAADLJQAAAAAAADt9AAAAAAABkyUAAAAAAAODVQAAAAAAAUtxAAAAAAABMzUAAAAAAAB3QQAAAAAAAb8NAAAAAAABX10AAAAAAAHvRQAAAAAAA4dlAAAAAAAB21kAAAAAAAHvRQAAAAAAAM81AAAAAAABY20AAAAAAAO3XQAAAAAAAgtRAAAAAAAAmy0AAAAAAAFLMQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Nissan X-Trail - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (32)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-1" data-point-index="1">
+                <td>$15,900</td>
+                <td>87,000</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1840206" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-19" data-point-index="19">
+                <td>$14,300</td>
+                <td>47,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2015-1841321" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-248" data-point-index="248">
+                <td>$15,900</td>
+                <td>84,000</td>
+                <td>2014</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2014-1840612" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-250" data-point-index="250">
+                <td>$13,150</td>
+                <td>102,000</td>
+                <td>2015</td>
+                <td>San Miguel</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2015-1834509" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-315" data-point-index="315">
+                <td>$26,200</td>
+                <td>24,450</td>
+                <td>2024</td>
+                <td>Santiago de Surco</td>
+                <td>17</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2024-1827929" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-348" data-point-index="348">
+                <td>$16,500</td>
+                <td>64,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2018-1840735" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-353" data-point-index="353">
+                <td>$28,000</td>
+                <td>31,000</td>
+                <td>2023</td>
+                <td>Miraflores</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2023-1839739" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-411" data-point-index="411">
+                <td>$17,300</td>
+                <td>67,704</td>
+                <td>2016</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1841560" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-439" data-point-index="439">
+                <td>$14,600</td>
+                <td>93,500</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1837248" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-550" data-point-index="550">
+                <td>$16,700</td>
+                <td>77,900</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2017-1839465" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-561" data-point-index="561">
+                <td>$16,800</td>
+                <td>65,920</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1841657" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-638" data-point-index="638">
+                <td>$36,000</td>
+                <td>2,800</td>
+                <td>2024</td>
+                <td>Victor Larco Herrera</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2024-1839473" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-693" data-point-index="693">
+                <td>$33,900</td>
+                <td>22,174</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>18</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2023-1813310" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-751" data-point-index="751">
+                <td>$12,900</td>
+                <td>105,000</td>
+                <td>2016</td>
+                <td>Jesus Maria</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1838753" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-759" data-point-index="759">
+                <td>$31,800</td>
+                <td>5,800</td>
+                <td>2024</td>
+                <td>La Molina</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2024-1834244" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-769" data-point-index="769">
+                <td>$13,000</td>
+                <td>187,000</td>
+                <td>2013</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2013-1841377" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-806" data-point-index="806">
+                <td>$22,400</td>
+                <td>42,612</td>
+                <td>2022</td>
+                <td>San Martin de Porres</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2022-1840484" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-845" data-point-index="845">
+                <td>$29,000</td>
+                <td>6,100</td>
+                <td>2025</td>
+                <td>San Juan de Lurigancho</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2025-1830561" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-903" data-point-index="903">
+                <td>$15,000</td>
+                <td>89,000</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1838421" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-914" data-point-index="914">
+                <td>$16,500</td>
+                <td>63,146</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2017-1839419" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1029" data-point-index="1029">
+                <td>$9,950</td>
+                <td>107,000</td>
+                <td>2010</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2010-1840320" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1045" data-point-index="1045">
+                <td>$23,900</td>
+                <td>32,200</td>
+                <td>2021</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2021-1840566" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1097" data-point-index="1097">
+                <td>$17,900</td>
+                <td>65,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2022-1841465" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1132" data-point-index="1132">
+                <td>$26,500</td>
+                <td>12,800</td>
+                <td>2024</td>
+                <td>Chorrillos</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2024-1840992" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1181" data-point-index="1181">
+                <td>$23,000</td>
+                <td>20,000</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2022-1833893" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1225" data-point-index="1225">
+                <td>$17,900</td>
+                <td>42,000</td>
+                <td>2017</td>
+                <td>Miraflores</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2017-1839774" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1353" data-point-index="1353">
+                <td>$14,950</td>
+                <td>29,500</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1838697" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1400" data-point-index="1400">
+                <td>$28,000</td>
+                <td>8,446</td>
+                <td>2023</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2023-1835856" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1608" data-point-index="1608">
+                <td>$24,500</td>
+                <td>26,000</td>
+                <td>2022</td>
+                <td>Lince</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2022-1836668" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1613" data-point-index="1613">
+                <td>$21,000</td>
+                <td>40,000</td>
+                <td>2022</td>
+                <td>Magdalena del Mar</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2022-1832854" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1647" data-point-index="1647">
+                <td>$13,900</td>
+                <td>48,000</td>
+                <td>2016</td>
+                <td>San Miguel</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2016-1839812" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1682" data-point-index="1682">
+                <td>$14,500</td>
+                <td>110,000</td>
+                <td>2015</td>
+                <td>Surquillo</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-x-trail-2015-1841831" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

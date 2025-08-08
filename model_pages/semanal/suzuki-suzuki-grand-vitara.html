@@ -1,0 +1,248 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Suzuki Grand Vitara</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Suzuki Grand Vitara</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $10,400</p>
+            <p><strong>Ratio Venta Rápida:</strong> 26.67%</p>
+            <p><strong>Anuncios Únicos:</strong> 45</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABMn0Blk0022UyfQMomm2yyTZ9AL7roootOn0CTTTbZZE+fQPjggw8+UJ9AXXTRRRdRn0DCBx988FGfQCebbLLJUp9AjC666KJTn0DwwQcffFSfQFVVVVVVVZ9Auuiiiy5Wn0AffPDBB1efQIQPPvjgV59A6aKLLrpYn0BONtlkk1mfQLLJJptsWp9AF1100UVbn0B88MEHH1yfQOGDDz74XJ9ARhdddNFdn0Crqqqqql6fQBA++OCDX59AdNFFF11gn0DZZJNNNmGfQD744IMPYp9Ao4suuuhin0AIH3zwwWOfQG2yySabZJ9A0UUXXXRln0A22WSTTWafQJtssskmZ59AAAAAAABon0Blk0022WifQMomm2yyaZ9AL7roootqn0CTTTbZZGufQPjggw8+bJ9AXXTRRRdtn0DCBx988G2fQCebbLLJbp9AjC666KJvn0DwwQcffHCfQFVVVVVVcZ9Auuiiiy5yn0AffPDBB3OfQIQPPvjgc59A6aKLLrp0n0BONtlkk3WfQLLJJptsdp9AF1100UV3n0B88MEHH3ifQOGDDz74eJ9ARhdddNF5n0CrqqqqqnqfQBA++OCDe59AdNFFF118n0DZZJNNNn2fQD744IMPfp9Ao4suuuh+n0AIH3zwwX+fQG2yySabgJ9A0UUXXXSBn0A22WSTTYKfQJtssskmg59AAAAAAACEn0Blk0022YSfQMomm2yyhZ9AL7rooouGn0CTTTbZZIefQPjggw8+iJ9AXXTRRReJn0DCBx988ImfQCebbLLJip9AjC666KKLn0DwwQcffIyfQFVVVVVVjZ9Auuiiiy6On0AffPDBB4+fQIQPPvjgj59A6aKLLrqQn0BONtlkk5GfQLLJJptskp9AF1100UWTn0B88MEHH5SfQOGDDz74lJ9ARhdddNGVn0CrqqqqqpafQBA++OCDl59AdNFFF12Yn0DZZJNNNpmfQD744IMPmp9Ao4suuuian0AIH3zwwZufQG2yySabnJ9A0UUXXXSdn0A22WSTTZ6fQJtssskmn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAADAskCBZbvUI6a5QHRIpPQdZL9Ath2l7nwHwkCYZh6G4d3DQHTMhX\u002fCP8VAGxajmaU3xkDZDD6TENDGQPN5HiuJE8dAtSYMIJUMx0DY3M4wusXGQPZkLhx+ScZAhYjyoGaixUDMEON9+drEQBTHx3G8\u002fcNAqHRoOzUVw0DO4oyZ6SvCQMjb\u002fEpfTMFAyiaADhyBwEBVHL1FS6m\u002fQGC2v40Do75AQq6XcmwEvkCUltRxkeK9QN8BBgl+Ur5AQsTMBaVnv0C3v4ayXYDAQOZblipzXsFALVeLI8EbwkAU0tvV9YXCQJvWeK1NccJAYUIZvGvywUDTj6y5gELBQBzLx8Uom8BAAAAAAAA2wEAXGtRZcTvAQCOEagwjj8BAtYjTIooDwUD+cR+oG2vBQEzD+2S0mMFA1os3in+CwUC4tGZ63FzBQBqs1Yp\u002fYsFAJuDQEB3OwUDcv2LYddXCQMtPFQggW8RAhNNqfa\u002f8xUBquP1XoVXHQN5raLdyAchAmPC6Dauwx0DqvfljqpXGQF5uDphMFMVAV52sd4aQw0C+NQ+hPG7CQLHq53418cFABJxcTPAIwkB3k7k2RJfCQMUaS2sIfsNAorWJQxufxEARNqMOSN3FQHp\u002fpq53HMdAAk8LBqRAyEDVYUn3xi3JQLHtH\u002f4Ry8lAHDEIn1EfykAxcHTBQkPKQHhyrgLXT8pAAAAAAABeykCk9mi9DYHKQFeLwdnJtcpA2AiYWlzzykCbuXpF7TDLQJpekNW3ZctAz7+C44CPy0CvLObqkbfLQI8ivYxg6MtAxB4KamIszED1cUAnl43MQMuUnppADs1AeIdXKjSqzUD14xF2FV3OQCxEdB2IIs9AE0IlwC\u002f2z0DNu+X+12nQQNe+BjtW29BAJ\u002fhIZGRN0UA5tH9K1L3RQAJAfr13KtJAfegXjSCR0kCj+h+JoO\u002fSQGzDaYHJQ9NAho\u002fIRW2L00CUrA+mXcTTQDVnEnJs7NNAXwykeWsB1EAO6ZeMLAHUQDxKwXqB6dNAKH3zEzy400BczgEoLmvTQPyKv4YpANNAAAAAAAB10kA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABMn0Blk0022UyfQMomm2yyTZ9AL7roootOn0CTTTbZZE+fQPjggw8+UJ9AXXTRRRdRn0DCBx988FGfQCebbLLJUp9AjC666KJTn0DwwQcffFSfQFVVVVVVVZ9Auuiiiy5Wn0AffPDBB1efQIQPPvjgV59A6aKLLrpYn0BONtlkk1mfQLLJJptsWp9AF1100UVbn0B88MEHH1yfQOGDDz74XJ9ARhdddNFdn0Crqqqqql6fQBA++OCDX59AdNFFF11gn0DZZJNNNmGfQD744IMPYp9Ao4suuuhin0AIH3zwwWOfQG2yySabZJ9A0UUXXXRln0A22WSTTWafQJtssskmZ59AAAAAAABon0Blk0022WifQMomm2yyaZ9AL7roootqn0CTTTbZZGufQPjggw8+bJ9AXXTRRRdtn0DCBx988G2fQCebbLLJbp9AjC666KJvn0DwwQcffHCfQFVVVVVVcZ9Auuiiiy5yn0AffPDBB3OfQIQPPvjgc59A6aKLLrp0n0BONtlkk3WfQLLJJptsdp9AF1100UV3n0B88MEHH3ifQOGDDz74eJ9ARhdddNF5n0CrqqqqqnqfQBA++OCDe59AdNFFF118n0DZZJNNNn2fQD744IMPfp9Ao4suuuh+n0AIH3zwwX+fQG2yySabgJ9A0UUXXXSBn0A22WSTTYKfQJtssskmg59AAAAAAACEn0Blk0022YSfQMomm2yyhZ9AL7rooouGn0CTTTbZZIefQPjggw8+iJ9AXXTRRReJn0DCBx988ImfQCebbLLJip9AjC666KKLn0DwwQcffIyfQFVVVVVVjZ9Auuiiiy6On0AffPDBB4+fQIQPPvjgj59A6aKLLrqQn0BONtlkk5GfQLLJJptskp9AF1100UWTn0B88MEHH5SfQOGDDz74lJ9ARhdddNGVn0CrqqqqqpafQBA++OCDl59AdNFFF12Yn0DZZJNNNpmfQD744IMPmp9Ao4suuuian0AIH3zwwZufQG2yySabnJ9A0UUXXXSdn0A22WSTTZ6fQJtssskmn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAADAskBsu9Vjq4y4QERRP+BtZ71AH6BKq5+wwEDnARjUi0XCQAYRNFv3esNAvQpLMV5ZxEBsLglHPOnEQGy7Go0NM8VAGPEr9E0\u002fxUAaD+lseRbFQGJU\u002fucLwcRAXwAYVoFHxEBtUuKnVbLDQOaJCc4ECsNAKuY5uQpXwkCSph9a46HBQD0LZ6EK88BA6FG8f\u002fxSwEB8dZfLaZS\u002fQDgKg4hfwr5AuOCTF9JAvkC6dyJauSC+QO5NhzENc75AUoZ6tp1Hv0B4c0iYB0TAQGXTU6oC+MBA0Q7XXDOcwUCf0Un7DA3CQIzxSE85K8JAERlTP8UAwkAcCNteO6\u002fBQKX4WUdrWMFAkiRJkiQewUA\u002fmtjh\u002fRfBQMm5E\u002fupNMFAw7e8q6JYwUDCyJXBYWjBQPlHOvi1SMFAbsHMfVX7wEAwRyQe47TAQETjeKkwr8BAsJ8C8A8kwUCK2X\u002fuEUjCQPxLj8GK98NAP+1fApfFxUA6YOnwG0PHQM9HI83+AMhAf2eQ00+ox0Cn\u002fsb6RHfGQHoRiBnr5MRAliZOq2tow0Dp+pqf2XjCQBBoNCSKYMJAEH9PkGv0wkBvLzIhZvbDQK5oIhRiKMVAAQWrDyFNxkAOqppZc0PHQJf\u002fnWf5C8hAXDO5B1epyEAac\u002fAHMB7JQIFmbasHbslAx2S1dPSkyUBhODPm6tPJQFfJcs\u002ftC8pAAAAAAABeykAfz28\u002f0dPKQCpTezXFWctAB7PkgezUy0BUFW7EVyrMQEEMVsZWP8xA2t5ST7gOzEB5oTSHKrnLQARnA342Y8tAakLHQ2Uxy0BevZGNy0bLQNRej6gPrstA1ZkgLpJdzECa30WhFkvNQFGh\u002f4RgbM5ALlBOXDO3z0CyLhlVqZDQQC0c1vhAUNFA6SreWkIV0kCkkrE8j9rSQPeL0F8Jm9NAfE+7hZJR1EDMFfJvDPnUQH8X9d9YjNVAsoxEl1kG1kAgr2BX8GHWQMa2yeH+mdZAOtz\u002f92ap1kAZWINbCovWQPpi1M3KOdZAOzZzEIqw1UA4CeDkKerUQAkVmwyM4dNASZIkSZKR0kA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2010-1841392",107],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2010-1840658",122],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2024-1841738",219],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2019-1830956",1109],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2014-1840809",1315],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2010-1841272",1384],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-grand-vitara-2013-1840964",1471]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"2gcAANoHAADoBwAA4wcAAN4HAADaBwAA3QcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAAAdwEAAAAAAAFzCQAAAAAAAb9NAAAAAAABkyUAAAAAAAI7CQAAAAAAAmsBAAAAAAAAGyEA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Suzuki Grand Vitara - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (7)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-107" data-point-index="107">
+                <td>$8,250</td>
+                <td>145,000</td>
+                <td>2010</td>
+                <td>San Luis</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2010-1841392" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-122" data-point-index="122">
+                <td>$9,400</td>
+                <td>168,359</td>
+                <td>2010</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2010-1840658" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-219" data-point-index="219">
+                <td>$19,900</td>
+                <td>17,800</td>
+                <td>2024</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2024-1841738" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1109" data-point-index="1109">
+                <td>$13,000</td>
+                <td>84,000</td>
+                <td>2019</td>
+                <td>Los Olivos</td>
+                <td>12</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2019-1830956" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1315" data-point-index="1315">
+                <td>$9,500</td>
+                <td>132,000</td>
+                <td>2014</td>
+                <td>San Martin de Porres</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2014-1840809" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1384" data-point-index="1384">
+                <td>$8,500</td>
+                <td>130,000</td>
+                <td>2010</td>
+                <td>San Miguel</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2010-1841272" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1471" data-point-index="1471">
+                <td>$12,300</td>
+                <td>34,300</td>
+                <td>2013</td>
+                <td>Breña</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-grand-vitara-2013-1840964" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

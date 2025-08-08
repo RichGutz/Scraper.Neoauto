@@ -35,3 +35,6 @@ results_txt/
 chromedriver.exe
 car_urls.log
 *.csv
+
+# Secrets
+gmail_sender/credentials.json

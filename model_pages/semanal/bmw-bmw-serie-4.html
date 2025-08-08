@@ -1,0 +1,304 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: BMW Serie 4</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>BMW Serie 4</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $22,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 7.69%</p>
+            <p><strong>Anuncios Únicos:</strong> 52</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAB4n0D44IMPPnifQPDBBx98eJ9A6aKLLrp4n0Dhgw8++HifQNlkk002eZ9A0UUXXXR5n0DKJptssnmfQMIHH3zweZ9Auuiiiy56n0CyySabbHqfQKuqqqqqep9Ao4suuuh6n0CbbLLJJnufQJNNNtlke59AjC666KJ7n0CEDz744HufQHzwwQcffJ9AdNFFF118n0Btsskmm3yfQGWTTTbZfJ9AXXTRRRd9n0BVVVVVVX2fQE422WSTfZ9ARhdddNF9n0A++OCDD36fQDbZZJNNfp9AL7rooot+n0Anm2yyyX6fQB988MEHf59AF1100UV\u002fn0AQPvjgg3+fQAgffPDBf59AAAAAAACAn0D44IMPPoCfQPDBBx98gJ9A6aKLLrqAn0Dhgw8++ICfQNlkk002gZ9A0UUXXXSBn0DKJptssoGfQMIHH3zwgZ9Auuiiiy6Cn0CyySabbIKfQKuqqqqqgp9Ao4suuuiCn0CbbLLJJoOfQJNNNtlkg59AjC666KKDn0CEDz744IOfQHzwwQcfhJ9AdNFFF12En0Btsskmm4SfQGWTTTbZhJ9AXXTRRReFn0BVVVVVVYWfQE422WSThZ9ARhdddNGFn0A++OCDD4afQDbZZJNNhp9AL7rooouGn0Anm2yyyYafQB988MEHh59AF1100UWHn0AQPvjgg4efQAgffPDBh59AAAAAAACIn0D44IMPPoifQPDBBx98iJ9A6aKLLrqIn0Dhgw8++IifQNlkk002iZ9A0UUXXXSJn0DKJptssomfQMIHH3zwiZ9Auuiiiy6Kn0CyySabbIqfQKuqqqqqip9Ao4suuuiKn0CbbLLJJoufQJNNNtlki59AjC666KKLn0CEDz744IufQHzwwQcfjJ9AdNFFF12Mn0Btsskmm4yfQGWTTTbZjJ9AXXTRRReNn0BVVVVVVY2fQE422WSTjZ9ARhdddNGNn0A++OCDD46fQDbZZJNNjp9AL7rooouOn0Anm2yyyY6fQB988MEHj59AF1100UWPn0AQPvjgg4+fQAgffPDBj59AAAAAAACQn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAF1EBJurQzIbvUQOxqHMGJV9VAdQQdYH7b1UBCc5zIQ0jWQECqgLIen9ZACJqv1VPh1kDSMw\u002fqJxDXQLpmhaffLNdAQiT4xb8410AGXU39DDXXQDkBawUMI9dAEAI3lgEE10D4T5dnMtnWQIzbcTHjo9ZAUZSsq1hl1kDrbC2O1x7WQAhV2pCk0dVAQD2ZawR\u002f1UDBFFDWOyjVQPbO5IiPztRAHVs9O0Rz1EDOqT+lnhfUQDOq0X7jvNNA10\u002fZf1dk00DciTxgPw\u002fTQN1I4dffvtJAUHytnn100kA4F4dsXTHSQPAIVPnD9tFAFUL6\u002fPXF0UC9sl8vOKDRQL5MakjPhtFAAAAAAAB70UDMol\u002fBm33RQB6iK8WmjdFALVFf97Gp0UC4AfZDTtDRQMcG65YMANJABbM53H030kAmWt3\u002fMnXSQNRM0e28t9JArt4Qkqz90kBeYpfYkkXTQLsrYK0AjtNAFYtm\u002fIbV00BB1KWxthrUQOtZGbkgXNRAqm+8\u002flWY1EA2Zopu583UQAM7gdVx+9RAcCvcN6Mg1UAqthPROj7VQE4Co70DVdVAcjgFGsll1UCggLUCVnHVQPwCL5R1eNVAW+fs6vJ71UDuVWojmXzVQMJ2Iloze9VA13GQq4x41UBSby80cHXVQDSXehCpctVAkBHtXAJx1UBxBgI2R3HVQOudNLhCdNVAAAAAAMB61UCVVsgXWoXVQNfSlcHrk9VAHKhZrR+m1UDMCAWLoLvVQDIoiQoZ1NVATjnX2zPv1UCeb+CumwzWQDT9lTP7K9ZAhhXpGf1M1kCX68oRTG\u002fWQP2yLMuSktZAlJ3\u002f9Xu21kDw3jRCstrWQBKqvV\u002fg\u002ftZAkjKL\u002frAi10BIqo7OzkXXQMtEuX\u002fkZ9dAHjX8wZyI10DArkhFoqfXQLHjj7mfxNdAdgfDzj\u002ff10AWTdM0LffXQODnsZsSDNhAKApQs5od2EBQ554rcCvYQFiyj7Q9NdhAUZ4T\u002fq062EAP3hu4azvYQLSkmZIhN9hAQiV+PXot2EBxkrpoIB7YQMEfQMS+CNhAAAAAAADt10A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAB4n0D44IMPPnifQPDBBx98eJ9A6aKLLrp4n0Dhgw8++HifQNlkk002eZ9A0UUXXXR5n0DKJptssnmfQMIHH3zweZ9Auuiiiy56n0CyySabbHqfQKuqqqqqep9Ao4suuuh6n0CbbLLJJnufQJNNNtlke59AjC666KJ7n0CEDz744HufQHzwwQcffJ9AdNFFF118n0Btsskmm3yfQGWTTTbZfJ9AXXTRRRd9n0BVVVVVVX2fQE422WSTfZ9ARhdddNF9n0A++OCDD36fQDbZZJNNfp9AL7rooot+n0Anm2yyyX6fQB988MEHf59AF1100UV\u002fn0AQPvjgg3+fQAgffPDBf59AAAAAAACAn0D44IMPPoCfQPDBBx98gJ9A6aKLLrqAn0Dhgw8++ICfQNlkk002gZ9A0UUXXXSBn0DKJptssoGfQMIHH3zwgZ9Auuiiiy6Cn0CyySabbIKfQKuqqqqqgp9Ao4suuuiCn0CbbLLJJoOfQJNNNtlkg59AjC666KKDn0CEDz744IOfQHzwwQcfhJ9AdNFFF12En0Btsskmm4SfQGWTTTbZhJ9AXXTRRReFn0BVVVVVVYWfQE422WSThZ9ARhdddNGFn0A++OCDD4afQDbZZJNNhp9AL7rooouGn0Anm2yyyYafQB988MEHh59AF1100UWHn0AQPvjgg4efQAgffPDBh59AAAAAAACIn0D44IMPPoifQPDBBx98iJ9A6aKLLrqIn0Dhgw8++IifQNlkk002iZ9A0UUXXXSJn0DKJptssomfQMIHH3zwiZ9Auuiiiy6Kn0CyySabbIqfQKuqqqqqip9Ao4suuuiKn0CbbLLJJoufQJNNNtlki59AjC666KKLn0CEDz744IufQHzwwQcfjJ9AdNFFF12Mn0Btsskmm4yfQGWTTTbZjJ9AXXTRRReNn0BVVVVVVY2fQE422WSTjZ9ARhdddNGNn0A++OCDD46fQDbZZJNNjp9AL7rooouOn0Anm2yyyY6fQB988MEHj59AF1100UWPn0AQPvjgg4+fQAgffPDBj59AAAAAAACQn0A="},"y":{"dtype":"f8","bdata":"aleidiXW1EB+sf8tLErVQJ0i\u002fhbrsdVAd05vouIN1kBg1CRBk17WQDJY8GN9pNZAOnyjeyHg1kB64w\u002f5\u002fxHXQKEuB02ZOtdA3QBb6G1a10B0\u002fNw7\u002fnHXQOLDXrjKgddA8fixzlOK10A8PqjvGYzXQAo2E4ydh9dAb4LEFF9910AMxo363m3XQA2jQK6dWddAt7uuoBtB10DcsalC2STXQLAoAwVXBddADsKMWBXj1kA\u002fIBiulL7WQOzkdnZVmNZAnLN6Ithw1kD+LfUinUjWQFz2t+gkINZAW66U5O\u002f31UCO+VyHftDVQJx54kFRqtVAz9D2hOiF1UDloGvBxGPVQEWNEmhmRNVAqDe96U0o1UCZld2F2w\u002fVQLXpZrbu+tRAncnsw0bp1EDEywL3otrUQLuFPJjCztRAY40t8GTF1ECHeGlHSb7UQEDdg+YuudRATFEQFtW11ECSaqIe+7PUQO6+zUhgs9RASuQl3cOz1ECAcD4k5bTUQHL5qmaDttRACRX\u002f7F241EAWWc7\u002fM7rUQBdomnXHu9RAlgVI5RS91EA8Fh+mU77UQDeLVZ29v9RAxVUhsIzB1EAZZ7jD+sPUQH2wUL1Bx9RADCMggpvL1EAKsFz3QdHUQKpIPAJv2NRAUN70h1zh1EDoYbxtROzUQMjEyJhg+dRAKvhP7uoI1UCU7YdTHRvVQKmVpq0xMNVA4uHh4WFI1UBhY5470GPVQOsq+55AgtVAuulFVl+j1UBmT8yr2MbVQCMN3OlY7NVAnNPCWowT1kApVM5IHzzWQCU+TP69ZdZA5UKKxRSQ1kAVE9boz7rWQBBgfbKb5dZAJNnNbCQQ10CsLxViFjrXQFYUodwdY9dAcDi\u002fJueK10BgS72KHrHXQHf+6FJw1ddAYgKQyYj310BNCAA5FBfYQN2\u002fhuu+M9hASNpxKzVN2EA6CA9DI2PYQKT6q3w1ddhAm2GWIhiD2EAg7ht\u002fd4zYQOBQitz\u002fkNhAejovhV2Q2ECeW1jDPIrYQAJlU+FJfthAVAduKTFs2EDN8vXlnlPYQOTYOGE\u002fNNhA7mmE5b4N2EA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-418i-gci-2020-1837817",190],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-418i-gci-2020-1840364",341],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-418i-gci-2020-1841506",657],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-gran-coupe-2018-1840684",675],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-418i-2020-1836110",986],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-435i-2015-1835663",1023],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-418i-2019-1840241",1054],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-2014-1826683",1061],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-gran-coupe-2017-1833951",1123],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-428i-2014-1831297",1200],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-428i-2019-1826810",1286],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-gran-coupe-2018-1835219",1429],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-gran-coupe-2017-1831904",1458],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-420i-2015-1839427",1512]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5AcAAOQHAADkBwAA4gcAAOQHAADfBwAA4wcAAN4HAADhBwAA3gcAAOMHAADiBwAA4QcAAN8HAAA="},"y":{"dtype":"f8","bdata":"AAAAAABq2EAAAAAAAAXUQAAAAAAAtdhAAAAAAIB51UAAAAAAAFfXQAAAAAAARdpAAAAAAAD\u002f1EAAAAAAANbPQAAAAADA5dRAAAAAAAAL00AAAAAAAPnVQAAAAAAAlNFAAAAAAABv00AAAAAAAPnVQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"BMW Serie 4 - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (14)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-190" data-point-index="190">
+                <td>$25,000</td>
+                <td>39,500</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-418i-gci-2020-1837817" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-341" data-point-index="341">
+                <td>$20,500</td>
+                <td>65,000</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-418i-gci-2020-1840364" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-657" data-point-index="657">
+                <td>$25,300</td>
+                <td>40,000</td>
+                <td>2020</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-418i-gci-2020-1841506" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-675" data-point-index="675">
+                <td>$21,990</td>
+                <td>53,000</td>
+                <td>2018</td>
+                <td>Barranco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-gran-coupe-2018-1840684" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-986" data-point-index="986">
+                <td>$23,900</td>
+                <td>25,000</td>
+                <td>2020</td>
+                <td>San Isidro</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-418i-2020-1836110" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1023" data-point-index="1023">
+                <td>$26,900</td>
+                <td>34,800</td>
+                <td>2015</td>
+                <td>San Isidro</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-435i-2015-1835663" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1054" data-point-index="1054">
+                <td>$21,500</td>
+                <td>55,800</td>
+                <td>2019</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-418i-2019-1840241" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1061" data-point-index="1061">
+                <td>$16,300</td>
+                <td>57,027</td>
+                <td>2014</td>
+                <td>Victor Larco Herrera</td>
+                <td>14</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-2014-1826683" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1123" data-point-index="1123">
+                <td>$21,399</td>
+                <td>63,000</td>
+                <td>2017</td>
+                <td>Magdalena del Mar</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-gran-coupe-2017-1833951" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1200" data-point-index="1200">
+                <td>$19,500</td>
+                <td>42,500</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>12</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-428i-2014-1831297" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1286" data-point-index="1286">
+                <td>$22,500</td>
+                <td>40,000</td>
+                <td>2019</td>
+                <td>Miraflores</td>
+                <td>14</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-428i-2019-1826810" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1429" data-point-index="1429">
+                <td>$18,000</td>
+                <td>81,600</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-gran-coupe-2018-1835219" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1458" data-point-index="1458">
+                <td>$19,900</td>
+                <td>53,000</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>14</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-gran-coupe-2017-1831904" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1512" data-point-index="1512">
+                <td>$22,500</td>
+                <td>38,000</td>
+                <td>2015</td>
+                <td>San Miguel</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-420i-2015-1839427" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

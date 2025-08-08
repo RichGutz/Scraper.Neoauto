@@ -1,0 +1,248 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Suzuki Swift</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Suzuki Swift</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $10,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 23.96%</p>
+            <p><strong>Anuncios Únicos:</strong> 96</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAAcn0Co9SsFah2fQFDrVwrUHp9A+OCDDz4gn0Cg1q8UqCGfQEjM2xkSI59A8MEHH3wkn0CZtzMk5iWfQEGtXylQJ59A6aKLLroon0CRmLczJCqfQDmO4ziOK59A4YMPPvgsn0CJeTtDYi6fQDFvZ0jML59A2WSTTTYxn0CBWr9SoDKfQClQ61cKNJ9A0UUXXXQ1n0B6O0Ni3jafQCIxb2dIOJ9AyiabbLI5n0ByHMdxHDufQBoS83aGPJ9AwgcffPA9n0Bq\u002fUqBWj+fQBLzdobEQJ9Auuiiiy5Cn0Bi3s6QmEOfQArU+pUCRZ9Asskmm2xGn0Bbv1Kg1kefQAO1fqVASZ9Aq6qqqqpKn0BToNavFEyfQPuVArV+TZ9Ao4suuuhOn0BLgVq\u002fUlCfQPN2hsS8UZ9Am2yyySZTn0BDYt7OkFSfQOtXCtT6VZ9Ak0022WRXn0A7Q2LezlifQOQ4juM4Wp9AjC666KJbn0A0JObtDF2fQNwZEvN2Xp9AhA8++OBfn0AsBWr9SmGfQNT6lQK1Yp9AfPDBBx9kn0Ak5u0MiWWfQMzbGRLzZp9AdNFFF11on0Acx3Ecx2mfQMW8nSExa59AbbLJJptsn0AVqPUrBW6fQL2dITFvb59AZZNNNtlwn0ANiXk7Q3KfQLV+pUCtc59AXXTRRRd1n0AFav1KgXafQK1fKVDrd59AVVVVVVV5n0D9SoFav3qfQKZArV8pfJ9ATjbZZJN9n0D2KwVq\u002fX6fQJ4hMW9ngJ9ARhdddNGBn0DuDIl5O4OfQJYCtX6lhJ9APvjggw+Gn0Dm7QyJeYefQI7jOI7jiJ9ANtlkk02Kn0DezpCYt4ufQIbEvJ0hjZ9AL7rooouOn0DXrxSo9Y+fQH+lQK1fkZ9AJ5tsssmSn0DPkJi3M5SfQHeGxLydlZ9AH3zwwQeXn0DHcRzHcZifQG9nSMzbmZ9AF1100UWbn0C\u002fUqDWr5yfQGdIzNsZnp9AED744IOfn0C4MyTm7aCfQGApUOtXop9ACB988MGjn0CwFKj1K6WfQFgK1PqVpp9AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAAAYtUAeHr5lYVisQEzMJzhCpaRA+9rKNgTCoUCVGjUhCVqiQIZb9LayGKVAarIIY6erqEA0jQkfwz+sQG2oiE4cwq9AyFGA8OCXsUDJDfZi4UKzQK7WYvaW4LRA8vqDIolvtkANyRZfP+63QHaP2CNBW7lApJyG6BW1ukATP94kRfq7QDjFnFBWKb1AjH1\u002f49BAvkAyt0NVPD+\u002fQJ1f0w6QEcBAbPIy2oF1wEBCO59It8rAQFrh9hV0EMFA9IsY\u002fvtFwUBG4uK8kmrBQJKLNA58fcFAEi\u002fsrft9wUD\u002fc+hXVWvBQJkBCMjMRMFAG38puqUJwUCAkyvqI7nAQHbm7BOLUsBADj6Y5j2qv0DeyE+IRoC+QNe7vYS3Jb1AbGWfUxiZu0AeFLJs8Ni5QFsWs0fH47dAn7pfXCS4tUC9PJGt6VWzQHWD\u002fh2Z8bBAjY\u002fBAiIIrkBEG7TEkgmsQIG5q7n1DaxA4Dr5vF6VrUD6qQ9DbA2wQPhcUOa2jLFABBEApBQGs0Cazxg6jlG0QHfXW0N50LVAVKesd20QuECBZdvH2zS7QDDGHmk4GL5AMeOKIZlXv0D79BAa0YO+QDHX5Xrl\u002fbxALmjSvbFSvEBx7Ugb+P68QDoW296ON75ApRcRWbgov0BYV03SeqK\u002fQH9ATLrt8r9AcXTB1G8wwECEFwKU4W7AQNzh73vOmMBAYExTezybwECZfMLJp47AQI+p5OVsmMBADh6mBTPRwEDK99XjZy3BQM05D08fm8FAXgfeA6ANwkAY2BegWYHCQExkZ5tK9MJAFhCLtDN2w0DrmKUGsirEQN1sDYTcMMVA0aSQ5ytdxkAh2RWy007HQASHygWyscdAAsCsJcGXx0AIZu5pv0DHQNhpp9T65MZA0wBqKGWbxkAQXIgz2nHGQOY1kbc1dsZAqEgTdlO2xkBUs4BYwz\u002fHQP6K7SyaC8hAXYHWmITxyECY0VDr9MbJQLXWtpZFdspA5OSNbIT\u002fykAblzZNwWPLQIiJERkMpMtA51d\u002fsHTBy0DyneDzCr3LQGf3lcPel8tAAAAAAABTy0A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAAcn0Co9SsFah2fQFDrVwrUHp9A+OCDDz4gn0Cg1q8UqCGfQEjM2xkSI59A8MEHH3wkn0CZtzMk5iWfQEGtXylQJ59A6aKLLroon0CRmLczJCqfQDmO4ziOK59A4YMPPvgsn0CJeTtDYi6fQDFvZ0jML59A2WSTTTYxn0CBWr9SoDKfQClQ61cKNJ9A0UUXXXQ1n0B6O0Ni3jafQCIxb2dIOJ9AyiabbLI5n0ByHMdxHDufQBoS83aGPJ9AwgcffPA9n0Bq\u002fUqBWj+fQBLzdobEQJ9Auuiiiy5Cn0Bi3s6QmEOfQArU+pUCRZ9Asskmm2xGn0Bbv1Kg1kefQAO1fqVASZ9Aq6qqqqpKn0BToNavFEyfQPuVArV+TZ9Ao4suuuhOn0BLgVq\u002fUlCfQPN2hsS8UZ9Am2yyySZTn0BDYt7OkFSfQOtXCtT6VZ9Ak0022WRXn0A7Q2LezlifQOQ4juM4Wp9AjC666KJbn0A0JObtDF2fQNwZEvN2Xp9AhA8++OBfn0AsBWr9SmGfQNT6lQK1Yp9AfPDBBx9kn0Ak5u0MiWWfQMzbGRLzZp9AdNFFF11on0Acx3Ecx2mfQMW8nSExa59AbbLJJptsn0AVqPUrBW6fQL2dITFvb59AZZNNNtlwn0ANiXk7Q3KfQLV+pUCtc59AXXTRRRd1n0AFav1KgXafQK1fKVDrd59AVVVVVVV5n0D9SoFav3qfQKZArV8pfJ9ATjbZZJN9n0D2KwVq\u002fX6fQJ4hMW9ngJ9ARhdddNGBn0DuDIl5O4OfQJYCtX6lhJ9APvjggw+Gn0Dm7QyJeYefQI7jOI7jiJ9ANtlkk02Kn0DezpCYt4ufQIbEvJ0hjZ9AL7rooouOn0DXrxSo9Y+fQH+lQK1fkZ9AJ5tsssmSn0DPkJi3M5SfQHeGxLydlZ9AH3zwwQeXn0DHcRzHcZifQG9nSMzbmZ9AF1100UWbn0C\u002fUqDWr5yfQGdIzNsZnp9AED744IOfn0C4MyTm7aCfQGApUOtXop9ACB988MGjn0CwFKj1K6WfQFgK1PqVpp9AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAAAYtUDxWyLUKlisQEz4l2IbpaRAD\u002fF2+AzCoUA3YtXiOlqiQLtnyW7gGKVAaOFq6H2rqECJMrd42z6sQDMJNlwXwK9AXLHZUyWWsUDxnP03R0CzQLvE7OT93LRAICYN5dVqtkCBvsTCW+i3QEKLeQgcVLlAxYmRQKOsukBwt3L1ffC7QKURg7E4Hr1AypUo\u002f180vkDpQclogDG\u002fQACJZTwTCsBAGQLKXG9twEDuCsXaGsLAQDKiiftbB8FAmMZKBHk8wUDPdjs6uGDBQI2xjuJfc8FAgXV3QrZzwUBbwSifAWHBQNCT1T2IOsFAkeuwY5D\u002fwEAOx+1VYK\u002fAQGwlv1k+ScBAVAqwaOGYv0DyydZVe3C+QBqHWAXXF71ALT+bAYGNu0CQ7wTVBdC5QKOV+wny3bdAzC7lKtK1tUAz3Hq2g1ezQHvNlUUP9rBAZoHrRusNrkAX0hjhAv2rQInrVmcL5KtAYhp89BBQrUCVEIBnWsmvQGlArU8XbLFA4o6BPWoCs0CKVzIAeX20QFDo0+usDrZASnpYP\u002fYEuEABvcPDAXG6QNSx+eWCorxACjjxuyfFvUDPpOjd6ZC9QNPkau3yyLxAZA9ZwidLvECEKtkDVIq8QCjTlFQxeL1AiXoQ+Uv5vkCGuHKI\u002f0\u002fAQFID\u002fBuw38BAi2QqdPHiwEBzsbJkiYbAQJp468ZKMMBA+UUnZFgwwEBiBOTMCG7AQFZpt5SjscBAxR3JqdDXwEA\u002fEtFiTvfAQLOQkx7uMMFA+qfo45GTwUDz8G2Hgg7CQHLRGF\u002fFjsJAvPLXdGscw0DaN13+xN3DQBmjjYWR9MRA7EBuSA8wxkDUvTnblSTHQGj9KTuhdMdAOmcpdZc0x0BUONAb7avGQG84JUS+GsZAhr8x2BagxUCcXDiGAVLFQItD1e+IRsVANKiktreTxUCuBCI2Ek\u002fGQFseGm\u002faacdAFYYoti2ayEDrT1OhmpLJQGdeteo3NMpAdW3lxWiQykDCjzHBzrrKQNPY52oLx8pA0ltWUcDIykDoK8sCj9PKQD5clA0Z+8pAAAAAAABTy0A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2022-1836498",337],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-sedan-2013-1839013",595],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2016-1840393",910],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2012-1840570",962],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2016-1840650",1010],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2009-1840577",1253],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-swift-2026-1837820",1380]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAAN0HAADgBwAA3AcAAOAHAADZBwAA6gcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAAB2xkAAAAAAAGS5QAAAAAAAYsFAAAAAAAAgvEAAAAAAAHi+QAAAAAAAiLNAAAAAAABTy0A="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Suzuki Swift - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (7)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-337" data-point-index="337">
+                <td>$11,500</td>
+                <td>40,000</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2022-1836498" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-595" data-point-index="595">
+                <td>$6,500</td>
+                <td>124,388</td>
+                <td>2013</td>
+                <td>El Agustino</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-sedan-2013-1839013" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-910" data-point-index="910">
+                <td>$8,900</td>
+                <td>59,767</td>
+                <td>2016</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2016-1840393" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-962" data-point-index="962">
+                <td>$7,200</td>
+                <td>96,000</td>
+                <td>2012</td>
+                <td>Ate</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2012-1840570" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1010" data-point-index="1010">
+                <td>$7,800</td>
+                <td>120,000</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2016-1840650" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1253" data-point-index="1253">
+                <td>$5,000</td>
+                <td>144,500</td>
+                <td>2009</td>
+                <td>Chiclayo</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2009-1840577" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1380" data-point-index="1380">
+                <td>$13,990</td>
+                <td>0</td>
+                <td>2026</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-swift-2026-1837820" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

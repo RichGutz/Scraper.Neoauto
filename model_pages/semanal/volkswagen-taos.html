@@ -1,0 +1,240 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Taos</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Taos</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $25,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 20.83%</p>
+            <p><strong>Anuncios Únicos:</strong> 20</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAACYn0BToNavFJifQKVArV8pmJ9A+OCDDz6Yn0BLgVq\u002fUpifQJ4hMW9nmJ9A8MEHH3yYn0BDYt7OkJifQJYCtX6lmJ9A6aKLLrqYn0A7Q2LezpifQI7jOI7jmJ9A4YMPPviYn0A0JObtDJmfQIbEvJ0hmZ9A2WSTTTaZn0AsBWr9SpmfQH+lQK1fmZ9A0UUXXXSZn0Ak5u0MiZmfQHeGxLydmZ9AyiabbLKZn0Acx3Ecx5mfQG9nSMzbmZ9AwgcffPCZn0AVqPUrBZqfQGdIzNsZmp9Auuiiiy6an0ANiXk7Q5qfQGApUOtXmp9Asskmm2yan0AFav1KgZqfQFgK1PqVmp9Aq6qqqqqan0D9SoFav5qfQFDrVwrUmp9Ao4suuuian0D2KwVq\u002fZqfQEjM2xkSm59Am2yyySabn0DuDIl5O5ufQEGtXylQm59Ak0022WSbn0Dm7QyJeZufQDmO4ziOm59AjC666KKbn0DezpCYt5ufQDFvZ0jMm59AhA8++OCbn0DXrxSo9ZufQClQ61cKnJ9AfPDBBx+cn0DPkJi3M5yfQCIxb2dInJ9AdNFFF12cn0DHcRzHcZyfQBoS83aGnJ9AbbLJJpucn0C\u002fUqDWr5yfQBLzdobEnJ9AZZNNNtmcn0C4MyTm7ZyfQArU+pUCnZ9AXXTRRRedn0CwFKj1K52fQAO1fqVAnZ9AVVVVVVWdn0Co9SsFap2fQPuVArV+nZ9ATjbZZJOdn0Cg1q8UqJ2fQPN2hsS8nZ9ARhdddNGdn0CZtzMk5p2fQOtXCtT6nZ9APvjggw+en0CRmLczJJ6fQOQ4juM4np9ANtlkk02en0CJeTtDYp6fQNwZEvN2np9AL7rooouen0CBWr9SoJ6fQNT6lQK1np9AJ5tsssmen0B6O0Ni3p6fQMzbGRLznp9AH3zwwQefn0ByHMdxHJ+fQMW8nSExn59AF1100UWfn0Bq\u002fUqBWp+fQL2dITFvn59AED744IOfn0Bi3s6QmJ+fQLV+pUCtn59ACB988MGfn0Bbv1Kg1p+fQK1fKVDrn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAADn2EDNCTrC1OnYQC4sUgae7NhAZ2dIzFvv2EBWuxwUDvLYQPgnz9209NhAMq1fKVD32EA\u002fS8723\u002fnYQAMCG0Zk\u002fNhAfNFFF93+2ECNuU5qSgHZQHG6NT+sA9lADNT6lQIG2UBaBp5uTQjZQENRH8mMCtlA\u002fbR+pcAM2UBsMbwD6Q7ZQJHG1+MFEdlAUnTRRRcT2UDiOqkpHRXZQCcaX48XF9lAIRLzdgYZ2UC6ImXg6RrZQB9MtcvBHNlAOY7jOI4e2UAL6e8nTyDZQHxc2pgEItlAtuiii64j2UCnjUkATSXZQE1LzvbfJtlAliExb2co2UCnEHJp4ynZQG4YkeVTK9lA6TiO47gs2UAKcmljEi7ZQPHDImVgL9lAjS666KIw2UDfsS\u002fu2THZQNdNg3UFM9lAlQK1fiU02UAG0MQJOjXZQC22shZDNtlA\u002frR+pUA32UCQzCi2MjjZQNj8sEgZOdlA1UUXXfQ52UB+p1vzwzrZQOYhfguIO9lABLV+pUA82UDWYF3B7TzZQFglGl+PPdlAlQK1fiU+2UCI+C0gsD7ZQDEHhUMvP9lAii666KI\u002f2UCdbs0PC0DZQGbHvrhnQNlA5DiO47hA2UAWwzuQ\u002fkDZQABmx744QdlAniExb2dB2UDy9XihikHZQPrinlWiQdlAuuiii65B2UAvB4VDr0HZQFk+RX2kQdlAOo7jOI5B2UDO9l92bEHZQBl4ujU\u002fQdlAGBLzdgZB2UDRxAk6wkDZQDyQ\u002fn5yQNlAXHTRRRdA2UAycYKOsD\u002fZQMKGEVk+P9lAArV+pcA+2UD5+8lzNz7ZQKRb88OiPdlADNT6lQI92UAjZeDpVjzZQO8OpL+fO9lAcNFFF9062UCwrMXwDjrZQJ2gI0w1OdlAPq1fKVA42UCV0nmIXzfZQK4QcmljNtlAcGdIzFs12UDm1vywSDTZQBRfjxcqM9lABAAAAAAy2UCcuU5qyjDZQOiLe1aJL9lA63aGxDwu2UC0em+05CzZQCGXNiaBK9lARMzbGRIq2UAbGl+PlyjZQL2AwIYRJ9lAAAAAAIAl2UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAACYn0BToNavFJifQKVArV8pmJ9A+OCDDz6Yn0BLgVq\u002fUpifQJ4hMW9nmJ9A8MEHH3yYn0BDYt7OkJifQJYCtX6lmJ9A6aKLLrqYn0A7Q2LezpifQI7jOI7jmJ9A4YMPPviYn0A0JObtDJmfQIbEvJ0hmZ9A2WSTTTaZn0AsBWr9SpmfQH+lQK1fmZ9A0UUXXXSZn0Ak5u0MiZmfQHeGxLydmZ9AyiabbLKZn0Acx3Ecx5mfQG9nSMzbmZ9AwgcffPCZn0AVqPUrBZqfQGdIzNsZmp9Auuiiiy6an0ANiXk7Q5qfQGApUOtXmp9Asskmm2yan0AFav1KgZqfQFgK1PqVmp9Aq6qqqqqan0D9SoFav5qfQFDrVwrUmp9Ao4suuuian0D2KwVq\u002fZqfQEjM2xkSm59Am2yyySabn0DuDIl5O5ufQEGtXylQm59Ak0022WSbn0Dm7QyJeZufQDmO4ziOm59AjC666KKbn0DezpCYt5ufQDFvZ0jMm59AhA8++OCbn0DXrxSo9ZufQClQ61cKnJ9AfPDBBx+cn0DPkJi3M5yfQCIxb2dInJ9AdNFFF12cn0DHcRzHcZyfQBoS83aGnJ9AbbLJJpucn0C\u002fUqDWr5yfQBLzdobEnJ9AZZNNNtmcn0C4MyTm7ZyfQArU+pUCnZ9AXXTRRRedn0CwFKj1K52fQAO1fqVAnZ9AVVVVVVWdn0Co9SsFap2fQPuVArV+nZ9ATjbZZJOdn0Cg1q8UqJ2fQPN2hsS8nZ9ARhdddNGdn0CZtzMk5p2fQOtXCtT6nZ9APvjggw+en0CRmLczJJ6fQOQ4juM4np9ANtlkk02en0CJeTtDYp6fQNwZEvN2np9AL7rooouen0CBWr9SoJ6fQNT6lQK1np9AJ5tsssmen0B6O0Ni3p6fQMzbGRLznp9AH3zwwQefn0ByHMdxHJ+fQMW8nSExn59AF1100UWfn0Bq\u002fUqBWp+fQL2dITFvn59AED744IOfn0Bi3s6QmJ+fQLV+pUCtn59ACB988MGfn0Bbv1Kg1p+fQK1fKVDrn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"V6J2JeoQ2EC3kvMiIRnYQPta40FAIdhA7ftFgkcp2EApdRvkNjHYQKvGY2cOOdhAFvAeDM5A2EAt8kzSdUjYQIvM7bkFUNhAMn8Bw31X2EDHCYjt3V7YQP9sgTkmZthAgajtplZt2EBLvMw1b3TYQAeoHuZve9hAZGzjt1iC2EAJCRurKYnYQPZ9xb\u002fij9hA3Mri9YOW2EBb8HJNDZ3YQCTudcZ+o9hANcTrYNip2EBDctQcGrDYQOb4L\u002fpDtthA0Vf++FW82EAHjz8ZUMLYQDye81oyyNhAA4YavvzN2EATRrRCr9PYQGzewOhJ2dhAyE5AsMze2ECzlzKZN+TYQOa4l6OK6dhAYrJvz8Xu2EDng7oc6fPYQPUteIv0+NhATLCoG+j92EDrCkzNwwLZQJg9YqCHB9lAykjrlDMM2UBDLOeqxxDZQAboVeJDFdlA3Hs3O6gZ2UAx6Iu19B3ZQM4sU1EpItlAtkmNDkYm2UCyPjrtSirZQCwMWu03LtlA7LHsDg0y2UD3L\u002fJRyjXZQByGarZvOdlAuLRVPP082UCcu7PjckDZQMqahKzQQ9lAGFLIlhZH2UDY4X6iRErZQN9JqM9aTdlAMIpEHllQ2UCnolOOP1PZQIqT1R8OVtlAtVzK0sRY2UAq\u002fjGnY1vZQMh3DJ3qXdlAzslZtFlg2UAe9BntsGLZQLb2TEfwZNlAfNHywhdn2UCmhAtgJ2nZQBgQlx4fa9lA1HOV\u002fv5s2UDCrwYAx27ZQBDE6iJ3cNlAprBBZw9y2UCGdQvNj3PZQJwSSFT4dNlADIj3\u002fEh22UDG1RnHgXfZQMn7rrKieNlABvq2v6t52UCc0DHunHrZQHl\u002fHz52e9lAngaArzd82UAEZlNC4XzZQL6dmfZyfdlAvq1SzOx92UAIln7DTn7ZQJdWHdyYftlAcu8uFst+2UCWYLNx5X7ZQAOqqu7nftlAu8sUjdJ+2UC5xfFMpX7ZQAGYQS5gftlAkkIEMQN+2UBwxTlVjn3ZQJQg4poBfdlA\u002f1P9AV182UCyX4uKoHvZQLpDjDTMetlAAAAAAOB52UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2022-1836013",54],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2023-1839711",742],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2022-1833985",852],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2022-1815780",1210],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2022-1841287",1244],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-taos-2022-1841433",1725]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAAOcHAADmBwAA5gcAAOYHAADmBwAA"},"y":{"dtype":"f8","bdata":"AAAAAABL2UAAAAAAgGfYQAAAAAAAgtRAAAAAAABd1kAAAAAAAHbWQAAAAAAAZNlA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Taos - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (6)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-54" data-point-index="54">
+                <td>$25,900</td>
+                <td>39,150</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2022-1836013" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-742" data-point-index="742">
+                <td>$24,990</td>
+                <td>29,000</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2023-1839711" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-852" data-point-index="852">
+                <td>$21,000</td>
+                <td>38,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2022-1833985" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1210" data-point-index="1210">
+                <td>$22,900</td>
+                <td>32,000</td>
+                <td>2022</td>
+                <td>Lima</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2022-1815780" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1244" data-point-index="1244">
+                <td>$23,000</td>
+                <td>20,000</td>
+                <td>2022</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2022-1841287" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1725" data-point-index="1725">
+                <td>$26,000</td>
+                <td>7,200</td>
+                <td>2022</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-taos-2022-1841433" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

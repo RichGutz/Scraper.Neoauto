@@ -1,0 +1,224 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Hyundai i10</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Hyundai i10</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $10,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 28.57%</p>
+            <p><strong>Anuncios Únicos:</strong> 14</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABon0CWArV+pWifQCwFav1KaZ9AwgcffPBpn0BYCtT6lWqfQO4MiXk7a59AhA8++OBrn0AaEvN2hmyfQLAUqPUrbZ9ARhdddNFtn0DcGRLzdm6fQHIcx3Ecb59ACB988MFvn0CeITFvZ3CfQDQk5u0McZ9AyiabbLJxn0BgKVDrV3KfQPYrBWr9cp9AjC666KJzn0AiMW9nSHSfQLgzJObtdJ9ATjbZZJN1n0DkOI7jOHafQHo7Q2Ledp9AED744IN3n0ClQK1fKXifQDtDYt7OeJ9A0UUXXXR5n0BnSMzbGXqfQP1KgVq\u002fep9Ak0022WR7n0ApUOtXCnyfQL9SoNavfJ9AVVVVVVV9n0DrVwrU+n2fQIFav1Kgfp9AF1100UV\u002fn0CtXylQ63+fQENi3s6QgJ9A2WSTTTaBn0BvZ0jM24GfQAVq\u002fUqBgp9Am2yyySaDn0Axb2dIzIOfQMdxHMdxhJ9AXXTRRReFn0DzdobEvIWfQIl5O0Nihp9AH3zwwQeHn0C1fqVArYefQEuBWr9SiJ9A4YMPPviIn0B3hsS8nYmfQA2JeTtDip9Ao4suuuiKn0A5juM4joufQM+QmLczjJ9AZZNNNtmMn0D7lQK1fo2fQJGYtzMkjp9AJ5tsssmOn0C9nSExb4+fQFOg1q8UkJ9A6aKLLrqQn0B\u002fpUCtX5GfQBWo9SsFkp9Aq6qqqqqSn0BBrV8pUJOfQNevFKj1k59AbbLJJpuUn0ADtX6lQJWfQJm3MyTmlZ9AL7rooouWn0DFvJ0hMZefQFu\u002fUqDWl59A8MEHH3yYn0CGxLydIZmfQBzHcRzHmZ9Asskmm2yan0BIzNsZEpufQN7OkJi3m59AdNFFF12cn0AK1PqVAp2fQKDWrxSonZ9ANtlkk02en0DM2xkS856fQGLezpCYn59A+OCDDz6gn0CO4ziO46CfQCTm7QyJoZ9Auuiiiy6in0BQ61cK1KKfQObtDIl5o59AfPDBBx+kn0AS83aGxKSfQKj1KwVqpZ9APvjggw+mn0DU+pUCtaafQGr9SoFap59AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAACIs0AKciKBPHq2QDimO7Ac8bhAHdRaIzH1ukBLM49wCo+8QFT75y05x71AyGN08U2mvkA+pENR2TS\u002fQET0ZONre79Ab4vnPZaCv0BQodr26FK\u002fQHptTaT09L5AeydP3ElxvkDuBu80edC9QFxDPEQTG71AXhRGoKhZvECCsRvfyZS7QGBSzJYH1bpAgS5nXfIiukCAffvIGoe5QOt2mG8RCrlAVFJN52a0uEBQRynGq464QG6NO6JwobhARFyTEUb1uEBh9\u002fn+qJK5QPXhKGHKeLpALLmj9cyUu0Ahf41pwNG8QPI1CWq0Gr5At985pLhav0Bx3JWAbj7AQHAonyBXuMBACb7V104awUDTdbo3GWXBQGAoztF5mcFAQq6RNzS4wUAK4IX6C8LBQE6WK6zEt8FAoKkD3iGawUCU8o4h52nBQLxJTgjYJ8FAq4fCI7jUwED0hGwFS3HAQEpusWIB\u002fb9AOKqWWVH+vkCk9lsbbu69QCUzDC1I1bxATz+yE9C6u0C4+lhU9qa6QJJmJ0mDoblAiInLcaOuuEC3b3pz5863QN1Ghci3ArdAsjw963xKtkD5fvNVn6a1QG47+YKHF7VAzp+f7J2dtEDT2TcNSzm0QD4XE1\u002f36rNAzIWCXAuzs0A4U9d\u002f75GzQD4G3FcMiLNAPCsEbwSWs0A8lTaBGr2zQMpS8Lis\u002frNAcnKuQBlctEDEAu5Cvta0QE0SLOr5b7VAl6\u002flYCoptkA06ZfRrQO3QK7Nv2biALhAkGvaSiYiuUBs0WSo12i6QM4N3KlU1rtAriy9eftrvUCAQYVCKiu\u002fQD6sWJefisBAGkBfNMyVwUCW45QNyrfCQPwdODhI8cNADfhBlK1CxUDyJzwrdqfGQJ7DmcXwFshA+zJYMkqIyUD03XRAr\u002fLKQHos7b5MTcxAdIa+fE+PzUDSU+ZI5K\u002fOQHz8YfI3ps9AMXQXpLs00EC3P6WMZ3jQQMYUWRq2mdBAVqextD2U0EBbqy3DlGPQQMzUS61RA9BAPa8VtRXezkCSz9JkrUTNQIZyzDiXMctAAAAAAACcyEA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABon0CWArV+pWifQCwFav1KaZ9AwgcffPBpn0BYCtT6lWqfQO4MiXk7a59AhA8++OBrn0AaEvN2hmyfQLAUqPUrbZ9ARhdddNFtn0DcGRLzdm6fQHIcx3Ecb59ACB988MFvn0CeITFvZ3CfQDQk5u0McZ9AyiabbLJxn0BgKVDrV3KfQPYrBWr9cp9AjC666KJzn0AiMW9nSHSfQLgzJObtdJ9ATjbZZJN1n0DkOI7jOHafQHo7Q2Ledp9AED744IN3n0ClQK1fKXifQDtDYt7OeJ9A0UUXXXR5n0BnSMzbGXqfQP1KgVq\u002fep9Ak0022WR7n0ApUOtXCnyfQL9SoNavfJ9AVVVVVVV9n0DrVwrU+n2fQIFav1Kgfp9AF1100UV\u002fn0CtXylQ63+fQENi3s6QgJ9A2WSTTTaBn0BvZ0jM24GfQAVq\u002fUqBgp9Am2yyySaDn0Axb2dIzIOfQMdxHMdxhJ9AXXTRRReFn0DzdobEvIWfQIl5O0Nihp9AH3zwwQeHn0C1fqVArYefQEuBWr9SiJ9A4YMPPviIn0B3hsS8nYmfQA2JeTtDip9Ao4suuuiKn0A5juM4joufQM+QmLczjJ9AZZNNNtmMn0D7lQK1fo2fQJGYtzMkjp9AJ5tsssmOn0C9nSExb4+fQFOg1q8UkJ9A6aKLLrqQn0B\u002fpUCtX5GfQBWo9SsFkp9Aq6qqqqqSn0BBrV8pUJOfQNevFKj1k59AbbLJJpuUn0ADtX6lQJWfQJm3MyTmlZ9AL7rooouWn0DFvJ0hMZefQFu\u002fUqDWl59A8MEHH3yYn0CGxLydIZmfQBzHcRzHmZ9Asskmm2yan0BIzNsZEpufQN7OkJi3m59AdNFFF12cn0AK1PqVAp2fQKDWrxSonZ9ANtlkk02en0DM2xkS856fQGLezpCYn59A+OCDDz6gn0CO4ziO46CfQCTm7QyJoZ9Auuiiiy6in0BQ61cK1KKfQObtDIl5o59AfPDBBx+kn0AS83aGxKSfQKj1KwVqpZ9APvjggw+mn0DU+pUCtaafQGr9SoFap59AAAAAAACon0A="},"y":{"dtype":"f8","bdata":"AAAAAACIs0DtBpNgu\u002fm2QBYhvBr62LlAyt\u002f54dsvvEBU1MppgAi+QP6PrWUHbb9AClKQRMgzwEDyUNHDHYHAQFkNWQqUo8BA6M\u002fm8TqgwEBF4TlUInzAQBSKEQtaPMBA8iVa4OPLv0A8iZe68\u002fu+QErPWVgDE75AbYkfbTIbvUDsSGesoB68QBWfr8ltJ7tAMB13eLk\u002fukCOVDxso3G5QHbWfVhLx7hAMjS68NBKuEAU\u002f2\u002foUwa4QGDIHfPzA7hAZiFCxNBNuEAAmXAI8+24QJYxKSeB47lA69MxLn4Yu0BcSYdwf3S8QEtbJkEa371AEtML8+M\u002fv0BFoVIQOT\u002fAQDn6CSnaw8BAoXzOJi4twUCX\u002frPYZHzBQDRWzg2ussFAj1kxlTnRwUDD3vA9N9nBQOi7INfWy8FAF8fUL0iqwUBn1iAXu3XBQPa\u002fGFxfL8FA2VnQzWTYwEAqels7+3HAQBJAh5Tn+r9AjmXZjQ77vkCy16zbk+u9QNk\u002fBTqm07xAYkfmZHS6u0Cql1MYLae6QIxFC33doLlAfg6LgI6ruECWWBDVRMi3QGv1kpnj97ZAiLYK7U07tkCKbW\u002fuZpO1QP7ruLwRAbVAfAPfdjGFtECWhdk7qSC0QN9DoCpc1LNA7Q8rYi2hs0BTu3EBAIizQN62tiG3ibNAzF6RsSWns0Cr13T18eCzQO+az4u6N7RADiIQEx6stEB75qQpuz61QK1h\u002fG0w8LVAFQ2FfhzBtkAtYq35HbK3QGja433Tw7hAN++Wqdv2uUASGjUb1Uu7QHHULHFew7xALpXsSRZevkBabfGhTQ7AQA0Ov\u002f7F\u002f8BAaWmWisMDwkApvK6UlRrDQAdDP2yLRMRApXglILeBxUD9v1Ds\u002fs3GQOTovgq+IchAFZu04zJ1yUBUfnbfm8DKQGY6SWY3\u002fMtAA3dx4EMgzUDx2zO2\u002fyTOQO4Q1U+pAs9Avr2ZFX+xz0APReO33xTQQOkOUGPUMdBATZA1wbwr0EA1OmwLcP3PQGQS6MnKTc9A6FAjJshAzkCEnWKIps7MQPef6lik78pAAAAAAACcyEA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-i10-2020-1841816",538],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-i10-2015-1841723",1154],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-i10-2024-1837958",1328],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-i10-2023-1834401",1503]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5AcAAN8HAADoBwAA5wcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAACIs0AAAAAAADbAQAAAAAAAJstAAAAAAACCxEA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Hyundai i10 - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (4)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-538" data-point-index="538">
+                <td>$5,000</td>
+                <td>44,192</td>
+                <td>2020</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-i10-2020-1841816" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1154" data-point-index="1154">
+                <td>$8,300</td>
+                <td>124,000</td>
+                <td>2015</td>
+                <td>Cor Gregorio Albarracín</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-i10-2015-1841723" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1328" data-point-index="1328">
+                <td>$13,900</td>
+                <td>17,159</td>
+                <td>2024</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-i10-2024-1837958" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1503" data-point-index="1503">
+                <td>$10,500</td>
+                <td>3,223</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-i10-2023-1834401" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

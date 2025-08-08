@@ -1,0 +1,360 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Hyundai Tucson</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Hyundai Tucson</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $17,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 15.34%</p>
+            <p><strong>Anuncios Únicos:</strong> 163</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABcn0C\u002fUqDWr1yfQH+lQK1fXZ9APvjggw9en0D9SoFav16fQL2dITFvX59AfPDBBx9gn0A7Q2LezmCfQPuVArV+YZ9Auuiiiy5in0B6O0Ni3mKfQDmO4ziOY59A+OCDDz5kn0C4MyTm7WSfQHeGxLydZZ9ANtlkk01mn0D2KwVq\u002fWafQLV+pUCtZ59AdNFFF11on0A0JObtDGmfQPN2hsS8aZ9Asskmm2xqn0ByHMdxHGufQDFvZ0jMa59A8MEHH3xsn0CwFKj1K22fQG9nSMzbbZ9AL7roootun0DuDIl5O2+fQK1fKVDrb59AbbLJJptwn0AsBWr9SnGfQOtXCtT6cZ9Aq6qqqqpyn0Bq\u002fUqBWnOfQClQ61cKdJ9A6aKLLrp0n0Co9SsFanWfQGdIzNsZdp9AJ5tsssl2n0Dm7QyJeXefQKVArV8peJ9AZZNNNtl4n0Ak5u0MiXmfQOQ4juM4ep9Ao4suuuh6n0Bi3s6QmHufQCIxb2dIfJ9A4YMPPvh8n0Cg1q8UqH2fQGApUOtXfp9AH3zwwQd\u002fn0DezpCYt3+fQJ4hMW9ngJ9AXXTRRReBn0Acx3Ecx4GfQNwZEvN2gp9Am2yyySaDn0Bav1Kg1oOfQBoS83aGhJ9A2WSTTTaFn0CZtzMk5oWfQFgK1PqVhp9AF1100UWHn0DXrxSo9YefQJYCtX6liJ9AVVVVVVWJn0AVqPUrBYqfQNT6lQK1ip9Ak0022WSLn0BToNavFIyfQBLzdobEjJ9A0UUXXXSNn0CRmLczJI6fQFDrVwrUjp9AED744IOPn0DPkJi3M5CfQI7jOI7jkJ9ATjbZZJORn0ANiXk7Q5KfQMzbGRLzkp9AjC666KKTn0BLgVq\u002fUpSfQArU+pUClZ9AyiabbLKVn0CJeTtDYpafQEjM2xkSl59ACB988MGXn0DHcRzHcZifQIbEvJ0hmZ9ARhdddNGZn0AFav1KgZqfQMW8nSExm59AhA8++OCbn0BDYt7OkJyfQAO1fqVAnZ9AwgcffPCdn0CBWr9SoJ6fQEGtXylQn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAEwECnT0nsH8\u002fAQFWOkfFLNsFAkAz13jxOwUDIHJCDqyvBQBQQf65Q48BA\u002fDjeLuWJwEC+6MnTITTAQG3hvNh+7b9AjEZwj+3Mv0AWUvO0ABjAQENOLAMWoMBAFcfvjvKSwUAkkIPdR+vCQJCcUc80fsRAESZkVtYdxkCwZsVkSZzHQOWRf+yqy8hAd4u88fJ\u002fyUCzQmsFa7LJQCvDw4HsfslA0bZJaZ4CyUDzxYC+p1rIQPCb7IMvpMdAzz6B6t76xkBiDyRsSWvGQDPi0TVA+cVASY3Q1XioxUDc6GXaqHzFQKDL19GFecVAVZp7OPagxUAsVH7bjOrFQEiKkdMzSsZApF9nINSzxkBj9bHBVhvHQNcz2+CkdMdAgw\u002f2Yl23x0BJtU6KkefHQEYahxXuC8hAUDNBwx8ryEDC9B5S00vIQPLyFaa0dMhACscVc\u002feryEDbAdJa3PbIQLzUWKyGWslA9W64thncyUBsAf\u002fIuIDKQETOY\u002fBBTctA9qoU+MA8zEBdODkF4z3NQCaEelKLPs5AipeBGp0sz0BDgPeX+\u002fXPQCQ4T7O2RNBAxBXBj9Nx0EAOsa9XNobQQBOhVQDohdBA+3ztfvF00EDx27HIW1fQQMgI+v6LMdBAVGK\u002fUuMK0EAU7hWAedjPQCvyiOTrvM9AHzSnKdnUz0AkDCBT\u002fhjQQNIwUA4dcNBAXANa8cjn0EDwEawo2nPRQCtE+LEoCNJAFITwioyY0kBt4DGO3hjTQBdRswTYf9NAtOCzqVDM00Cw7XNIjP7TQLHVM6zOFtRAMvczoFsV1EA4OGikh\u002frTQLYyfHjzy9NAJwZgm1+Y00BaMiJ9c2\u002fTQC020Y3WYNNAFpF7PTB800ANT2NHi9DTQCL+cu62XNRAODrPhPsN1UBYgi89wtDVQI5YS0p0kdZA3z7a3no810BsWDCBdb\u002fXQJegwJUoF9hAFW361KNK2EBRWrpTKWHYQJQF3Sb7YdhA2gs\u002fY1tU2EAkCr0djD\u002fYQEydM2vPKthAi2J\u002fYGcd2EC29nwSlh7YQPb2CJadNdhAAAAAAMBp2EA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABcn0C\u002fUqDWr1yfQH+lQK1fXZ9APvjggw9en0D9SoFav16fQL2dITFvX59AfPDBBx9gn0A7Q2LezmCfQPuVArV+YZ9Auuiiiy5in0B6O0Ni3mKfQDmO4ziOY59A+OCDDz5kn0C4MyTm7WSfQHeGxLydZZ9ANtlkk01mn0D2KwVq\u002fWafQLV+pUCtZ59AdNFFF11on0A0JObtDGmfQPN2hsS8aZ9Asskmm2xqn0ByHMdxHGufQDFvZ0jMa59A8MEHH3xsn0CwFKj1K22fQG9nSMzbbZ9AL7roootun0DuDIl5O2+fQK1fKVDrb59AbbLJJptwn0AsBWr9SnGfQOtXCtT6cZ9Aq6qqqqpyn0Bq\u002fUqBWnOfQClQ61cKdJ9A6aKLLrp0n0Co9SsFanWfQGdIzNsZdp9AJ5tsssl2n0Dm7QyJeXefQKVArV8peJ9AZZNNNtl4n0Ak5u0MiXmfQOQ4juM4ep9Ao4suuuh6n0Bi3s6QmHufQCIxb2dIfJ9A4YMPPvh8n0Cg1q8UqH2fQGApUOtXfp9AH3zwwQd\u002fn0DezpCYt3+fQJ4hMW9ngJ9AXXTRRReBn0Acx3Ecx4GfQNwZEvN2gp9Am2yyySaDn0Bav1Kg1oOfQBoS83aGhJ9A2WSTTTaFn0CZtzMk5oWfQFgK1PqVhp9AF1100UWHn0DXrxSo9YefQJYCtX6liJ9AVVVVVVWJn0AVqPUrBYqfQNT6lQK1ip9Ak0022WSLn0BToNavFIyfQBLzdobEjJ9A0UUXXXSNn0CRmLczJI6fQFDrVwrUjp9AED744IOPn0DPkJi3M5CfQI7jOI7jkJ9ATjbZZJORn0ANiXk7Q5KfQMzbGRLzkp9AjC666KKTn0BLgVq\u002fUpSfQArU+pUClZ9AyiabbLKVn0CJeTtDYpafQEjM2xkSl59ACB988MGXn0DHcRzHcZifQIbEvJ0hmZ9ARhdddNGZn0AFav1KgZqfQMW8nSExm59AhA8++OCbn0BDYt7OkJyfQAO1fqVAnZ9AwgcffPCdn0CBWr9SoJ6fQEGtXylQn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAEwEDU9zEK1cTAQBHAsG8DKMFAhuOoaatAwUDb7kYx7SHBQHNtt\u002f\u002fo3sBAAewmDr+KwEAN9sGVjzjAQGYuap\u002f19r9AILhZ6kHNv0B80FU\u002fIg3AQPR\u002fXOcegsBAJqnbuERYwUDzvOig3YrCQM2lN7bK8sNAkdps8ytmxUBd0ixTIbvGQHb+G9DKx8dA\u002fXy6Ug5kyEC19wwpeovIQGtikquiWshAeUbgAVvvx0DkK4xTdmfHQC6dK8jH4MZAE9xZsjh3xkBfZxU7WDPGQFuzY+p4EsZAffJT2ckRxkChV\u002fUgei7GQI0VV9q4ZcZAqKN70KOzxkDRhaB\u002fQA7HQCiYpotracdAUkeW8gC5x0CZ\u002fney3PDHQBU4Lw\u002fbBMhATSB7mw7vx0D3zhBqYb7HQELNej4bhsdAM6RD3INZx0Cb3fUG40vHQPulUwxwcMdAxMK7PVbRx0CgwwUAdWbIQDs3x6x2JclAcKiVnQUEykBTpQYszPfKQFDz7y9z9stAms84zWz1zEAbbClC5unNQOPlZ2gIyc5ANFaaGfyHz0AlbbMX9Q3QQEABIUdfPdBA+Wi7+StT0EC4nFvjCFXQQOm0\u002fCrFSNBAPMqZ9y800EAs9S1wGB3QQMfM0axCCdBAkHETNi78z0AMFTTV0ADQQMcUOKOqFtBAJuv8TN9E0EDoy2maqZDQQItIpCPj\u002fNBAyLHIcAmB0UC6F8BBNxHSQNuLYDCHodJAJiKA1hMm00Bzd\u002f7g+JLTQD7EpNLm39NAej1zyakO1EARAsEi0yLUQKkw5Tv0H9RAIOg2cp4J1EDACwF6bOPTQE36nkLvs9NA8vDLkNGG00DoKclFP2jTQIve10JkZNNA3Eg5aWyH00DTtgDuB93TQA7M+YYXZNRAHWH10aYN1UD96RxWEcrVQILdmZqyidZAn7KVJuY810A4zqVT4dTXQAXno7N6TdhAGRYZncKp2EBOtee\u002f7OzYQE4g8sssGtlAebEacbY02UABxENfvT\u002fZQLuyT0Z1PtlAjtgg1hE02UBgkJm+xiPZQPQ0nK\u002fHENlAZCELWUj+2EA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2012-1835344",15],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2024-1837695",35],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2021-1840621",41],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2022-1836428",120],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2016-1841655",140],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2021-1839245",202],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2023-1832292",311],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2014-1841770",343],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2018-1838520",344],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2017-1841035",365],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2016-1836432",431],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2018-1839378",618],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2013-1840522",820],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2024-1841419",824],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2009-1839355",832],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2017-1841263",877],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2015-1839380",905],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2021-1732273",1104],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2012-1841774",1224],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2020-1826435",1279],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhyundai-tucson-2020-1821726",1748]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3AcAAOgHAADlBwAA5gcAAOAHAADlBwAA5wcAAN4HAADiBwAA4QcAAOAHAADiBwAA3QcAAOgHAADZBwAA4QcAAN8HAADlBwAA3AcAAOQHAADkBwAA"},"y":{"dtype":"f8","bdata":"AAAAAAB8xUAAAAAAAJXVQAAAAAAAddJAAAAAAAAy2UAAAAAAAHXSQAAAAAAAodNAAAAAAABR2EAAAAAAAEbOQAAAAAAAlNFAAAAAAABMzUAAAAAAAB3QQAAAAAAAddJAAAAAAAAOz0AAAAAAAF3WQAAAAAAAMMFAAAAAAAAOz0AAAAAAAPTKQAAAAAAAodNAAAAAAACQukAAAAAAABHSQAAAAAAABdRA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Hyundai Tucson - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (21)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-15" data-point-index="15">
+                <td>$11,000</td>
+                <td>160,000</td>
+                <td>2012</td>
+                <td>Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2012-1835344" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-35" data-point-index="35">
+                <td>$22,100</td>
+                <td>12,800</td>
+                <td>2024</td>
+                <td>Lima</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2024-1837695" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-41" data-point-index="41">
+                <td>$18,900</td>
+                <td>91,000</td>
+                <td>2021</td>
+                <td>Pueblo Libre</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2021-1840621" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-120" data-point-index="120">
+                <td>$25,800</td>
+                <td>15,900</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2022-1836428" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-140" data-point-index="140">
+                <td>$18,900</td>
+                <td>43,343</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2016-1841655" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-202" data-point-index="202">
+                <td>$20,100</td>
+                <td>74,000</td>
+                <td>2021</td>
+                <td>San Martin de Porres</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2021-1839245" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-311" data-point-index="311">
+                <td>$24,900</td>
+                <td>4,900</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>12</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2023-1832292" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-343" data-point-index="343">
+                <td>$15,500</td>
+                <td>87,000</td>
+                <td>2014</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2014-1841770" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-344" data-point-index="344">
+                <td>$18,000</td>
+                <td>43,500</td>
+                <td>2018</td>
+                <td>Villa El Salvador</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2018-1838520" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-365" data-point-index="365">
+                <td>$15,000</td>
+                <td>120,000</td>
+                <td>2017</td>
+                <td>San Vicente de Cañete</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2017-1841035" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-431" data-point-index="431">
+                <td>$16,500</td>
+                <td>125,000</td>
+                <td>2016</td>
+                <td>Pueblo Libre</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2016-1836432" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-618" data-point-index="618">
+                <td>$18,900</td>
+                <td>53,500</td>
+                <td>2018</td>
+                <td>Lima</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2018-1839378" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-820" data-point-index="820">
+                <td>$15,900</td>
+                <td>36,000</td>
+                <td>2013</td>
+                <td>Victor Larco Herrera</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2013-1840522" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-824" data-point-index="824">
+                <td>$22,900</td>
+                <td>26,700</td>
+                <td>2024</td>
+                <td>Chorrillos</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2024-1841419" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-832" data-point-index="832">
+                <td>$8,800</td>
+                <td>130,000</td>
+                <td>2009</td>
+                <td>San Miguel</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2009-1839355" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-877" data-point-index="877">
+                <td>$15,900</td>
+                <td>107,000</td>
+                <td>2017</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2017-1841263" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-905" data-point-index="905">
+                <td>$13,800</td>
+                <td>77,000</td>
+                <td>2015</td>
+                <td>Surquillo</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2015-1839380" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1104" data-point-index="1104">
+                <td>$20,100</td>
+                <td>74,000</td>
+                <td>2021</td>
+                <td>San Martin de Porres</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2021-1732273" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1224" data-point-index="1224">
+                <td>$6,800</td>
+                <td>107,400</td>
+                <td>2012</td>
+                <td>La Victoria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2012-1841774" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1279" data-point-index="1279">
+                <td>$18,500</td>
+                <td>0</td>
+                <td>2020</td>
+                <td>Barranco</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2020-1826435" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1748" data-point-index="1748">
+                <td>$20,500</td>
+                <td>7,400</td>
+                <td>2020</td>
+                <td>Rimac</td>
+                <td>17</td>
+                <td><a href="https://neoauto.com/auto/usado/hyundai-tucson-2020-1821726" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

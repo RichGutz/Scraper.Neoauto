@@ -1,0 +1,216 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Crossfox</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Crossfox</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $9,800</p>
+            <p><strong>Ratio Venta Rápida:</strong> 33.33%</p>
+            <p><strong>Anuncios Únicos:</strong> 22</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABsn0DHcRzHcWyfQI7jOI7jbJ9AVVVVVVVtn0Acx3Ecx22fQOQ4juM4bp9Aq6qqqqpun0ByHMdxHG+fQDmO4ziOb59AAAAAAABwn0DHcRzHcXCfQI7jOI7jcJ9AVVVVVVVxn0Acx3Ecx3GfQOQ4juM4cp9Aq6qqqqpyn0ByHMdxHHOfQDmO4ziOc59AAAAAAAB0n0DHcRzHcXSfQI7jOI7jdJ9AVVVVVVV1n0Acx3Ecx3WfQOQ4juM4dp9Aq6qqqqp2n0ByHMdxHHefQDmO4ziOd59AAAAAAAB4n0DHcRzHcXifQI7jOI7jeJ9AVVVVVVV5n0Acx3Ecx3mfQOQ4juM4ep9Aq6qqqqp6n0ByHMdxHHufQDmO4ziOe59AAAAAAAB8n0DHcRzHcXyfQI7jOI7jfJ9AVVVVVVV9n0Acx3Ecx32fQOQ4juM4fp9Aq6qqqqp+n0ByHMdxHH+fQDmO4ziOf59AAAAAAACAn0DHcRzHcYCfQI7jOI7jgJ9AVVVVVVWBn0Acx3Ecx4GfQOQ4juM4gp9Aq6qqqqqCn0ByHMdxHIOfQDmO4ziOg59AAAAAAACEn0DHcRzHcYSfQI7jOI7jhJ9AVVVVVVWFn0Acx3Ecx4WfQOQ4juM4hp9Aq6qqqqqGn0ByHMdxHIefQDmO4ziOh59AAAAAAACIn0DHcRzHcYifQI7jOI7jiJ9AVVVVVVWJn0Acx3Ecx4mfQOQ4juM4ip9Aq6qqqqqKn0ByHMdxHIufQDmO4ziOi59AAAAAAACMn0DHcRzHcYyfQI7jOI7jjJ9AVVVVVVWNn0Acx3Ecx42fQOQ4juM4jp9Aq6qqqqqOn0ByHMdxHI+fQDmO4ziOj59AAAAAAACQn0DHcRzHcZCfQI7jOI7jkJ9AVVVVVVWRn0Acx3Ecx5GfQOQ4juM4kp9Aq6qqqqqSn0ByHMdxHJOfQDmO4ziOk59AAAAAAACUn0DHcRzHcZSfQI7jOI7jlJ9AVVVVVVWVn0Acx3Ecx5WfQOQ4juM4lp9Aq6qqqqqWn0ByHMdxHJefQDmO4ziOl59AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"AAAAAACkv0AW5Kp\u002fzjW\u002fQFhXvuS55L5AXpxTxeWuvkC29YO3dZK+QAOmaFGNjb5A6e8aKVCevkDRFbTU4cK+QFNaTepl+b5AAQAAAABAv0BmSeWr05S\u002fQBx5FoQE9r9A2GhWD9swwEDbyuAIBmvAQG4Et\u002fmUqMBAxbXlrJnowECrgHntJSrBQG0Gf4ZLbMFAU+gCQxyuwUCoxxHuqe7BQLBFuFIGLcJAuQMDPENowkAMo\u002f50cp\u002fCQFjFt8il0cJACAs7Au\u002f9wkDXFZXsXyPDQBOH0lIKQcNAAAAAAABWw0AceKZvvmHDQKI\u002fQN9xZcNAAf3DPLJiw0CkVih2F1vDQOPyY3k5UMNAX3htNLBDw0BtjTuVEzfDQH7YxIn7K8NAAAAAAAAkw0AOKl8SMyDDQH97Qo2PH8NA25iFaYogw0CjJgSgmCHDQFvJmSkvIcNAiSUi\u002f8Idw0Cu33gZyRXDQFWceXG2B8NAAAAAAADywkDK2ppiDtTCQByrpckYscJA8xovCkqNwkBN1EX5zGzCQP2A+GvMU8JAeMtVN3NGwkB2XWww7EjCQPvgSixiX8JAAAAAAACOwkAEj\u002fbN49bCQHwMCu74M8NAYCFyBR6dw0Chdma5MQrEQBy2Hq8Sc8RA24bSi5\u002fPxEDGkrn0thfFQNeCC483Q8VAAAAAAABKxUAcB0UE\u002fybFQJnkYbZj4cRAxThUSG2DxEDyoxnsWhfEQHrFr9Nrp8NAuj8UMd89w0AEskQ29OTCQKu8PhXqpsJA\u002f\u002f\u002f\u002f\u002f\u002f+NwkCHc90E8KHCQJ1riaNf4MJAzJMNOG9Ew0Cil3MeP8nDQDQkxbLvacRAL+ILUaEhxUByflFVdOvFQImknxuJwsZAAAAAAACix0BjPHxe+YTIQEYFHpOVZslAMwbv+fRBykCz6vjuNxLLQPZfRc5+0stAHA7e8+l9zEB6osy7mQ\u002fNQJjIGoKugs1ABizSokjSzUBTePx5iPnNQAxZo2OO881AwHnQu3q7zUD7hY3ebUzNQIAn5CeIocxA3Aze8+m1y0Bc4ISes4TKQI5N4oMFCclAAAAAAAA+x0A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABsn0DHcRzHcWyfQI7jOI7jbJ9AVVVVVVVtn0Acx3Ecx22fQOQ4juM4bp9Aq6qqqqpun0ByHMdxHG+fQDmO4ziOb59AAAAAAABwn0DHcRzHcXCfQI7jOI7jcJ9AVVVVVVVxn0Acx3Ecx3GfQOQ4juM4cp9Aq6qqqqpyn0ByHMdxHHOfQDmO4ziOc59AAAAAAAB0n0DHcRzHcXSfQI7jOI7jdJ9AVVVVVVV1n0Acx3Ecx3WfQOQ4juM4dp9Aq6qqqqp2n0ByHMdxHHefQDmO4ziOd59AAAAAAAB4n0DHcRzHcXifQI7jOI7jeJ9AVVVVVVV5n0Acx3Ecx3mfQOQ4juM4ep9Aq6qqqqp6n0ByHMdxHHufQDmO4ziOe59AAAAAAAB8n0DHcRzHcXyfQI7jOI7jfJ9AVVVVVVV9n0Acx3Ecx32fQOQ4juM4fp9Aq6qqqqp+n0ByHMdxHH+fQDmO4ziOf59AAAAAAACAn0DHcRzHcYCfQI7jOI7jgJ9AVVVVVVWBn0Acx3Ecx4GfQOQ4juM4gp9Aq6qqqqqCn0ByHMdxHIOfQDmO4ziOg59AAAAAAACEn0DHcRzHcYSfQI7jOI7jhJ9AVVVVVVWFn0Acx3Ecx4WfQOQ4juM4hp9Aq6qqqqqGn0ByHMdxHIefQDmO4ziOh59AAAAAAACIn0DHcRzHcYifQI7jOI7jiJ9AVVVVVVWJn0Acx3Ecx4mfQOQ4juM4ip9Aq6qqqqqKn0ByHMdxHIufQDmO4ziOi59AAAAAAACMn0DHcRzHcYyfQI7jOI7jjJ9AVVVVVVWNn0Acx3Ecx42fQOQ4juM4jp9Aq6qqqqqOn0ByHMdxHI+fQDmO4ziOj59AAAAAAACQn0DHcRzHcZCfQI7jOI7jkJ9AVVVVVVWRn0Acx3Ecx5GfQOQ4juM4kp9Aq6qqqqqSn0ByHMdxHJOfQDmO4ziOk59AAAAAAACUn0DHcRzHcZSfQI7jOI7jlJ9AVVVVVVWVn0Acx3Ecx5WfQOQ4juM4lp9Aq6qqqqqWn0ByHMdxHJefQDmO4ziOl59AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"AAAAAACkv0AKCGTa0E6\u002fQKA5hr2qEr9Aze+uafPtvkCZhSafEN++QDNWNR5o5L5Ahrwjp1\u002f8vkCREzr6XCW\u002fQGK2wNfFXb9AAAAAAACkv0B0S0Azcfa\u002fQOX55Ji\u002fKcBABKry3cdcwECdY+1IhJPAQLlU+bknzcBA2qk6EeUIwUABkdUu70XBQLI37vJ4g8FAdsuoPbXAwUDPeSnv1vzBQEBwlOcQN8JAUdwNB5ZuwkCH67ktmaLCQMrLvDtN0sJAyqk6EeX8wkB6s1eOkyHDQGAWOJOLP8NAAAAAAABWw0Ae+j5ci2TDQH7\u002fMc1mbMNAHGeBHzNvw0D6h9UfkW7DQBa51pohbMNAelEtXYVpw0AlqIEzXWjDQBUUfOpJasNATuzETuxww0CrPB9nNX3DQH3kuCJXjcNA83faqtOew0A3i8woLa\u002fDQI+y18Xlu8NA7oFEq3\u002fCw0CcjVsCfcDDQM1pZfRfs8NArKqqqqqYw0C\u002ft+hEPW\u002fDQPJFsLxvO8NAjN0GAvgCw0DPBvIEjMvCQKBJd7XhmsJAKi+cA692wkA5P2bfqWTCQBUC2ziIasJAAAAAAACOwkA9UQpMQtLCQPNN7dBsMMNATN7LaRifw0Bo6sjx3RTEQGpbB0RWiMRAXheqOxrwxEByB9SzwkLFQMwTqIfodsVAkyRJkiSDxUCVKfivdmHFQGQxbsF6GcVAMFKCqDO2xEAzogtHpELEQJk24X7PycNAzCfaMbhWw0Dzis1BYfTCQEZ2kpDNrcJAAAAAAACOwkA6mDbBTJ3CQKUWfEJN2cJA2KxfQew8w0BjjHB7FMPDQHHoPa6wZsRAp+9Wl6sixUDs1Er07\u002fHFQNrJqIJoz8ZAAAAAAAC2x0D0qN8poaDIQFH21r02islAqBl1eattykCNREka6kXLQESq4l3dDcxA1HjQAXDAzECq46HDjFjNQFQc5mAe0c1AcVQslw8lzkCSvQMkS0\u002fOQEqJ+8S7Ss5AMumiN0wSzkDgDok556DNQA4qPYh38cxAZm9O4ef+y0A2D0wCI8TKQBM7xagTPMlAkiRJkqRhx0A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-crossfox-2015-1840311",48],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-crossfox-2022-1834059",698],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-crossfox-2017-1836319",1677]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3wcAAOYHAADhBwAA"},"y":{"dtype":"f8","bdata":"AAAAAACawEAAAAAAAD7HQAAAAAAAjsJA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Crossfox - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (3)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-48" data-point-index="48">
+                <td>$8,500</td>
+                <td>110</td>
+                <td>2015</td>
+                <td>Comas</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-crossfox-2015-1840311" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-698" data-point-index="698">
+                <td>$11,900</td>
+                <td>19,400</td>
+                <td>2022</td>
+                <td>San Martin de Porres</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-crossfox-2022-1834059" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1677" data-point-index="1677">
+                <td>$9,500</td>
+                <td>129,000</td>
+                <td>2017</td>
+                <td>Chorrillos</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-crossfox-2017-1836319" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

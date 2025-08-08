@@ -1,0 +1,224 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Suzuki Vitara</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Suzuki Vitara</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $15,900</p>
+            <p><strong>Ratio Venta Rápida:</strong> 26.32%</p>
+            <p><strong>Anuncios Únicos:</strong> 19</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABsn0AaEvN2hmyfQDQk5u0MbZ9ATjbZZJNtn0BnSMzbGW6fQIFav1Kgbp9Am2yyySZvn0C1fqVArW+fQM+QmLczcJ9A6aKLLrpwn0ADtX6lQHGfQBzHcRzHcZ9ANtlkk01yn0BQ61cK1HKfQGr9SoFac59AhA8++OBzn0CeITFvZ3SfQLgzJObtdJ9A0UUXXXR1n0DrVwrU+nWfQAVq\u002fUqBdp9AH3zwwQd3n0A5juM4jnefQFOg1q8UeJ9AbbLJJpt4n0CGxLydIXmfQKDWrxSoeZ9Auuiiiy56n0DU+pUCtXqfQO4MiXk7e59ACB988MF7n0AiMW9nSHyfQDtDYt7OfJ9AVVVVVVV9n0BvZ0jM232fQIl5O0Nifp9Ao4suuuh+n0C9nSExb3+fQNevFKj1f59A8MEHH3yAn0AK1PqVAoGfQCTm7QyJgZ9APvjggw+Cn0BYCtT6lYKfQHIcx3Ecg59AjC666KKDn0ClQK1fKYSfQL9SoNavhJ9A2WSTTTaFn0DzdobEvIWfQA2JeTtDhp9AJ5tsssmGn0BBrV8pUIefQFu\u002fUqDWh59AdNFFF12In0CO4ziO44ifQKj1KwVqiZ9AwgcffPCJn0DcGRLzdoqfQPYrBWr9ip9AED744IOLn0ApUOtXCoyfQENi3s6QjJ9AXXTRRReNn0B3hsS8nY2fQJGYtzMkjp9Aq6qqqqqOn0DFvJ0hMY+fQN7OkJi3j59A+OCDDz6Qn0AS83aGxJCfQCwFav1KkZ9ARhdddNGRn0BgKVDrV5KfQHo7Q2Lekp9Ak0022WSTn0CtXylQ65OfQMdxHMdxlJ9A4YMPPviUn0D7lQK1fpWfQBWo9SsFlp9AL7rooouWn0BIzNsZEpefQGLezpCYl59AfPDBBx+Yn0CWArV+pZifQLAUqPUrmZ9AyiabbLKZn0DkOI7jOJqfQP1KgVq\u002fmp9AF1100UWbn0Axb2dIzJufQEuBWr9SnJ9AZZNNNtmcn0B\u002fpUCtX52fQJm3MyTmnZ9Asskmm2yen0DM2xkS856fQObtDIl5n59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAADovECx0F4JIAu8QOMFzP1TTrtAzrmuTImwukB\u002fB25lrTC6QEwHcbetzblAetQesneGuUBCid7E+Fm5QNk\u002fF18eR7lAfRIw8NVMuUBhG5DnDGq5QEh0nrSwnblALzjCxq7muUACgWKN9EO6QPdo5ndvtLpARwq19Qw3u0ArfzV2usq7QN3hzmhlbrxALUvoPPsgvUAA2OhhaeG9QEehN0edrr5APcE7XISHv0ALKS4IhjXAQAc3gOkQrMBArJfHidkmwUAj17egVqXBQG2EBOb+JsJAtCthEUmrwkAWWoHaqzHDQLGcGPmducNAnoDaJJZCxED6knoVC8zEQNxfrIJzVcVAbHYjJEbexUC\u002fYpOx+WXGQPOxr+IE7MZAI\u002fErb95vx0BrrbsO\u002ffDHQOVzEnnXbshAytDjZeToyEAKU+OMml7JQNSGxKVwz8lAQPk6aN06ykBuN\u002fqLV6DKQHjOtchV\u002f8pAeksh1k5Xy0AAO\u002fBruafLQFgr1kEM8MtA\u002fqiGD74vzEANQbWMRWbMQKCAFXEZk8xA1\u002fRadLC1zEDKKjlOgc3MQJavY7YC2sxAEX3LNwfbzEC5lnRKL9TMQFloaP9ly8xAabdsd57GzEBaSUfTy8vMQKLjvTPh4MxAtkuWudELzUB0grk7kFLNQDFPLwL5t81A7mw2ahY1zkDr9OI+AMHOQGoASUvOUs9Apqh8Wpjhz0BuA8kbOzLQQMyZztY\u002fadBACBSJ4X+R0ECarGC1Z6nQQMqPltN1stBAZDfJalGu0EA1HZepoZ7QQAu7nr4NhdBA+Yp+2Dxj0EBMBtUl1jrQQAenQNWADdBA982\u002fKsi5z0Dof6IpTlXPQIBXZgTi8M5AVUhIGNKPzkCoRoXCbDXOQLZEWmAA5c1AM2cFzdqhzUD4Lvni\u002fm7NQGsQeOPVTs1A4vEfQbZDzUC2uY5u9k\u002fNQNZNYt7sdc1AJ5U4A\u002fC3zUDQda9PVhjOQCPWZDZ2mc5Aepz2KaY9z0CUV4FOngPQQEB6EwFIfNBATKgAZvsJ0UD71pe2463RQH74JywsadJAAAAAAAA900A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABsn0AaEvN2hmyfQDQk5u0MbZ9ATjbZZJNtn0BnSMzbGW6fQIFav1Kgbp9Am2yyySZvn0C1fqVArW+fQM+QmLczcJ9A6aKLLrpwn0ADtX6lQHGfQBzHcRzHcZ9ANtlkk01yn0BQ61cK1HKfQGr9SoFac59AhA8++OBzn0CeITFvZ3SfQLgzJObtdJ9A0UUXXXR1n0DrVwrU+nWfQAVq\u002fUqBdp9AH3zwwQd3n0A5juM4jnefQFOg1q8UeJ9AbbLJJpt4n0CGxLydIXmfQKDWrxSoeZ9Auuiiiy56n0DU+pUCtXqfQO4MiXk7e59ACB988MF7n0AiMW9nSHyfQDtDYt7OfJ9AVVVVVVV9n0BvZ0jM232fQIl5O0Nifp9Ao4suuuh+n0C9nSExb3+fQNevFKj1f59A8MEHH3yAn0AK1PqVAoGfQCTm7QyJgZ9APvjggw+Cn0BYCtT6lYKfQHIcx3Ecg59AjC666KKDn0ClQK1fKYSfQL9SoNavhJ9A2WSTTTaFn0DzdobEvIWfQA2JeTtDhp9AJ5tsssmGn0BBrV8pUIefQFu\u002fUqDWh59AdNFFF12In0CO4ziO44ifQKj1KwVqiZ9AwgcffPCJn0DcGRLzdoqfQPYrBWr9ip9AED744IOLn0ApUOtXCoyfQENi3s6QjJ9AXXTRRReNn0B3hsS8nY2fQJGYtzMkjp9Aq6qqqqqOn0DFvJ0hMY+fQN7OkJi3j59A+OCDDz6Qn0AS83aGxJCfQCwFav1KkZ9ARhdddNGRn0BgKVDrV5KfQHo7Q2Lekp9Ak0022WSTn0CtXylQ65OfQMdxHMdxlJ9A4YMPPviUn0D7lQK1fpWfQBWo9SsFlp9AL7rooouWn0BIzNsZEpefQGLezpCYl59AfPDBBx+Yn0CWArV+pZifQLAUqPUrmZ9AyiabbLKZn0DkOI7jOJqfQP1KgVq\u002fmp9AF1100UWbn0Axb2dIzJufQEuBWr9SnJ9AZZNNNtmcn0B\u002fpUCtX52fQJm3MyTmnZ9Asskmm2yen0DM2xkS856fQObtDIl5n59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAADovECYpTqkSiK8QDjxfNwaertAkL0UoXjuukAM5k\u002fqa366QLJDfLD8KLpAIbLn6zLtuUAKDOCUFsq5QBsss6OvvrlAB+2uEAbKuUB8KSHUIeu5QLK7V+YKIbpAJH+gP8lqukA0TknYZMe6QI4DoKjlNbtA5HnyqFO1u0Dli47RtkS8QEUUwhoX47xAWOzafHyPvUBk8Sbw7ki+QN7882x2Dr9Ad+mP6xrfv0DuSCQy8lzAQGDotWftzsBAaMCjEgNFwUB0vRQvt77BQK3OL7mNO8JAheAbrQq7wkBW4P8GsjzDQHW7AsMHwMNAPl9L3Y9ExEAGuQBSzsnEQCm1SR1HT8VA+UJNO37UxUDSTjKo91jGQA3GH2A33MZAAJY8X8Fdx0AFrK+hGd3HQHL1nyPEWchAul404UTTyEAK15PWH0nJQMpK5f\u002fYuslAVKdPWfQnykD\u002f2fne9Y\u002fKQCbQCo1h8spAHXepX7tOy0Chu\u002fxSh6TLQFSMK2NJ88tA4NVcjIU6zECghbfKv3nMQOqIYhp8sMxAF82Edz7ezECAP0XeigLNQHrNykrlHM1AGuVWLRktzUBufOPR5zXNQB1NFvraO81AajF5rYJDzUCEA5bzblHNQKWd9tMvas1ABdokVlWSzUAClqBHb87NQDAgCUOgIM5Awi0hhVODzkBBU0SHbO\u002fOQDslzsLOXc9ANzgasV3Hz0BeEMJlfhLQQG+5s8XHN9BAUhz4hRNQ0ECAGVx0Y1rQQEvD\u002fXt1WNBAlhYgwytM0EBGEAZwaDfQQDut8qgNHNBAOdVRKPv3z0CbidevNLLPQNhx\u002fDSMas9AuIdGBMYkz0ABxTtqpuTOQHgjYrPxrc5A5Zw\u002fLGyEzkAoK1oh2mvOQKnHN9\u002f\u002fZ85Ai+M\u002fBJ58zkCLSlicVavOQGdgxIVu8c5AYhB5UahLz0DARWuQwrbPQGf1x2m+F9BATvbtVUtZ0EDKGiLVZ57QQHrY3q9z5dBAAKWers4s0UD89duZ2HLRQA1BETrxtdFAY\u002fu4V3j00UCQm027zSzSQLWWSS1RXdJAdmIndmKE0kA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-vitara-2022-1841223",181],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-vitara-2022-1839085",976],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-vitara-2022-1838024",1534],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fsuzuki-vitara-2023-1837780",1708]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#d62728","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAAOYHAADmBwAA5wcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAABGzkAAAAAAgJfQQAAAAAAAUsxAAAAAAABGzkA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Suzuki Vitara - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (4)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-181" data-point-index="181">
+                <td>$15,500</td>
+                <td>56,000</td>
+                <td>2022</td>
+                <td>San Luis</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-vitara-2022-1841223" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-976" data-point-index="976">
+                <td>$16,990</td>
+                <td>49,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-vitara-2022-1839085" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1534" data-point-index="1534">
+                <td>$14,500</td>
+                <td>36,000</td>
+                <td>2022</td>
+                <td>La Molina</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-vitara-2022-1838024" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1708" data-point-index="1708">
+                <td>$15,500</td>
+                <td>41,800</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/suzuki-vitara-2023-1837780" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

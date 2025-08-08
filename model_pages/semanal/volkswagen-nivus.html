@@ -1,0 +1,216 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Nivus</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Nivus</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $17,900</p>
+            <p><strong>Ratio Venta Rápida:</strong> 15.38%</p>
+            <p><strong>Anuncios Únicos:</strong> 25</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAACUn0B88MEHH5SfQPjggw8+lJ9AdNFFF12Un0DwwQcffJSfQG2yySablJ9A6aKLLrqUn0Blk0022ZSfQOGDDz74lJ9AXXTRRReVn0DZZJNNNpWfQFVVVVVVlZ9A0UUXXXSVn0BONtlkk5WfQMomm2yylZ9ARhdddNGVn0DCBx988JWfQD744IMPlp9Auuiiiy6Wn0A22WSTTZafQLLJJptslp9AL7rooouWn0CrqqqqqpafQCebbLLJlp9Ao4suuuiWn0AffPDBB5efQJtssskml59AF1100UWXn0CTTTbZZJefQBA++OCDl59AjC666KKXn0AIH3zwwZefQIQPPvjgl59AAAAAAACYn0B88MEHH5ifQPjggw8+mJ9AdNFFF12Yn0DwwQcffJifQG2yySabmJ9A6aKLLrqYn0Blk0022ZifQOGDDz74mJ9AXXTRRReZn0DZZJNNNpmfQFVVVVVVmZ9A0UUXXXSZn0BONtlkk5mfQMomm2yymZ9ARhdddNGZn0DCBx988JmfQD744IMPmp9Auuiiiy6an0A22WSTTZqfQLLJJptsmp9AL7rooouan0CrqqqqqpqfQCebbLLJmp9Ao4suuuian0AffPDBB5ufQJtssskmm59AF1100UWbn0CTTTbZZJufQBA++OCDm59AjC666KKbn0AIH3zwwZufQIQPPvjgm59AAAAAAACcn0B88MEHH5yfQPjggw8+nJ9AdNFFF12cn0DwwQcffJyfQG2yySabnJ9A6aKLLrqcn0Blk0022ZyfQOGDDz74nJ9AXXTRRRedn0DZZJNNNp2fQFVVVVVVnZ9A0UUXXXSdn0BONtlkk52fQMomm2yynZ9ARhdddNGdn0DCBx988J2fQD744IMPnp9Auuiiiy6en0A22WSTTZ6fQLLJJptsnp9AL7rooouen0Crqqqqqp6fQCebbLLJnp9Ao4suuuien0AffPDBB5+fQJtssskmn59AF1100UWfn0CTTTbZZJ+fQBA++OCDn59AjC666KKfn0AIH3zwwZ+fQIQPPvjgn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAB70UAwa1eb\u002fFbRQANfYJ2pNNFA4TRVp\u002f4T0UAwRnBa8\u002fTQQGrr61d\u002f19BA238CQZq70EDxW+62O6HQQBTZ6VpbiNBAp1AvzvBw0EAUHPmx81rQQMGUgadbRtBAFhQDUCAz0EDn8rdMOSHQQMaL2j6eENBAfzelx0YB0EDznqQQVebPQDlaOESCzM9AmlN6bAS1z0DpPd\u002fLyp\u002fPQOrL26TEjM9A9K\u002fkOeF7z0DfnW7ND23PQO5H7qE\u002fYM9A6GDY+V9Vz0Cem6EXYEzPQNuqvj0vRc9AcEGkrrw\u002fz0AlEses9zvPQMLPm3rPOc9ANC2XWjM5z0Aw3S2PEjrPQIaS1FpcPM9A\u002f\u002f\u002f\u002f\u002f\u002f8\u002fz0Bu2CTB7ETPQJ\u002fOt+ARS89AW5UtoV5Sz0Bz3\u002fpEwlrPQAhglA4sZM9AR8luQItuz0BMzv4cz3nPQOAhuebmhc9A0nYS4MGSz0D0f39LT6DPQArwdGt+rs9A6Hlngj69z0Dc0MvSfszPQLSmFp8u3M9Ava68KT3sz0C\u002fmzK1mfzPQEaQ9sGZBtBA+Xcw7PwO0EBbXoH6bRfQQNicI47kH9BAG41RSFgo0ED+h0XKwDDQQC7nObUVOdBAEARpqk5B0EANOA1LY0nQQIzcYDhLUdBA8kqeE\u002f5Y0ECn3P99c2DQQErrvxijZ9BAzc8YhYRu0EDU40RkD3XQQMGAflc7e9BAAAAAAACB0ED2ugP\u002fVIbQQAcLxPUxi9BAn0l7hY6P0EAf0GNPYpPQQAr4t\u002fSkltBAkRqyFk6Z0EA0kYxWVZvQQF61gVWynNBAdeDLtFyd0EDea6UVTJ3QQACxSBl4nNBARAnwYNia0ED1zdWNZJjQQKZYNEEUldBAqgJGHN+Q0EBqJUXAvIvQQEsabM6khdBAtTr1545+0EAO4BqucnbQQL1jF8JHbdBAzx4lxQVj0EBUa35YpFfQQGKiXR0bS9BAYx39tGE90EC5NZfAby7QQM5EZuE8HtBAB6SkuMAM0ECZWRnP5fPPQLBvsR6Wy89AuD+GooGgz0A+ewydl3LPQBLVuFDHQc9AAAAAAAAOz0A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAACUn0B88MEHH5SfQPjggw8+lJ9AdNFFF12Un0DwwQcffJSfQG2yySablJ9A6aKLLrqUn0Blk0022ZSfQOGDDz74lJ9AXXTRRReVn0DZZJNNNpWfQFVVVVVVlZ9A0UUXXXSVn0BONtlkk5WfQMomm2yylZ9ARhdddNGVn0DCBx988JWfQD744IMPlp9Auuiiiy6Wn0A22WSTTZafQLLJJptslp9AL7rooouWn0CrqqqqqpafQCebbLLJlp9Ao4suuuiWn0AffPDBB5efQJtssskml59AF1100UWXn0CTTTbZZJefQBA++OCDl59AjC666KKXn0AIH3zwwZefQIQPPvjgl59AAAAAAACYn0B88MEHH5ifQPjggw8+mJ9AdNFFF12Yn0DwwQcffJifQG2yySabmJ9A6aKLLrqYn0Blk0022ZifQOGDDz74mJ9AXXTRRReZn0DZZJNNNpmfQFVVVVVVmZ9A0UUXXXSZn0BONtlkk5mfQMomm2yymZ9ARhdddNGZn0DCBx988JmfQD744IMPmp9Auuiiiy6an0A22WSTTZqfQLLJJptsmp9AL7rooouan0CrqqqqqpqfQCebbLLJmp9Ao4suuuian0AffPDBB5ufQJtssskmm59AF1100UWbn0CTTTbZZJufQBA++OCDm59AjC666KKbn0AIH3zwwZufQIQPPvjgm59AAAAAAACcn0B88MEHH5yfQPjggw8+nJ9AdNFFF12cn0DwwQcffJyfQG2yySabnJ9A6aKLLrqcn0Blk0022ZyfQOGDDz74nJ9AXXTRRRedn0DZZJNNNp2fQFVVVVVVnZ9A0UUXXXSdn0BONtlkk52fQMomm2yynZ9ARhdddNGdn0DCBx988J2fQD744IMPnp9Auuiiiy6en0A22WSTTZ6fQLLJJptsnp9AL7rooouen0Crqqqqqp6fQCebbLLJnp9Ao4suuuien0AffPDBB5+fQJtssskmn59AF1100UWfn0CTTTbZZJ+fQBA++OCDn59AjC666KKfn0AIH3zwwZ+fQIQPPvjgn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"ewntJbRW0UCeqZYDXDvRQNYyX0+\u002fIdFANh3B+9MJ0UDW4Db7j\u002fPQQCf1OkDp3tBAj9NHvdXL0EB189dkS7rQQPDMZSlAqtBAD9hr\u002famb0EDtjGTTfo7QQJ5jyp20gtBANdQXT0F40ECCVsfZGm\u002fQQC9jUzA3Z9BAA3I2RYxg0EAS++oKEFvQQHJ263O4VtBAN1yycntT0EB0JLr5TlHQQEJHffsoUNBAuDx2av9P0EDqfB85yFDQQOt\u002f81l5UtBAz71svwhV0ECtrgVcbFjQQJbKOCKaXNBApImABIhh0EDoY1f1K2fQQLDRN+d7bdBAqEqczG100EAXR\u002f+X93vQQBE\u002f2zsPhNBAq6qqqqqM0ED7AejWv5XQQBe9DbNEn9BAElSWMS+p0EACP\u002fxEdbPQQFX2ud8MvtBAcPFJ9OvI0EDAqCZ1CNTQQFiUylRY39BATiywhdHq0EC46FH6afbQQKlBKqUXAtFAN6+zeNAN0UDZqWhnihnRQOKow2M7JdFAxyQ\u002fYNkw0UCclVVPWjzRQHhzgSO0R9FAcTY9z9xS0UCYVgNFyl3RQAZMTndyaNFAIo+YWMty0UBXl1zbynzRQBHdFPJmhtFAZNg7j5WP0UBlAUylTJjRQCzQvyaCoNFAybwRBiyo0UBWP7w1QK\u002fRQBfQOai0tdFAuOYEUH+70UCJ+5cflsDRQJiGbQnvxNFA\u002f\u002f\u002f\u002f\u002f3\u002fI0UDT38n1PsvRQCieRd0hzdFAE7PtqB7O0UColjxLK87RQPPArLY9zdFAF6q43UvL0UAjytqyS8jRQDCZjSgzxNFAUo9LMfi+0UCcJI+\u002fkLjRQCXR0sXysNFAAw2RNhSo0UDuT0QE653RQKcSZyFtktFA8cxzgJCF0UDk9uQTS3fRQJIINc6SZ9FAEnreoV1W0UB6w1uBoUPRQN1cJ19UL9FAl727LWwZ0UAiX5Pf3gHRQOq4KGei6NBAAkP2tqzN0EB+dXbB87DQQHTII3ltktBA+bN40A9y0EAksO+50E\u002fQQNQzAyimK9BAdbktDYYF0EDyb9O3zLrPQOxOYw16Zs9AAAAAAAAOz0A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-nivus-2022-1840583",388],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-nivus-2022-1836787",1082],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-nivus-2023-1839327",1327]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAAOYHAADnBwAA"},"y":{"dtype":"f8","bdata":"AAAAAADczkAAAAAAABrNQAAAAAAAadRA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Nivus - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (3)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-388" data-point-index="388">
+                <td>$15,800</td>
+                <td>51,434</td>
+                <td>2022</td>
+                <td>Lima</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-nivus-2022-1840583" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1082" data-point-index="1082">
+                <td>$14,900</td>
+                <td>72,000</td>
+                <td>2022</td>
+                <td>San Miguel</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-nivus-2022-1836787" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1327" data-point-index="1327">
+                <td>$20,900</td>
+                <td>14,000</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-nivus-2023-1839327" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

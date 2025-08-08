@@ -1,0 +1,360 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Toyota Corolla</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Toyota Corolla</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $13,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 23.72%</p>
+            <p><strong>Anuncios Únicos:</strong> 156</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAD0nkDzdobEvPWeQObtDIl5955A2WSTTTb5nkDM2xkS8\u002fqeQL9SoNav\u002fJ5Asskmm2z+nkClQK1fKQCfQJm3MyTmAZ9AjC666KIDn0B\u002fpUCtXwWfQHIcx3EcB59AZZNNNtkIn0BYCtT6lQqfQEuBWr9SDJ9APvjggw8On0Axb2dIzA+fQCTm7QyJEZ9AF1100UUTn0AK1PqVAhWfQP1KgVq\u002fFp9A8MEHH3wYn0DkOI7jOBqfQNevFKj1G59AyiabbLIdn0C9nSExbx+fQLAUqPUrIZ9Ao4suuugin0CWArV+pSSfQIl5O0NiJp9AfPDBBx8on0BvZ0jM2ymfQGLezpCYK59AVVVVVVUtn0BIzNsZEi+fQDtDYt7OMJ9AL7rooosyn0AiMW9nSDSfQBWo9SsFNp9ACB988ME3n0D7lQK1fjmfQO4MiXk7O59A4YMPPvg8n0DU+pUCtT6fQMdxHMdxQJ9Auuiiiy5Cn0CtXylQ60OfQKDWrxSoRZ9Ak0022WRHn0CGxLydIUmfQHo7Q2LeSp9AbbLJJptMn0BgKVDrV06fQFOg1q8UUJ9ARhdddNFRn0A5juM4jlOfQCwFav1KVZ9AH3zwwQdXn0AS83aGxFifQAVq\u002fUqBWp9A+OCDDz5cn0DrVwrU+l2fQN7OkJi3X59A0UUXXXRhn0DFvJ0hMWOfQLgzJObtZJ9Aq6qqqqpmn0CeITFvZ2ifQJGYtzMkap9AhA8++OBrn0B3hsS8nW2fQGr9SoFab59AXXTRRRdxn0BQ61cK1HKfQENi3s6QdJ9ANtlkk012n0ApUOtXCnifQBzHcRzHeZ9AED744IN7n0ADtX6lQH2fQPYrBWr9fp9A6aKLLrqAn0DcGRLzdoKfQM+QmLczhJ9AwgcffPCFn0C1fqVArYefQKj1KwVqiZ9Am2yyySaLn0CO4ziO44yfQIFav1Kgjp9AdNFFF12Qn0BnSMzbGZKfQFq\u002fUqDWk59ATjbZZJOVn0BBrV8pUJefQDQk5u0MmZ9AJ5tsssman0AaEvN2hpyfQA2JeTtDnp9AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAwoUAWXuvwO9mjQOpdb\u002fAamqZAsNBqCBJZqUClh7xClvyrQARUQ6kca65AggPvIo1FsEDxuDURgiGxQDIzZaSnvLFAJNpsYTgKskDWFjzNbv2xQOVRwmyFibFA7PPuxLahsEAQy2K1enKuQD4RsiSzh6pALzkiHmF1pkDtLIvS3JilQIuxCfJr6apA29Q80Q+UskDsMAQFw8y4QCdaaVrfwL5A5169SzqJwUBTZCNByTHCQOHybXAkq8BAIo46aRqNuUBz7pUqe\u002fawQAT0Zjapm6hAi4lkpAmtqEBBmj1asaOuQALy8CQAd7NAVZKgMiv9tkAMjSXPiRu4QBHBd\u002fNLCbVAFSFyZ2pxqkDKZk2A4HCkQHcHiBhm0blAdXuCVBvpykD4+d7CJ4rQQBY7yPYgKMhAdiPWr4EhtkCPfH9lJcWlQKP1G2ZkhalAkVw4TYPUsECSzjH8q4WyQDisj5eDvbJAQ\u002fvAEviQskBvwTRh9xSzQO7eriJbBLVATpDzA6V7t0CgIZFpNjW5QDftIID77LlAVl730wwMukBazwTMuv65QLtbCvRUMbpAJEGXuxXqukB1WsLqruq7QL+BZhsC2LxADZFe5\u002fBWvUDCVFFQjA+9QJtjf2rUC7xAa9YwtdTHukDmd4h+puO5QG4kaQnlTbpANoQhss+4vEC9PFjW0vW\u002fQKOqk9T+FsFAl4kmm3zAwUCuumahgOvCQO2tir+4ysRA\u002fEnZonf1xUAndRT2LkDFQF4cXb32o8NAFsyaBriuwkDd2Socb+DCQPpG21NT98NAuIpG90iBxUC7w2zqWsbGQOYetHPQRcdAqQI5cw5kx0DKs+LsrLTHQAiZmQaPj8hAFc3kAQQnykD8RPyuBxfMQAWOh1A6Qs1AV9pwieoLzUASN5OvoWTMQFoYCTIAXMxAmpxs34fvzEB3kXSwGa\u002fNQOAgzaV7485AL00MQOzD0EBTKzO1uMjSQJF3zJAMVtRAMwFKwVhr1EDi+7Lzea\u002fTQFd2tx1ySdNAS6bjM9W300AEJZrzEfnUQNBu8UBiCNdAAAAAAADh2UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAD0nkDzdobEvPWeQObtDIl5955A2WSTTTb5nkDM2xkS8\u002fqeQL9SoNav\u002fJ5Asskmm2z+nkClQK1fKQCfQJm3MyTmAZ9AjC666KIDn0B\u002fpUCtXwWfQHIcx3EcB59AZZNNNtkIn0BYCtT6lQqfQEuBWr9SDJ9APvjggw8On0Axb2dIzA+fQCTm7QyJEZ9AF1100UUTn0AK1PqVAhWfQP1KgVq\u002fFp9A8MEHH3wYn0DkOI7jOBqfQNevFKj1G59AyiabbLIdn0C9nSExbx+fQLAUqPUrIZ9Ao4suuugin0CWArV+pSSfQIl5O0NiJp9AfPDBBx8on0BvZ0jM2ymfQGLezpCYK59AVVVVVVUtn0BIzNsZEi+fQDtDYt7OMJ9AL7rooosyn0AiMW9nSDSfQBWo9SsFNp9ACB988ME3n0D7lQK1fjmfQO4MiXk7O59A4YMPPvg8n0DU+pUCtT6fQMdxHMdxQJ9Auuiiiy5Cn0CtXylQ60OfQKDWrxSoRZ9Ak0022WRHn0CGxLydIUmfQHo7Q2LeSp9AbbLJJptMn0BgKVDrV06fQFOg1q8UUJ9ARhdddNFRn0A5juM4jlOfQCwFav1KVZ9AH3zwwQdXn0AS83aGxFifQAVq\u002fUqBWp9A+OCDDz5cn0DrVwrU+l2fQN7OkJi3X59A0UUXXXRhn0DFvJ0hMWOfQLgzJObtZJ9Aq6qqqqpmn0CeITFvZ2ifQJGYtzMkap9AhA8++OBrn0B3hsS8nW2fQGr9SoFab59AXXTRRRdxn0BQ61cK1HKfQENi3s6QdJ9ANtlkk012n0ApUOtXCnifQBzHcRzHeZ9AED744IN7n0ADtX6lQH2fQPYrBWr9fp9A6aKLLrqAn0DcGRLzdoKfQM+QmLczhJ9AwgcffPCFn0C1fqVArYefQKj1KwVqiZ9Am2yyySaLn0CO4ziO44yfQIFav1Kgjp9AdNFFF12Qn0BnSMzbGZKfQFq\u002fUqDWk59ATjbZZJOVn0BBrV8pUJefQDQk5u0MmZ9AJ5tsssman0AaEvN2hpyfQA2JeTtDnp9AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAwoUDiHK70BtejQNaEeRgpmaZAXhOVUhBcqUAApDOKZgWsQD8SiKbVeq5A0ZxixwNRsEDV+g4VUzCxQDaR4q8tzrFA9sx2i2gdskBJHGWb2BCyQPPsRtNSm7FAs6y1JqyvsECZkpUSc4GuQDq5KcS0g6pAWowXdcVgpkDw+MYWh5OlQMiAGkHpK6tAuCFxw3TrskAc3Gc0nFq5QP2oT5uJc79A6mAD0C3jwUC6rzV1mHHCQK\u002fcLREUrcBA5bFiPvjeuEAv2QpwCAiwQGuzMkG5nqhAFdIAHXjcrEDLOyECCh20QDBkeoENCLtAOzpFycZtwEBu\u002f6ed6KHBQJOVyYEf7b9AbvCZ+PDCtUCEsPY5792rQH7sBQgLALZA\u002fS7etusrxUCMqWJVA0PKQIn2jiYJLcRALHjY6\u002f5rtUBhooGkjVepQGMhMUfezqpARnFZJq59sECCxgSavrayQMnFP4MDOrRAaHCInvJKtUCqx1yoAS22QGQOuPXbFLdAi\u002fpMTyTzt0APqAqQzqe4QKITsiQQNrlARL60Y9O4uUAbMbtrc0u6QJym7e9KCbtAZiioFwf7u0AyJKlmVOi8QObjcqi9ir1AXLGHqM2bvUD4VIuJCdq8QKOTI0MEnbtAiWEpLkXuukA1HjEqgHm7QPg4FktE17xAEjCk7dx9vkD8VNCPMhXAQNEu5lKQ3cBA78F9Cz60wUCzEd+c893CQOMXZzzYR8RA4ndMuo8pxUAl+NlK1eHEQCcc+XxL\u002fcNAjrbl8k9cw0AQoV9+c2PDQIYVK6HhHcRA44BDxYZfxUC1GD\u002f766fGQLznaY5OiMdAHZWGddHvx0BK8ZrBY\u002fDHQCTJzybgF8hACCsbbLYxyUCax6e4TQTLQHk29pRvEsxA+6k6V9ORy0CWxqyPG+zKQK9HOJdRostAgDlJ+sgdzUBS\u002fwO3evXNQLH+6GCGfs5Ax6saXMxe0EBPNSOv4pnSQBQHLJ5ieNRAK7G2ApSp1EAGXw+63t\u002fTQHm4NrZxadNAyZah3cnF00A2Avz8IdfUQKYaZovFe9ZAAAAAAACS2EA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2022-1841083",18],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2012-1841370",143],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2013-1839147",174],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2012-1839432",252],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-hybrid-2022-1841504",359],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2016-1841159",396],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2015-1841056",463],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-hybrid-2021-1795783",469],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-hybrid-2023-1835523",505],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2015-1837978",524],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2011-1841315",549],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-1987-1841773",640],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2014-1835961",756],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2015-1841006",818],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2018-1840367",964],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-1982-1841754",1081],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2021-1838579",1308],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2015-1840403",1479],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2023-1840179",1679],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-sw-2001-1830994",1684],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-corolla-2015-1841705",1747]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAANwHAADdBwAA3AcAAOYHAADgBwAA3wcAAOUHAADnBwAA3wcAANsHAADDBwAA3gcAAN8HAADiBwAAvgcAAOUHAADfBwAA5wcAANEHAADfBwAA"},"y":{"dtype":"f8","bdata":"AAAAAACO0kAAAAAAAPTKQAAAAAAAVsNAAAAAAAAkw0AAAAAAAM3UQAAAAAAAAMlAAAAAAAC1yEAAAAAAAGnUQAAAAAAAUNRAAAAAAABeykAAAAAAAHzFQAAAAAAAWKtAAAAAAADBxkAAAAAAAGTJQAAAAAAAdsZAAAAAAABwp0AAAAAAAAXUQAAAAAAAJstAAAAAAACC1EAAAAAAACSzQAAAAAAAXspA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Toyota Corolla - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (21)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-18" data-point-index="18">
+                <td>$19,000</td>
+                <td>19,900</td>
+                <td>2022</td>
+                <td>San Juan de Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2022-1841083" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-143" data-point-index="143">
+                <td>$13,800</td>
+                <td>53,500</td>
+                <td>2012</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2012-1841370" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-174" data-point-index="174">
+                <td>$9,900</td>
+                <td>118,135</td>
+                <td>2013</td>
+                <td>Magdalena del Mar</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2013-1839147" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-252" data-point-index="252">
+                <td>$9,800</td>
+                <td>179,000</td>
+                <td>2012</td>
+                <td>La Molina</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2012-1839432" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-359" data-point-index="359">
+                <td>$21,300</td>
+                <td>29,000</td>
+                <td>2022</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-hybrid-2022-1841504" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-396" data-point-index="396">
+                <td>$12,800</td>
+                <td>53,500</td>
+                <td>2016</td>
+                <td>Comas</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2016-1841159" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-463" data-point-index="463">
+                <td>$12,650</td>
+                <td>109,000</td>
+                <td>2015</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2015-1841056" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-469" data-point-index="469">
+                <td>$20,900</td>
+                <td>44,800</td>
+                <td>2021</td>
+                <td>Cerro Colorado</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-hybrid-2021-1795783" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-505" data-point-index="505">
+                <td>$20,800</td>
+                <td>20,230</td>
+                <td>2023</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-hybrid-2023-1835523" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-524" data-point-index="524">
+                <td>$13,500</td>
+                <td>72,500</td>
+                <td>2015</td>
+                <td>Jesus Maria</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2015-1837978" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-549" data-point-index="549">
+                <td>$11,000</td>
+                <td>140,000</td>
+                <td>2011</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2011-1841315" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-640" data-point-index="640">
+                <td>$3,500</td>
+                <td>150,000</td>
+                <td>1987</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-1987-1841773" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-756" data-point-index="756">
+                <td>$11,650</td>
+                <td>200,000</td>
+                <td>2014</td>
+                <td>Surquillo</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2014-1835961" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-818" data-point-index="818">
+                <td>$13,000</td>
+                <td>73,000</td>
+                <td>2015</td>
+                <td>Punta Hermosa</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2015-1841006" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-964" data-point-index="964">
+                <td>$11,500</td>
+                <td>320,000</td>
+                <td>2018</td>
+                <td>San Juan de Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2018-1840367" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1081" data-point-index="1081">
+                <td>$3,000</td>
+                <td>4,500</td>
+                <td>1982</td>
+                <td>Jesus Maria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-1982-1841754" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1308" data-point-index="1308">
+                <td>$20,500</td>
+                <td>9,902</td>
+                <td>2021</td>
+                <td>San Miguel</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2021-1838579" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1479" data-point-index="1479">
+                <td>$13,900</td>
+                <td>36,900</td>
+                <td>2015</td>
+                <td>Los Olivos</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2015-1840403" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1679" data-point-index="1679">
+                <td>$21,000</td>
+                <td>19,200</td>
+                <td>2023</td>
+                <td>Huaraz</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2023-1840179" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1684" data-point-index="1684">
+                <td>$4,900</td>
+                <td>406,580</td>
+                <td>2001</td>
+                <td>Villa El Salvador</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-sw-2001-1830994" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1747" data-point-index="1747">
+                <td>$13,500</td>
+                <td>103,000</td>
+                <td>2015</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-corolla-2015-1841705" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

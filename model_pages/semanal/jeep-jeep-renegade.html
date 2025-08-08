@@ -1,0 +1,264 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Jeep Renegade</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Jeep Renegade</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $15,800</p>
+            <p><strong>Ratio Venta Rápida:</strong> 30.77%</p>
+            <p><strong>Anuncios Únicos:</strong> 26</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAACEn0BLgVq\u002fUoSfQJYCtX6lhJ9A4YMPPviEn0AsBWr9SoWfQHeGxLydhZ9AwgcffPCFn0ANiXk7Q4afQFgK1PqVhp9Ao4suuuiGn0DuDIl5O4efQDmO4ziOh59AhA8++OCHn0DPkJi3M4ifQBoS83aGiJ9AZZNNNtmIn0CwFKj1K4mfQPuVArV+iZ9ARhdddNGJn0CRmLczJIqfQNwZEvN2ip9AJ5tsssmKn0ByHMdxHIufQL2dITFvi59ACB988MGLn0BToNavFIyfQJ4hMW9njJ9A6aKLLrqMn0A0JObtDI2fQH+lQK1fjZ9AyiabbLKNn0AVqPUrBY6fQGApUOtXjp9Aq6qqqqqOn0D2KwVq\u002fY6fQEGtXylQj59AjC666KKPn0DXrxSo9Y+fQCIxb2dIkJ9AbbLJJpuQn0C4MyTm7ZCfQAO1fqVAkZ9ATjbZZJORn0CZtzMk5pGfQOQ4juM4kp9AL7rooouSn0B6O0Ni3pKfQMW8nSExk59AED744IOTn0Bbv1Kg1pOfQKVArV8plJ9A8MEHH3yUn0A7Q2LezpSfQIbEvJ0hlZ9A0UUXXXSVn0Acx3Ecx5WfQGdIzNsZlp9Asskmm2yWn0D9SoFav5afQEjM2xkSl59Ak0022WSXn0DezpCYt5efQClQ61cKmJ9AdNFFF12Yn0C\u002fUqDWr5ifQArU+pUCmZ9AVVVVVVWZn0Cg1q8UqJmfQOtXCtT6mZ9ANtlkk02an0CBWr9SoJqfQMzbGRLzmp9AF1100UWbn0Bi3s6QmJufQK1fKVDrm59A+OCDDz6cn0BDYt7OkJyfQI7jOI7jnJ9A2WSTTTadn0Ak5u0MiZ2fQG9nSMzbnZ9Auuiiiy6en0AFav1KgZ6fQFDrVwrUnp9Am2yyySafn0Dm7QyJeZ+fQDFvZ0jMn59AfPDBBx+gn0DHcRzHcaCfQBLzdobEoJ9AXXTRRRehn0Co9SsFaqGfQPN2hsS8oZ9APvjggw+in0CJeTtDYqKfQNT6lQK1op9AH3zwwQejn0Bq\u002fUqBWqOfQLV+pUCto59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABJ0UBU\u002fx9kJ6nQQKN1glPiGtBAGy38nt46z0BhK9OyGWDOQFVNN+Xyo81ANfrVOOcEzUA6mVywc4HMQKGReE4VGMxAp0rXFUnHy0CIKyYJjI3LQIKbEitbactAzwFKfjNZy0CtxXkFklvLQFdOT8PzbstACAN4utWRy0D\u002fSqHttMLLQHaNeF8OAMxArDGrEl9IzEDanuYJJJrMQEA82Efa88xAF3Etz\u002f5TzUCcpJOiDrnNQAw+uMSGIc5ApaRIOOSLzkB+T\u002fYipPbOQE41XjdUYM9AA93XTKLHz0DvPBT2nxXQQI+fCk\u002fvRNBAArCx9Rdx0EDrB2yucpnQQOlAnD1YvdBAn\u002fSkZyHc0ECrvOjwJvXQQLEyyp3BB9FATvCrMkoT0UAnj\u002fBzGRfRQJJubprLEtFAnCa0yIYH0UA1v6+1\u002f\u002fbQQKKop0rr4tBAJVPicP7M0EADL6YR7rbQQHusORZvotBA1DvjZzaR0EBSTenv+ITQQDRRkpdrf9BAwbckSEOC0EA78ebqNI\u002fQQAue1QXjp9BAvbtLM0nM0EAnowIivPrQQOXdaR1+MdFAk\u002fXwcNFu0UDLcwdo+LDRQCjiHE419tFAQ8qgbso80kC3tQIV+oLSQCAusowGx9JAGL0eITIH00A77Lcdv0HTQIoN+wLwdNNA1wNukZ2f00D0vW2kP8LTQB6vziyV3dNAm0plG13y00CiAwZhVgHUQHdNhe4\u002fC9RAWpu3tNgQ1ECHYHGk3xLUQD4Qh64TEtRAwh3NwzMP1EBM\u002fBfV\u002fgrUQCEfPNMzBtRAffkNr5EB1ECg\u002fmFZ1\u002f3TQMuhDMPD+9NAOlbi3BX800Avj7eXjP\u002fTQOe\u002fYOTmBtRApFuys+MS1ECk1YD2QSTUQCShoJ3AO9RAaDHmmR5a1ECr+SXcGoDUQC5tNFV0rtRAMP\u002fl9enl1EDwIg+vOifVQK9LhHElc9VAquwZLmnK1UAjeaTVxC3WQFZk+Fj3ndZAgyHqqL8b10DsI0623KfXQMve+HENQ9hAZsW+zBDu2ED4SnS3panZQMDi7SKLdtpAAAAAAIBV20A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAACEn0BLgVq\u002fUoSfQJYCtX6lhJ9A4YMPPviEn0AsBWr9SoWfQHeGxLydhZ9AwgcffPCFn0ANiXk7Q4afQFgK1PqVhp9Ao4suuuiGn0DuDIl5O4efQDmO4ziOh59AhA8++OCHn0DPkJi3M4ifQBoS83aGiJ9AZZNNNtmIn0CwFKj1K4mfQPuVArV+iZ9ARhdddNGJn0CRmLczJIqfQNwZEvN2ip9AJ5tsssmKn0ByHMdxHIufQL2dITFvi59ACB988MGLn0BToNavFIyfQJ4hMW9njJ9A6aKLLrqMn0A0JObtDI2fQH+lQK1fjZ9AyiabbLKNn0AVqPUrBY6fQGApUOtXjp9Aq6qqqqqOn0D2KwVq\u002fY6fQEGtXylQj59AjC666KKPn0DXrxSo9Y+fQCIxb2dIkJ9AbbLJJpuQn0C4MyTm7ZCfQAO1fqVAkZ9ATjbZZJORn0CZtzMk5pGfQOQ4juM4kp9AL7rooouSn0B6O0Ni3pKfQMW8nSExk59AED744IOTn0Bbv1Kg1pOfQKVArV8plJ9A8MEHH3yUn0A7Q2LezpSfQIbEvJ0hlZ9A0UUXXXSVn0Acx3Ecx5WfQGdIzNsZlp9Asskmm2yWn0D9SoFav5afQEjM2xkSl59Ak0022WSXn0DezpCYt5efQClQ61cKmJ9AdNFFF12Yn0C\u002fUqDWr5ifQArU+pUCmZ9AVVVVVVWZn0Cg1q8UqJmfQOtXCtT6mZ9ANtlkk02an0CBWr9SoJqfQMzbGRLzmp9AF1100UWbn0Bi3s6QmJufQK1fKVDrm59A+OCDDz6cn0BDYt7OkJyfQI7jOI7jnJ9A2WSTTTadn0Ak5u0MiZ2fQG9nSMzbnZ9Auuiiiy6en0AFav1KgZ6fQFDrVwrUnp9Am2yyySafn0Dm7QyJeZ+fQDFvZ0jMn59AfPDBBx+gn0DHcRzHcaCfQBLzdobEoJ9AXXTRRRehn0Co9SsFaqGfQPN2hsS8oZ9APvjggw+in0CJeTtDYqKfQNT6lQK1op9AH3zwwQejn0Bq\u002fUqBWqOfQLV+pUCto59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAr0UDyUS5bX33QQNt0I8uyzc9AXmY+vFvMzkDda5cHOfTNQMd4GCvKQs1AkICrpI61zECqdjryBUrMQIROr5Gv\u002fctAlPvzAAvOy0BFcfK9l7jLQBCjlEbVustAYITEGEPSy0CrCGyyYPzLQGIjdZGtNsxA9cfJM6l+zEDX6VMX09HMQHl8\u002fbmqLc1ATHOwma+PzUDEwVY0YfXNQFFb2gc\u002fXM5AZDMlksjBzkBvPSFRfSPPQONsuMLcfs9ANrXUZGbRz0Av+esETgzQQM10aLiMKdBAdGtw8c5A0EBoPufIk1LQQOlOsFdaX9BAQP6utqFn0ECvrcb+6GvQQHq+2kivbNBA5pHOrXNq0EA1iYVGtWXQQK4F4yvzXtBAlGjKdqxW0EArEx9AYE3QQCMzl46UQ9BApRNr3\u002fc50EBD0ihVRzHQQMtzihdAKtBABv1JTp8l0EDFciEhIiTQQNHZyreFJtBA9TYAOoct0EABj3vP4znQQL7m9p9YTNBA+UIs06Jl0ECAqNWQf4bQQGaW8zShr9BAhJbbzcHg0EBzOjgcoxjRQBWP+hT8VdFATKETrYOX0UD8fXTZ8NvRQAkyDo\u002f6IdJAUcrRwldo0kC3U7Bpv63SQB\u002fbmnjo8NJAbW2C5Ikw00CBF1iiWmvTQMmNOM8RoNNAdgTiS9jN00DknKJGEfXTQB\u002f1RcBVFtRAPauXuT4y1EBIXWMzZUnUQFepdC5iXNRAdi2Xq85r1EC3h5arQ3jUQCpWPi9agtRA4zZaN6uK1EDsx7XEz5HUQFqnHNhgmNRAPHNacvee1ECiyTqULKbUQJ9IiT6ZrtRAQY4Rcta41ECZOJ8vfcXUQLfl\u002fXcm1dRArTP5S2vo1ECLwFys5P\u002fUQGAq9JkrHNVAPg+LFdk91UA1De0fhmXVQFbC5bnLk9VAsMxA5ELJ1UBUysmfhAbWQFRZTO0pTNZAwBeUzcua1kCmo2xBA\u002fPWQBqboUlpVddAKZz+5pbC10DnRE8aJTvYQGAzX+Ssv9hAqgX6RcdQ2UDTWes\u002fDe\u002fZQOnN\u002ftIXm9pAAAAAAIBV20A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2018-1840352",367],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2022-1841794",374],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2019-1840304",428],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2019-1838951",429],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2023-1840783",786],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2020-1840035",996],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2018-1835605",1005],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2018-1840555",1156],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fjeep-renegade-2020-1841758",1663]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#d62728","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4gcAAOYHAADjBwAA4wcAAOcHAADkBwAA4gcAAOIHAADkBwAA"},"y":{"dtype":"f8","bdata":"AAAAAABGzkAAAAAAAGjQQAAAAAAAF9FAAAAAAABGzkAAAAAAgHnVQAAAAAAAF9FAAAAAAABkyUAAAAAAAFjLQAAAAAAAe9FA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Jeep Renegade - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (9)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-367" data-point-index="367">
+                <td>$15,500</td>
+                <td>60,000</td>
+                <td>2018</td>
+                <td>Juliaca</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2018-1840352" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-374" data-point-index="374">
+                <td>$16,800</td>
+                <td>32,000</td>
+                <td>2022</td>
+                <td>San Miguel</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2022-1841794" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-428" data-point-index="428">
+                <td>$17,500</td>
+                <td>23,815</td>
+                <td>2019</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2019-1840304" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-429" data-point-index="429">
+                <td>$15,500</td>
+                <td>50,000</td>
+                <td>2019</td>
+                <td>La Molina</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2019-1838951" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-786" data-point-index="786">
+                <td>$21,990</td>
+                <td>21,000</td>
+                <td>2023</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2023-1840783" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-996" data-point-index="996">
+                <td>$17,500</td>
+                <td>58,000</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2020-1840035" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1005" data-point-index="1005">
+                <td>$13,000</td>
+                <td>74,000</td>
+                <td>2018</td>
+                <td>Lince</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2018-1835605" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1156" data-point-index="1156">
+                <td>$14,000</td>
+                <td>122,000</td>
+                <td>2018</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2018-1840555" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1663" data-point-index="1663">
+                <td>$17,900</td>
+                <td>30,000</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/jeep-renegade-2020-1841758" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

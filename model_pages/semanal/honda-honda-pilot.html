@@ -1,0 +1,424 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Honda Pilot</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Honda Pilot</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $19,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 14.29%</p>
+            <p><strong>Anuncios Únicos:</strong> 126</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABgn0CWArV+pWCfQCwFav1KYZ9AwgcffPBhn0BYCtT6lWKfQO4MiXk7Y59AhA8++OBjn0AaEvN2hmSfQLAUqPUrZZ9ARhdddNFln0DcGRLzdmafQHIcx3EcZ59ACB988MFnn0CeITFvZ2ifQDQk5u0MaZ9AyiabbLJpn0BgKVDrV2qfQPYrBWr9ap9AjC666KJrn0AiMW9nSGyfQLgzJObtbJ9ATjbZZJNtn0DkOI7jOG6fQHo7Q2Lebp9AED744INvn0ClQK1fKXCfQDtDYt7OcJ9A0UUXXXRxn0BnSMzbGXKfQP1KgVq\u002fcp9Ak0022WRzn0ApUOtXCnSfQL9SoNavdJ9AVVVVVVV1n0DrVwrU+nWfQIFav1Kgdp9AF1100UV3n0CtXylQ63efQENi3s6QeJ9A2WSTTTZ5n0BvZ0jM23mfQAVq\u002fUqBep9Am2yyySZ7n0Axb2dIzHufQMdxHMdxfJ9AXXTRRRd9n0DzdobEvH2fQIl5O0Nifp9AH3zwwQd\u002fn0C1fqVArX+fQEuBWr9SgJ9A4YMPPviAn0B3hsS8nYGfQA2JeTtDgp9Ao4suuuiCn0A5juM4joOfQM+QmLczhJ9AZZNNNtmEn0D7lQK1foWfQJGYtzMkhp9AJ5tsssmGn0C9nSExb4efQFOg1q8UiJ9A6aKLLrqIn0B\u002fpUCtX4mfQBWo9SsFip9Aq6qqqqqKn0BBrV8pUIufQNevFKj1i59AbbLJJpuMn0ADtX6lQI2fQJm3MyTmjZ9AL7rooouOn0DFvJ0hMY+fQFu\u002fUqDWj59A8MEHH3yQn0CGxLydIZGfQBzHcRzHkZ9Asskmm2ySn0BIzNsZEpOfQN7OkJi3k59AdNFFF12Un0AK1PqVApWfQKDWrxSolZ9ANtlkk02Wn0DM2xkS85afQGLezpCYl59A+OCDDz6Yn0CO4ziO45ifQCTm7QyJmZ9Auuiiiy6an0BQ61cK1JqfQObtDIl5m59AfPDBBx+cn0AS83aGxJyfQKj1KwVqnZ9APvjggw+en0DU+pUCtZ6fQGr9SoFan59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAB2xkBq27ATj3DKQAXhWCO1l81Ap7gJzgH9z0AQhWpZAtnQQJ4+ZrgmZNFA69yA07Wo0UDaM0N6d6\u002fRQFUXNnwzgdFAR1viqLEm0UCW09DPuajQQCtUisATENBA2mEvlQ7LzkCQewN7uGPNQECdotG0+8tAw24eOJOkykDkl4hN42\u002fJQHbA8rA0b8hATJBuARe0x0A\u002f38yYwk\u002fHQKniLDa1SMdAo1\u002fiAcuYx0CzEPOoJjnIQGawZNjqIslAQ\u002fk8PTpPykDMROTWJrfLQO8yYZXgS81AMnNECUjvzkBb3cK5vUDQQExfjopM8dBA\u002fZmAl1950UDMVgJWBsnRQPmN276s1tFAXrB0LNut0UAJbtaYeV7RQAl3Cf5v+NBAcnsWVqaL0EBSKwabBCjQQNkVujICuM9Aw39Gp0Zbz0AR0p\u002fRyj\u002fPQE\u002fL4ceAa89ABioooFrkz0BjVkc4JVjQQKUMsBtX6dBACPLTY4mZ0UA6pMEFBlTSQKkTh\u002ff3A9NAxDAyL4qU00D469Ci5\u002fDTQGzIh8QtBdRAe3eCLEPT00C+2POY13LTQH9eJUSN\u002fNJACXtgaAaJ0kCqoO4\u002f5TDSQIfP+DmgDNJAAY40YLAo0kDuTsoX6H3SQBCrznVHA9NALTtWj86v00AKmHV5fXrUQMFnd4FUWtVAQRO6JfNG1kClVoazsDnXQGfLkMgvLNhADguOAhMY2UAWrzL\u002f\u002fPbZQAFRM1yQwtpAV\u002fZkCBZ120ARRtPA+QvcQAQDwiuZhdxA030S\u002fFHg3EAhB6bkgRrdQJLvXZiGMt1A8eyo+Jso3UDqxPPaPw3dQALcNwtP+dxAYOZNC7gF3UAomA5daUvdQIalUoJR491AGrW3wu3k3kDrDas9SyfgQL2fHUSkBOFADikEhqn+4UDpQq+UggnjQFeGbwFXGeRAc47czmIi5UBxGqP3fxzmQA6HnE+NBOdAogHFTsjX50CFtxhtbpPoQBXWkyK9NOlAp4oy5\u002fG46UCXAvEySh3qQD9ry30DX+pA9vG9P1t76kAYxMTwjm\u002fqQP0O3AjcOOpAAAAAAIDU6UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABgn0CWArV+pWCfQCwFav1KYZ9AwgcffPBhn0BYCtT6lWKfQO4MiXk7Y59AhA8++OBjn0AaEvN2hmSfQLAUqPUrZZ9ARhdddNFln0DcGRLzdmafQHIcx3EcZ59ACB988MFnn0CeITFvZ2ifQDQk5u0MaZ9AyiabbLJpn0BgKVDrV2qfQPYrBWr9ap9AjC666KJrn0AiMW9nSGyfQLgzJObtbJ9ATjbZZJNtn0DkOI7jOG6fQHo7Q2Lebp9AED744INvn0ClQK1fKXCfQDtDYt7OcJ9A0UUXXXRxn0BnSMzbGXKfQP1KgVq\u002fcp9Ak0022WRzn0ApUOtXCnSfQL9SoNavdJ9AVVVVVVV1n0DrVwrU+nWfQIFav1Kgdp9AF1100UV3n0CtXylQ63efQENi3s6QeJ9A2WSTTTZ5n0BvZ0jM23mfQAVq\u002fUqBep9Am2yyySZ7n0Axb2dIzHufQMdxHMdxfJ9AXXTRRRd9n0DzdobEvH2fQIl5O0Nifp9AH3zwwQd\u002fn0C1fqVArX+fQEuBWr9SgJ9A4YMPPviAn0B3hsS8nYGfQA2JeTtDgp9Ao4suuuiCn0A5juM4joOfQM+QmLczhJ9AZZNNNtmEn0D7lQK1foWfQJGYtzMkhp9AJ5tsssmGn0C9nSExb4efQFOg1q8UiJ9A6aKLLrqIn0B\u002fpUCtX4mfQBWo9SsFip9Aq6qqqqqKn0BBrV8pUIufQNevFKj1i59AbbLJJpuMn0ADtX6lQI2fQJm3MyTmjZ9AL7rooouOn0DFvJ0hMY+fQFu\u002fUqDWj59A8MEHH3yQn0CGxLydIZGfQBzHcRzHkZ9Asskmm2ySn0BIzNsZEpOfQN7OkJi3k59AdNFFF12Un0AK1PqVApWfQKDWrxSolZ9ANtlkk02Wn0DM2xkS85afQGLezpCYl59A+OCDDz6Yn0CO4ziO45ifQCTm7QyJmZ9Auuiiiy6an0BQ61cK1JqfQObtDIl5m59AfPDBBx+cn0AS83aGxJyfQKj1KwVqnZ9APvjggw+en0DU+pUCtZ6fQGr9SoFan59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAAB2xkB9YGRkTbTIQOqWxP1zecpAXMIf9AzQy0DgAXVvscLMQIZ0w5f6W81AYTkKlYGmzUB+b0iP36zNQO41fa6tec1Aw6unGoUXzUAK8Mb7\u002fpDMQNUh2nm08MtANWDgvD5By0A4ytjsNo3KQO5+wjE238lAaZ2cs9VByUC6RGaarr\u002fIQOyTHg5aY8hAFarENnE3yEAkKqwBTEbIQKrXjnI9kshAEeAMpicUyUBQJAQWYsTJQGqFUjxEm8pAXuTVkiWRy0CRakWRWZ7MQKxNDKtOuc1AO8YMWsXUzkBG3xPeEePPQOpRdztEa9BAfA81sr7Q0ECIGfSQIhvRQKMi+FfVRdFAgPXmT6RT0UCF6AeB5UjRQBlSovPuKdFAo4j9rxb70ECJ4mC+ssDQQASCJfPbf9BANd64rhxC0EC5ZM0PmxLQQL+o8Yz7+M9A++vQgusK0EBZauv0CknQQOtTvtgywNBA3Cs6uSxm0UBPkT5D1CTSQFP9QpHZ5dJA9Oi+veyS00BBzSnjvRXUQHLAx5DgWNRAuvc+1Fdb1EA2x5c5ljDUQDYgp8Hx7NNACfRBbcCk00ACND09WGzTQBQXeDPtV9NA\u002f5jEnGRy00Cvl4yXYrfTQCgOHEUhIdRAbPe+xtqp1EB9TsE9yUvVQGupPuQmAdZADbxEOHTE1kBQZjvY85DXQHhHs6AJYthAzP48bhkz2UCMK2kdh\u002f\u002fZQAVtyIq2wtpAYKzrhwJ420AC4\u002fk\u002fmhrcQPma5LafpdxAg8Xt7zQU3UDdU1fue2HdQEk3Y7WWiN1AnIcc\u002ftGG3UAa5NaJVmzdQPJ7MgYDU91Au7hIrMpU3UARBDO1oIvdQIzHClp4Ed5ABVIRlM3+3kDmJCs7RyngQGaqXDP6+uBAI1QrHsTo4UC5PCVn6ebiQMV+2Hmu6eNAyXp6nW3l5EBghqAvX9LlQJLTDV8ZruZATBpTjJd250B7EgEY1SnoQBB0qGLNxehA9PbZzHtI6UAYUya326\u002fpQGlAHoLo+elA1HZSjp0k6kBIrlM89i3qQLKesuztE+pAAAAAAIDU6UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2019-1839446",10],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2017-1839009",14],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2016-1839096",47],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1835243",68],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2017-1841732",124],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2018-1841206",226],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2017-1834283",254],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2019-1811279",295],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2019-1841579",322],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2020-1838471",416],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1839511",476],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1830650",559],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2020-1841192",576],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1840149",771],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2024-1839420",782],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2012-1833929",809],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2013-1840728",822],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2013-1838897",1013],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2020-1838646",1073],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2020-1838987",1100],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2016-1836377",1226],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2023-1841623",1280],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2019-1841542",1298],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2015-1835248",1311],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2020-1840581",1357],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1776775",1426],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2014-1840477",1491],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2019-1841176",1640],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-pilot-2021-1837357",1753]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4wcAAOEHAADgBwAA3gcAAOEHAADiBwAA4QcAAOMHAADjBwAA5AcAAN4HAADeBwAA5AcAAN4HAADoBwAA3AcAAN0HAADdBwAA5AcAAOQHAADgBwAA5wcAAOMHAADfBwAA5AcAAN4HAADeBwAA4wcAAOUHAAA="},"y":{"dtype":"f8","bdata":"AAAAAABk2UAAAAAAAEDPQAAAAAAAddJAAAAAAAAd0EAAAAAAAHzVQAAAAAAAfNVAAAAAAAAR0kAAAAAAAD\u002fbQAAAAAAAV9dAAAAAAAA53EAAAAAAAHvRQAAAAAAAaNBAAAAAAAD02kAAAAAAAA7PQAAAAACA1OlAAAAAAADM0EAAAAAAACzKQAAAAAAARs5AAAAAAAA53EAAAAAAAEXaQAAAAAAA4dlAAAAAAIDg50AAAAAAAPrZQAAAAAAAgdBAAAAAAAA\u002f20AAAAAAAA7PQAAAAAAAkMpAAAAAAABe2kAAAAAAAHjeQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Honda Pilot - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (29)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-10" data-point-index="10">
+                <td>$26,000</td>
+                <td>58,000</td>
+                <td>2019</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2019-1839446" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-14" data-point-index="14">
+                <td>$16,000</td>
+                <td>120,000</td>
+                <td>2017</td>
+                <td>San Borja</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2017-1839009" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-47" data-point-index="47">
+                <td>$18,900</td>
+                <td>58,200</td>
+                <td>2016</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2016-1839096" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-68" data-point-index="68">
+                <td>$16,500</td>
+                <td>80,000</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1835243" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-124" data-point-index="124">
+                <td>$22,000</td>
+                <td>60,500</td>
+                <td>2017</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2017-1841732" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-226" data-point-index="226">
+                <td>$22,000</td>
+                <td>108,197</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2018-1841206" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-254" data-point-index="254">
+                <td>$18,500</td>
+                <td>80,000</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2017-1834283" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-295" data-point-index="295">
+                <td>$27,900</td>
+                <td>68,000</td>
+                <td>2019</td>
+                <td>Miraflores</td>
+                <td>12</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2019-1811279" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-322" data-point-index="322">
+                <td>$23,900</td>
+                <td>67,000</td>
+                <td>2019</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2019-1841579" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-416" data-point-index="416">
+                <td>$28,900</td>
+                <td>90,000</td>
+                <td>2020</td>
+                <td>La Molina</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2020-1838471" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-476" data-point-index="476">
+                <td>$17,900</td>
+                <td>115,000</td>
+                <td>2014</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1839511" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-559" data-point-index="559">
+                <td>$16,800</td>
+                <td>134,500</td>
+                <td>2014</td>
+                <td>La Victoria</td>
+                <td>13</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1830650" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-576" data-point-index="576">
+                <td>$27,600</td>
+                <td>56,000</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2020-1841192" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-771" data-point-index="771">
+                <td>$15,900</td>
+                <td>95,000</td>
+                <td>2014</td>
+                <td>Villa Maria del Triunfo</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1840149" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-782" data-point-index="782">
+                <td>$52,900</td>
+                <td>17,100</td>
+                <td>2024</td>
+                <td>San Miguel</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2024-1839420" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-809" data-point-index="809">
+                <td>$17,200</td>
+                <td>165,000</td>
+                <td>2012</td>
+                <td>Magdalena del Mar</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2012-1833929" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-822" data-point-index="822">
+                <td>$13,400</td>
+                <td>208,000</td>
+                <td>2013</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2013-1840728" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1013" data-point-index="1013">
+                <td>$15,500</td>
+                <td>89,100</td>
+                <td>2013</td>
+                <td>Tarapoto</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2013-1838897" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1073" data-point-index="1073">
+                <td>$28,900</td>
+                <td>59,962</td>
+                <td>2020</td>
+                <td>San Isidro</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2020-1838646" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1100" data-point-index="1100">
+                <td>$26,900</td>
+                <td>40,250</td>
+                <td>2020</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2020-1838987" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1226" data-point-index="1226">
+                <td>$26,500</td>
+                <td>36,000</td>
+                <td>2016</td>
+                <td>San Borja</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2016-1836377" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1280" data-point-index="1280">
+                <td>$48,900</td>
+                <td>17,370</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2023-1841623" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1298" data-point-index="1298">
+                <td>$26,600</td>
+                <td>59,200</td>
+                <td>2019</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2019-1841542" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1311" data-point-index="1311">
+                <td>$16,900</td>
+                <td>68,000</td>
+                <td>2015</td>
+                <td>San Isidro</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2015-1835248" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1357" data-point-index="1357">
+                <td>$27,900</td>
+                <td>32,500</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2020-1840581" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1426" data-point-index="1426">
+                <td>$15,900</td>
+                <td>130,000</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1776775" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1491" data-point-index="1491">
+                <td>$13,600</td>
+                <td>143,000</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2014-1840477" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1640" data-point-index="1640">
+                <td>$27,000</td>
+                <td>60,000</td>
+                <td>2019</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2019-1841176" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1753" data-point-index="1753">
+                <td>$31,200</td>
+                <td>36,000</td>
+                <td>2021</td>
+                <td>San Borja</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-pilot-2021-1837357" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

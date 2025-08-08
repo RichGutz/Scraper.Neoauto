@@ -1,0 +1,480 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Toyota Hilux</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Toyota Hilux</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $28,900</p>
+            <p><strong>Ratio Venta Rápida:</strong> 12.42%</p>
+            <p><strong>Anuncios Únicos:</strong> 153</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAA0n0CGxLydITWfQA2JeTtDNp9Ak0022WQ3n0AaEvN2hjifQKDWrxSoOZ9AJ5tsssk6n0CtXylQ6zufQDQk5u0MPZ9Auuiiiy4+n0BBrV8pUD+fQMdxHMdxQJ9ATjbZZJNBn0DU+pUCtUKfQFu\u002fUqDWQ59A4YMPPvhEn0BnSMzbGUafQO4MiXk7R59AdNFFF11In0D7lQK1fkmfQIFav1KgSp9ACB988MFLn0CO4ziO40yfQBWo9SsFTp9Am2yyySZPn0AiMW9nSFCfQKj1KwVqUZ9AL7roootSn0C1fqVArVOfQDtDYt7OVJ9AwgcffPBVn0BIzNsZElefQM+QmLczWJ9AVVVVVVVZn0DcGRLzdlqfQGLezpCYW59A6aKLLrpcn0BvZ0jM212fQPYrBWr9Xp9AfPDBBx9gn0ADtX6lQGGfQIl5O0NiYp9AED744INjn0CWArV+pWSfQBzHcRzHZZ9Ao4suuuhmn0ApUOtXCmifQLAUqPUraZ9ANtlkk01qn0C9nSExb2ufQENi3s6QbJ9AyiabbLJtn0BQ61cK1G6fQNevFKj1b59AXXTRRRdxn0DkOI7jOHKfQGr9SoFac59A8MEHH3x0n0B3hsS8nXWfQP1KgVq\u002fdp9AhA8++OB3n0AK1PqVAnmfQJGYtzMkep9AF1100UV7n0CeITFvZ3yfQCTm7QyJfZ9Aq6qqqqp+n0Axb2dIzH+fQLgzJObtgJ9APvjggw+Cn0DFvJ0hMYOfQEuBWr9ShJ9A0UUXXXSFn0BYCtT6lYafQN7OkJi3h59AZZNNNtmIn0DrVwrU+omfQHIcx3Eci59A+OCDDz6Mn0B\u002fpUCtX42fQAVq\u002fUqBjp9AjC666KKPn0AS83aGxJCfQJm3MyTmkZ9AH3zwwQeTn0ClQK1fKZSfQCwFav1KlZ9Asskmm2yWn0A5juM4jpefQL9SoNavmJ9ARhdddNGZn0DM2xkS85qfQFOg1q8UnJ9A2WSTTTadn0BgKVDrV56fQObtDIl5n59AbbLJJpugn0DzdobEvKGfQHo7Q2Leop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACUwUAw1i4GXRWrQMZF1BEXBpDA2vx1Jhe7scDvFbzyf+C7wIT4izwdWMHAXiCthGA0w8Bb0qn5RqTDwIhiasMNx8LAkCXXCfK7wMA31rDpYUS7wIYXrVgPMrPAzk7nYM3+osBsLKzy21F5QCAou0wHmqtAmhBUtdDpukBMzh5OhVbEQFDPpIUbbMtA2tWp7DZL0UBsjqGQH9vUQIBhxRopVthAnish97Ss20BNvcCRJM\u002feQDj5V6vs1uBAMk79WJoc4kAGS9YHzDDjQADZ6G2yC+RA1OQ6QX6l5ECnWNI3YPbkQKMe7lWQ9+RAWkqIVmGs5EB43rMl4h3kQGppg4kyVeNA8nsJSHJb4kC6o1gnwTnhQETkBtt98t9AuOg4wRZG3UBAeGyNjIDaQMisxssetNdA24M1LxDz1EDFZbUVLF3SQB5jo\u002fyfOdBAaF0qVXKtzUCUkHWJZvrMQAMcl5p\u002fMM5APCAFjXJF0EADwCMSBqDRQPl3nwUl19JAqd2J6KLh00D+8sYla8bUQG62OihpjNVAaCnJWog61kDASlYotNfWQKIbxvvXatdALv5pq2Ly10DyVQsm+UbYQLyu7sW8NthATHryWF+S10BwA3SJTX\u002fWQNizPOYQidVA2uGZSUdB1UCajVJ7yRXWQDWzVsuyrtdAiv64vCpw2UAnh3YG2r\u002faQI3aAGEaU9tA5sa7qjRT20Ce7\u002fmKlPLaQF3ewNiFXtpAd9wMmPWg2UCsXasT5LTYQKNmXieylddAHiHnNjRk1kCpY3pPOoPVQC\u002fF5utLXNVADCefgwtH1kBDIzHGW\u002f\u002fXQCLucqnt8NlA6HKtDyeH20AW2uKCL2\u002fcQKRPSK8m49xAML2uOmMv3UBZF+TQ4pjdQGCcICTPEt5AArLdwC5d3kD\u002fckFPWDfeQKHuv09PkN1AFk9d9zDU3EAB+0rxX4PcQME3gXDRFd1AvtKWXuCI3kDlemJHpD7gQFxJLKi\u002fSOFAq0Iayfo+4kCVDGsViyfjQNlT9IQdEeRAg8iLD18K5UA6Fwet\u002fCHmQFnwO1WjZudAAAAAAADn6EA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAA0n0CGxLydITWfQA2JeTtDNp9Ak0022WQ3n0AaEvN2hjifQKDWrxSoOZ9AJ5tsssk6n0CtXylQ6zufQDQk5u0MPZ9Auuiiiy4+n0BBrV8pUD+fQMdxHMdxQJ9ATjbZZJNBn0DU+pUCtUKfQFu\u002fUqDWQ59A4YMPPvhEn0BnSMzbGUafQO4MiXk7R59AdNFFF11In0D7lQK1fkmfQIFav1KgSp9ACB988MFLn0CO4ziO40yfQBWo9SsFTp9Am2yyySZPn0AiMW9nSFCfQKj1KwVqUZ9AL7roootSn0C1fqVArVOfQDtDYt7OVJ9AwgcffPBVn0BIzNsZElefQM+QmLczWJ9AVVVVVVVZn0DcGRLzdlqfQGLezpCYW59A6aKLLrpcn0BvZ0jM212fQPYrBWr9Xp9AfPDBBx9gn0ADtX6lQGGfQIl5O0NiYp9AED744INjn0CWArV+pWSfQBzHcRzHZZ9Ao4suuuhmn0ApUOtXCmifQLAUqPUraZ9ANtlkk01qn0C9nSExb2ufQENi3s6QbJ9AyiabbLJtn0BQ61cK1G6fQNevFKj1b59AXXTRRRdxn0DkOI7jOHKfQGr9SoFac59A8MEHH3x0n0B3hsS8nXWfQP1KgVq\u002fdp9AhA8++OB3n0AK1PqVAnmfQJGYtzMkep9AF1100UV7n0CeITFvZ3yfQCTm7QyJfZ9Aq6qqqqp+n0Axb2dIzH+fQLgzJObtgJ9APvjggw+Cn0DFvJ0hMYOfQEuBWr9ShJ9A0UUXXXSFn0BYCtT6lYafQN7OkJi3h59AZZNNNtmIn0DrVwrU+omfQHIcx3Eci59A+OCDDz6Mn0B\u002fpUCtX42fQAVq\u002fUqBjp9AjC666KKPn0AS83aGxJCfQJm3MyTmkZ9AH3zwwQeTn0ClQK1fKZSfQCwFav1KlZ9Asskmm2yWn0A5juM4jpefQL9SoNavmJ9ARhdddNGZn0DM2xkS85qfQFOg1q8UnJ9A2WSTTTadn0BgKVDrV56fQObtDIl5n59AbbLJJpugn0DzdobEvKGfQHo7Q2Leop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACUwUBg\u002f3xl7yGrQEW9CPupso\u002fAvyLBOUasscDLNcSfOs+7wEtdZurITsHAkZwentUqw8BKE7wc85rDwDMA8BdRvsLAt6JrQR+0wMBgasCVGje7wOb1\u002fcuVJ7PAeKvkER\u002fwosA4lP7\u002fjJF5QHK97LYHm6tAXXkONtLmukD54zI+UlPEQMztjKVNZ8tA6AeyzxVI0UBUjAM9XtfUQPRe4kHoUdhA7uZ1BRyo20Byf+WuYcreQIRHrLKQ1OBA1jj7p2Ea4kB3RvPK1y7jQP4eKC8nCuRAeXQt6IOk5EBZ9pYJIvbkQHn5ezU7+ORAAmVllhKu5EBI\u002f4jHnSDkQC\u002fZdCHjWONA7QW3\u002fOhf4kCpld2xtT7hQHM47TKf\u002fN9AjFIgGHpP3UD\u002foXDECIjaQKRF+uhXuNdAidZnl3fy1EDiUhWl+FbSQEDaYvufMNBA4jZdy6mjzUCGD7LVyg3NQKE+pE5ea85A1RLxjA9v0ECPHQykUcHRQGWNAbRW0tJAwE36Ssac00DgGGLlUS7UQJSmpP+qlNRAbLAtFoPd1EC07milixbVQK4awil2TdVAoR4M4R2I1UD1lG3HeKnVQBfCwlbHitVAd6FFRDsH1UD609C0NDrUQAlkUg5tjNNAEwJBlDhr00AvULAJCCnUQMnGE1Gng9VAYvs9oc0F10B8pnpOkTvYQKscMLYr+dhAoA4+18d72UA2AEbD1QjaQKQ5o2yA1NpA\u002fnqz372b20DDySprN+nbQAhSx721SNtAidImaUS32UDDEi4+e\u002fnXQE39Wf9B6NZAF8b6AFE\u002f10BztaJ5W7zYQBM4OIxJmtpAuoRp0WoT3EB+WB9GYrjcQO5meMTj0txAacZJwIzE3ECvQ3yt1+fcQBZJDCfER91AAgjPTKa93UBd9mZBGiLeQKrtY1D1Yd5A8rpJuB2f3kBEGoAHEwTfQLiTLA6CuN9Af+w\u002fq4Jd4EDBmL4mmPXgQH1lSrHpk+FAvpPx3TUt4kAH2PVIe8fiQBouYg8zbONA\u002fJNBTtYk5EA9BZ8i3vrkQDeAhanD9+VAAAAAAAAl50A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1837881",36],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2012-1833775",40],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2021-1840022",105],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2016-1841091",234],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2018-1838203",293],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2023-1833884",329],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1798907",356],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2009-1840380",401],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2020-1835855",452],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1841487",495],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2010-1840919",585],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2017-1841464",652],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2024-1840699",661],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2024-1834826",677],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2022-1841514",678],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1833871",729],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2018-1840884",730],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2021-1837128",789],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2020-1837530",933],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2022-1841463",959],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2023-1840810",966],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2024-1838813",997],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1841767",1014],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2019-1841200",1068],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2022-1841588",1143],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2020-1840039",1174],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2018-1835515",1396],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2008-1841026",1404],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2021-1840040",1462],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2023-1841517",1470],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2023-1836571",1554],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2018-1836715",1594],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2024-1841359",1612],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2010-1841152",1614],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2023-1836692",1659],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002ftoyota-hilux-2014-1836605",1760]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4wcAANwHAADlBwAA4AcAAOIHAADnBwAA4wcAANkHAADkBwAA4wcAANoHAADhBwAA6AcAAOgHAADmBwAA4wcAAOIHAADlBwAA5AcAAOYHAADnBwAA6AcAAOMHAADjBwAA5gcAAOQHAADiBwAA2AcAAOUHAADnBwAA5wcAAOIHAADoBwAA2gcAAOcHAADeBwAA"},"y":{"dtype":"f8","bdata":"AAAAAADh2UAAAAAAAHDXQAAAAAAAWNtAAAAAAABk2UAAAAAAAILUQAAAAAAAlOFAAAAAAABY20AAAAAAABrNQAAAAAAAmuBAAAAAAACC1EAAAAAAAI7SQAAAAAAARNZAAAAAAICB4kAAAAAAwLHgQAAAAAAAEeJAAAAAAABk2UAAAAAAAHzVQAAAAAAAHeBAAAAAAAAG2EAAAAAAAEbeQAAAAAAA9d5AAAAAAACC5EAAAAAAAEDfQAAAAAAAlOFAAAAAAAA\u002f20AAAAAAANXbQAAAAAAAJttAAAAAAABw10AAAAAAAFLcQAAAAAAA\u002f+RAAAAAAAAt3kAAAAAAAMDSQAAAAACAVeFAAAAAAAAL00AAAAAAAC3eQAAAAAAAStVA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Toyota Hilux - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (36)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-36" data-point-index="36">
+                <td>$26,500</td>
+                <td>77,500</td>
+                <td>2019</td>
+                <td>Piura</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1837881" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-40" data-point-index="40">
+                <td>$24,000</td>
+                <td>175,000</td>
+                <td>2012</td>
+                <td>San Borja</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2012-1833775" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-105" data-point-index="105">
+                <td>$28,000</td>
+                <td>156,000</td>
+                <td>2021</td>
+                <td>Piura</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2021-1840022" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-234" data-point-index="234">
+                <td>$26,000</td>
+                <td>131</td>
+                <td>2016</td>
+                <td>Ate</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2016-1841091" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-293" data-point-index="293">
+                <td>$21,000</td>
+                <td>158,257</td>
+                <td>2018</td>
+                <td>Lurin</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2018-1838203" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-329" data-point-index="329">
+                <td>$36,000</td>
+                <td>68,000</td>
+                <td>2023</td>
+                <td>Jesus Maria</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2023-1833884" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-356" data-point-index="356">
+                <td>$28,000</td>
+                <td>96,000</td>
+                <td>2019</td>
+                <td>Callao</td>
+                <td>17</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1798907" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-401" data-point-index="401">
+                <td>$14,900</td>
+                <td>353,967</td>
+                <td>2009</td>
+                <td>Nuevo Chimbote</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2009-1840380" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-452" data-point-index="452">
+                <td>$34,000</td>
+                <td>53,500</td>
+                <td>2020</td>
+                <td>San Isidro</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2020-1835855" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-495" data-point-index="495">
+                <td>$21,000</td>
+                <td>130,913</td>
+                <td>2019</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1841487" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-585" data-point-index="585">
+                <td>$19,000</td>
+                <td>200,000</td>
+                <td>2010</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2010-1840919" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-652" data-point-index="652">
+                <td>$22,800</td>
+                <td>156,000</td>
+                <td>2017</td>
+                <td>Piura</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2017-1841464" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-661" data-point-index="661">
+                <td>$37,900</td>
+                <td>31,000</td>
+                <td>2024</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2024-1840699" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-677" data-point-index="677">
+                <td>$34,190</td>
+                <td>45,000</td>
+                <td>2024</td>
+                <td>Trujillo</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2024-1834826" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-678" data-point-index="678">
+                <td>$37,000</td>
+                <td>59,000</td>
+                <td>2022</td>
+                <td>Paracas</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2022-1841514" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-729" data-point-index="729">
+                <td>$26,000</td>
+                <td>68,000</td>
+                <td>2019</td>
+                <td>Pacanga</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1833871" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-730" data-point-index="730">
+                <td>$22,000</td>
+                <td>180,000</td>
+                <td>2018</td>
+                <td>Ate</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2018-1840884" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-789" data-point-index="789">
+                <td>$33,000</td>
+                <td>80,000</td>
+                <td>2021</td>
+                <td>Arequipa</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2021-1837128" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-933" data-point-index="933">
+                <td>$24,600</td>
+                <td>60,000</td>
+                <td>2020</td>
+                <td>Magdalena del Mar</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2020-1837530" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-959" data-point-index="959">
+                <td>$31,000</td>
+                <td>130,589</td>
+                <td>2022</td>
+                <td>La Victoria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2022-1841463" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-966" data-point-index="966">
+                <td>$31,700</td>
+                <td>27,120</td>
+                <td>2023</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2023-1840810" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-997" data-point-index="997">
+                <td>$42,000</td>
+                <td>38,000</td>
+                <td>2024</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2024-1838813" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1014" data-point-index="1014">
+                <td>$32,000</td>
+                <td>63,000</td>
+                <td>2019</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1841767" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1068" data-point-index="1068">
+                <td>$36,000</td>
+                <td>79,000</td>
+                <td>2019</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2019-1841200" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1143" data-point-index="1143">
+                <td>$27,900</td>
+                <td>50,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2022-1841588" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1174" data-point-index="1174">
+                <td>$28,500</td>
+                <td>129,000</td>
+                <td>2020</td>
+                <td>Chorrillos</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2020-1840039" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1396" data-point-index="1396">
+                <td>$27,800</td>
+                <td>82,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2018-1835515" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1404" data-point-index="1404">
+                <td>$24,000</td>
+                <td>187,000</td>
+                <td>2008</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2008-1841026" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1462" data-point-index="1462">
+                <td>$29,000</td>
+                <td>123,000</td>
+                <td>2021</td>
+                <td>Chorrillos</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2021-1840040" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1470" data-point-index="1470">
+                <td>$43,000</td>
+                <td>66,000</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2023-1841517" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1554" data-point-index="1554">
+                <td>$30,900</td>
+                <td>88,000</td>
+                <td>2023</td>
+                <td>Surquillo</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2023-1836571" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1594" data-point-index="1594">
+                <td>$19,200</td>
+                <td>122,000</td>
+                <td>2018</td>
+                <td>La Joya</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2018-1836715" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1612" data-point-index="1612">
+                <td>$35,500</td>
+                <td>41,000</td>
+                <td>2024</td>
+                <td>Surquillo</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2024-1841359" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1614" data-point-index="1614">
+                <td>$19,500</td>
+                <td>374,740</td>
+                <td>2010</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2010-1841152" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1659" data-point-index="1659">
+                <td>$30,900</td>
+                <td>63,719</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2023-1836692" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1760" data-point-index="1760">
+                <td>$21,800</td>
+                <td>135,000</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/toyota-hilux-2014-1836605" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

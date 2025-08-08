@@ -1,0 +1,344 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Nissan Sentra</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Nissan Sentra</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $12,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 14.29%</p>
+            <p><strong>Anuncios Únicos:</strong> 112</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAAcn0B\u002fpUCtXx2fQP1KgVq\u002fHp9AfPDBBx8gn0D7lQK1fiGfQHo7Q2LeIp9A+OCDDz4kn0B3hsS8nSWfQPYrBWr9Jp9AdNFFF10on0DzdobEvCmfQHIcx3EcK59A8MEHH3wsn0BvZ0jM2y2fQO4MiXk7L59AbbLJJpswn0DrVwrU+jGfQGr9SoFaM59A6aKLLro0n0BnSMzbGTafQObtDIl5N59AZZNNNtk4n0DkOI7jODqfQGLezpCYO59A4YMPPvg8n0BgKVDrVz6fQN7OkJi3P59AXXTRRRdBn0DcGRLzdkKfQFq\u002fUqDWQ59A2WSTTTZFn0BYCtT6lUafQNevFKj1R59AVVVVVVVJn0DU+pUCtUqfQFOg1q8UTJ9A0UUXXXRNn0BQ61cK1E6fQM+QmLczUJ9ATjbZZJNRn0DM2xkS81KfQEuBWr9SVJ9AyiabbLJVn0BIzNsZElefQMdxHMdxWJ9ARhdddNFZn0DFvJ0hMVufQENi3s6QXJ9AwgcffPBdn0BBrV8pUF+fQL9SoNavYJ9APvjggw9in0C9nSExb2OfQDtDYt7OZJ9Auuiiiy5mn0A5juM4jmefQLgzJObtaJ9ANtlkk01qn0C1fqVArWufQDQk5u0MbZ9Asskmm2xun0Axb2dIzG+fQLAUqPUrcZ9AL7roootyn0CtXylQ63OfQCwFav1KdZ9Aq6qqqqp2n0ApUOtXCnifQKj1KwVqeZ9AJ5tsssl6n0CmQK1fKXyfQCTm7QyJfZ9Ao4suuuh+n0AiMW9nSICfQKDWrxSogZ9AH3zwwQeDn0CeITFvZ4SfQBzHcRzHhZ9Am2yyySaHn0AaEvN2hoifQJm3MyTmiZ9AF1100UWLn0CWArV+pYyfQBWo9SsFjp9Ak0022WSPn0AS83aGxJCfQJGYtzMkkp9AED744IOTn0CO4ziO45SfQA2JeTtDlp9AjC666KKXn0AK1PqVApmfQIl5O0Nimp9ACB988MGbn0CGxLydIZ2fQAVq\u002fUqBnp9AhA8++OCfn0ADtX6lQKGfQIFav1Kgop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAAD4oUCJpPByvVWiQNeTG\u002fiPtqJArqCSkfAto0ASnWdBWM+jQEhbrAlArqRAmKxy7CDepUD0ZMzrc3KnQORVywmyfqlA6mWCZQkWrEA4ZMVJ7CyvQPoZ3dw7P7FA3e7G0cHfskCsuLb6c1K0QKP7wk6+cbVAzJhwdKwXtkCo0x7mrRK2QKNaunioI7VA0XzW3HEVs0BfkWhdFIqwQFHtX9\u002fR1a1A216ALcAZr0D2GYfp8z6yQLuX6huRsbVAPZeu3vqjuEAyu8pBhq66QPYRTOqS57tAbiF08A1nvECRbIRs5ES8QDF4vnYDmbtAbsdjJ1h7ukDC3rWWzwO5QFFC9txWSrdAr3dmEttmtUAzAEhPSXGzQFxh3KuOgbFAKkHKgDBfr0CdfkdKpiasQCiGs+RYialAG2CRgCK3p0D6FGRO3d+mQMOrrn5jM6dAwi30QY\u002fhqEBWoLfIOhqsQGUFUeY6hbBA3pcXj7OVs0Ch5qtQ+Gu2QARK+x1mLLhAxIEkO9+AuEClOSB8cLu3QGwRo3a8PbZAondaFzrZtEAAseyhNM+0QOX+QEk1QbdASvs4pHQSu0Dl4UaULF69QMmpVem+h7tAC430CieptkD4VNNDyzGyQJm1VwV2PLFAzT9hD8LZs0DA0TMYg5m4QMWDp7egIL5AZ4cCmXLUwUAUYAo3xFLEQCGIdsjwRMZAATbS36Nkx0DF6nJgiWvHQJAdz7AmSMZACGn+CpGqxEDdoGobFm\u002fDQLqxn1O3LMNAtgrfe+G2w0CS3OMfvL7EQMWhyXL\u002f8sVAIM24mgv9xkCTO9TqcIbHQNkvbLyggcdAQfAov49ex0A4jm9cdZfHQK3\u002foJWRSchA7hwVWKATyUC45ALysJDJQJ3t1pGf6slAZkrYUHnlykApIZon6TrNQL35P8mAMtBADpD2Nt9l0UBTYHs6h3rRQGBiRc79pdBA7iKa\u002fVCFz0DHQRGK1ivPQFmEjF5ECNBAxFjsRMiL0ECFhCc8nqfQQLyfDcwme9BAOMSAPpxl0EASTmPJcMbQQB2Yl6IW\u002fdFAAAAAAABp1EA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAAcn0B\u002fpUCtXx2fQP1KgVq\u002fHp9AfPDBBx8gn0D7lQK1fiGfQHo7Q2LeIp9A+OCDDz4kn0B3hsS8nSWfQPYrBWr9Jp9AdNFFF10on0DzdobEvCmfQHIcx3EcK59A8MEHH3wsn0BvZ0jM2y2fQO4MiXk7L59AbbLJJpswn0DrVwrU+jGfQGr9SoFaM59A6aKLLro0n0BnSMzbGTafQObtDIl5N59AZZNNNtk4n0DkOI7jODqfQGLezpCYO59A4YMPPvg8n0BgKVDrVz6fQN7OkJi3P59AXXTRRRdBn0DcGRLzdkKfQFq\u002fUqDWQ59A2WSTTTZFn0BYCtT6lUafQNevFKj1R59AVVVVVVVJn0DU+pUCtUqfQFOg1q8UTJ9A0UUXXXRNn0BQ61cK1E6fQM+QmLczUJ9ATjbZZJNRn0DM2xkS81KfQEuBWr9SVJ9AyiabbLJVn0BIzNsZElefQMdxHMdxWJ9ARhdddNFZn0DFvJ0hMVufQENi3s6QXJ9AwgcffPBdn0BBrV8pUF+fQL9SoNavYJ9APvjggw9in0C9nSExb2OfQDtDYt7OZJ9Auuiiiy5mn0A5juM4jmefQLgzJObtaJ9ANtlkk01qn0C1fqVArWufQDQk5u0MbZ9Asskmm2xun0Axb2dIzG+fQLAUqPUrcZ9AL7roootyn0CtXylQ63OfQCwFav1KdZ9Aq6qqqqp2n0ApUOtXCnifQKj1KwVqeZ9AJ5tsssl6n0CmQK1fKXyfQCTm7QyJfZ9Ao4suuuh+n0AiMW9nSICfQKDWrxSogZ9AH3zwwQeDn0CeITFvZ4SfQBzHcRzHhZ9Am2yyySaHn0AaEvN2hoifQJm3MyTmiZ9AF1100UWLn0CWArV+pYyfQBWo9SsFjp9Ak0022WSPn0AS83aGxJCfQJGYtzMkkp9AED744IOTn0CO4ziO45SfQA2JeTtDlp9AjC666KKXn0AK1PqVApmfQIl5O0Nimp9ACB988MGbn0CGxLydIZ2fQAVq\u002fUqBnp9AhA8++OCfn0ADtX6lQKGfQIFav1Kgop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAAD4oUCsOOpm3mSlQGvxGkXNoqdA3E3XbmPzqECEbGS4N5ipQOBtB\u002fbg0qlAcnIF\u002fPXkqUCtmqOeDRCqQAQHJ7K+lapA6Bs1PD23q0D\u002fbddGMI2tQLdzSVeZ5K9Am4qZFRpBsUBDIB5AXpWyQPNuBgp30bNAGg4kYX7WtEDMDQ+0gV61QF4mwzYG9rRA2DHhwNozs0Bd5u8bZ7GwQNBshOci761A9BzJJRP3rkCPODarFSGyQG6096gEpbVAJm0tz6PRuEAs94AisT67QKtxEpQ0+7xAHiQuPa4XvkD6USA3nqS+QFlANZuEsr5AQDS5guFRvkBxcvgGNZO9QOg\u002fP0H\u002fhrxAn+LZSsA9u0CmnRQ9+Me5QNC2OzEnNrhAS3SbQM2YtkCkGICEagC1QAPqNRZ\u002ffbNAYy0JD4sgskB7KEaIDvqwQI4eOZuJGrBAA6tcwvgkr0B6JOTmzeSuQDk\u002fAWlrma9AG\u002fk7h8svsUAS4\u002f+rSu+0QNMjEPgSXLxANfrKV1fywkAlP2j73irGQC1fJWQeQsVAco4ofZaswECMdvE+ltG3QMR7cUHhvrRAPFaFAlkhuECkWwrhsY+8QIGrfJqf77xA6eDvCIhJuUDaQTEUDuC0QMqKFb22tLJAqkwCvv5Cs0CeeQze88a1QAinZfOAgLlAh6sbuOrVvUDsjvhuIB7BQGy+dpFNFMNArR6MogiIxECbdV243TPFQJ6Z7xZp9sRA3\u002fNt21syxECsPbv3mWjDQOWGjs7w\u002fsJAtsx4MboOw0Dbc2zJwaPDQARwocaGqcRArFWJoaXExUChSVrSIJHGQNKXdTe77MZAyGvKoXQmx0AihWvl35bHQEkxAWFnUMhAombzdvsFyUDKesByjWjJQCe2RkRpqclAo8HvinKEykBALrUhTqvMQLcudkI2oM9A0sbfT5fw0ECNPVsc9wTRQPPpYYlHSdBAkqmH\u002fP42z0DpCUoJ54PPQHQ5AdWOjtBA2iC2DzhQ0UCDK9+xGnDRQK1R+xUOFNFAEZ4WFw2x0ED7O\u002f3fV7zQQJZVe5suq9FARhdddNHy00A="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2018-1833842",26],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-1997-1840071",527],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2020-1803978",600],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2015-1839300",610],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2025-1840918",627],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2009-1841127",702],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2008-1840950",801],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2020-1833560",827],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2016-1841371",872],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2018-1841755",947],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2017-1840743",1009],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2018-1839057",1012],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-v16-2007-1838102",1050],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2016-1835766",1131],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2024-1841279",1170],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-1996-1839400",1300],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2022-1841498",1427],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2018-1840889",1468],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-sentra-2016-1837928",1585]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4gcAAM0HAADkBwAA3wcAAOkHAADZBwAA2AcAAOQHAADgBwAA4gcAAOEHAADiBwAA1wcAAOAHAADoBwAAzAcAAOYHAADiBwAA4AcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAADUx0AAAAAAAFC0QAAAAAAAkMpAAAAAAACIw0AAAAAAAI7SQAAAAAAAfLVAAAAAAAB8tUAAAAAAAFjLQAAAAAAAiMNAAAAAAADgxUAAAAAAAKjGQAAAAAAAJMNAAAAAAACit0AAAAAAAILEQAAAAACActJAAAAAAADgtUAAAAAAAEDPQAAAAAAADctAAAAAAAAMx0A="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Nissan Sentra - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (19)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-26" data-point-index="26">
+                <td>$12,200</td>
+                <td>60,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2018-1833842" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-527" data-point-index="527">
+                <td>$5,200</td>
+                <td>156,257</td>
+                <td>1997</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-1997-1840071" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-600" data-point-index="600">
+                <td>$13,600</td>
+                <td>111,300</td>
+                <td>2020</td>
+                <td>Lince</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2020-1803978" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-610" data-point-index="610">
+                <td>$10,000</td>
+                <td>88,000</td>
+                <td>2015</td>
+                <td>Surquillo</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2015-1839300" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-627" data-point-index="627">
+                <td>$19,000</td>
+                <td>900</td>
+                <td>2025</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2025-1840918" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-702" data-point-index="702">
+                <td>$5,500</td>
+                <td>250,000</td>
+                <td>2009</td>
+                <td>Comas</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2009-1841127" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-801" data-point-index="801">
+                <td>$5,500</td>
+                <td>270,000</td>
+                <td>2008</td>
+                <td>Villa Maria del Triunfo</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2008-1840950" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-827" data-point-index="827">
+                <td>$14,000</td>
+                <td>83,000</td>
+                <td>2020</td>
+                <td>San Miguel</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2020-1833560" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-872" data-point-index="872">
+                <td>$10,000</td>
+                <td>72,000</td>
+                <td>2016</td>
+                <td>Mariano Melgar</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2016-1841371" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-947" data-point-index="947">
+                <td>$11,200</td>
+                <td>93,000</td>
+                <td>2018</td>
+                <td>San Miguel</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2018-1841755" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1009" data-point-index="1009">
+                <td>$11,600</td>
+                <td>119,000</td>
+                <td>2017</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2017-1840743" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1012" data-point-index="1012">
+                <td>$9,800</td>
+                <td>73,000</td>
+                <td>2018</td>
+                <td>Chorrillos</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2018-1839057" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1050" data-point-index="1050">
+                <td>$6,050</td>
+                <td>0</td>
+                <td>2007</td>
+                <td>San Miguel</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-v16-2007-1838102" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1131" data-point-index="1131">
+                <td>$10,500</td>
+                <td>120,000</td>
+                <td>2016</td>
+                <td>Chorrillos</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2016-1835766" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1170" data-point-index="1170">
+                <td>$18,890</td>
+                <td>2,500</td>
+                <td>2024</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2024-1841279" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1300" data-point-index="1300">
+                <td>$5,600</td>
+                <td>152,000</td>
+                <td>1996</td>
+                <td>Lima</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-1996-1839400" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1427" data-point-index="1427">
+                <td>$16,000</td>
+                <td>69,000</td>
+                <td>2022</td>
+                <td>La Victoria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2022-1841498" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1468" data-point-index="1468">
+                <td>$13,850</td>
+                <td>64,500</td>
+                <td>2018</td>
+                <td>Chorrillos</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2018-1840889" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1585" data-point-index="1585">
+                <td>$11,800</td>
+                <td>51,192</td>
+                <td>2016</td>
+                <td>San Isidro</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-sentra-2016-1837928" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

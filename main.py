@@ -37,6 +37,7 @@ from Core.bubbles_chart import generar_grafico_burbujas
 from Core.charts_module import generar_graficos_individuales
 from Core.page_generator import crear_html_pagina_modelo
 from Core.main_report_builder import generar_index_html_reporte_principal
+from Core.lead_filter import filter_attractive_leads
 current_script_dir = Path(__file__).resolve().parent
 dotenv_path = current_script_dir / "Core" / ".env"
 RULES_CSV_PATH = current_script_dir / "Core" / "reglas_modelos_base.csv"
@@ -137,7 +138,7 @@ def calculate_metrics(df: pd.DataFrame) -> pd.DataFrame:
     logger.info(f"Calculando métricas de mercado para {len(df)} filas.")
     if df.empty: return pd.DataFrame()
     grouped = df.groupby(['Make', 'Model_Base', 'slug'], as_index=False)
-    metrics = grouped.agg(unique_listings=('URL', 'nunique'), median_price=('Price', 'median'))
+    metrics = grouped.agg(unique_listings=('URL', 'nunique'), median_price=('Price', 'median'), mean_price=('Price', 'mean'), mean_year=('Year', 'mean'))
     
     # ===================================================================
     # CÁLCULO DE FSR CORREGIDO (LÓGICA ORIGINAL RESTAURADA)
@@ -252,6 +253,87 @@ def run_market_analysis():
             (model_pages_output_dir / f"{datos_modelo_row['slug']}.html").write_text(html_content, encoding="utf-8")
 
         generar_index_html_reporte_principal(fig_bubble_obj=fig_bubble_obj, summary_opportunities_df=dashboard_df, output_file_path=main_report_html_path)
+
+    # ===================================================================
+    # NUEVO: FILTRAR Y GENERAR REPORTES DE LEADS ATRACTIVOS
+    # ===================================================================
+    logger.info("Iniciando el filtrado de leads atractivos...")
+    
+    df_attractive_leads_raw = filter_attractive_leads(
+        df_leads=df_leads_latest_session,
+        df_metrics=dashboard_df
+    )
+
+    if not df_attractive_leads_raw.empty:
+        # --- 1. Preparar DataFrame para los reportes ---
+        df_report = df_attractive_leads_raw.copy()
+        df_report.sort_values(by='Oportunidad_Precio', ascending=True, inplace=True)
+
+        # Formateo de columnas
+        df_report['Oportunidad_Precio'] = df_report['Oportunidad_Precio'].map('{:.2%}'.format)
+        df_report['Price'] = df_report['Price'].map('{:,.0f}'.format)
+        df_report['Kilometers'] = pd.to_numeric(df_report['Kilometers'], errors='coerce').fillna(0).astype(int).map('{:,.0f}'.format)
+        
+        # Crear enlaces
+        df_report['URL'] = df_report['URL'].apply(lambda x: f'<a href="{x}">Ver Anuncio</a>')
+        df_report['Análisis de Modelo'] = df_report['slug'].apply(lambda x: f'<a href="../model_pages/semanal/{x}.html">Ver Análisis</a>')
+
+        columns_to_display = ['Make', 'Model', 'Year', 'Price', 'Kilometers', 'Oportunidad_Precio', 'URL', 'Análisis de Modelo']
+        df_report_final = df_report[columns_to_display]
+
+        # --- 2. Generar Reporte HTML Completo ---
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        attractive_leads_report_path = base_output_dir / "outputs" / f"attractive_leads_report_{today_str}.html"
+        logger.info(f"Generando reporte de leads atractivos en: {attractive_leads_report_path}")
+        report_css = """
+        <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
+            .container { width: 95%; max-width: 1800px; margin: 20px auto; }
+            header { text-align: left; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;}
+            header h1 { color: #1a237e; margin: 0; font-size: 1.8em; }
+            .styled-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9em; }
+            .styled-table th, .styled-table td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+            .styled-table th { background-color: #343a40; color: white; }
+            .styled-table tr:nth-child(even) { background-color: #f8f9fa; }
+            .styled-table a { font-weight: bold; }
+        </style>
+        """
+        full_html = f'''
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Reporte de Leads Atractivos ({today_str})</title>
+            {report_css}
+        </head>
+        <body>
+            <div class="container">
+                <header><h1>Reporte de Leads Atractivos</h1></header>
+                <main>{df_report_final.to_html(index=False, escape=False, classes='styled-table')}</main>
+            </div>
+        </body>
+        </html>'''
+        attractive_leads_report_path.write_text(full_html, encoding="utf-8")
+        logger.info("Reporte de leads atractivos generado con éxito.")
+        webbrowser.open(attractive_leads_report_path.as_uri())
+
+        # --- 3. Generar HTML para Gmail ---
+        gmail_report_path = base_output_dir / "outputs" / f"gmail_attractive_leads_{today_str}.html"
+        logger.info(f"Generando HTML para Gmail en: {gmail_report_path}")
+        
+        # Usar estilos en línea para máxima compatibilidad con Gmail
+        gmail_html = df_report_final.to_html(index=False, escape=False, border=0)
+        gmail_html = gmail_html.replace('<table', '<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;"')
+        gmail_html = gmail_html.replace('<thead>', '<thead style="background-color: #4CAF50; color: white;">')
+        gmail_html = gmail_html.replace('<th>', '<th style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">')
+        gmail_html = gmail_html.replace('<td>', '<td style="padding: 8px; text-align: left; border-bottom: 1px solid #ddd;">')
+
+        gmail_report_path.write_text(gmail_html, encoding="utf-8")
+        logger.info("HTML para Gmail generado con éxito.")
+
+    else:
+        logger.info("No se encontraron leads atractivos que cumplan con los criterios.")
+    # ===================================================================
     
     logger.info("="*60 + "\nPROCESO FINALIZADO\n" + "="*60)
     webbrowser.open(main_report_html_path.as_uri())

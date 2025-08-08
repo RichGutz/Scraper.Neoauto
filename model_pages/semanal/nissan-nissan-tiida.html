@@ -1,0 +1,280 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Nissan Tiida</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Nissan Tiida</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $7,700</p>
+            <p><strong>Ratio Venta Rápida:</strong> 21.82%</p>
+            <p><strong>Anuncios Únicos:</strong> 55</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABUn0DwwQcffFSfQOGDDz74VJ9A0UUXXXRVn0DCBx988FWfQLLJJptsVp9Ao4suuuhWn0CTTTbZZFefQIQPPvjgV59AdNFFF11Yn0Blk0022VifQFVVVVVVWZ9ARhdddNFZn0A22WSTTVqfQCebbLLJWp9AF1100UVbn0AIH3zwwVufQPjggw8+XJ9A6aKLLrpcn0DZZJNNNl2fQMomm2yyXZ9Auuiiiy5en0Crqqqqql6fQJtssskmX59AjC666KJfn0B88MEHH2CfQG2yySabYJ9AXXTRRRdhn0BONtlkk2GfQD744IMPYp9AL7roootin0AffPDBB2OfQBA++OCDY59AAAAAAABkn0DwwQcffGSfQOGDDz74ZJ9A0UUXXXRln0DCBx988GWfQLLJJptsZp9Ao4suuuhmn0CTTTbZZGefQIQPPvjgZ59AdNFFF11on0Blk0022WifQFVVVVVVaZ9ARhdddNFpn0A22WSTTWqfQCebbLLJap9AF1100UVrn0AIH3zwwWufQPjggw8+bJ9A6aKLLrpsn0DZZJNNNm2fQMomm2yybZ9Auuiiiy5un0Crqqqqqm6fQJtssskmb59AjC666KJvn0B88MEHH3CfQG2yySabcJ9AXXTRRRdxn0BONtlkk3GfQD744IMPcp9AL7roootyn0AffPDBB3OfQBA++OCDc59AAAAAAAB0n0DwwQcffHSfQOGDDz74dJ9A0UUXXXR1n0DCBx988HWfQLLJJptsdp9Ao4suuuh2n0CTTTbZZHefQIQPPvjgd59AdNFFF114n0Blk0022XifQFVVVVVVeZ9ARhdddNF5n0A22WSTTXqfQCebbLLJep9AF1100UV7n0AIH3zwwXufQPjggw8+fJ9A6aKLLrp8n0DZZJNNNn2fQMomm2yyfZ9Auuiiiy5+n0Crqqqqqn6fQJtssskmf59AjC666KJ\u002fn0B88MEHH4CfQG2yySabgJ9AXXTRRReBn0BONtlkk4GfQD744IMPgp9AL7rooouCn0AffPDBB4OfQBA++OCDg59AAAAAAACEn0A="},"y":{"dtype":"f8","bdata":"AAAAAADirUDq+Wu\u002fYI6tQOLCWZm0kK1AgZUhnXfgrUCXrRvaJXWuQGVDoF87Rq9AacqDHpolsEAl7NRAxr2wQKGmbx5gZ7FAcBQAvyUeskDNVTIq1d2yQO6EsmcsorNARMIsf+lmtED0J014yie1QGDWv1qN4LVA3ucwLvCMtkB6fEz6sCi3QCNleDCur7dAetTJwa8guEAnVgUfZ324QEsvqSKmx7hATaIzpz4BuUC+8yKHAiy5QIlm9ZzDSblAxz4pw1NcuUA+0mIkhWW5QGgvRc1PZ7lA81NmXfVjuUCoL2Dov125QG6yzIH5VrlA\u002f8tFPexRuUBBbGUu4lC5QASDxWglVrlAAAAAAABkuUAjG7zDIHy5QBIt1nPJnblAsdU3jKDHuUAYtsqITPi5QPFteOVzLrpAhJ4qHr1oukBV58quzqW6QMrpQhNP5LpA5D\u002fnYPoiu0DIvnarSGG7QNEXrNISn7tAGhENgzLcu0DIbh9pgRi8QPL2aDHZU7xAw21viBOOvEBImbgaCse8QLeVf+2c\u002frxAMGlK\u002fj01vUAoAOpC8Wu9QNig5AnBo71ArI\u002fAobfdvUDyEgRZ3xq+QP5uNX5CXL5ANuraX+uivkCnNStD3e++QBh3wAbIQL9Aorwo\u002feWMv0CykY19s8q\u002fQIh\u002fGN+s8L9A7BDzeE71v0AS0EaiFM+\u002fQIVGPbJ7dL9AAQAAAADcvkCrkP9nvgG+QCC0yNtV+LxAAjcv0gXYu0BO3QbCDbm6QPxzIyKts7lAdL9YaSPguECAi3oOsFa4QIKeXIiSL7hAAEunVWR\u002fuEAr+cr2\u002fTq5QLtrKVveRrpAfIS62mGHu0AVHHbN5OC8QJMVVIvDN75AO0lMbFpwv0DLTCvkgjfAQOnGHe+BjMBABaXBVO+zwEBKwjrxtbTAQGFRFZQxlsBAUYXdDL5fwEDbjx8rtxjAQGVJz3zxkL9AVuqDLL3svkBLanUEiVO+QA8svKMM1L1Ax5Zwqf98vUBODqu0GV29QET4g2QSg71AhboTWKH9vUAzuHIuftu+QBCtXEOwFcBAAAAAAAD+wEA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABUn0DwwQcffFSfQOGDDz74VJ9A0UUXXXRVn0DCBx988FWfQLLJJptsVp9Ao4suuuhWn0CTTTbZZFefQIQPPvjgV59AdNFFF11Yn0Blk0022VifQFVVVVVVWZ9ARhdddNFZn0A22WSTTVqfQCebbLLJWp9AF1100UVbn0AIH3zwwVufQPjggw8+XJ9A6aKLLrpcn0DZZJNNNl2fQMomm2yyXZ9Auuiiiy5en0Crqqqqql6fQJtssskmX59AjC666KJfn0B88MEHH2CfQG2yySabYJ9AXXTRRRdhn0BONtlkk2GfQD744IMPYp9AL7roootin0AffPDBB2OfQBA++OCDY59AAAAAAABkn0DwwQcffGSfQOGDDz74ZJ9A0UUXXXRln0DCBx988GWfQLLJJptsZp9Ao4suuuhmn0CTTTbZZGefQIQPPvjgZ59AdNFFF11on0Blk0022WifQFVVVVVVaZ9ARhdddNFpn0A22WSTTWqfQCebbLLJap9AF1100UVrn0AIH3zwwWufQPjggw8+bJ9A6aKLLrpsn0DZZJNNNm2fQMomm2yybZ9Auuiiiy5un0Crqqqqqm6fQJtssskmb59AjC666KJvn0B88MEHH3CfQG2yySabcJ9AXXTRRRdxn0BONtlkk3GfQD744IMPcp9AL7roootyn0AffPDBB3OfQBA++OCDc59AAAAAAAB0n0DwwQcffHSfQOGDDz74dJ9A0UUXXXR1n0DCBx988HWfQLLJJptsdp9Ao4suuuh2n0CTTTbZZHefQIQPPvjgd59AdNFFF114n0Blk0022XifQFVVVVVVeZ9ARhdddNF5n0A22WSTTXqfQCebbLLJep9AF1100UV7n0AIH3zwwXufQPjggw8+fJ9A6aKLLrp8n0DZZJNNNn2fQMomm2yyfZ9Auuiiiy5+n0Crqqqqqn6fQJtssskmf59AjC666KJ\u002fn0B88MEHH4CfQG2yySabgJ9AXXTRRReBn0BONtlkk4GfQD744IMPgp9AL7rooouCn0AffPDBB4OfQBA++OCDg59AAAAAAACEn0A="},"y":{"dtype":"f8","bdata":"AAAAAADirUAfVjJ2elmtQBkZ4FKJOq1AJxdksD16rUDlHhmpqA2uQK\u002f7WVfb6a5AU7\u002fAavMBsEB7OPUebqiwQMzSd1XmYrFAHfJ1m+QrskB9AB1+8f2yQGBhmoqV07NABn8bTlmntEDhvM1VxXO1QAeF3i5iM7ZAPjt7ZrjgtkAeSdGJUHa3QKq1uwXu7rdAQievX55KuEDi27k1uY64QLi2lwXRwLhA95gETXjmuEBUZbyJQQW5QE\u002f9ejm\u002fIrlAe0P82YNEuUAM4YZfG3C5QGXp+cX6p7lA3smZ2pbouUDCAk7rsy26QEAS\u002fkUWc7pAu3iROIK0ukBxtO8QvO26QI5FAB2IGrtAq6qqqqo2u0DroglEfT+7QH3qBGSuOLtANH23wYEnu0CUVjwUOxG7QK9yrhIe+7pA8MwodG7qukBWYcbvb+S6QI8rojxm7rpA2vbu\u002fu8Mu0B1Nt4ZDz+7QI0IH6rhgLtA14E7r3\u002fOu0DNtL0oASS8QHi2LxZ+fbxAGpkbdw7XvEDScQtLyiy9QB2m4JLder1AGxdVbkC\u002fvUCZHPsbt\u002fm9QJ1jvNsZKr5AbZeC7UBQvkC9ZDeRBGy+QCh3xAY9fb5ADHsTjsKDvkBFSap1bX++QMjz3\u002fMccL5AqcRoqL1VvkCkwXG9PTC+QHzxJ12L\u002f71Ak1m4sZTDvUAGAVDlR3y9QN3sGyKTKb1AkiRJkmTLvEAniEcKImO8QDFhkgcQ+LtAWdbnseqSu0AMCwYxbjy7QJ4lq6xW\u002fbpAFkqVTGDeukDnnYI4R+i6QENGMZjHI7tAUbxLCOWXu0AnTtHJqDy8QNYhadRlAr1Amai5zl7ZvUA8TWlf1rG+QEiBHi0PfL9A3dc\u002f7yUUwEC2pBmNZ1PAQLKRM482dMBAwMA5Y4d1wEAfiW3F2FzAQDL20z3yL8BAvijkqDbpv0Dy3JkiN2G\u002fQJUi0\u002fh0075A5g6aO39LvkB8u\u002fj65NS9QPY9+UY1e71AKq+lL\u002f9JvUDWJQjF0Uy9QFS5Khc8j71AP4IXNs0cvkC0ldgxFAG\u002fQHQHPA3QI8BAAAAAAAD+wEA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2013-1838588",168],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2014-1840907",330],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2012-1803049",441],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2011-1837459",821],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2009-1841148",1051],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2012-1841708",1124],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2008-1839895",1342],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2011-1840693",1386],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2013-1840854",1558],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2014-1837169",1607],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fnissan-tiida-2011-1840740",1662]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3QcAAN4HAADcBwAA2wcAANkHAADcBwAA2AcAANsHAADdBwAA3gcAANsHAAA="},"y":{"dtype":"f8","bdata":"AAAAAABwt0AAAAAAAJrAQAAAAAAAMMFAAAAAAACawEAAAAAAAJy4QAAAAAAAeL5AAAAAAABkuUAAAAAAALy7QAAAAAAAQL9AAAAAAAA4uEAAAAAAAFi7QA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Nissan Tiida - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (11)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-168" data-point-index="168">
+                <td>$6,000</td>
+                <td>170,000</td>
+                <td>2013</td>
+                <td>La Molina</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2013-1838588" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-330" data-point-index="330">
+                <td>$8,500</td>
+                <td>85,000</td>
+                <td>2014</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2014-1840907" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-441" data-point-index="441">
+                <td>$8,800</td>
+                <td>67,000</td>
+                <td>2012</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2012-1803049" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-821" data-point-index="821">
+                <td>$8,500</td>
+                <td>37,100</td>
+                <td>2011</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2011-1837459" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1051" data-point-index="1051">
+                <td>$6,300</td>
+                <td>142,000</td>
+                <td>2009</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2009-1841148" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1124" data-point-index="1124">
+                <td>$7,800</td>
+                <td>68,000</td>
+                <td>2012</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2012-1841708" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1342" data-point-index="1342">
+                <td>$6,500</td>
+                <td>72,000</td>
+                <td>2008</td>
+                <td>Surquillo</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2008-1839895" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1386" data-point-index="1386">
+                <td>$7,100</td>
+                <td>110,000</td>
+                <td>2011</td>
+                <td>Jesus Maria</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2011-1840693" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1558" data-point-index="1558">
+                <td>$8,000</td>
+                <td>124,000</td>
+                <td>2013</td>
+                <td>Surquillo</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2013-1840854" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1607" data-point-index="1607">
+                <td>$6,200</td>
+                <td>152,000</td>
+                <td>2014</td>
+                <td>San Miguel</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2014-1837169" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1662" data-point-index="1662">
+                <td>$7,000</td>
+                <td>240,000</td>
+                <td>2011</td>
+                <td>Carabayllo</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/nissan-tiida-2011-1840740" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

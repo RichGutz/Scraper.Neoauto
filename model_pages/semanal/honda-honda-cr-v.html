@@ -1,0 +1,440 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Honda CR-V</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Honda CR-V</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $16,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 24.83%</p>
+            <p><strong>Anuncios Únicos:</strong> 149</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAA4n0BddNFFFzmfQLrooosuOp9AF1100UU7n0B00UUXXTyfQNFFF110PZ9AL7rooos+n0CMLrrooj+fQOmiiy66QJ9ARhdddNFBn0Cjiy666EKfQAAAAAAARJ9AXXTRRRdFn0C66KKLLkafQBdddNFFR59AdNFFF11In0DRRRdddEmfQC+66KKLSp9AjC666KJLn0DpoosuukyfQEYXXXTRTZ9Ao4suuuhOn0AAAAAAAFCfQF100UUXUZ9Auuiiiy5Sn0AXXXTRRVOfQHTRRRddVJ9A0UUXXXRVn0Avuuiii1afQIwuuuiiV59A6aKLLrpYn0BGF1100VmfQKOLLrroWp9AAAAAAABcn0BddNFFF12fQLrooosuXp9AF1100UVfn0B00UUXXWCfQNFFF110YZ9AL7roootin0CMLrroomOfQOmiiy66ZJ9ARhdddNFln0Cjiy666GafQAAAAAAAaJ9AXXTRRRdpn0C66KKLLmqfQBdddNFFa59AdNFFF11sn0DRRRdddG2fQC+66KKLbp9AjC666KJvn0DpoosuunCfQEYXXXTRcZ9Ao4suuuhyn0AAAAAAAHSfQF100UUXdZ9Auuiiiy52n0AXXXTRRXefQHTRRRddeJ9A0UUXXXR5n0Avuuiii3qfQIwuuuiie59A6aKLLrp8n0BGF1100X2fQKOLLrrofp9AAAAAAACAn0BddNFFF4GfQLrooosugp9AF1100UWDn0B00UUXXYSfQNFFF110hZ9AL7rooouGn0CMLrroooefQOmiiy66iJ9ARhdddNGJn0Cjiy666IqfQAAAAAAAjJ9AXXTRRReNn0C66KKLLo6fQBdddNFFj59AdNFFF12Qn0DRRRdddJGfQC+66KKLkp9AjC666KKTn0DpoosuupSfQEYXXXTRlZ9Ao4suuuiWn0AAAAAAAJifQF100UUXmZ9Auuiiiy6an0AXXXTRRZufQHTRRRddnJ9A0UUXXXSdn0Avuuiii56fQIwuuuiin59A6aKLLrqgn0BGF1100aGfQKOLLrroop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABmt0BYTpnK47e3QNbLOjVf77dA0yBEfD4PuECi9RTcTRq4QKTyDJFZE7hAFMCL1y39t0B5BvHrltq3QB5unAphrrdAWZ\u002ftb1h7t0CHQkRYSUS3QAAAAAAADLdAHoCAo0jVtkA5ayV\u002f76K2QK5pTs\u002fAd7ZA0yNb0IhWtkADQqu+E0K2QJpsntYtPbZA+0uUVKNKtkB3iOx0QG22QGbKBnTRp7ZAILpCjiL9tkAAAAAAAHC3QBGDCGLSArhAGyXPvnO2uECiBjF9Wou5QG04zn\u002ftgbpAWB33qvCWu0BSZc3YhMG8QHE\u002fisFO+L1Au3Vyuf8yv0CoymjVvTrAQKwOJYnC5cBAAAAAAICgwUBws8fyQWrCQJysOt26J8NA3IrT6\u002fa2w0B3aRFWfvbDQKdvgOjr4cNATMpNcOqhw0CYhsoSBWPDQNWa8h0XTsNAJNyEuB9hw0C4+UE6d37DQAAAAAAAiMNA0FJ560Rww0CLs\u002fnxcmzDQPc6sY1fwsNAXPjIm7u2xEBNwMMro0nGQAn0lUHlEMhAdqP7+CuZyUCYcSlViHjKQBtxLZxXsspAgtwd3HqQykABAAAAAF7KQLUGzPYPWcpAVZdFvz+MykB7NyNcP\u002fXKQJh7XJCKkctAjnIoLl5SzEADkGDf+xXNQCK85k8Duc1AYLc0c7gczkB2WQn9VFjOQCo\u002fFrripc5A\u002fv\u002f\u002f\u002f\u002f8\u002fz0BXSgciWyjQQGO9C73d39BAgMjJWhiy0UBQJj5Em4rSQNwzd5XnVNNAFqTe5Gb800AZguDCgGzUQNAjgqinldRAzc2+3uyi1EAjZw9\u002fM+XUQP\u002f\u002f\u002f\u002f\u002f\u002frdVAvVdKhb0q10BY6l7ncfjYQPfi26sJkNpArfCzDwZs20DirahHw2XbQMKhLyKk6dpAu3RiKLFw2kAhC3edXGzaQNqUK9jl9dpAaA8SI6Xt20D\u002f\u002f\u002f\u002f\u002f\u002fzLdQHoq4QY+pN5ApCb9k5cN4EC\u002fMtO0QrjgQNg7fc2hPuFAB6VSy62W4UD6LXURDMXhQPWz7iWlz+FAxhTJjmG84UABLg7SKZHhQDrdx3XmU+FAAAAAAIAK4UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAA4n0BddNFFFzmfQLrooosuOp9AF1100UU7n0B00UUXXTyfQNFFF110PZ9AL7rooos+n0CMLrrooj+fQOmiiy66QJ9ARhdddNFBn0Cjiy666EKfQAAAAAAARJ9AXXTRRRdFn0C66KKLLkafQBdddNFFR59AdNFFF11In0DRRRdddEmfQC+66KKLSp9AjC666KJLn0DpoosuukyfQEYXXXTRTZ9Ao4suuuhOn0AAAAAAAFCfQF100UUXUZ9Auuiiiy5Sn0AXXXTRRVOfQHTRRRddVJ9A0UUXXXRVn0Avuuiii1afQIwuuuiiV59A6aKLLrpYn0BGF1100VmfQKOLLrroWp9AAAAAAABcn0BddNFFF12fQLrooosuXp9AF1100UVfn0B00UUXXWCfQNFFF110YZ9AL7roootin0CMLrroomOfQOmiiy66ZJ9ARhdddNFln0Cjiy666GafQAAAAAAAaJ9AXXTRRRdpn0C66KKLLmqfQBdddNFFa59AdNFFF11sn0DRRRdddG2fQC+66KKLbp9AjC666KJvn0DpoosuunCfQEYXXXTRcZ9Ao4suuuhyn0AAAAAAAHSfQF100UUXdZ9Auuiiiy52n0AXXXTRRXefQHTRRRddeJ9A0UUXXXR5n0Avuuiii3qfQIwuuuiie59A6aKLLrp8n0BGF1100X2fQKOLLrrofp9AAAAAAACAn0BddNFFF4GfQLrooosugp9AF1100UWDn0B00UUXXYSfQNFFF110hZ9AL7rooouGn0CMLrroooefQOmiiy66iJ9ARhdddNGJn0Cjiy666IqfQAAAAAAAjJ9AXXTRRReNn0C66KKLLo6fQBdddNFFj59AdNFFF12Qn0DRRRdddJGfQC+66KKLkp9AjC666KKTn0DpoosuupSfQEYXXXTRlZ9Ao4suuuiWn0AAAAAAAJifQF100UUXmZ9Auuiiiy6an0AXXXTRRZufQHTRRRddnJ9A0UUXXXSdn0Avuuiii56fQIwuuuiin59A6aKLLrqgn0BGF1100aGfQKOLLrroop9AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABmt0C7oYlgpgm4QF5\u002fRDaIe7hAK\u002fPYwcfAuEBoV+9Dh964QFwGMP3o2bhAIVpDLg+4uEBBrdEXHH64QO9Zg\u002foxMbhAbroAF3PWt0AIKfKtAXO3QAAAAAAADLdAnJnSTZCmtkAiUBLY1Ee2QNx9Z9\u002fv9LVACX16pAOztUD0p\u002fNnMoe1QOBYe2qedrVANeq57GmGtUActlcvt7u1QN4W\u002fXKoG7ZAvWZS+F+rtkAAAAAAAHC3QN3vPDvJaLhANQ97HXZ9uUDl6bqK34+6QOgrWxlEgrtA7wrKLbhOvECRbKf4QRS9QKs1hD0V9b1Aa7zH8WMQv0AxEhuHNTHAQAzqrQBt6MBAAAAAAICgwUApEZH+y0zCQChmUfKF48JAf2pNsJhbw0CnS\u002fd+FazDQFismjgQ1cNAIaV66ZPkw0AcXggp3+nDQAdGOHrj8sNA8t7UUXL+w0CbOwELmwHEQJTXUF5D8cNA6DOw9b7Nw0CU529AGcXDQBKPOZ\u002fLEMRAGcs4v1jpxED6ORI8cU3GQEcEpnwm4sdAtW\u002fkS9REyUCld8YjAhvKQAYgClEzacpAQJwuwTJxykDkNZTX0HXKQNvaOQUMrMpAjAqZ8ZoRy0C66MlRYpbLQGNACNlNKsxA1Qzryuy+zEDyB\u002f29WEjNQMkj5jnjus1A+4LyXv4NzkBI6uI7d13OQP5+R1iP3M5AUOzETuy+z0D1VLRltJPQQLuw8d\u002fZetFAi0Snl1h80kB+SOD7n3\u002fTQINCTSWFa9RA4SSS8+0l1UAyyEayq5TVQIHV0HIjo9VAK3MOIpB91UCAUmX4AHrVQJze9KY379VAGfE6B8MR10CXHS+UZo3YQDdmJ\u002fGy69lAPi8D0I232kBy3tRKzMvaQHOCl8Mpf9pAXDyREAoz2kBFUovoVEPaQDGkQxQvzNpAQK9PcJrA20BVVVVV6RLdQC7LI\u002fCUrd5Ag8gX39gt4EAAPYuIPfDgQOU6h+baf+FAmxT6mLLO4UBNT3Ngw+fhQIji4kcy2OFAJMY4WiSt4UDP8WSivnPhQDRdVysmOeFAAAAAAIAK4UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2010-1838100",0],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2014-1840811",58],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2011-1835652",70],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2006-1835389",127],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2023-1840318",133],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2008-1840544",165],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2009-1840365",171],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2022-1837064",229],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2009-1840864",362],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2010-1841341",405],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2016-1834807",741],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2009-1840841",850],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2013-1840519",889],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2010-1839287",1053],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2022-1839777",1112],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2015-1841178",1162],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2022-1839664",1164],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2009-1838126",1196],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2015-1819328",1349],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2012-1836019",1403],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2022-1837996",1413],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2022-1782336",1485],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2008-1839580",1502],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2010-1808161",1567],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2009-1840494",1621],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2014-1840892",1630],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2012-1839480",1635],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2021-1840587",1639],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2018-1841169",1643],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2019-1839471",1694],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fhonda-cr-v-2014-1841358",1742]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"2gcAAN4HAADbBwAA1gcAAOcHAADYBwAA2QcAAOYHAADZBwAA2gcAAOAHAADZBwAA3QcAANoHAADmBwAA3wcAAOYHAADZBwAA3wcAANwHAADmBwAA5gcAANgHAADaBwAA2QcAAN4HAADcBwAA5QcAAOIHAADjBwAA3gcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAACOwkAAAAAAAF\u002fJQAAAAAAAGMVAAAAAAAAUvkAAAAAAAP7gQAAAAAAAaMBAAAAAAAAkw0AAAAAAAFjbQAAAAAAAjsJAAAAAAAB8xUAAAAAAABHSQAAAAAAAiMNAAAAAAABkyUAAAAAAACrCQAAAAAAAWNtAAAAAAAA20EAAAAAAAEXaQAAAAAAAgsRAAAAAAABMzUAAAAAAAFnKQAAAAAAAF+FAAAAAAMDU20AAAAAAACTDQAAAAAAAiMNAAAAAAAAexEAAAAAAAGTJQAAAAAAAcMdAAAAAAAAA2UAAAAAAAIjTQAAAAAAAutNAAAAAAABqyEA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Honda CR-V - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (31)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-0" data-point-index="0">
+                <td>$9,500</td>
+                <td>222,000</td>
+                <td>2010</td>
+                <td>San Borja</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2010-1838100" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-58" data-point-index="58">
+                <td>$12,990</td>
+                <td>105,140</td>
+                <td>2014</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2014-1840811" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-70" data-point-index="70">
+                <td>$10,800</td>
+                <td>145,000</td>
+                <td>2011</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2011-1835652" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-127" data-point-index="127">
+                <td>$7,700</td>
+                <td>96,000</td>
+                <td>2006</td>
+                <td>San Martin de Porres</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2006-1835389" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-133" data-point-index="133">
+                <td>$34,800</td>
+                <td>13,500</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2023-1840318" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-165" data-point-index="165">
+                <td>$8,400</td>
+                <td>200,006</td>
+                <td>2008</td>
+                <td>Chorrillos</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2008-1840544" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-171" data-point-index="171">
+                <td>$9,800</td>
+                <td>165,000</td>
+                <td>2009</td>
+                <td>La Molina</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2009-1840365" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-229" data-point-index="229">
+                <td>$28,000</td>
+                <td>22,600</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2022-1837064" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-362" data-point-index="362">
+                <td>$9,500</td>
+                <td>211,000</td>
+                <td>2009</td>
+                <td>La Victoria</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2009-1840864" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-405" data-point-index="405">
+                <td>$11,000</td>
+                <td>104,000</td>
+                <td>2010</td>
+                <td>Magdalena del Mar</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2010-1841341" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-741" data-point-index="741">
+                <td>$18,500</td>
+                <td>55,000</td>
+                <td>2016</td>
+                <td>San Isidro</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2016-1834807" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-850" data-point-index="850">
+                <td>$10,000</td>
+                <td>189,000</td>
+                <td>2009</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2009-1840841" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-889" data-point-index="889">
+                <td>$13,000</td>
+                <td>162,000</td>
+                <td>2013</td>
+                <td>Comas</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2013-1840519" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1053" data-point-index="1053">
+                <td>$9,300</td>
+                <td>100,000</td>
+                <td>2010</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2010-1839287" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1112" data-point-index="1112">
+                <td>$28,000</td>
+                <td>18,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2022-1839777" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1162" data-point-index="1162">
+                <td>$16,600</td>
+                <td>70,000</td>
+                <td>2015</td>
+                <td>San Miguel</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2015-1841178" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1164" data-point-index="1164">
+                <td>$26,900</td>
+                <td>23,500</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2022-1839664" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1196" data-point-index="1196">
+                <td>$10,500</td>
+                <td>116,000</td>
+                <td>2009</td>
+                <td>Cieneguilla</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2009-1838126" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1349" data-point-index="1349">
+                <td>$15,000</td>
+                <td>88,000</td>
+                <td>2015</td>
+                <td>Magdalena del Mar</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2015-1819328" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1403" data-point-index="1403">
+                <td>$13,490</td>
+                <td>71,500</td>
+                <td>2012</td>
+                <td>San Isidro</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2012-1836019" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1413" data-point-index="1413">
+                <td>$35,000</td>
+                <td>33,000</td>
+                <td>2022</td>
+                <td>San Isidro</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2022-1837996" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1485" data-point-index="1485">
+                <td>$28,499</td>
+                <td>51,000</td>
+                <td>2022</td>
+                <td>La Molina</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2022-1782336" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1502" data-point-index="1502">
+                <td>$9,800</td>
+                <td>162,000</td>
+                <td>2008</td>
+                <td>Jesus Maria</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2008-1839580" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1567" data-point-index="1567">
+                <td>$10,000</td>
+                <td>130,000</td>
+                <td>2010</td>
+                <td>Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2010-1808161" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1621" data-point-index="1621">
+                <td>$10,300</td>
+                <td>201,000</td>
+                <td>2009</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2009-1840494" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1630" data-point-index="1630">
+                <td>$13,000</td>
+                <td>95,500</td>
+                <td>2014</td>
+                <td>Rimac</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2014-1840892" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1635" data-point-index="1635">
+                <td>$12,000</td>
+                <td>109,000</td>
+                <td>2012</td>
+                <td>San Isidro</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2012-1839480" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1639" data-point-index="1639">
+                <td>$25,600</td>
+                <td>63,000</td>
+                <td>2021</td>
+                <td>Jesus Maria</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2021-1840587" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1643" data-point-index="1643">
+                <td>$20,000</td>
+                <td>33,000</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2018-1841169" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1694" data-point-index="1694">
+                <td>$20,200</td>
+                <td>58,000</td>
+                <td>2019</td>
+                <td>Surquillo</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2019-1839471" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1742" data-point-index="1742">
+                <td>$12,500</td>
+                <td>134,000</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/honda-cr-v-2014-1841358" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

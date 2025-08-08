@@ -1,0 +1,224 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Kia Carens</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Kia Carens</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $14,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 41.67%</p>
+            <p><strong>Anuncios Únicos:</strong> 24</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABMn0CO4ziO40yfQBzHcRzHTZ9Aq6qqqqpOn0A5juM4jk+fQMdxHMdxUJ9AVVVVVVVRn0DkOI7jOFKfQHIcx3EcU59AAAAAAABUn0CO4ziO41SfQBzHcRzHVZ9Aq6qqqqpWn0A5juM4jlefQMdxHMdxWJ9AVVVVVVVZn0DkOI7jOFqfQHIcx3EcW59AAAAAAABcn0CO4ziO41yfQBzHcRzHXZ9Aq6qqqqpen0A5juM4jl+fQMdxHMdxYJ9AVVVVVVVhn0DkOI7jOGKfQHIcx3EcY59AAAAAAABkn0CO4ziO42SfQBzHcRzHZZ9Aq6qqqqpmn0A5juM4jmefQMdxHMdxaJ9AVVVVVVVpn0DkOI7jOGqfQHIcx3Eca59AAAAAAABsn0CO4ziO42yfQBzHcRzHbZ9Aq6qqqqpun0A5juM4jm+fQMdxHMdxcJ9AVVVVVVVxn0DkOI7jOHKfQHIcx3Ecc59AAAAAAAB0n0CO4ziO43SfQBzHcRzHdZ9Aq6qqqqp2n0A5juM4jnefQMdxHMdxeJ9AVVVVVVV5n0DkOI7jOHqfQHIcx3Ece59AAAAAAAB8n0CO4ziO43yfQBzHcRzHfZ9Aq6qqqqp+n0A5juM4jn+fQMdxHMdxgJ9AVVVVVVWBn0DkOI7jOIKfQHIcx3Ecg59AAAAAAACEn0CO4ziO44SfQBzHcRzHhZ9Aq6qqqqqGn0A5juM4joefQMdxHMdxiJ9AVVVVVVWJn0DkOI7jOIqfQHIcx3Eci59AAAAAAACMn0CO4ziO44yfQBzHcRzHjZ9Aq6qqqqqOn0A5juM4jo+fQMdxHMdxkJ9AVVVVVVWRn0DkOI7jOJKfQHIcx3Eck59AAAAAAACUn0CO4ziO45SfQBzHcRzHlZ9Aq6qqqqqWn0A5juM4jpefQMdxHMdxmJ9AVVVVVVWZn0DkOI7jOJqfQHIcx3Ecm59AAAAAAACcn0CO4ziO45yfQBzHcRzHnZ9Aq6qqqqqen0A5juM4jp+fQMdxHMdxoJ9AVVVVVVWhn0DkOI7jOKKfQHIcx3Eco59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABMvUDK1NxiIl2\u002fQP5f7\u002fEPgcBA2gthHhgiwUAJl6GTRZbBQMwsjy404sFAnPcHzH8KwkDlIepIxBPCQA3WE4KdAsJAoj5jVKfbwUAYhracfaPBQOTW6ze8XsFAIlvhAv8RwUD3PXXa4cHAQIaphZsAc8BAQsjwIvcpwEDCiCmbwta\u002fQNCRn\u002fC1d79AAAAAAABAv0B3EV6EBzm\u002fQGGpKD7vbL9A1JQl7wjmv0CaT40sU1fAQCWi9QRL6MBAc9wSc+6kwUCldoEUW4bCQFS97OxshcNAAAAAAACbxEAJJBZusL\u002fFQOlpSMoa68ZAKqpfxJsUyEBsuSQMkDPJQEFwYFFUP8pA6aXbQ0Uvy0B1Ml+Tv\u002frLQFXrs+8fmcxAxqiiCMMBzUAGQvSNBSzNQFyOcS9ED81AYGTjnNuizEA4nBKGKN7LQDB0XSU2uspAo3KOKL5WyUBaZNywKPrHQC6CE2qM7MZA\u002f\u002f\u002f\u002f\u002f\u002f91xkBhnA9BzcbGQCg6NoYKsMdAskYJSwHryEDdKh4L+zDKQKUBpHkKPctAe4KYSFbzy0DnAsgoGWHMQAGFmAJXlcxAawxwvhOfzEAjnLREU43MQCo3zH0Zb8xAaeAcUmpTzEAsmwyqSUnMQAGxkAgTX8xAm8V90wCUzED+1odTLNjMQOYo8msGG81AAQAAAABMzUDP2lufa1\u002fNQCcgTYsiXc1A93CCsd9RzUBVbqr\u002fXUrNQOAGFD8OU81AmyR19LdxzUArrepfeaXNQCzTMZ0m7c1A4MkHyJNHzkBcxCn8lLPOQLL1VFX+L89AmZFG76O7z0D25N3yrCrQQCjpOCr6fdBA7e6SqyPX0EA8kMqEkzXRQMdlvsOzmNFAgwlNdu7\u002f0UD2FFWqrWrSQKshtW1b2NJAq8lLzmFI00CDpffZKrrTQDpPl54gLdRAWGAJKq2g1EDpciyKOhTVQHIf38wyh9VA\u002f\u002f\u002f\u002f\u002f\u002f\u002f41UAarm0xDGnWQE3DBm\u002fB1tZAltmpxolB10CQiTVGz6jXQDttiPv7C9hAJB6B9Hlq2EA1Nv4+s8PYQC5O3ugRF9lAAAAAAABk2UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABMn0CO4ziO40yfQBzHcRzHTZ9Aq6qqqqpOn0A5juM4jk+fQMdxHMdxUJ9AVVVVVVVRn0DkOI7jOFKfQHIcx3EcU59AAAAAAABUn0CO4ziO41SfQBzHcRzHVZ9Aq6qqqqpWn0A5juM4jlefQMdxHMdxWJ9AVVVVVVVZn0DkOI7jOFqfQHIcx3EcW59AAAAAAABcn0CO4ziO41yfQBzHcRzHXZ9Aq6qqqqpen0A5juM4jl+fQMdxHMdxYJ9AVVVVVVVhn0DkOI7jOGKfQHIcx3EcY59AAAAAAABkn0CO4ziO42SfQBzHcRzHZZ9Aq6qqqqpmn0A5juM4jmefQMdxHMdxaJ9AVVVVVVVpn0DkOI7jOGqfQHIcx3Eca59AAAAAAABsn0CO4ziO42yfQBzHcRzHbZ9Aq6qqqqpun0A5juM4jm+fQMdxHMdxcJ9AVVVVVVVxn0DkOI7jOHKfQHIcx3Ecc59AAAAAAAB0n0CO4ziO43SfQBzHcRzHdZ9Aq6qqqqp2n0A5juM4jnefQMdxHMdxeJ9AVVVVVVV5n0DkOI7jOHqfQHIcx3Ece59AAAAAAAB8n0CO4ziO43yfQBzHcRzHfZ9Aq6qqqqp+n0A5juM4jn+fQMdxHMdxgJ9AVVVVVVWBn0DkOI7jOIKfQHIcx3Ecg59AAAAAAACEn0CO4ziO44SfQBzHcRzHhZ9Aq6qqqqqGn0A5juM4joefQMdxHMdxiJ9AVVVVVVWJn0DkOI7jOIqfQHIcx3Eci59AAAAAAACMn0CO4ziO44yfQBzHcRzHjZ9Aq6qqqqqOn0A5juM4jo+fQMdxHMdxkJ9AVVVVVVWRn0DkOI7jOJKfQHIcx3Eck59AAAAAAACUn0CO4ziO45SfQBzHcRzHlZ9Aq6qqqqqWn0A5juM4jpefQMdxHMdxmJ9AVVVVVVWZn0DkOI7jOJqfQHIcx3Ecm59AAAAAAACcn0CO4ziO45yfQBzHcRzHnZ9Aq6qqqqqen0A5juM4jp+fQMdxHMdxoJ9AVVVVVVWhn0DkOI7jOKKfQHIcx3Eco59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABMvUDLbZQZ9Yq9QCpjxHmAz71AbmM33TcYvkD48JQAsWO+QBePhKCBsL5A0sCteT\u002f9vkB7CbhIgEi\u002fQG3rSsrZkL9A\u002fukNu+HUv0AYRNTrlgnAQIMkYe4pJcBA2leBw3Q8wEBnn4hJwk7AQMq8yl5dW8BAhHGb4ZBhwEAQf06wp2DAQPGmN6nsV8BAq6qqqqpGwEB6uQObTi\u002fAQIa5wIDNIMBA0v5naj4twEAz3X9muGbAQNDZhPub3sBAaucRd+OVwUBzZ+DtIn3CQHbpn+w3hMNAAAAAAACbxEAm\u002fxaiAbPFQMlElgJnxMZAUvKVPgPJx0DEJS5zqbrIQJ8Ad70sk8lAMKOIOmBMykBaLnsHF+DKQB3BZkEkSMtAg3xjBVt+y0DegIlwjnzLQIDu8J+RPMtAAOWxsDe4ykDLheS\u002fU+nJQFkTvO1Ky8hAX+vboaB9x0AghVeL9kPGQLp+XVyAY8VAx3Ecx3EhxUAVITzQRqvFQGjuSMacz8ZA8mRISllFyECeCkD9YcPJQDvuWjZxAstAFvQiql3ly0AI2IBqGnnMQPfXgj9vzMxA2DM38SPuzEDOKqxHAO3MQPn77wrM18xAaOYQA0+9zECDKR34UKzMQHvOdOwHs8xAgQjRH5HSzEDPNEQP8f7MQC96MnKaK81AAQAAAABMzUBtgLe\u002fVlfNQEQB\u002fvbcU81ATxsfO5NLzUBuZ2YhekjNQEB5AuZXVM1Atm6Gw7RzzUBL8Ony2qXNQKGgB1Ta6c1ABSO6xsI+zkCNGtwqpKPOQFIqSGCOF89ABfbYRpGZz0DOjzRfXhTQQF2laVMQYtBAOw35b2a10EBbGdCk6A3RQIEa3OEea9FAm2IKF5HM0UA2Q0g0xzHSQN0NgylJmtJAlxSo5p4F00D\u002fp6RbUHPTQBkaZnjl4tNAb7zZLOZT1EAQ4exo2sXUQIfYjBxKONVA3\u002fSmN72q1UCmhyiquxzWQGni\u002fmPNjdZALlcXVXr91kCKNl9tSmvXQILSw5zF1tdAqHwy03M\u002f2ED1hpgA3aTYQBJC4xSJBtlAAAAAAABk2UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-carens-2013-1821412",147],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-carens-2023-1841260",423],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-carens-2007-1840975",486],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-carens-2006-1837103",861]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#d62728","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3QcAAOcHAADXBwAA1gcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAAB2xkAAAAAAAGPVQAAAAAAAlMFAAAAAAACawEA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Kia Carens - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (4)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-147" data-point-index="147">
+                <td>$11,500</td>
+                <td>230,000</td>
+                <td>2013</td>
+                <td>Lima</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-carens-2013-1821412" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-423" data-point-index="423">
+                <td>$21,900</td>
+                <td>18,000</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-carens-2023-1841260" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-486" data-point-index="486">
+                <td>$9,000</td>
+                <td>110,000</td>
+                <td>2007</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-carens-2007-1840975" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-861" data-point-index="861">
+                <td>$8,500</td>
+                <td>175,502</td>
+                <td>2006</td>
+                <td>San Isidro</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-carens-2006-1837103" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

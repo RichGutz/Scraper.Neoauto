@@ -1,0 +1,336 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Volkswagen Gol</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Volkswagen Gol</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $8,800</p>
+            <p><strong>Ratio Venta Rápida:</strong> 16.55%</p>
+            <p><strong>Anuncios Únicos:</strong> 145</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAAAsn0BddNFFFy2fQLrooosuLp9AF1100UUvn0B00UUXXTCfQNFFF110MZ9AL7rooosyn0CMLrroojOfQOmiiy66NJ9ARhdddNE1n0Cjiy666DafQAAAAAAAOJ9AXXTRRRc5n0C66KKLLjqfQBdddNFFO59AdNFFF108n0DRRRdddD2fQC+66KKLPp9AjC666KI\u002fn0DpoosuukCfQEYXXXTRQZ9Ao4suuuhCn0AAAAAAAESfQF100UUXRZ9Auuiiiy5Gn0AXXXTRRUefQHTRRRddSJ9A0UUXXXRJn0Avuuiii0qfQIwuuuiiS59A6aKLLrpMn0BGF1100U2fQKOLLrroTp9AAAAAAABQn0BddNFFF1GfQLrooosuUp9AF1100UVTn0B00UUXXVSfQNFFF110VZ9AL7roootWn0CMLrroolefQOmiiy66WJ9ARhdddNFZn0Cjiy666FqfQAAAAAAAXJ9AXXTRRRddn0C66KKLLl6fQBdddNFFX59AdNFFF11gn0DRRRdddGGfQC+66KKLYp9AjC666KJjn0DpoosuumSfQEYXXXTRZZ9Ao4suuuhmn0AAAAAAAGifQF100UUXaZ9Auuiiiy5qn0AXXXTRRWufQHTRRRddbJ9A0UUXXXRtn0Avuuiii26fQIwuuuiib59A6aKLLrpwn0BGF1100XGfQKOLLrrocp9AAAAAAAB0n0BddNFFF3WfQLrooosudp9AF1100UV3n0B00UUXXXifQNFFF110eZ9AL7rooot6n0CMLrroonufQOmiiy66fJ9ARhdddNF9n0Cjiy666H6fQAAAAAAAgJ9AXXTRRReBn0C66KKLLoKfQBdddNFFg59AdNFFF12En0DRRRdddIWfQC+66KKLhp9AjC666KKHn0DpoosuuoifQEYXXXTRiZ9Ao4suuuiKn0AAAAAAAIyfQF100UUXjZ9Auuiiiy6On0AXXXTRRY+fQHTRRRddkJ9A0UUXXXSRn0Avuuiii5KfQIwuuuiik59A6aKLLrqUn0BGF1100ZWfQKOLLrrolp9AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAAqUDeTpDrG\u002fisQAXxeqiRnq9AatkmU7OQsEBUMEsqUNewQHBjcREiurBAb1hgwCtQsECn7L3d32CvQBpGaKni461AkIlNU2VXrEBog\u002ftKbemqQAAAAAAAyKlAGU59GvkTqUADxuckjbmoQG5CSOLGl6hAEJ6nFbGNqECXsw6CVnqoQGRdhurBPKhAfnYXEv6zp0B\u002fq2tVWcSmQGIyGutTj6VACmjwCeldpECSw+9bvHmjQBa8GYtxLKNAtshvQay\u002fo0CQYPMoEH2lQKrjz+Hxq6hADEgDvh8JrUA8kWK+WL2wQPkgTkcjarJAIVFhvbcCs0DJQyq4R6GyQE\u002fQVuTMyLFAAAAAAAD+sEDH55Zq9bGwQAzL7AgwB7FAzvgqYY4MskCbq\u002fQS68+zQBlRgLY2IrZA4udOJfd1uEDvw7AEkzW6QAaeeSuB2LpA604UsBRuukBn7kQcmme5QAAAAAAAOLhA9M+8WCJCt0CHzf3Zkqi2QLswyKTQfbZAFxZLkrbTtkAEKYelnpW3QFkZtcg0c7hAbrhcpwIXuUCvhl9O1zW5QFR4UVbo+7hAhQ7nsXPiuEAAAAAAAGS5QEQfsz3NzLpA9q3z4ACwvEB+Cey9eXK+QC5LoOTAer9ABZYcbEWTv0BVT4YpTiG\u002fQFS90NBzl75AEK9t5nxbvkDf+o2GJD6+QEGEF2n9r71AAAAAAAAgvEAnB5ruRX25QLrDq51tt7dA\u002fENYpzY+uUCh1qDroDrAQEvDacl7dMZAlVpSnUffzEDWK9Fukm7QQMTAh4B6CdBAW\u002fdNI50ty0C1l0rjqc7EQAAAAAAAQL9An4sBGepDu0Cwvn7YQ128QO91jK0g7b9A2YrB87aswUDeZseylJXCQLILsr8718JAeNRpxyWrwkDlhYitaknCQCFGdpER2sFAJc3NLMR6wUAAAAAAAEnBQHhfDtv7WsFAEts8zNOpwUAO\u002fl8xXSfCQBPtsjpwxcJAKMN8aI52w0DWWUqqPy7EQCNU3YIi4MRAHlf3dNV\u002fxUAoB1oD9wDGQKgIx7AlV8ZAAAAAAAB2xkA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAAAsn0BddNFFFy2fQLrooosuLp9AF1100UUvn0B00UUXXTCfQNFFF110MZ9AL7rooosyn0CMLrroojOfQOmiiy66NJ9ARhdddNE1n0Cjiy666DafQAAAAAAAOJ9AXXTRRRc5n0C66KKLLjqfQBdddNFFO59AdNFFF108n0DRRRdddD2fQC+66KKLPp9AjC666KI\u002fn0DpoosuukCfQEYXXXTRQZ9Ao4suuuhCn0AAAAAAAESfQF100UUXRZ9Auuiiiy5Gn0AXXXTRRUefQHTRRRddSJ9A0UUXXXRJn0Avuuiii0qfQIwuuuiiS59A6aKLLrpMn0BGF1100U2fQKOLLrroTp9AAAAAAABQn0BddNFFF1GfQLrooosuUp9AF1100UVTn0B00UUXXVSfQNFFF110VZ9AL7roootWn0CMLrroolefQOmiiy66WJ9ARhdddNFZn0Cjiy666FqfQAAAAAAAXJ9AXXTRRRddn0C66KKLLl6fQBdddNFFX59AdNFFF11gn0DRRRdddGGfQC+66KKLYp9AjC666KJjn0DpoosuumSfQEYXXXTRZZ9Ao4suuuhmn0AAAAAAAGifQF100UUXaZ9Auuiiiy5qn0AXXXTRRWufQHTRRRddbJ9A0UUXXXRtn0Avuuiii26fQIwuuuiib59A6aKLLrpwn0BGF1100XGfQKOLLrrocp9AAAAAAAB0n0BddNFFF3WfQLrooosudp9AF1100UV3n0B00UUXXXifQNFFF110eZ9AL7rooot6n0CMLrroonufQOmiiy66fJ9ARhdddNF9n0Cjiy666H6fQAAAAAAAgJ9AXXTRRReBn0C66KKLLoKfQBdddNFFg59AdNFFF12En0DRRRdddIWfQC+66KKLhp9AjC666KKHn0DpoosuuoifQEYXXXTRiZ9Ao4suuuiKn0AAAAAAAIyfQF100UUXjZ9Auuiiiy6On0AXXXTRRY+fQHTRRRddkJ9A0UUXXXSRn0Avuuiii5KfQIwuuuiik59A6aKLLrqUn0BGF1100ZWfQKOLLrrolp9AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"AAAAAAAAqUAp7gMpo16rQJp4bhMB9axArTdbhaDerUC6w+VECDeuQBi1KRi\u002fGa5AlaNCxUuirUBzKEwSNeysQMvbYcUBE6xA71WfpDgyq0A4LyB2YGWqQAEAAAAAyKlAb4Ncm7VsqUD4\u002f1vtfUKpQN3eJi5tL6lAXonllZcZqUDAaMBcEeeoQMTl37rufahAV2ps6EPEp0CbzFf6PqWmQHl3OaxaR6VAGYiPsVP3o0BDSXH5iQKjQMQF9nJdtqJAZwg1DS5go0D4m0W3W02lQIDIeaHByKhAWfDnRR6GrUAhnH5oeyexQHZQfjxV7LJA29CZFOd7s0BMVMSS4\u002fWyQBUY2L8G77FAAQAAAAD+sEB\u002fKSNFZKGwQJiYGbhe97BA+Ip3DwAGskCSEKwJZdKzQLp\u002fbzx8KLZAzZD4F5N7uEBch1RLVze6QNZiqkOl1LpABfcL0JhlukDh40tRLF+5QAAAAAAAOLhAjP0a9FZTt0Aa\u002fQLD\u002f8a2QNn6euFrlbZAGm94s7DAtkCa6sWsTzW3QHkXhSZYvrdAVn9r8\u002fgjuECnEuGB6zW4QM+ZR5KUG7hA7tO6dOg0uEDNzMzMzOK4QGyDrxVaXbpAusMUKXQ5vEDiTE64MeO9QHXxYX1RyL5AAhGKPPS5vkC1GGzjRSO+QDoTTqWyfL1Ab8SmLdUyvUA7byNd5Ci9QMLR3plz6bxAkMH5GJz9u0DMptqfsEu6QAA0\u002fjTqLrlAS64mb7tfukBvkRq+JY6\u002fQOSQTrfSN8RAnbz80U3UyEAqJc4k8MzLQNL0XfXjf8tA8KYK6hdfyEDRaGYAjjPEQAAAAAAAzMBAnwPQo9Icv0C2Qjblyz3AQO9mhEprNMJA\u002f3VStZjMxEBJux+H12PHQDeTHU+fXMlA4W6ws9QZykBPROu5nBPJQPWGjbMoucZAIF9zuAwZxEDsxE7shETCQMJHFZANAMJAMtTKWSPdwkAl7rYcgyDEQGfZEyp\u002fEMVA0dYAWHNSxUDG4sw9Ch\u002fFQEL6XGKau8RAqhmWTHptxEBmPV2DAHrEQN1hl42DJsVAdoMp8lm4xkA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-power-2012-1840106",24],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2021-1835407",64],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2020-1822818",74],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-confort-sedan-2013-1840321",221],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2013-1827657",390],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2016-1838407",394],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-sedan-2014-1841761",398],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-confort-sedan-2012-1835358",440],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2010-1838780",602],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-comfort-16-2022-1839360",608],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-sedan-2012-1821648",797],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2018-1838919",1043],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2016-1841077",1197],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2022-1840957",1285],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2000-1840622",1335],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2021-1840257",1389],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2022-1837844",1422],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fvolkswagen-gol-2022-1841030",1555]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3AcAAOUHAADkBwAA3QcAAN0HAADgBwAA3gcAANwHAADaBwAA5gcAANwHAADiBwAA4AcAAOYHAADQBwAA5QcAAOYHAADmBwAA"},"y":{"dtype":"f8","bdata":"AAAAAADgtUAAAAAAAPjBQAAAAAAA+MFAAAAAAACEvEAAAAAAACC8QAAAAAAAILxAAAAAAABMvUAAAAAAAEa+QAAAAAAAZLlAAAAAAABqyEAAAAAAAEy9QAAAAAAAlMFAAAAAAAAEwEAAAAAAABnEQAAAAAAAcKdAAAAAAABqyEAAAAAAAILEQAAAAAAAfMVA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Volkswagen Gol - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (18)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-24" data-point-index="24">
+                <td>$5,600</td>
+                <td>212,800</td>
+                <td>2012</td>
+                <td>San Miguel</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-power-2012-1840106" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-64" data-point-index="64">
+                <td>$9,200</td>
+                <td>73,500</td>
+                <td>2021</td>
+                <td>Santiago de Surco</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2021-1835407" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-74" data-point-index="74">
+                <td>$9,200</td>
+                <td>112,000</td>
+                <td>2020</td>
+                <td>La Victoria</td>
+                <td>16</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2020-1822818" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-221" data-point-index="221">
+                <td>$7,300</td>
+                <td>90,000</td>
+                <td>2013</td>
+                <td>Jesus Maria</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-confort-sedan-2013-1840321" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-390" data-point-index="390">
+                <td>$7,200</td>
+                <td>150,000</td>
+                <td>2013</td>
+                <td>Breña</td>
+                <td>10</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2013-1827657" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-394" data-point-index="394">
+                <td>$7,200</td>
+                <td>109,000</td>
+                <td>2016</td>
+                <td>Los Olivos</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2016-1838407" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-398" data-point-index="398">
+                <td>$7,500</td>
+                <td>132,500</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-sedan-2014-1841761" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-440" data-point-index="440">
+                <td>$7,750</td>
+                <td>60,000</td>
+                <td>2012</td>
+                <td>San Borja</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-confort-sedan-2012-1835358" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-602" data-point-index="602">
+                <td>$6,500</td>
+                <td>100,000</td>
+                <td>2010</td>
+                <td>Trujillo</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2010-1838780" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-608" data-point-index="608">
+                <td>$12,500</td>
+                <td>29,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-comfort-16-2022-1839360" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-797" data-point-index="797">
+                <td>$7,500</td>
+                <td>50,000</td>
+                <td>2012</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-sedan-2012-1821648" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1043" data-point-index="1043">
+                <td>$9,000</td>
+                <td>49,000</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2018-1838919" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1197" data-point-index="1197">
+                <td>$8,200</td>
+                <td>54,000</td>
+                <td>2016</td>
+                <td>San Miguel</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2016-1841077" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1285" data-point-index="1285">
+                <td>$10,290</td>
+                <td>60,549</td>
+                <td>2022</td>
+                <td>Lince</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2022-1840957" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1335" data-point-index="1335">
+                <td>$3,000</td>
+                <td>260,000</td>
+                <td>2000</td>
+                <td>Pachacamac</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2000-1840622" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1389" data-point-index="1389">
+                <td>$12,500</td>
+                <td>48,000</td>
+                <td>2021</td>
+                <td>Surquillo</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2021-1840257" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1422" data-point-index="1422">
+                <td>$10,500</td>
+                <td>56,000</td>
+                <td>2022</td>
+                <td>Villa El Salvador</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2022-1837844" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1555" data-point-index="1555">
+                <td>$11,000</td>
+                <td>26,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/volkswagen-gol-2022-1841030" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Xpander Cross</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Xpander Cross</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $16,200</p>
+            <p><strong>Ratio Venta Rápida:</strong> 22.22%</p>
+            <p><strong>Anuncios Únicos:</strong> 7</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAACMn0B88MEHH4yfQPjggw8+jJ9AdNFFF12Mn0DwwQcffIyfQG2yySabjJ9A6aKLLrqMn0Blk0022YyfQOGDDz74jJ9AXXTRRReNn0DZZJNNNo2fQFVVVVVVjZ9A0UUXXXSNn0BONtlkk42fQMomm2yyjZ9ARhdddNGNn0DCBx988I2fQD744IMPjp9Auuiiiy6On0A22WSTTY6fQLLJJptsjp9AL7rooouOn0Crqqqqqo6fQCebbLLJjp9Ao4suuuiOn0AffPDBB4+fQJtssskmj59AF1100UWPn0CTTTbZZI+fQBA++OCDj59AjC666KKPn0AIH3zwwY+fQIQPPvjgj59AAAAAAACQn0B88MEHH5CfQPjggw8+kJ9AdNFFF12Qn0DwwQcffJCfQG2yySabkJ9A6aKLLrqQn0Blk0022ZCfQOGDDz74kJ9AXXTRRReRn0DZZJNNNpGfQFVVVVVVkZ9A0UUXXXSRn0BONtlkk5GfQMomm2yykZ9ARhdddNGRn0DCBx988JGfQD744IMPkp9Auuiiiy6Sn0A22WSTTZKfQLLJJptskp9AL7rooouSn0CrqqqqqpKfQCebbLLJkp9Ao4suuuiSn0AffPDBB5OfQJtssskmk59AF1100UWTn0CTTTbZZJOfQBA++OCDk59AjC666KKTn0AIH3zwwZOfQIQPPvjgk59AAAAAAACUn0B88MEHH5SfQPjggw8+lJ9AdNFFF12Un0DwwQcffJSfQG2yySablJ9A6aKLLrqUn0Blk0022ZSfQOGDDz74lJ9AXXTRRReVn0DZZJNNNpWfQFVVVVVVlZ9A0UUXXXSVn0BONtlkk5WfQMomm2yylZ9ARhdddNGVn0DCBx988JWfQD744IMPlp9Auuiiiy6Wn0A22WSTTZafQLLJJptslp9AL7rooouWn0CrqqqqqpafQCebbLLJlp9Ao4suuuiWn0AffPDBB5efQJtssskml59AF1100UWXn0CTTTbZZJefQBA++OCDl59AjC666KKXn0AIH3zwwZefQIQPPvjgl59AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"AAAAAABGzkCjhOEW9EvOQCKMwZ4yUs5Afhagl7tYzkCzI30Bj1\u002fOQAO0WNysZs5A8MYyKBVuzkC9XAvlx3XOQGR14hLFfc5A5hC4sQyGzkBEL4zBno7OQIDQXkJ7l85AlvQvNKKgzkDVm\u002f+WE6rOQKPFzWrPs85ATnKar9W9zkDWoWVlJsjOQDdUL4zB0s5Adon3I6fdzkCOQb4s1+jOQIJ8g6ZR9M5AtzpHkRYAz0BjewntJQzPQO4+yrl\u002fGM9AU4WJ9yMlz0CVTkemEjLPQLGaA8ZLP89Aq2m+Vs9Mz0B+u3dYnVrPQKSQL8u1aM9AMujlrhh3z0CbwpoDxoXPQOAfTsm9lM9AAAAAAACkz0D8YrCnjLPPQNRIX8Bjw89AhrEMSoXTz0AVnbhE8ePPQAwMY7Cn9M9Aqf6FRtQC0EC8uFnteQvQQDy0rMxEFNBAKvF+5DQd0ECGb9A0SibQQE4vob2EL9BAhjDxfuQ40EB6c8B4aULQQI73DqsTTNBAEL3cFeNV0ED\u002fwym511\u002fQQFwM9pTxadBAKJZBqTB00EBgYQz2lH7QQAduVnseidBAdLwfOc2T0ED4S2gvoZ7QQOocMF6aqdBASC93xbi00EAWgz1l\u002fL\u002fQQFEYgz1ly9BA+O5HTvPW0EAPB4yXpuLQQPZgTxl\u002f7tBA6PuR03z60EBK2FPGnwbRQBj2lPHnEtFAVlVVVVUf0UAA9pTx5yvRQBjYU8afONFAnvuR03xF0UCSYE8Zf1LRQGAHjJemX9FAMe9HTvNs0UBvGIM9ZXrRQByDPWX8h9FANi93xbiV0UC+HDBemqPRQLNLaC+hsdFAGLwfOc2\u002f0UBeblZ7Hs7RQJ9hDPaU3NFATZZBqTDr0UBpDPaU8fnRQPLDKbnXCNJA6rzcFeMX0kBP9w6rEyfSQCNzwHhpNtJA5DDxfuRF0kCUL6G9hFXSQLFv0DRKZdJAPPF+5DR10kA2tKzMRIXSQJy4We15ldJAcf6FRtSl0kC1hTHYU7bSQO9OXKL4xtJAD1kGpcLX0kCcpC\u002fgsejSQJYx2FPG+dJAAAAAAAAL00A="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAACMn0B88MEHH4yfQPjggw8+jJ9AdNFFF12Mn0DwwQcffIyfQG2yySabjJ9A6aKLLrqMn0Blk0022YyfQOGDDz74jJ9AXXTRRReNn0DZZJNNNo2fQFVVVVVVjZ9A0UUXXXSNn0BONtlkk42fQMomm2yyjZ9ARhdddNGNn0DCBx988I2fQD744IMPjp9Auuiiiy6On0A22WSTTY6fQLLJJptsjp9AL7rooouOn0Crqqqqqo6fQCebbLLJjp9Ao4suuuiOn0AffPDBB4+fQJtssskmj59AF1100UWPn0CTTTbZZI+fQBA++OCDj59AjC666KKPn0AIH3zwwY+fQIQPPvjgj59AAAAAAACQn0B88MEHH5CfQPjggw8+kJ9AdNFFF12Qn0DwwQcffJCfQG2yySabkJ9A6aKLLrqQn0Blk0022ZCfQOGDDz74kJ9AXXTRRReRn0DZZJNNNpGfQFVVVVVVkZ9A0UUXXXSRn0BONtlkk5GfQMomm2yykZ9ARhdddNGRn0DCBx988JGfQD744IMPkp9Auuiiiy6Sn0A22WSTTZKfQLLJJptskp9AL7rooouSn0CrqqqqqpKfQCebbLLJkp9Ao4suuuiSn0AffPDBB5OfQJtssskmk59AF1100UWTn0CTTTbZZJOfQBA++OCDk59AjC666KKTn0AIH3zwwZOfQIQPPvjgk59AAAAAAACUn0B88MEHH5SfQPjggw8+lJ9AdNFFF12Un0DwwQcffJSfQG2yySablJ9A6aKLLrqUn0Blk0022ZSfQOGDDz74lJ9AXXTRRReVn0DZZJNNNpWfQFVVVVVVlZ9A0UUXXXSVn0BONtlkk5WfQMomm2yylZ9ARhdddNGVn0DCBx988JWfQD744IMPlp9Auuiiiy6Wn0A22WSTTZafQLLJJptslp9AL7rooouWn0CrqqqqqpafQCebbLLJlp9Ao4suuuiWn0AffPDBB5efQJtssskml59AF1100UWXn0CTTTbZZJefQBA++OCDl59AjC666KKXn0AIH3zwwZefQIQPPvjgl59AAAAAAACYn0A="},"y":{"dtype":"f8","bdata":"q6qqqqr4zEAD7TNchgzNQOL6zaJvIM1ASNR4fmY0zUAzeTTvakjNQErqAPV8XM1AQibej5xwzUDBLcy\u002fyYTNQMcAy4QEmc1AVJ\u002fa3kytzUBlCfvNosHNQP4+LFIG1s1AHkBua3fqzUBsDcEZ9v7NQJilJF2CE85ASgmZNRwozkCDOB6jwzzOQEQztKV4Uc5AiflaPTtmzkBVixJqC3vOQKfo2ivpj85ALhK0gtSkzkCMBp5uzbnOQHLGmO\u002fTzs5A4FGkBejjzkDSqMCwCfnOQErL7fA4Ds9AS7krxnUjz0DRcnowwDjPQI\u002f42S8YTs9AIUlKxH1jz0A6Zcvt8HjPQNtMXaxxjs9AAQAAAACkz0CtfrPom7nPQOLId2ZFz89Amt5Mefzkz0DavzIhwfrPQKu2FK9JCNBA0HIYmDkT0EC7lKRLMB7QQGgcucktKdBA1wlWEjI00EALXXslPT\u002fQQAIWKQNPStBAuzRfq2dV0ECUuR0eh2DQQNSjZFuta9BA2fMzY9p20ECeqYs1DoLQQCjFa9JIjdBAdkbUOYqY0ECGLcVr0qPQQFl6Pmghr9BATS1AL3e60ECoRcrA08XQQMXD3Bw30dBApad3Q6Hc0EBJ8Zo0EujQQLCgRvCJ89BA2rV6dgj\u002f0EDIMDfHjQrRQNYRfOIZFtFASlhJyKwh0UCCBJ94Ri3RQHwWffPmONFAOo7jOI5E0UC6a9JIPFDRQP2uSSPxW9FABlhJyKxn0UDQZtE3b3PRQL3b4XE4f9FADrZ6dgiL0UAi9ptF35bRQPmbRd+8otFAk6d3Q6Gu0UDxGDJyjLrRQBLwdGt+xtFA9yxAL3fS0UAA0JO9dt7RQGvYbxZ96tFAmEbUOYr20UCKGsEnngLSQD1UNuC4DtJAtPMzY9oa0kDv+LmwAifSQO1jyMgxM9JAEjVfq2c\u002f0kCXa35YpEvSQN4HJtDnV9JA6AlWEjJk0kC3cQ4fg3DSQEc\u002fT\u002fbafNJAm3IYmDmJ0kC0C2oEn5XSQPUKRDsLotJAk2+mPH6u0kDzOZEI+LrSQBhqBJ94x9JAAAAAAADU0kA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fmitsubishi-xpander-cross-2022-1841409",83],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fmitsubishi-xpander-cross-2022-1841492",725],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fmitsubishi-xpander-cross-2022-1836198",1305]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#d62728","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"5gcAAOYHAADmBwAA"},"y":{"dtype":"f8","bdata":"AAAAAACB0EAAAAAAAJTRQAAAAAAAC9NA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Xpander Cross - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (3)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-83" data-point-index="83">
+                <td>$16,900</td>
+                <td>40,000</td>
+                <td>2022</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/mitsubishi-xpander-cross-2022-1841409" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-725" data-point-index="725">
+                <td>$18,000</td>
+                <td>55,000</td>
+                <td>2022</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/mitsubishi-xpander-cross-2022-1841492" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1305" data-point-index="1305">
+                <td>$19,500</td>
+                <td>40,000</td>
+                <td>2022</td>
+                <td>San Borja</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/mitsubishi-xpander-cross-2022-1836198" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

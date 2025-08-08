@@ -1,0 +1,192 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Transporter</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Transporter</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $10,750</p>
+            <p><strong>Ratio Venta Rápida:</strong> 25.00%</p>
+            <p><strong>Anuncios Únicos:</strong> 4</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAACYnkANiXk7Q5qeQBoS83aGnJ5AJ5tsssmenkA0JObtDKGeQEGtXylQo55ATjbZZJOlnkBbv1Kg1qeeQGdIzNsZqp5AdNFFF12snkCBWr9SoK6eQI7jOI7jsJ5Am2yyySaznkCo9SsFarWeQLV+pUCtt55AwgcffPC5nkDPkJi3M7yeQNwZEvN2vp5A6aKLLrrAnkD2KwVq\u002fcKeQAO1fqVAxZ5AED744IPHnkAcx3Ecx8meQClQ61cKzJ5ANtlkk03OnkBDYt7OkNCeQFDrVwrU0p5AXXTRRRfVnkBq\u002fUqBWteeQHeGxLyd2Z5AhA8++ODbnkCRmLczJN6eQJ4hMW9n4J5Aq6qqqqrinkC4MyTm7eSeQMW8nSEx555A0UUXXXTpnkDezpCYt+ueQOtXCtT67Z5A+OCDDz7wnkAFav1KgfKeQBLzdobE9J5AH3zwwQf3nkAsBWr9SvmeQDmO4ziO+55ARhdddNH9nkBToNavFACfQGApUOtXAp9AbbLJJpsEn0B6O0Ni3gafQIbEvJ0hCZ9Ak0022WQLn0Cg1q8UqA2fQK1fKVDrD59Auuiiiy4Sn0DHcRzHcRSfQNT6lQK1Fp9A4YMPPvgYn0DuDIl5OxufQPuVArV+HZ9ACB988MEfn0AVqPUrBSKfQCIxb2dIJJ9AL7rooosmn0A7Q2LeziifQEjM2xkSK59AVVVVVVUtn0Bi3s6QmC+fQG9nSMzbMZ9AfPDBBx80n0CJeTtDYjafQJYCtX6lOJ9Ao4suuug6n0CwFKj1Kz2fQL2dITFvP59AyiabbLJBn0DXrxSo9UOfQOQ4juM4Rp9A8MEHH3xIn0D9SoFav0qfQArU+pUCTZ9AF1100UVPn0Ak5u0MiVGfQDFvZ0jMU59APvjggw9Wn0BLgVq\u002fUlifQFgK1PqVWp9AZZNNNtlcn0ByHMdxHF+fQH+lQK1fYZ9AjC666KJjn0CZtzMk5mWfQKZArV8paJ9Asskmm2xqn0C\u002fUqDWr2yfQMzbGRLzbp9A2WSTTTZxn0Dm7QyJeXOfQPN2hsS8dZ9AAAAAAAB4n0A="},"y":{"dtype":"f8","bdata":"AAAAAABkuUBtS9VKV6LAQERKf0GRfsRAhvz9461GyEAyYlEyrfrLQEh7eSyPms9A5CM76SmT0UDb4yOS\u002fU7TQMf89pDCANVAK3C05Xio1kBFPVyQIEbYQBRk7pC52dlAmORq50Nj20DRvtGTv+LcQL\u002fyIpYsWN5AY4Be7orD30DdM0JObZLgQGVUStANPuFAxqFH\u002fabk4UAEHDrVOIbiQBnDIVjDIuNAC5f+hUa640CXl9BewkzkQEDFl+I22uRAxB9UEaRi5UAipwXrCeblQFpbrG9oZOZAbTxIn7\u002fd5kBaStl5D1LnQCSFX\u002f9XwedAyOzaL5kr6EBFgUsL05DoQJxCsZEF8ehAzzAMwzBM6UDdS1yfVKLpQMWToSZx8+lAZwjcWIY\u002f6kAGqgs2lIbqQH94ML6ayOpA1XNK8ZkF60ACnFnPkT3rQA7xXViCcOtA83JXjGue60CyIUZrTcfrQEz9KfUn6+tAwAUDKvsJ7EANO9EJxyPsQDedlJSLOOxAOixNykhI7EAa6Pqq\u002flLsQNHQnTatWOxAZ+Y1bVRZ7EDYKMNO9FTsQCSYRduMS+xASzS9Eh497EBL\u002fSn1pynsQCXzi4IqEexA3BXjuqXz60BrZS+eGdHrQNXhcCyGqetAHIunZet860A7YdNJSUvrQDZk9NifFOtADJQKE+\u002fY6kDa8BX4NpjqQGd6Foh3UupAzTAMw7AH6kAPFPeo4rfpQC0k1zkNY+lAJWGsdTAJ6UD0ynZcTKroQKBhNu5gRuhAJyXrKm7d50CJFZUSdG\u002fnQMUyNKVy\u002fOZA3XzI4mmE5kDN81HLWQfmQJqX0F5CheVAfGhEnSP+5ED\u002fZa2G\u002fXHkQF+QCxvQ4ONAludeWptK40Cqa6dEX6\u002fiQJcc5dkbD+JAX\u002foXGtFp4UADBUAFf7\u002fgQIA8XZslEOBAskHfuIm33kAWZO6QuUTdQDDg577ax9tAALbLQu1A2kCF5Zkc8a\u002fYQMBuUkzmFNdAbFL10cxv1UAUj4KtpMDTQHMl+t5tB9JAhxVcZihE0ECevlCHqO3MQJoFvu3iPslAAAAAAAB8xUA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAACYnkANiXk7Q5qeQBoS83aGnJ5AJ5tsssmenkA0JObtDKGeQEGtXylQo55ATjbZZJOlnkBbv1Kg1qeeQGdIzNsZqp5AdNFFF12snkCBWr9SoK6eQI7jOI7jsJ5Am2yyySaznkCo9SsFarWeQLV+pUCtt55AwgcffPC5nkDPkJi3M7yeQNwZEvN2vp5A6aKLLrrAnkD2KwVq\u002fcKeQAO1fqVAxZ5AED744IPHnkAcx3Ecx8meQClQ61cKzJ5ANtlkk03OnkBDYt7OkNCeQFDrVwrU0p5AXXTRRRfVnkBq\u002fUqBWteeQHeGxLyd2Z5AhA8++ODbnkCRmLczJN6eQJ4hMW9n4J5Aq6qqqqrinkC4MyTm7eSeQMW8nSEx555A0UUXXXTpnkDezpCYt+ueQOtXCtT67Z5A+OCDDz7wnkAFav1KgfKeQBLzdobE9J5AH3zwwQf3nkAsBWr9SvmeQDmO4ziO+55ARhdddNH9nkBToNavFACfQGApUOtXAp9AbbLJJpsEn0B6O0Ni3gafQIbEvJ0hCZ9Ak0022WQLn0Cg1q8UqA2fQK1fKVDrD59Auuiiiy4Sn0DHcRzHcRSfQNT6lQK1Fp9A4YMPPvgYn0DuDIl5OxufQPuVArV+HZ9ACB988MEfn0AVqPUrBSKfQCIxb2dIJJ9AL7rooosmn0A7Q2LeziifQEjM2xkSK59AVVVVVVUtn0Bi3s6QmC+fQG9nSMzbMZ9AfPDBBx80n0CJeTtDYjafQJYCtX6lOJ9Ao4suuug6n0CwFKj1Kz2fQL2dITFvP59AyiabbLJBn0DXrxSo9UOfQOQ4juM4Rp9A8MEHH3xIn0D9SoFav0qfQArU+pUCTZ9AF1100UVPn0Ak5u0MiVGfQDFvZ0jMU59APvjggw9Wn0BLgVq\u002fUlifQFgK1PqVWp9AZZNNNtlcn0ByHMdxHF+fQH+lQK1fYZ9AjC666KJjn0CZtzMk5mWfQKZArV8paJ9Asskmm2xqn0C\u002fUqDWr2yfQMzbGRLzbp9A2WSTTTZxn0Dm7QyJeXOfQPN2hsS8dZ9AAAAAAAB4n0A="},"y":{"dtype":"f8","bdata":"AAAAAABkuUDz\u002fKwY1afAQOjzFgdsicRA4uQ9y8RWyEDfzyFl3w\u002fMQN+0wtS7tM9A8kkQDa2i0UB1tp0a3WDTQDufCRPuFNVAxgVU9t++1kBU6XzEsl7YQOVJhH1m9NlAdCdqIft\u002f20AHgi6wcAHdQJpZ0SnHeN5AMa5Sjv7l30DlP9lui6TgQDJn+AsIUeFA\u002fsyGHnX44UBOcYSm0priQB1U8aMgOONAbnXNFl\u002fQ40D\u002f1Bj\u002fjWPkQFNz01yt8eRAKFD9L7165UB+a5Z4vf7lQFXFnjaufeZArV0Wao\u002f35kCFNP0SYWznQN9JUzEj3OdAup0YxdVG6EAVME3OeKzoQO8A8UwMDelATRAEQZBo6UArXoaqBL\u002fpQIrqd4lpEOpASbXY3b5c6kCsvqinBKTqQI8G6OY65upA84yWm2Ej60DXUbTFeFvrQD9VQWWAjutAJpc9eni860CPF6kEYeXrQHfWgwQ6CexA4dPNeQMo7EDLD4dkvUHsQDaKr8RnVuxAIkNHmgJm7ECQOk7ljXDsQH1wxKUJduxA7eSp23V27EDfl\u002f6G0nHsQFOJwqcfaOxAR7n1PV1Z7EC7J5hJi0XsQLHUqcqpLOxAJ8AqwbgO7EAe6hotuOvrQJVSeg6ow+tAj\u002flIZYiW60AK34YxWWTrQAUDNHMaLetAgWVQKszw6kCbBtxWbq\u002fqQBvm1vgAaepAGgRBEIQd6kCcYBqd98zpQKD7Yp9bd+lAI9UaF7Ac6UAl7UEE9bzoQKpD2GYqWOhAsNjdPlDu50A3rFKMZn\u002fnQD6+Nk9tC+dAyA6Kh2SS5kDQnUw1TBTmQFtrflgkkeVAoncf8ewI5UAwwi\u002f\u002fpXvkQEBLr4JP6eNAzxKee+lR40DgGPzpc7XiQHFdyc3uE+JAhOAFJ1pt4UAXorH1tcHgQCyizDkCEeBAgcGt5n223kCuu6BE2EDdQNoyco0TwdtACSciwS832kA6mLDfLKPYQG6GHekKBddAYfJo3clc1UCb2pK8aarTQNg\u002fm4bq7dFAFiKCO0wn0ECsAo+2Ha3MQDC71stk98hAt23btm0txUA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Transporter - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":-1}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (0)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    <tr><td colspan='6' style='text-align:center; padding: 20px;'>No se encontraron leads para este modelo.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

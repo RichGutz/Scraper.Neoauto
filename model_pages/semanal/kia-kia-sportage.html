@@ -1,0 +1,440 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: Kia Sportage</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>Kia Sportage</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $17,500</p>
+            <p><strong>Ratio Venta Rápida:</strong> 17.54%</p>
+            <p><strong>Anuncios Únicos:</strong> 211</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABcn0DpoosuulyfQNFFF110XZ9Auuiiiy5en0Cjiy666F6fQIwuuuiiX59AdNFFF11gn0BddNFFF2GfQEYXXXTRYZ9AL7roootin0AXXXTRRWOfQAAAAAAAZJ9A6aKLLrpkn0DRRRdddGWfQLrooosuZp9Ao4suuuhmn0CMLrroomefQHTRRRddaJ9AXXTRRRdpn0BGF1100WmfQC+66KKLap9AF1100UVrn0AAAAAAAGyfQOmiiy66bJ9A0UUXXXRtn0C66KKLLm6fQKOLLrrobp9AjC666KJvn0B00UUXXXCfQF100UUXcZ9ARhdddNFxn0Avuuiii3KfQBdddNFFc59AAAAAAAB0n0DpoosuunSfQNFFF110dZ9Auuiiiy52n0Cjiy666HafQIwuuuiid59AdNFFF114n0BddNFFF3mfQEYXXXTReZ9AL7rooot6n0AXXXTRRXufQAAAAAAAfJ9A6aKLLrp8n0DRRRdddH2fQLrooosufp9Ao4suuuh+n0CMLrroon+fQHTRRRddgJ9AXXTRRReBn0BGF1100YGfQC+66KKLgp9AF1100UWDn0AAAAAAAISfQOmiiy66hJ9A0UUXXXSFn0C66KKLLoafQKOLLrrohp9AjC666KKHn0B00UUXXYifQF100UUXiZ9ARhdddNGJn0Avuuiii4qfQBdddNFFi59AAAAAAACMn0DpoosuuoyfQNFFF110jZ9Auuiiiy6On0Cjiy666I6fQIwuuuiij59AdNFFF12Qn0BddNFFF5GfQEYXXXTRkZ9AL7rooouSn0AXXXTRRZOfQAAAAAAAlJ9A6aKLLrqUn0DRRRdddJWfQLrooosulp9Ao4suuuiWn0CMLrroopefQHTRRRddmJ9AXXTRRReZn0BGF1100ZmfQC+66KKLmp9AF1100UWbn0AAAAAAAJyfQOmiiy66nJ9A0UUXXXSdn0C66KKLLp6fQKOLLrronp9AjC666KKfn0B00UUXXaCfQF100UUXoZ9ARhdddNGhn0Avuuiii6KfQBdddNFFo59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABMvUBnO+b5Vo28QKIMFSvra7xADD+NzSfMvEDRnk8beJK9QIf3XE5Ho75A\u002fhK2oADjv0At4C2mB5vAQMpkp0VvQMFAJf3Hy+zTwUCDDpDVtUfCQAAAAAAAjsJAygRebCygwkBMiQdNSpTCQLHHn1iUh8JAa\u002frJRUWXwkDmWynLl+DCQB82ZwZff8NAuFW4Vh9vxEDPBN1cDovFQMKemyD6rMZAtn26qbCux0AAAAAAAGrIQGvZedK9w8hAKCdTbd7MyEArYP7DXaHIQDf77ck3XchATG+UcmgcyEDAmnr6MPrHQBWjLC8MAchALvY5b64qyEDkaEhiEXDIQIvP\u002fa8uyshAAQAAAAAyyUC3OZNVoqDJQBRodSLAD8pAUeMCNCd5ykDYAZhXpdbKQK0akVoIIstAXo5P6GZVy0C6nqieY3HLQCxt5Q0tfctAMiVUpDqAy0BQ8kLQA4LLQAAAAAAAistAYvFVoB6fy0C7RwEYL8bLQJP8Osx4A8xA5gg8IkNbzEDbZT1\u002f1dHMQMJaTgT\u002fas1AGU2\u002fssAfzkCNuyFsTd7OQJl03c1flM9AACOtOtkX0EAAAAAAAE\u002fQQOcOa3cBatBACmmxqDpx0ECY\u002fmWNiHDQQKW\u002fGx\u002fIc9BAW5xlV9aG0ECVnpUxC7XQQBcoKdHL\u002fdBAC\u002fHIgYpU0UDOy9yQNKzRQGCKzEu399FAAAAAAAAq0kBwWviU\u002fjrSQFU3nFqtNtJAA5DrOgku0kDqXeYfDzLSQHqajPO7U9JABT+QdX2j0kBiUKGY5CTTQF\u002fcbYKlztNAjfFVLuWW1EA7nbmXyHPVQF\u002fw+Ll0W9ZAY\u002fhzkA5E10CowooWuyPYQC5gnUef8NhAQt4LH+Cg2UBvSzaYoiraQCk+gH2nhNpAvIueMq+z2kBoRZe0ecraQFYFdM9i3NpAZmU+T8b82kAAAAAAAD\u002fbQDpkkqKOsdtAi\u002fQOy3xP3EAqC18C+A7dQND\u002fa9Et5t1A+CofwUvL3kDZ42Faf7TfQL7CDhP7S+BAirOd1u614ECRcFK8MRPhQLKloYjaXuFAAAAAAACU4UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABcn0DpoosuulyfQNFFF110XZ9Auuiiiy5en0Cjiy666F6fQIwuuuiiX59AdNFFF11gn0BddNFFF2GfQEYXXXTRYZ9AL7roootin0AXXXTRRWOfQAAAAAAAZJ9A6aKLLrpkn0DRRRdddGWfQLrooosuZp9Ao4suuuhmn0CMLrroomefQHTRRRddaJ9AXXTRRRdpn0BGF1100WmfQC+66KKLap9AF1100UVrn0AAAAAAAGyfQOmiiy66bJ9A0UUXXXRtn0C66KKLLm6fQKOLLrrobp9AjC666KJvn0B00UUXXXCfQF100UUXcZ9ARhdddNFxn0Avuuiii3KfQBdddNFFc59AAAAAAAB0n0DpoosuunSfQNFFF110dZ9Auuiiiy52n0Cjiy666HafQIwuuuiid59AdNFFF114n0BddNFFF3mfQEYXXXTReZ9AL7rooot6n0AXXXTRRXufQAAAAAAAfJ9A6aKLLrp8n0DRRRdddH2fQLrooosufp9Ao4suuuh+n0CMLrroon+fQHTRRRddgJ9AXXTRRReBn0BGF1100YGfQC+66KKLgp9AF1100UWDn0AAAAAAAISfQOmiiy66hJ9A0UUXXXSFn0C66KKLLoafQKOLLrrohp9AjC666KKHn0B00UUXXYifQF100UUXiZ9ARhdddNGJn0Avuuiii4qfQBdddNFFi59AAAAAAACMn0DpoosuuoyfQNFFF110jZ9Auuiiiy6On0Cjiy666I6fQIwuuuiij59AdNFFF12Qn0BddNFFF5GfQEYXXXTRkZ9AL7rooouSn0AXXXTRRZOfQAAAAAAAlJ9A6aKLLrqUn0DRRRdddJWfQLrooosulp9Ao4suuuiWn0CMLrroopefQHTRRRddmJ9AXXTRRReZn0BGF1100ZmfQC+66KKLmp9AF1100UWbn0AAAAAAAJyfQOmiiy66nJ9A0UUXXXSdn0C66KKLLp6fQKOLLrronp9AjC666KKfn0B00UUXXaCfQF100UUXoZ9ARhdddNGhn0Avuuiii6KfQBdddNFFo59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAABMvUAzI8pxjsa7QFCp4y\u002fRKrtA4QMnY69Qu0Bhp240EBC8QNkGlczaQL1AK5N0VPa6vkDR4XP6JCvAQLOEZGte9cBAw2t5ERuowUDyzx+BTi\u002fCQE\u002fsxE7sdsJAjOI6vpx0wkCaeefQ2kTCQHpglTfWDcJAAEcPo771wUDX3B\u002fEwyLCQLeXUbVWucJAWtVpEcm1w0Cj1mjzTOzEQBykDuBVL8ZA60QbXFdRx0DrxE7sxCTIQD87SE88ichACQIjKwSTyECFg9lfjWPIQLcpZs1IHMhA6V7DU6fex0BZyPRAIMvHQLRY0sW+68dAyFAI9iE0yEAmLExT75bIQMFlU1\u002fMBslAcHrTm152yUAy\u002fxWfJ9rJQEjxtFEZLspARGnesAFwykBTfsC5rp3KQCNIiWnutMpAr1QXjd+zykDA0SOa45\u002fKQAONQq+ehcpAccq3ugVyykDxzceqDXLKQG7btm2rkspAh2dLWMfdykBKqFRZF1HLQFMGJMZE58tAdugK9PiazEAQtlo43WbNQIGunkthRc5ATJqU0Mcrz0DsYRYqEwXQQPqnSGMsaNBAWzH2ix230EBcETSc1OnQQK2AVrQF\u002fNBAqFOulX340EBChcspz+3QQIYQPlqN6tBAh\u002fCVEEv90EDLUXOe8DPRQBPd6q4SjdFAkLWFRvL30UB+MN3RJWPSQLKiir1DvdJAdmInduL00kBebfoCuP7SQDNlAdb459JAIpTn+\u002fjD0kC7RFiBDKbSQHnB\u002fnKHodJAUx7MrinJ0kCgkfbfYiLTQN5y+X5SpdNAceOV1YNJ1ECoA40tggbVQPb2n9DY09VAyd2PCBOp1kBh2B0fvH3XQHIKC15fSdhAOZQYD4gD2UASlwd8waPZQIKGgf0AItpA10UPQ8N\u002f2kAZJBlTDMjaQNvD70JKBttAP8fjJ+tF20B00UUXXZLbQKd422vK9NtAkyI+lk5t3EDzKnxMwfncQJbro0T6l91A6L7DNNFF3kBJ\u002funSHQHfQCsGJdW3x99A\u002fZfBeLtL4EATawlvGbfgQPMocajhJOFAAAAAAACU4UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2017-1841733",17],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2017-1839037",146],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2015-1836460",173],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2019-1821143",175],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2012-1841230",299],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2016-1839505",303],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2023-1840530",335],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2024-1839044",412],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2023-1837334",481],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2018-1835041",541],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2010-1841106",558],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2020-1841766",628],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2013-1840592",646],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2017-1841733",669],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2011-1836030",800],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2023-1838600",956],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2024-1835157",979],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2016-1841601",1113],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2019-1829484",1160],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2016-1839214",1194],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2013-1840424",1241],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2018-1837150",1246],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2020-1840296",1271],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2023-1841161",1323],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2017-1841733",1329],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2012-1836415",1350],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2024-1840178",1408],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2016-1840991",1435],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2015-1835888",1439],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2015-1840333",1448],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fkia-sportage-2023-1839518",1492]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4QcAAOEHAADfBwAA4wcAANwHAADgBwAA5wcAAOgHAADnBwAA4gcAANoHAADkBwAA3QcAAOEHAADbBwAA5wcAAOgHAADgBwAA4wcAAOAHAADdBwAA4gcAAOQHAADnBwAA4QcAANwHAADoBwAA4AcAAN8HAADfBwAA5wcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAABeykAAAAAAAG\u002fTQAAAAAAAZMlAAAAAAACU0UAAAAAAAGrIQAAAAAAAGs1AAAAAAADP3EAAAAAAAOfYQAAAAAAAP9tAAAAAAABo0EAAAAAAAHzFQAAAAAAAiNNAAAAAAABeykAAAAAAAF7KQAAAAAAAashAAAAAAABR2EAAAAAAAEzdQAAAAAAAcs9AAAAAAACC1EAAAAAAAEDPQAAAAAAA1MdAAAAAAABP0EAAAAAAABHSQAAAAACAjeBAAAAAAABeykAAAAAAAHDHQAAAAAAA1dtAAAAAAABeykAAAAAAAFLMQAAAAAAAcMdAAAAAAABR2EA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"Kia Sportage - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (31)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-17" data-point-index="17">
+                <td>$13,500</td>
+                <td>119,300</td>
+                <td>2017</td>
+                <td>Arequipa</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2017-1841733" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-146" data-point-index="146">
+                <td>$19,900</td>
+                <td>50,462</td>
+                <td>2017</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2017-1839037" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-173" data-point-index="173">
+                <td>$13,000</td>
+                <td>136,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>7</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2015-1836460" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-175" data-point-index="175">
+                <td>$18,000</td>
+                <td>90,000</td>
+                <td>2019</td>
+                <td>San Borja</td>
+                <td>19</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2019-1821143" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-299" data-point-index="299">
+                <td>$12,500</td>
+                <td>132,000</td>
+                <td>2012</td>
+                <td>San Juan de Lurigancho</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2012-1841230" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-303" data-point-index="303">
+                <td>$14,900</td>
+                <td>123,500</td>
+                <td>2016</td>
+                <td>La Victoria</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2016-1839505" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-335" data-point-index="335">
+                <td>$29,500</td>
+                <td>24,000</td>
+                <td>2023</td>
+                <td>Victor Larco Herrera</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2023-1840530" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-412" data-point-index="412">
+                <td>$25,500</td>
+                <td>33,900</td>
+                <td>2024</td>
+                <td>Rimac</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2024-1839044" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-481" data-point-index="481">
+                <td>$27,900</td>
+                <td>29,479</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2023-1837334" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-541" data-point-index="541">
+                <td>$16,800</td>
+                <td>91,500</td>
+                <td>2018</td>
+                <td>Jesus Maria</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2018-1835041" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-558" data-point-index="558">
+                <td>$11,000</td>
+                <td>154,000</td>
+                <td>2010</td>
+                <td>Santiago de Surco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2010-1841106" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-628" data-point-index="628">
+                <td>$20,000</td>
+                <td>38,000</td>
+                <td>2020</td>
+                <td>Victor Larco Herrera</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2020-1841766" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-646" data-point-index="646">
+                <td>$13,500</td>
+                <td>93,650</td>
+                <td>2013</td>
+                <td>San Isidro</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2013-1840592" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-669" data-point-index="669">
+                <td>$13,500</td>
+                <td>119,300</td>
+                <td>2017</td>
+                <td>Arequipa</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2017-1841733" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-800" data-point-index="800">
+                <td>$12,500</td>
+                <td>104,333</td>
+                <td>2011</td>
+                <td>Los Olivos</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2011-1836030" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-956" data-point-index="956">
+                <td>$24,900</td>
+                <td>35,000</td>
+                <td>2023</td>
+                <td>Jesus Maria</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2023-1838600" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-979" data-point-index="979">
+                <td>$30,000</td>
+                <td>16,000</td>
+                <td>2024</td>
+                <td>San Juan de Miraflores</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2024-1835157" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1113" data-point-index="1113">
+                <td>$16,100</td>
+                <td>42,000</td>
+                <td>2016</td>
+                <td>San Borja</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2016-1841601" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1160" data-point-index="1160">
+                <td>$21,000</td>
+                <td>40,000</td>
+                <td>2019</td>
+                <td>Bellavista</td>
+                <td>16</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2019-1829484" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1194" data-point-index="1194">
+                <td>$16,000</td>
+                <td>37,900</td>
+                <td>2016</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2016-1839214" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1241" data-point-index="1241">
+                <td>$12,200</td>
+                <td>89,000</td>
+                <td>2013</td>
+                <td>Ricardo Palma</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2013-1840424" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1246" data-point-index="1246">
+                <td>$16,700</td>
+                <td>52,464</td>
+                <td>2018</td>
+                <td>Chorrillos</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2018-1837150" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1271" data-point-index="1271">
+                <td>$18,500</td>
+                <td>79,000</td>
+                <td>2020</td>
+                <td>Santiago de Surco</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2020-1840296" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1323" data-point-index="1323">
+                <td>$33,900</td>
+                <td>17,000</td>
+                <td>2023</td>
+                <td>San Borja</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2023-1841161" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1329" data-point-index="1329">
+                <td>$13,500</td>
+                <td>119,300</td>
+                <td>2017</td>
+                <td>Arequipa</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2017-1841733" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1350" data-point-index="1350">
+                <td>$12,000</td>
+                <td>152,000</td>
+                <td>2012</td>
+                <td>San Miguel</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2012-1836415" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1408" data-point-index="1408">
+                <td>$28,500</td>
+                <td>7,000</td>
+                <td>2024</td>
+                <td>San Isidro</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2024-1840178" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1435" data-point-index="1435">
+                <td>$13,500</td>
+                <td>144,000</td>
+                <td>2016</td>
+                <td>San Miguel</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2016-1840991" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1439" data-point-index="1439">
+                <td>$14,500</td>
+                <td>70,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2015-1835888" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1448" data-point-index="1448">
+                <td>$12,000</td>
+                <td>120,000</td>
+                <td>2015</td>
+                <td>Surquillo</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2015-1840333" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1492" data-point-index="1492">
+                <td>$24,900</td>
+                <td>34,800</td>
+                <td>2023</td>
+                <td>La Victoria</td>
+                <td>3</td>
+                <td><a href="https://neoauto.com/auto/usado/kia-sportage-2023-1839518" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>

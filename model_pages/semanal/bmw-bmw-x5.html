@@ -1,0 +1,352 @@
+
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Detalle: BMW X5</title>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f0f2f5; }
+    a { color: #007bff; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    
+    .main-container { display: flex; align-items: flex-start; gap: 15px; padding: 15px; max-width: 1600px; margin: 0 auto; }
+    .left-column { flex: 0 0 58%; position: sticky; top: 15px; }
+    .stats-card { background-color: #fff; padding: 10px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 15px; }
+    .stats-card h3 { margin-top: 5px; margin-bottom: 15px; color: #1a237e; }
+    .stats-grid { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .stats-grid p { margin: 0; font-size: 0.9em; }
+    .chart-card { border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .right-column { flex: 1; min-width: 0; }
+    .leads-section { background-color: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); max-height: 92vh; overflow-y: auto; }
+    .leads-section h3 { position: sticky; top: 0; background: #fff; padding: 15px 20px; margin: 0; z-index: 10; border-bottom: 1px solid #dee2e6; }
+    
+    table.leads-table { width: 100%; border-collapse: collapse; }
+    table.leads-table th {
+        position: sticky; top: 58px; background-color: #343a40; color: white; z-index: 9;
+        font-size: 0.9em; text-align: center; cursor: pointer;
+    }
+    table.leads-table th .sort-arrow { opacity: 0.5; font-size: 0.8em; margin-left: 5px; }
+    table.leads-table th, table.leads-table td { padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-size: 0.85em; white-space: normal; }
+    table.leads-table td:nth-child(1), table.leads-table td:nth-child(2), table.leads-table td:nth-child(3), table.leads-table td:nth-child(5) { text-align: center; }
+    table.leads-table tr:nth-child(even) { background-color: #f8f9fa; }
+    
+    tr.leads-table-row:hover { background-color: #e9ecef; }
+    tr.highlight-row { background-color: #cce5ff !important; transition: background-color 0.1s ease-in-out; }
+
+    @media (max-width: 1200px) {
+        .main-container { flex-direction: column; gap: 20px; }
+        .left-column { position: static; }
+        .leads-section { max-height: none; overflow-y: visible; }
+        table.leads-table th { position: static; }
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="left-column">
+        
+    <div class="stats-card">
+        <h3>BMW X5</h3>
+        <div class="stats-grid">
+            <p><strong>Precio Mediana:</strong> $28,000</p>
+            <p><strong>Ratio Venta Rápida:</strong> 12.31%</p>
+            <p><strong>Anuncios Únicos:</strong> 65</p>
+            <p><strong>Anuncios Recientes:</strong> 0</p>
+        </div>
+    </div>
+        
+    <div class="chart-card" id="detailChartContainer">
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABYn0DpoosuulifQNFFF110WZ9Auuiiiy5an0Cjiy666FqfQIwuuuiiW59AdNFFF11cn0BddNFFF12fQEYXXXTRXZ9AL7roooten0AXXXTRRV+fQAAAAAAAYJ9A6aKLLrpgn0DRRRdddGGfQLrooosuYp9Ao4suuuhin0CMLrroomOfQHTRRRddZJ9AXXTRRRdln0BGF1100WWfQC+66KKLZp9AF1100UVnn0AAAAAAAGifQOmiiy66aJ9A0UUXXXRpn0C66KKLLmqfQKOLLrroap9AjC666KJrn0B00UUXXWyfQF100UUXbZ9ARhdddNFtn0Avuuiii26fQBdddNFFb59AAAAAAABwn0DpoosuunCfQNFFF110cZ9Auuiiiy5yn0Cjiy666HKfQIwuuuiic59AdNFFF110n0BddNFFF3WfQEYXXXTRdZ9AL7rooot2n0AXXXTRRXefQAAAAAAAeJ9A6aKLLrp4n0DRRRdddHmfQLrooosuep9Ao4suuuh6n0CMLrroonufQHTRRRddfJ9AXXTRRRd9n0BGF1100X2fQC+66KKLfp9AF1100UV\u002fn0AAAAAAAICfQOmiiy66gJ9A0UUXXXSBn0C66KKLLoKfQKOLLrrogp9AjC666KKDn0B00UUXXYSfQF100UUXhZ9ARhdddNGFn0Avuuiii4afQBdddNFFh59AAAAAAACIn0DpoosuuoifQNFFF110iZ9Auuiiiy6Kn0Cjiy666IqfQIwuuuiii59AdNFFF12Mn0BddNFFF42fQEYXXXTRjZ9AL7rooouOn0AXXXTRRY+fQAAAAAAAkJ9A6aKLLrqQn0DRRRdddJGfQLrooosukp9Ao4suuuiSn0CMLrroopOfQHTRRRddlJ9AXXTRRReVn0BGF1100ZWfQC+66KKLlp9AF1100UWXn0AAAAAAAJifQOmiiy66mJ9A0UUXXXSZn0C66KKLLpqfQKOLLrromp9AjC666KKbn0B00UUXXZyfQF100UUXnZ9ARhdddNGdn0Avuuiii56fQBdddNFFn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"AAAAAABMvUC31mv\u002f0H+\u002fQDVAokq928BAIX+u1TX1wUAgJMSVCQjDQLaszP\u002fvD8RAIpWxiKAIxUCZXVyl0u3FQD6Ctso9u8ZAloCpbZlsx0B41R4Dnf3HQAAAAAAAashA0nw22XmtyEB0yasDwsPIQLFjSfSPqMhA0Mj4H5tXyEBUdqP7mszHQNwbzVrpBMdAhMnTkHYjxkCX9u9wyXDFQFlK9CwLN8VArWqz9mTAxUD\u002f\u002f\u002f\u002f\u002f\u002f1bHQD++PRbuIcpAdYcUdeO7zUAbrd55Ps7QQA+TuLSrndJAoG+01gcI1EBzAqsXlcvUQP9Z3wj93tRAN83+lFBx1EC4+vJyFLTTQEyCpVnN2NJA\u002f\u002f\u002f\u002f\u002f\u002f8Q0kAlSGFwZ4XRQG0A\u002fQKYO9FAEQJ8Y1ww0UCsJ4c9f2DRQEJLxzzLyNFA3ExuFLtl0kAMsP0kmizTQMqWRnyEC9RAvSqjL0bw1EB0lG1Uq8jVQAAAAACAgtZAZoI3jV8Q10C34\u002fxsInjXQB7au1VwxNdAFhrg\u002ffD\u002f10C7WNUbTDXYQIBqrSvwbthASf1mayey2ECdlu3aF\u002f\u002fYQPTb0j+uVdlAPnKoX9e12UD\u002f\u002f\u002f\u002f\u002ffx\u002faQFZeaNa3kNpA4zZlWBoA20AxaXfrZWLbQPfSH\u002fVYrNtAi1Lf2rHS20CiZ8\u002f\u002f2svbQPENwI+ytNtAor03f4rQ20A1kFXAYGTcQLmcOEUztd1AAAAAAAAE4EAWm5TMm8DhQPGiVcmK4eNACtZtEqQn5kAC6gfEvlPoQDOXTvqxJupAHDPYOOVj60CXUuZNuQnsQJy\u002fZVKIUexAsOSuxjx37EDWKxorwbbsQAAAAAAATO1AcVXgDuxf7kA+RtlFmc\u002fvQF8+GO6RsvBAqc6VBFR18UAQJwgCIRXyQKVZjB7Nd\u002fJAEyo7IfmU8kBdCilgEnbyQJms5E1MJfJAksP8XNqs8UAAAAAA8BbxQJrZaDcnb\u002fBAhrnBdmiN70BksPqjY2DuQOM6p4J1fO1AOPrxntMG7UD7jgWFsyTtQJCaDMFK++1AcL4x386v70Drzc+1ujPxQOVmQPm5I\u002fNAAAAAAIC69UA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABYn0DpoosuulifQNFFF110WZ9Auuiiiy5an0Cjiy666FqfQIwuuuiiW59AdNFFF11cn0BddNFFF12fQEYXXXTRXZ9AL7roooten0AXXXTRRV+fQAAAAAAAYJ9A6aKLLrpgn0DRRRdddGGfQLrooosuYp9Ao4suuuhin0CMLrroomOfQHTRRRddZJ9AXXTRRRdln0BGF1100WWfQC+66KKLZp9AF1100UVnn0AAAAAAAGifQOmiiy66aJ9A0UUXXXRpn0C66KKLLmqfQKOLLrroap9AjC666KJrn0B00UUXXWyfQF100UUXbZ9ARhdddNFtn0Avuuiii26fQBdddNFFb59AAAAAAABwn0DpoosuunCfQNFFF110cZ9Auuiiiy5yn0Cjiy666HKfQIwuuuiic59AdNFFF110n0BddNFFF3WfQEYXXXTRdZ9AL7rooot2n0AXXXTRRXefQAAAAAAAeJ9A6aKLLrp4n0DRRRdddHmfQLrooosuep9Ao4suuuh6n0CMLrroonufQHTRRRddfJ9AXXTRRRd9n0BGF1100X2fQC+66KKLfp9AF1100UV\u002fn0AAAAAAAICfQOmiiy66gJ9A0UUXXXSBn0C66KKLLoKfQKOLLrrogp9AjC666KKDn0B00UUXXYSfQF100UUXhZ9ARhdddNGFn0Avuuiii4afQBdddNFFh59AAAAAAACIn0DpoosuuoifQNFFF110iZ9Auuiiiy6Kn0Cjiy666IqfQIwuuuiii59AdNFFF12Mn0BddNFFF42fQEYXXXTRjZ9AL7rooouOn0AXXXTRRY+fQAAAAAAAkJ9A6aKLLrqQn0DRRRdddJGfQLrooosukp9Ao4suuuiSn0CMLrroopOfQHTRRRddlJ9AXXTRRReVn0BGF1100ZWfQC+66KKLlp9AF1100UWXn0AAAAAAAJifQOmiiy66mJ9A0UUXXXSZn0C66KKLLpqfQKOLLrromp9AjC666KKbn0B00UUXXZyfQF100UUXnZ9ARhdddNGdn0Avuuiii56fQBdddNFFn59AAAAAAACgn0A="},"y":{"dtype":"f8","bdata":"VVVVVVXVxEDDqil8oSPFQLCY36GVfMVAAdyJY\u002frcxUAzMDtemEHGQDJRBi84p8ZAafr9cqIKx0Da6DTHn2jHQO3Xvcj4vcdAioOrFHYHyEBfpxBI4EHIQAAAAAAAashA\u002fUiM2Z18yEBhPshxgnbIQA2cxmV2VMhA6h2aUkITyEDhf1XVrq\u002fHQI64JOCTJ8dAcu53CiqRxkCJfAORChvGQAT3lAXe9MVAL\u002fH5+UxOxkAAAAAAAFfHQL7GXSPTKMlADSJuV3CGy0AWCHUJtRzOQJkyW1M\u002fTNBAVhQ7TlVT0UA1bH13jPvRQBlR45lyP9JAYajLSDM80kCFpBZjexDSQEB4pMf32tFAVlVVVVW60UDeBGtxOsfRQJSorZozAtJAnvlG1sZl0kBJsGApeuzSQBWFJJnTkNNAOYNQuThN1EBcQPbsJBnVQGjWemYp6dVAC7TX5rax1kADRwYvPmfXQAEAAAAw\u002ftdAHq2ltwBu2EAln3UnM7rYQHGI1b1N6dhAGhor6dYB2UC3BdwXVQrZQAAt6750CdlAm8R660wJ2UAyVMxCXxfZQJOTvnBTQdlA9TkwIdGU2UAAAAAAgB\u002faQJ5KtoFN5tpAmjOCPT7L20AKhjyTnKfcQDkJvuKyVN1AnYXfi8ur3UAdWV2jDIndQKtAZn5ZCt1AqFmbslKP3ECJVoGKdHrcQBHonFA7Lt1ANsJyTyMN30BY86ZLVCjhQOlHyScjR+NABK21sjuZ5UAbaAFj29TnQD\u002fBQa8\u002fsOlA3XAUK6fk6kA\u002fZdkFanDrQJ+4sgr6lutA3fjKIcqe60BXs0wzTc7rQCh2Yif2a+xAvloQ0d2m7UDYpsCutFDvQJiZ25TokfBAzOib1URt8UDzKkNOmhfyQKJb39pFb\u002fJA+xE0Yhpu8kDSfbrVYCnyQJPhV86Tt\u002fFAZ4Dx5C0v8UAom2yyqabwQNujT5\u002fJMfBA049Lpd6y70CQxDaGiEfvQO2euc7jLe9AytYsbENy70BkkfQlfRDwQEyeo60to\u002fBAve3Pw1x38UCm2yXfM5PyQM7BUXbc\u002fPNAAAAAAIC69UA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2015-1830116",27],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-30d-2014-1841007",112],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-40i-2023-1840847",156],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-50i-2014-1839436",259],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-2018-1837610",376],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-40i-2023-1823334",499],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-m-2013-1839273",519],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2017-1840346",647],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2015-1839032",747],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2018-1837301",770],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2014-1841395",915],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-30d-2014-1841213",1032],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-40i-2020-1835596",1041],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-40i-2022-1807518",1094],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-40i-2020-1838848",1179],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2013-1835246",1289],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2011-1841673",1511],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-m-2011-1837299",1566],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2018-1837165",1681],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x5-35i-2015-1841251",1740]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3wcAAN4HAADnBwAA3gcAAOIHAADnBwAA3QcAAOEHAADfBwAA4gcAAN4HAADeBwAA5AcAAOYHAADkBwAA3QcAANsHAADbBwAA4gcAAN8HAAA="},"y":{"dtype":"f8","bdata":"AAAAAAAT2kAAAAAAAPPWQAAAAAAAmvBAAAAAAAA\u002f20AAAAAAANXbQAAAAACARexAAAAAAICo2EAAAAAAANXbQAAAAAAARdpAAAAAAABY20AAAAAAAF3WQAAAAAAAXdZAAAAAAABM7UAAAAAAAJrwQAAAAACAXehAAAAAAACz0EAAAAAAAOXQQAAAAAAAgtRAAAAAAAAn30AAAAAAgPzUQA=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"BMW X5 - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+    </div>
+    </div>
+    <div class="right-column">
+        <div class="leads-section">
+            <h3>Leads Identificados (20)</h3>
+            <table class="leads-table">
+                <thead>
+                    <tr>
+                        <th data-column-index="0" data-column-type="numeric">Precio <span class="sort-arrow"></span></th>
+                        <th data-column-index="1" data-column-type="numeric">Kilometraje <span class="sort-arrow"></span></th>
+                        <th data-column-index="2" data-column-type="numeric">Año <span class="sort-arrow"></span></th>
+                        <th>Distrito</th>
+                        <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody id="leads-table-body">
+                    
+            <tr class="leads-table-row" id="lead-row-27" data-point-index="27">
+                <td>$26,700</td>
+                <td>94,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>11</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2015-1830116" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-112" data-point-index="112">
+                <td>$23,500</td>
+                <td>118,000</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-30d-2014-1841007" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-156" data-point-index="156">
+                <td>$68,000</td>
+                <td>27,500</td>
+                <td>2023</td>
+                <td>Barranco</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-40i-2023-1840847" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-259" data-point-index="259">
+                <td>$27,900</td>
+                <td>56,000</td>
+                <td>2014</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-50i-2014-1839436" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-376" data-point-index="376">
+                <td>$28,500</td>
+                <td>88,000</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-2018-1837610" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-499" data-point-index="499">
+                <td>$57,900</td>
+                <td>77,000</td>
+                <td>2023</td>
+                <td>Santiago de Surco</td>
+                <td>15</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-40i-2023-1823334" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-519" data-point-index="519">
+                <td>$25,250</td>
+                <td>79,150</td>
+                <td>2013</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-m-2013-1839273" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-647" data-point-index="647">
+                <td>$28,500</td>
+                <td>69,500</td>
+                <td>2017</td>
+                <td>Miraflores</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2017-1840346" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-747" data-point-index="747">
+                <td>$26,900</td>
+                <td>62,500</td>
+                <td>2015</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2015-1839032" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-770" data-point-index="770">
+                <td>$28,000</td>
+                <td>72,000</td>
+                <td>2018</td>
+                <td>Santiago de Surco</td>
+                <td>6</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2018-1837301" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-915" data-point-index="915">
+                <td>$22,900</td>
+                <td>70,000</td>
+                <td>2014</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2014-1841395" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1032" data-point-index="1032">
+                <td>$22,900</td>
+                <td>134,000</td>
+                <td>2014</td>
+                <td>La Molina</td>
+                <td>2</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-30d-2014-1841213" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1041" data-point-index="1041">
+                <td>$60,000</td>
+                <td>50,800</td>
+                <td>2020</td>
+                <td>Santiago de Surco</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-40i-2020-1835596" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1094" data-point-index="1094">
+                <td>$68,000</td>
+                <td>18,500</td>
+                <td>2022</td>
+                <td>Miraflores</td>
+                <td>18</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-40i-2022-1807518" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1179" data-point-index="1179">
+                <td>$49,900</td>
+                <td>93,000</td>
+                <td>2020</td>
+                <td>San Isidro</td>
+                <td>4</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-40i-2020-1838848" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1289" data-point-index="1289">
+                <td>$17,100</td>
+                <td>89,000</td>
+                <td>2013</td>
+                <td>Jesus Maria</td>
+                <td>9</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2013-1835246" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1511" data-point-index="1511">
+                <td>$17,300</td>
+                <td>82,000</td>
+                <td>2011</td>
+                <td>Cieneguilla</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2011-1841673" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1566" data-point-index="1566">
+                <td>$21,000</td>
+                <td>107,578</td>
+                <td>2011</td>
+                <td>Miraflores</td>
+                <td>5</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-m-2011-1837299" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1681" data-point-index="1681">
+                <td>$31,900</td>
+                <td>63,800</td>
+                <td>2018</td>
+                <td>Miraflores</td>
+                <td>8</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2018-1837165" target="_blank">Ver</a></td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-1740" data-point-index="1740">
+                <td>$21,490</td>
+                <td>96,000</td>
+                <td>2015</td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x5-35i-2015-1841251" target="_blank">Ver</a></td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const detailChartDiv = document.getElementById('detailChartPlotlyDiv');
+    const tableBody = document.getElementById('leads-table-body');
+    const tableRows = tableBody.querySelectorAll('tr.leads-table-row');
+    const sortableHeaders = document.querySelectorAll('th[data-column-index]');
+    let leadsTraceIndex = -1;
+
+    if (detailChartDiv && detailChartDiv.data) {
+        leadsTraceIndex = detailChartDiv.layout.meta.leads_trace_index;
+    }
+    
+    // ### INICIO: LÓGICA DE INTERACTIVIDAD COMPLETA ###
+    if (detailChartDiv) {
+        // Clic en un punto del gráfico para abrir URL
+        detailChartDiv.on('plotly_click', function(data) {
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 0) {
+                window.open(point.customdata[0], '_blank');
+            }
+        });
+
+        // Hover sobre un punto del gráfico para resaltar fila de la tabla
+        detailChartDiv.on('plotly_hover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+            const point = data.points[0];
+            if (point && point.customdata && Array.isArray(point.customdata) && point.customdata.length > 1) {
+                const leadIndex = point.customdata[1];
+                const row = document.getElementById(`lead-row-${leadIndex}`);
+                if (row) row.classList.add('highlight-row');
+            }
+        });
+
+        // Limpiar resaltado cuando el cursor deja el área del gráfico
+        detailChartDiv.on('plotly_unhover', function(data) {
+            document.querySelectorAll('.highlight-row').forEach(row => row.classList.remove('highlight-row'));
+        });
+    }
+
+    // Hover sobre una fila de la tabla para resaltar punto del gráfico
+    tableRows.forEach(row => {
+        row.addEventListener('mouseover', () => {
+            const pointIndex = parseInt(row.getAttribute('data-point-index'));
+            if (!isNaN(pointIndex) && detailChartDiv && leadsTraceIndex !== -1) {
+                Plotly.Fx.hover(detailChartDiv, [{ curveNumber: leadsTraceIndex, pointNumber: pointIndex }]);
+            }
+        });
+        row.addEventListener('mouseout', () => {
+            if (detailChartDiv) Plotly.Fx.hover(detailChartDiv, []);
+        });
+    });
+    
+    // ### INICIO: LÓGICA PARA ORDENAMIENTO DE TABLA ###
+    let tableData = Array.from(tableRows).map(row => {
+        const cells = row.querySelectorAll('td');
+        return {
+            rowElement: row,
+            Price: parseFloat(cells[0].textContent.replace(/[^\d.]/g, '') || 0),
+            Kilometers: parseFloat(cells[1].textContent.replace(/[^\d.]/g, '') || 0),
+            Year: parseInt(cells[2].textContent || 0),
+            District: cells[3].textContent,
+            Apariciones: parseInt(cells[4].textContent || 0),
+        };
+    });
+    
+    let sortOrders = {};
+
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const columnIndex = parseInt(header.getAttribute('data-column-index'));
+            const sortKey = Object.keys(tableData[0])[columnIndex + 1];
+            
+            const currentOrder = sortOrders[columnIndex] || 'desc';
+            const newOrder = currentOrder === 'desc' ? 'asc' : 'desc';
+            sortOrders = {};
+            sortOrders[columnIndex] = newOrder;
+
+            tableData.sort((a, b) => {
+                const valA = a[sortKey];
+                const valB = b[sortKey];
+                if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+                if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+                return 0;
+            });
+            
+            updateArrows(columnIndex, newOrder);
+            renderTable();
+        });
+    });
+    
+    function updateArrows(activeColumnIndex, activeOrder) {
+        sortableHeaders.forEach(h => {
+            const arrow = h.querySelector('.sort-arrow');
+            if (arrow) {
+                if (parseInt(h.getAttribute('data-column-index')) === activeColumnIndex) {
+                    arrow.innerHTML = activeOrder === 'desc' ? '▼' : '▲';
+                } else {
+                    arrow.innerHTML = '';
+                }
+            }
+        });
+    }
+
+    function renderTable() {
+        tableData.forEach(data => tableBody.appendChild(data.rowElement));
+    }
+});
+</script>
+</body>
+</html>
