@@ -1,0 +1,34 @@
+--- Git Instructions for Scraper.Neoauto Repository ---
+
+This document outlines the successful Git commands used for committing and pushing changes to the 'Scraper.Neoauto' repository.
+
+**Important:** Always execute these commands from the root directory of your repository: `C:\Users\rguti\Scraper.Neoauto`
+
+**1. Initialize a new Git repository (if .git folder does not exist):**
+```bash
+cd C:\Users\rguti\Scraper.Neoauto && git init
+```
+
+**2. Add .gitignore, new .py files, and marcas_y_sinonimos.json to the staging area:**
+```bash
+cd C:\Users\rguti\Scraper.Neoauto && git add .gitignore extractores/1.SEMANAL.extractor_VCLI.py extractores/2.DIARIO.daily_urls_extraction.VCLI.py extractores/2.SEMANAL.car_urls_module_VCLI.py extractores/3.SEMANAL.randomize_urls_autos.py extractores/4.DIARIO.SEMANAL.SCRAPER.NEOAUTO.SUPABASE.PARA.CRON.py extractores/5.DIARIO.SEMANAL.Procesador_txt.a.json.DEEPSEEK_VCLI.py extractores/6.json_a_supabase.DEEP.SEEK.CRON.py extractores/marcas_y_sinonimos.json
+```
+
+**3. Commit the changes:**
+(Replace the commit message with a relevant one, e.g., "YYYY-MM-DD HH:MM:SS - Your descriptive message")
+```bash
+cd C:\Users\rguti\Scraper.Neoauto && git commit -m "2025-08-08 14:00:00 - Initial commit of VCLI scripts and updated marcas_y_sinonimos.json"
+```
+
+**4. Add the remote origin (if not already added):**
+(Use your actual GitHub repository URL)
+```bash
+cd C:\Users\rguti\Scraper.Neoauto && git remote add origin https://github.com/RichGutz/Scraper.Neoauto.git
+```
+
+**5. Push the changes to the remote repository:**
+```bash
+cd C:\Users\rguti\Scraper.Neoauto && git push -u origin master
+```
+
+---
