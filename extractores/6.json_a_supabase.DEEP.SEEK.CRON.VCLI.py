@@ -16,7 +16,7 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     exit(1)
 
 SUPABASE_TABLE_NAME: str = 'autos_detalles_diarios'
-JSON_INPUT_FOLDER: str = 'results_json'
+JSON_INPUT_FOLDER: str = 'extractores/results_json'
 
 # --- Inicialización de Supabase Client ---
 try:

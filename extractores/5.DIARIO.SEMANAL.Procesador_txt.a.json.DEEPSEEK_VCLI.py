@@ -26,13 +26,15 @@ DISTRITOS_LIMA_OFICIALES = sorted([
     "Villa El Salvador", "Villa María del Triunfo"
 ], key=len, reverse=True) # Ordenado de más largo a más corto para evitar ambigüedades
 
+def archivo_ya_procesado(nombre_archivo: str) -> bool:
+    """Verifica si el archivo ya fue procesado (contiene '_procesado' en el nombre)."""
+    return '_procesado' in nombre_archivo
 
 def normalizar_texto(texto: str) -> str:
     """Normaliza un texto para búsqueda (quita acentos, convierte a minúsculas)."""
     if not isinstance(texto, str):
         return ""
     return unicodedata.normalize('NFD', texto.lower()).encode('ascii', 'ignore').decode('utf-8')
-
 
 def extraer_ubicacion_final(texto_anuncio: str) -> Dict[str, Optional[str]]:
     """
@@ -153,6 +155,134 @@ def extraer_ubicacion_final(texto_anuncio: str) -> Dict[str, Optional[str]]:
 
 # --- FIN DE LA SECCIÓN DE CÓDIGO FINAL ---
 
+def archivo_ya_procesado(nombre_archivo: str) -> bool:
+    """Verifica si el archivo ya fue procesado (contiene '_procesado' en el nombre)."""
+    return '_procesado' in nombre_archivo
+
+def normalizar_texto(texto: str) -> str:
+    """Normaliza un texto para búsqueda (quita acentos, convierte a minúsculas)."""
+    if not isinstance(texto, str):
+        return ""
+    return unicodedata.normalize('NFD', texto.lower()).encode('ascii', 'ignore').decode('utf-8')
+
+def extraer_ubicacion_final(texto_anuncio: str) -> Dict[str, Optional[str]]:
+    """
+    Busca y extrae el UBIGEO (distrito, provincia, departamento) de un texto de anuncio,
+    priorizando ubicaciones clave y utilizando la presencia de saltos de línea como delimitadores contextuales.
+    Esta es la versión optimizada V3.
+
+    Parámetros:
+    texto_anuncio (str): El contenido completo de un archivo .txt de NeoAuto.
+
+    Retorna:
+    dict: Un diccionario con 'distrito', 'provincia' y 'departamento'.
+          Los valores serán None si no se encuentran.
+    """
+    ubicacion_encontrada = {
+        'distrito': None,
+        'provincia': None,
+        'departamento': None # Default a None, se establecerá a 'Lima' si se encuentra
+    }
+
+    json_data = {}
+    try:
+        # Intentar extraer la parte JSON del texto para acceder a campos estructurados como 'titulo' y 'precio'
+        json_start = texto_anuncio.find('{')
+        json_end = texto_anuncio.rfind('}')
+        if json_start != -1 and json_end != -1 and json_end > json_start:
+            json_string = texto_anuncio[json_start : json_end + 1]
+            json_data = json.loads(json_string)
+    except json.JSONDecodeError:
+        # Si falla el parseo JSON, simplemente continuamos y buscaremos en el texto crudo
+        pass
+
+    # Definir las áreas de búsqueda en orden de prioridad
+    search_areas = []
+
+    # 1. Buscar en el contexto del 'titulo' (si existe y se pudo extraer)
+    titulo_val = json_data.get('titulo', '')
+    if titulo_val:
+        # Buscar el título y capturar un fragmento de texto después de él (hasta 200 caracteres)
+        # Se añade re.IGNORECASE para hacer la búsqueda del título insensible a mayúsculas/minúsculas
+        match_titulo_context = re.search(re.escape(titulo_val) + r'([\s\S]{0,200})', texto_anuncio, re.IGNORECASE)
+        if match_titulo_context:
+            search_areas.append(match_titulo_context.group(0))
+
+    # 2. Buscar en el contexto del 'precio' (si existe y se pudo extraer)
+    precio_val = json_data.get('precio')
+    if precio_val is not None:
+        try:
+            # Manejar casos donde precio_val es NaN, infinito o no numérico
+            if isinstance(precio_val, (int, float)) and not math.isnan(precio_val) and not math.isinf(precio_val):
+                precio_str_clean = str(int(precio_val)) # Solo el número entero para la búsqueda
+                
+                # Buscar el precio y capturar un fragmento de texto después de él (hasta 200 caracteres)
+                match_precio_context = re.search(r'(?:Precio:)?(?:US\$)?\s*' + re.escape(precio_str_clean) + r'([\s\S]{0,200})', texto_anuncio, re.IGNORECASE)
+                if match_precio_context:
+                    search_areas.append(match_precio_context.group(0))
+        except (ValueError, TypeError):
+            pass
+
+    # 3. Si el campo 'ubicacion' del JSON tiene contenido útil (no "Infinity")
+    ubicacion_field_content = json_data.get('ubicacion', '')
+    if ubicacion_field_content and "infinity" not in str(ubicacion_field_content).lower():
+        search_areas.append(ubicacion_field_content)
+
+    # 4. En el campo 'descripcion' del JSON
+    descripcion_field_content = json_data.get('descripcion', '')
+    if descripcion_field_content:
+        search_areas.append(descripcion_field_content)
+
+    # 5. Como último recurso, buscar en todo el texto del anuncio
+    search_areas.append(texto_anuncio)
+
+    # Iterar sobre las áreas de búsqueda en orden de prioridad
+    for text_to_search_in in search_areas:
+        if not text_to_search_in: # Saltar si el área de búsqueda está vacía
+            continue
+
+        # Usar la función normalizar_texto existente en el script principal
+        normalized_text_to_search_in = normalizar_texto(text_to_search_in)
+        
+        # Dividir el texto en líneas para procesar cada línea que pueda contener UBIGEO
+        lines = normalized_text_to_search_in.split('\n')
+
+        for line in lines:
+            # Paso 1: Buscar si la línea contiene "lima, lima" (o "lima, lima, lima") como ancla
+            if re.search(r'\blima\b(?:,\s*\blima\b){1,2}', line):
+                # Paso 2: Dentro de esta línea, intentar encontrar un distrito específico
+                for distrito_oficial in DISTRITOS_LIMA_OFICIALES:
+                    # Usar la función normalizar_texto existente
+                    normalized_distrito = normalizar_texto(distrito_oficial)
+                    
+                    # Buscar el distrito seguido de "lima, lima" en la misma línea
+                    if re.search(r'\b' + re.escape(normalized_distrito) + r'\b.*?\blima\b(?:,\s*\blima\b){1,2}', line):
+                        ubicacion_encontrada['distrito'] = distrito_oficial
+                        ubicacion_encontrada['provincia'] = 'Lima'
+                        ubicacion_encontrada['departamento'] = 'Lima' 
+                        print(f"UBIGEO encontrado (Distrito, Lima, Lima) mediante búsqueda por línea y contexto: {ubicacion_encontrada}")
+                        return ubicacion_encontrada # Retornar al encontrar la mejor coincidencia
+
+        # Fallback general: Si después de las búsquedas contextuales por línea no se encontró un distrito específico,
+        # buscar "Lima, Lima" en todo el texto del área actual.
+        match_city_department = re.search(r'\blima\b(?:,\s*\blima\b){1,2}', normalized_text_to_search_in)
+        if match_city_department:
+            # Solo asignamos si no hemos encontrado ya un distrito específico en esta ejecución
+            if not ubicacion_encontrada['distrito']: 
+                ubicacion_encontrada['distrito'] = 'Lima' # Por defecto a 'Lima' si solo se encuentra 'Lima, Lima'
+                ubicacion_encontrada['provincia'] = 'Lima'
+                ubicacion_encontrada['departamento'] = 'Lima' 
+                print(f"Ubicación general 'Lima, Lima' encontrada como fallback, sin distrito específico. Asignado a 'Lima' distrito. {ubicacion_encontrada}")
+                return ubicacion_encontrada
+
+    print(f"No se encontró UBIGEO detallado en el texto.")
+    # Asegurarse de que los valores predeterminados se devuelvan incluso si no se imprime nada.
+    if ubicacion_encontrada['distrito'] is None:
+        ubicacion_encontrada['provincia'] = None
+        ubicacion_encontrada['departamento'] = None 
+    return ubicacion_encontrada
+
+# --- FIN DE LA SECCIÓN DE CÓDIGO FINAL ---
 
 def cargar_frases_clave(ruta_archivo: str) -> List[str]:
     default_phrases = [ "unico dueño", "unica dueña", "primer dueño" ]
@@ -243,56 +373,44 @@ def generar_output_formato_estandar(datos_originales: Dict[str, Any], input_path
 def process_single_file(input_path: str, output_path: str, reglas_path: str):
     try:
         texto_anuncio = leer_contenido_txt(input_path)
-        # Extraer la URL del anuncio del texto_anuncio
         url_anuncio_extraida = None
         match_url = re.search(r'"url":\s*"(.*?)"', texto_anuncio)
         if match_url:
             url_anuncio_extraida = match_url.group(1)
-            print(f"URL del anuncio extraída: {url_anuncio_extraida}")
         else:
             print(f"No se pudo extraer la URL del anuncio del TXT.")
     except Exception as e:
         print(f"Omitiendo archivo {os.path.basename(input_path)}. Causa: {e}")
         return
 
-    # Bloque de extracción original (sin tocar)
     datos_extraidos_originales = {
         'precio_usd': extraer_precio(texto_anuncio),
-        'ubicacion': extraer_ubicacion_final(texto_anuncio), # AHORA LLAMA A LA NUEVA FUNCIÓN
+        'ubicacion': extraer_ubicacion_final(texto_anuncio),
         'kilometraje_km': extraer_kilometraje(texto_anuncio),
         'transmision': extraer_transmision(texto_anuncio),
         'es_unico_dueno': es_unico_dueno(texto_anuncio, cargar_frases_clave(reglas_path)),
         'especificaciones': extraer_especificaciones(texto_anuncio)
     }
     resultado_final_original = {
-        'metadata': {'fuente_original': input_path, 'url_anuncio': url_anuncio_extraida,'fecha_extraccion': time.strftime("%Y-%m-%d %H:%M:%S"), 'version_script': 'FINAL_v4'}, # Versión actualizada
+        'metadata': {'fuente_original': input_path, 'url_anuncio': url_anuncio_extraida,'fecha_extraccion': time.strftime("%Y-%m-%d %H:%M:%S"), 'version_script': 'FINAL_v4'},
         'datos_vehiculo': datos_extraidos_originales
     }
     
-    print(f"\n=== DATOS EXTRAÍDOS DE: {os.path.basename(input_path)} ===")
-    dv = datos_extraidos_originales
-    precio = dv['precio_usd']
-    print(f"Precio: {f'US$ {precio:,.2f}' if precio else 'NO ENCONTRADO'}")
-    ubicacion = dv['ubicacion']
-    if ubicacion and ubicacion.get('distrito'):
-        print(f"Ubicación: {ubicacion['distrito']}, {ubicacion['provincia']}, {ubicacion['departamento']}")
-    else:
-        print(f"Ubicación: NO ENCONTRADA")
-    km = dv['kilometraje_km']
-    print(f"Kilometraje: {f'{km:,} km' if km else 'NO ENCONTRADO'}")
-    print(f"Transmisión: {dv['transmision'] or 'NO ENCONTRADA'}")
-    dueno_str = f"SÍ" if dv['es_unico_dueno'] else f"NO"
-    print(f"Único dueño: {dueno_str}")
-    if dv['especificaciones']:
-        print(f"\n--- Especificaciones Técnicas ---")
-        for k, v in dv['especificaciones'].items():
-            print(f"{k:<20}: {v}")
     try:
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(resultado_final_original, f, indent=4, ensure_ascii=False)
-        print(f"\nResultados guardados en: {output_path}")
+        print(f"Resultados guardados en: {output_path}")
+        
+        # Renombrar el archivo .txt de origen para marcarlo como procesado
+        try:
+            processed_txt_path = input_path.replace('.txt', '_procesado.txt')
+            os.rename(input_path, processed_txt_path)
+            print(f"Archivo de texto de origen renombrado a: {os.path.basename(processed_txt_path)}")
+        except OSError as e:
+            print(f"Error al renombrar el archivo {input_path}: {e}")
+
     except IOError as e:
-        print(f"\nError al guardar el archivo de salida: {e}")
+        print(f"Error al guardar el archivo de salida: {e}")
 
 def process_directory(input_dir: str, output_dir: str, reglas_path: str):
     """
@@ -300,15 +418,15 @@ def process_directory(input_dir: str, output_dir: str, reglas_path: str):
     """
     print(f"Buscando archivos .txt en la carpeta: '{input_dir}'")
     try:
-        files_to_process = [f for f in os.listdir(input_dir) if f.endswith('.txt')]
+        files_to_process = [f for f in os.listdir(input_dir) if f.endswith('.txt') and not archivo_ya_procesado(f)]
     except FileNotFoundError:
         print(f"El directorio de entrada '{input_dir}' no existe.")
         return
     if not files_to_process:
-        print(f"No se encontraron archivos .txt para procesar en '{input_dir}'.")
+        print(f"No se encontraron archivos .txt nuevos para procesar en '{input_dir}'.")
         return
     file_count = len(files_to_process)
-    print(f"Se encontraron {file_count} archivo(s). Iniciando procesamiento...")
+    print(f"Se encontraron {file_count} archivo(s) nuevos. Iniciando procesamiento...")
     os.makedirs(output_dir, exist_ok=True)
     for i, filename in enumerate(files_to_process):
         input_file_path = os.path.join(input_dir, filename)

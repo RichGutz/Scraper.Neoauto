@@ -287,7 +287,7 @@ def run_market_analysis():
         logger.info(f"Generando reporte de leads atractivos en: {attractive_leads_report_path}")
         report_css = """
         <style>
-            body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
+            body { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
             .container { width: 95%; max-width: 1800px; margin: 20px auto; }
             header { text-align: left; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;}
             header h1 { color: #1a237e; margin: 0; font-size: 1.8em; }
