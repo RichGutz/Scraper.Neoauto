@@ -1,60 +1,3 @@
-"""
-Motor de Análisis de Mercado y Generación de Reportes.
-
-Este script es el cerebro analítico del proyecto. Consolida todos los datos
-recopilados, realiza análisis de mercado, genera visualizaciones y produce
-los reportes HTML finales, tanto para análisis general como para la
-identificación de oportunidades de compra (leads).
-
-Funcionalidad Principal:
-1.  **Carga de Datos Históricos**: Se conecta a Supabase y descarga la totalidad
-    de los datos de la tabla `autos_detalles`, que contiene el histórico de
-    todos los vehículos procesados.
-
-2.  **Procesamiento y Limpieza de Datos (Data Wrangling)**:
-    - Estandariza los nombres de las marcas (`Make`) usando un mapeo predefinido.
-    - Estandariza los nombres de los modelos (`Model`) a un "Modelo Base" usando
-      un conjunto de reglas complejas desde un CSV (`reglas_modelos_base.csv`).
-      Esto agrupa variantes de un mismo modelo (p. ej., "Corolla S", "Corolla LE")
-      bajo un único nombre ("Corolla").
-    - Limpia y convierte tipos de datos (precios, año a numérico).
-    - Calcula la columna `Apariciones_URL_Hist`, que cuenta cuántas veces ha
-      sido visto cada anuncio a lo largo del tiempo, un indicador clave de
-      cuánto tiempo lleva un vehículo en el mercado.
-
-3.  **Cálculo de Métricas de Mercado**:
-    - Agrupa los datos por marca y modelo base para calcular métricas clave:
-      - `unique_listings`: Número de anuncios únicos.
-      - `median_price`: El precio mediano.
-      - `mean_price`: El precio promedio.
-      - `mean_year`: El año de fabricación promedio.
-      - `fast_selling_ratio` (FSR): Una métrica que estima qué proporción de
-        anuncios para un modelo se venden rápidamente (aparecen solo una vez).
-
-4.  **Filtrado de Leads Atractivos**:
-    - Aísla los anuncios de la última sesión de scraping (últimas 48 horas).
-    - Compara el precio de estos anuncios recientes con la mediana de precio
-      histórica de su respectivo modelo.
-    - Identifica y filtra aquellos anuncios cuyo precio está significativamente
-      por debajo de la media del mercado, marcándolos como "leads atractivos".
-
-5.  **Generación de Reportes HTML**:
-    - **Reporte Principal (`index.semanal.html`)**: Crea una página HTML con un
-      gráfico de burbujas interactivo que visualiza el mercado. Cada burbuja
-      representa un modelo y su tamaño, color y posición dependen de las
-      métricas calculadas (precio, volumen, FSR).
-    - **Páginas de Detalle por Modelo**: Para cada modelo, genera una página HTML
-      individual que muestra un gráfico de dispersión de su historial de precios
-      y una tabla con los anuncios activos (leads) de ese modelo.
-    - **Reporte de Leads Atractivos**: Genera dos archivos HTML:
-        - Un reporte completo y estilizado (`attractive_leads_report_...html`)
-          para visualización en navegador.
-        - Una versión simplificada con estilos en línea (`gmail_attractive_leads_...html`)
-          optimizada para ser enviada por correo electrónico.
-
-Al finalizar, abre automáticamente los reportes principales en el navegador web.
-"""
-
 import pandas as pd
 import numpy as np
 import logging
@@ -142,6 +85,27 @@ def fetch_all_data(client: Client) -> pd.DataFrame:
     logger.info(f"Descarga completada. Total de filas recuperadas: {len(all_data)}")
     return pd.DataFrame(all_data) if all_data else pd.DataFrame()
 
+def fetch_daily_leads_data(client: Client) -> pd.DataFrame:
+    TABLE_NAME_DIARIOS = "autos_detalles_diarios"
+    logger.info(f"Iniciando descarga robusta de la tabla de leads diarios: '{TABLE_NAME_DIARIOS}'")
+    all_data = []
+    offset = 0
+    limit = 1000
+    while True:
+        try:
+            response = client.from_(TABLE_NAME_DIARIOS).select('*').order('id', desc=True).range(offset, offset + limit - 1).execute()
+            if not response.data: break
+            all_data.extend(response.data)
+            logger.info(f"Descargadas {len(response.data)} filas de leads (total: {len(all_data)})...")
+            if len(response.data) < limit: break
+            offset += limit
+        except Exception as e:
+            logger.error(f"Error durante la descarga de leads diarios: {e}", exc_info=True)
+            return pd.DataFrame()
+    logger.info(f"Descarga de leads diarios completada. Total de filas recuperadas: {len(all_data)}")
+    df = pd.DataFrame(all_data) if all_data else pd.DataFrame()
+    return df
+
 def get_model_base(model_name: str, make_name: str) -> str:
     if pd.isna(model_name) or model_name == "Desconocido": return "Desconocido"
     model_lower = model_name.lower().strip()
@@ -215,25 +179,36 @@ def run_market_analysis():
     load_rules()
     
     supabase_client = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
-    df_raw = fetch_all_data(supabase_client)
-    if df_raw.empty:
-        logger.critical("No se descargaron datos. Abortando."); return
+    
+    # Fetch historic data from autos_detalles
+    df_raw_historic = fetch_all_data(supabase_client)
+    if df_raw_historic.empty:
+        logger.warning("No se descargaron datos históricos de 'autos_detalles'. El análisis de tendencias puede ser limitado.")
 
-    # Ahora process_data devuelve el DF con la columna 'Apariciones_URL_Hist' ya incluida
-    df_processed = process_data(df_raw)
-    if df_processed.empty:
-        logger.critical("No quedaron datos después del procesamiento y filtrado. Abortando."); return
+    # Fetch daily leads data from autos_detalles_diarios
+    df_raw_leads = fetch_daily_leads_data(supabase_client)
+    if df_raw_leads.empty:
+        logger.critical("No se descargaron datos de leads de 'autos_detalles_diarios'. Abortando."); return
 
-    df_metrics = calculate_metrics(df_processed)
+    # Process both dataframes
+    df_processed_historic = process_data(df_raw_historic)
+    df_processed_leads = process_data(df_raw_leads)
+
+    if df_processed_leads.empty:
+        logger.critical("No quedaron datos de leads después del procesamiento. Abortando."); return
+
+    # Calculate metrics from historic data
+    df_metrics = calculate_metrics(df_processed_historic)
     if df_metrics.empty:
-        logger.warning("No se pudieron calcular las métricas."); return
+        logger.warning("No se pudieron calcular las métricas de mercado a partir de los datos históricos.") 
 
     dashboard_df = df_metrics.copy()
     
-    df_processed['DateTime'] = pd.to_datetime(df_processed['DateTime'], errors='coerce', utc=True)
-    max_timestamp = df_processed['DateTime'].dropna().max()
-    df_leads_latest_session = df_processed[df_processed['DateTime'] >= (max_timestamp - timedelta(hours=48))].copy()
-    logger.info(f"Se aislaron {len(df_leads_latest_session)} leads de la última sesión.")
+    # Isolate leads from the last 48 hours from the daily data
+    df_processed_leads['DateTime'] = pd.to_datetime(df_processed_leads['DateTime'], errors='coerce', utc=True)
+    max_timestamp_leads = df_processed_leads['DateTime'].dropna().max()
+    df_leads_latest_session = df_processed_leads[df_processed_leads['DateTime'] >= (max_timestamp_leads - timedelta(hours=48))].copy()
+    logger.info(f"Se aislaron {len(df_leads_latest_session)} leads de la última sesión de la tabla diaria.")
 
     # Lógica de estilo para el gráfico de burbujas
     if 'unico_dueno' in df_leads_latest_session.columns:
@@ -271,7 +246,7 @@ def run_market_analysis():
     
     # YA NO SE NECESITA CALCULAR NI PASAR url_counts_df POR SEPARADO
     analysis_results_dict = generar_graficos_individuales(
-        df_historic=df_processed,
+        df_historic=df_processed_historic,
         df_leads=df_leads_latest_session,
         filtered_model_names_pascal_case=models_for_charts
     )
