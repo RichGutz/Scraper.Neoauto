@@ -184,9 +184,15 @@ def run_market_analysis():
     df_raw_historic = fetch_all_data(supabase_client)
     if df_raw_historic.empty:
         logger.warning("No se descargaron datos históricos de 'autos_detalles'. El análisis de tendencias puede ser limitado.")
+    else:
+        df_raw_historic['SourceDB'] = 'Historic'
 
     # Fetch daily leads data from autos_detalles_diarios
     df_raw_leads = fetch_daily_leads_data(supabase_client)
+    if not df_raw_leads.empty:
+        df_raw_leads['SourceDB'] = 'Daily'
+        
+    logger.info(f"Columnas de df_raw_leads después de fetch: {df_raw_leads.columns.tolist()}")
     if df_raw_leads.empty:
         logger.critical("No se descargaron datos de leads de 'autos_detalles_diarios'. Abortando."); return
 
@@ -209,7 +215,9 @@ def run_market_analysis():
     max_timestamp_leads = df_processed_leads['DateTime'].dropna().max()
     df_leads_latest_session = df_processed_leads[df_processed_leads['DateTime'] >= (max_timestamp_leads - timedelta(hours=48))].copy()
     logger.info(f"Se aislaron {len(df_leads_latest_session)} leads de la última sesión de la tabla diaria.")
-
+    print("--- df_leads_latest_session sample with SourceDB ---")
+    print(df_leads_latest_session[['URL', 'DateTime', 'SourceDB']].head()) # Adjust columns as needed for a quick check
+    print("----------------------------------------------------")
     # Lógica de estilo para el gráfico de burbujas
     if 'unico_dueno' in df_leads_latest_session.columns:
         mask_unico_dueno = df_leads_latest_session['unico_dueno'].astype(str).str.lower() == 'true'
@@ -304,12 +312,13 @@ def run_market_analysis():
         df_report['Oportunidad_Precio'] = df_report['Oportunidad_Precio'].map('{:.2%}'.format)
         df_report['Price'] = df_report['Price'].map('{:,.0f}'.format)
         df_report['Kilometers'] = pd.to_numeric(df_report['Kilometers'], errors='coerce').fillna(0).astype(int).map('{:,.0f}'.format)
+        df_report['DateTime'] = pd.to_datetime(df_report['DateTime']).dt.strftime('%Y-%m-%d')
         
         # Crear enlaces
         df_report['URL'] = df_report['URL'].apply(lambda x: f'<a href="{x}">Ver Anuncio</a>')
         df_report['Análisis de Modelo'] = df_report['slug'].apply(lambda x: f'<a href="../model_pages/semanal/{x}.html">Ver Análisis</a>')
 
-        columns_to_display = ['Make', 'Model', 'Year', 'Price', 'Kilometers', 'Oportunidad_Precio', 'URL', 'Análisis de Modelo']
+        columns_to_display = ['Make', 'Model', 'Year', 'Price', 'Kilometers', 'Oportunidad_Precio', 'URL', 'Análisis de Modelo', 'DateTime', 'SourceDB']
         df_report_final = df_report[columns_to_display]
 
         # --- 2. Generar Reporte HTML Completo ---

@@ -66,9 +66,11 @@ def crear_html_pagina_modelo(
                 <td>{row['District']}</td>
                 <td>{int(row['Apariciones_URL_Hist']) if pd.notna(row['Apariciones_URL_Hist']) else 'N/A'}</td>
                 <td><a href="{row['URL']}" target="_blank">Ver</a></td>
+                <td>{row['DateTime'].strftime('%Y-%m-%d') if pd.notna(row['DateTime']) else 'N/A'}</td>
+                <td>{row['SourceDB']}</td>
             </tr>"""
     else:
-        table_body_html = "<tr><td colspan='6' style='text-align:center; padding: 20px;'>No se encontraron leads para este modelo.</td></tr>"
+        table_body_html = "<tr><td colspan='8' style='text-align:center; padding: 20px;'>No se encontraron leads para este modelo.</td></tr>"
 
     html_content = f"""
 <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,6 +132,8 @@ def crear_html_pagina_modelo(
                         <th>Distrito</th>
                         <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
                         <th>Link</th>
+                        <th>DateTime</th>
+                        <th>SourceDB</th>
                     </tr>
                 </thead>
                 <tbody id="leads-table-body">
