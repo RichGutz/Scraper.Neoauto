@@ -165,6 +165,7 @@ def main():
         outputs_dir = script_dir.parent / "outputs"
         today_str = datetime.datetime.now().strftime("%Y-%m-%d")
         html_file_path = outputs_dir / f"gmail_attractive_leads_{today_str}.html"
+        html_filename = html_file_path.name
         logger.info(f"Report file to send: {html_file_path}")
     except Exception as e:
         logger.critical(f"Could not construct path to HTML file: {e}")
@@ -177,12 +178,13 @@ def main():
     destinatarios_info = leer_destinatarios_y_asuntos(RECIPIENT_EMAILS_FILE)
     if not destinatarios_info: logger.critical("PROCESS STOPPED: No recipients found."); return
 
+    new_subject = f"Lista de Leads Calientes {html_filename}"
     logger.info(f"--- STARTING EMAIL SEND (Cycles: {args.ciclos}, Delay: {args.retardo_segundos}s) ---")
     for i in range(args.ciclos):
         logger.info(f"--- Starting send cycle {i + 1} of {args.ciclos} ---")
         for dest_info in destinatarios_info:
             logger.info(f"Preparing email for: {dest_info['email']}")
-            mensaje_final = crear_mensaje_email(dest_info['email'], dest_info['subject'], cuerpo_html)
+            mensaje_final = crear_mensaje_email(dest_info['email'], new_subject, cuerpo_html)
             try:
                 sent_message = service_gmail.users().messages().send(userId='me', body=mensaje_final).execute()
                 logger.info(f"  SUCCESS. Email sent. Message ID: {sent_message['id']}")
