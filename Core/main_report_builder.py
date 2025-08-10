@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {{
     const fsrValueSpan = document.getElementById('fsr-value');
     const listingsValueSpan = document.getElementById('listings-value');
     const priceValueSpan = document.getElementById('price-value');
+    const unicoDuenoCheckbox = document.getElementById('unico-dueno-checkbox');
 
     const marcas = {json.dumps(marcas_unicas)};
     marcas.forEach(marca => {{
@@ -134,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {{
         const minFsr = parseFloat(fsrSlider.value);
         const minListings = parseInt(listingsSlider.value);
         const maxPrice = parseFloat(priceSlider.value);
+        const unicoDuenoChecked = unicoDuenoCheckbox.checked;
         
         fsrValueSpan.textContent = (minFsr * 100).toFixed(0) + '%';
         listingsValueSpan.textContent = minListings;
@@ -144,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function() {{
             const fsrMatch = d.fast_selling_ratio ? d.fast_selling_ratio >= minFsr : true;
             const listingsMatch = d.unique_listings >= minListings;
             const priceMatch = d.median_price ? d.median_price <= maxPrice : true;
-            return makeMatch && fsrMatch && listingsMatch && priceMatch;
+            const unicoDuenoMatch = !unicoDuenoChecked || (unicoDuenoChecked && d.marker_border_color === 'red');
+            return makeMatch && fsrMatch && listingsMatch && priceMatch && unicoDuenoMatch;
         }});
 
         updateBubbleChart(filteredData);
@@ -214,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {{
     fsrSlider.addEventListener('input', updateDashboard);
     listingsSlider.addEventListener('input', updateDashboard);
     priceSlider.addEventListener('input', updateDashboard);
+    unicoDuenoCheckbox.addEventListener('change', updateDashboard);
     
     bubbleChartDiv.on('plotly_click', function(data){{
         if(data.points.length > 0) {{
@@ -252,6 +256,10 @@ document.addEventListener('DOMContentLoaded', function() {{
                             </div>
                         </div>
                         <div id="brand-checkboxes"></div>
+                    </div>
+                    <div class="control-group">
+                        <label for="unico-dueno-checkbox">Mostrar solo con 'Único Dueño'</label>
+                        <input type="checkbox" id="unico-dueno-checkbox">
                     </div>
                     <div class="control-group">
                         <label>Ratio Venta Rápida Mín: <span id="fsr-value" class="slider-value"></span></label>
