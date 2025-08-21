@@ -404,62 +404,63 @@ def get_supabase_client():
 
     return create_client(supabase_url, supabase_key)
 
-def get_urls_from_supabase(table_name: str, limit: int = None) -> list:
-    """Obtiene URLs desde Supabase."""
+def get_next_url(table_name: str, sort_desc: bool) -> str | None:
+    """
+    Obtiene la siguiente URL no procesada de forma atómica usando un RPC de Supabase.
+    Marca la URL como procesada y la devuelve.
+    """
     supabase = get_supabase_client()
-    
     try:
-        query = supabase.table(table_name).select("url")
+        params = {
+            'p_table_name': table_name,
+            'p_sort_desc': sort_desc
+        }
+        response = supabase.rpc('get_next_unprocessed_url', params).execute()
         
-        if table_name == "urls_autos_diarios":
-            query = query.eq('procesado', False)
-        elif table_name == "urls_autos_random":
-            query = query.order('last_scraped', ascending=True)  # Prioriza URLs menos recientes
-            
-        if limit:
-            query = query.limit(limit)
-            
-        response = query.execute()
-        
-        urls = [item['url'] for item in response.data if item and 'url' in item]
-        print(f"Obtenidas {len(urls)} URLs desde {table_name}")
-        return urls
-    except Exception as e:
-        print(f"Error obteniendo URLs de {table_name}: {e}")
-        return []
-
-def update_supabase_status(table_name: str, url: str):
-    """Actualiza el estado en Supabase."""
-    supabase = get_supabase_client()
-    
-    try:
-        if table_name == "urls_autos_diarios":
-            response = supabase.table(table_name).update(
-                {'procesado': True}
-            ).eq('url', url).execute()
-        elif table_name == "urls_autos_random":
-            response = supabase.table(table_name).update(
-                {'last_scraped': datetime.now().isoformat()}
-            ).eq('url', url).execute()
-            
-        if len(response.data) > 0:
-            print(f"Actualizado Supabase ({table_name}): {url}")
+        # La respuesta de un RPC exitoso con datos está en response.data
+        if response.data:
+            url = response.data
+            print(f"URL obtenida y bloqueada desde {table_name}: {url}")
+            return url
         else:
-            print(f"URL no encontrada en {table_name}: {url}")
+            # Si no hay data, puede ser que no haya más URLs o un error no lanzado
+            print(f"No se encontraron más URLs no procesadas en {table_name}.")
+            return None
             
     except Exception as e:
-        print(f"Error actualizando {table_name}: {e}")
+        print(f"Error llamando al RPC get_next_unprocessed_url para {table_name}: {e}")
+        return None
+
+def get_unprocessed_url_count(table_name: str) -> int:
+    """
+    Obtiene el número de URLs no procesadas de una tabla específica.
+    """
+    supabase = get_supabase_client()
+    try:
+        params = {
+            'p_table_name': table_name
+        }
+        response = supabase.rpc('get_unprocessed_count', params).execute()
+
+        if response.data is not None:
+            count = response.data
+            return count
+        else:
+            print(f"No se pudo obtener el conteo de URLs no procesadas para {table_name}.")
+            return 0
+    except Exception as e:
+        print(f"Error llamando al RPC get_unprocessed_count para {table_name}: {e}")
+        return 0
 
 # ----------------------------
 # EJECUCIÓN PRINCIPAL
 # ----------------------------
 
-def run_scraping_session(urls: list, table_name: str):
-    """Ejecuta scraping para un lote de URLs y actualiza Supabase."""
-    if not urls:
-        print(f"No hay URLs para procesar de {table_name}")
-        return
-
+def run_scraping_session(table_name: str, sort_desc: bool = False):
+    """
+    Ejecuta scraping pidiendo URLs una por una de forma atómica.
+    El bucle termina cuando el RPC no devuelve más URLs.
+    """
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         context = browser.new_context(
@@ -469,9 +470,26 @@ def run_scraping_session(urls: list, table_name: str):
         page = context.new_page()
         output_dir = ensure_results_dir()
 
-        for url in urls:
+        processed_count = 0
+        while True:
+            # Mostrar el conteo de URLs restantes al inicio de cada iteración
+            remaining_count = get_unprocessed_url_count(table_name)
+            print(f"URLs restantes en {table_name}: {remaining_count}")
+
+            if remaining_count == 0:
+                print(f"No hay más URLs para procesar en {table_name}. Finalizando.")
+                break
+
+            url = get_next_url(table_name, sort_desc)
+
+            if not url:
+                # This case should ideally be caught by remaining_count == 0,
+                # but keeping it for robustness if RPC returns None unexpectedly.
+                print(f"No hay más URLs para procesar en {table_name}. Finalizando.")
+                break
+
             if not url.startswith('https://neoauto.com/'):
-                print(f"URL inválida: {url}")
+                print(f"URL inválida obtenida del RPC: {url}")
                 continue
 
             try:
@@ -484,17 +502,21 @@ def run_scraping_session(urls: list, table_name: str):
                     with open(output_file, 'w', encoding='utf-8') as f:
                         json.dump(data, f, indent=4, ensure_ascii=False)
                     print(f"Datos guardados en: {output_file}")
+                    processed_count += 1
+                else:
+                    # Si advanced_scraping devuelve None, es un fallo. La URL ya está
+                    # marcada como 'procesado', que es el comportamiento que se quiere.
+                    print(f"Scraping falló para {url}. Se considera procesada.")
 
-                    # Actualizar Supabase
-                    update_supabase_status(table_name, url)
-                    
                 # Espera aleatoria entre requests
                 time.sleep(random.uniform(2, 5))
 
             except Exception as e:
-                print(f"Error procesando {url}: {e}")
+                print(f"Error mayor en el bucle de procesamiento para {url}: {e}")
+                # La URL ya está marcada como procesada, así que podemos continuar.
                 continue
-
+        
+        print(f"\nSesión para {table_name} completada. Total de URLs procesadas: {processed_count}")
         page.close()
         context.close()
         browser.close()
@@ -505,19 +527,29 @@ def main():
     print(f"Iniciando scraping automático - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*50 + "\n")
 
-    # Primero procesamos URLs diarias (no procesadas)
-    print("\n>>> Procesando URLs DIARIAS (no procesadas) <<<")
-    diarias_urls = get_urls_from_supabase("urls_autos_diarios")
-    run_scraping_session(diarias_urls, "urls_autos_diarios")
+    # --- Argument Parsing ---
+    process_most_recent = False
+    if len(sys.argv) > 1 and sys.argv[1] == '1':
+        process_most_recent = True
+        print("\n>>> MODO: PROCESANDO URLS MÁS RECIENTES PRIMERO <<<")
+    else:
+        print("\n>>> MODO: PROCESANDO URLS MENOS RECIENTES PRIMERO <<<")
+    print("\n")
+    # --- End Argument Parsing ---
 
-    # Luego procesamos URLs semanales (priorizando las menos recientes)
-    print("\n>>> Procesando URLs SEMANALES (menos recientes) <<<")
-    semanales_urls = get_urls_from_supabase("urls_autos_random", limit=20)  # Límite para no sobrecargar
-    run_scraping_session(semanales_urls, "urls_autos_random")
+    # Procesamos URLs diarias (siempre las más antiguas primero)
+    print("\n>>> Procesando URLs DIARIAS <<<")
+    run_scraping_session(table_name="urls_autos_diarios", sort_desc=False)
+
+    # Procesamos URLs semanales/random
+    print("\n>>> Procesando URLs SEMANALES <<<")
+    run_scraping_session(table_name="urls_autos_random", sort_desc=process_most_recent)
 
     print("\n" + "="*50)
     print("Proceso completado exitosamente")
     print("="*50 + "\n")
+
+
 
 if __name__ == "__main__":
     try:

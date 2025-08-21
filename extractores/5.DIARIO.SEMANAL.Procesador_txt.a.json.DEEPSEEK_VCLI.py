@@ -487,10 +487,13 @@ def process_directory(input_dir: str, output_dir: str, reglas_path: str):
             print("\n" + "-" * 60)
 
 if __name__ == "__main__":
+    # --- FIX: Use absolute paths for input/output folders ---
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_dir = os.path.join(script_dir, "results_txt")
+    output_dir = os.path.join(script_dir, "results_json")
+    reglas_path = os.path.join(script_dir, "reglas_unico_dueno.json")
+    
     print(f"--- Extractor Automático de Datos de Vehículos (VERSIÓN FORENSE FINAL) ---")
-    input_dir = "results_txt"  # Carpeta de entrada (TXT)
-    output_dir = "results_json"  # Carpeta de salida (JSON)
-    reglas_path = "reglas_unico_dueno.json"
     print("\n" + "="*50)
     print(f"Se consumirán datos de: {input_dir}")
     print(f"Los resultados se guardarán en: {output_dir}")

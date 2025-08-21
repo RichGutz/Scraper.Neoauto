@@ -37,6 +37,7 @@ from pathlib import Path
 import logging
 from datetime import datetime
 import time
+from google_drive import drive_uploader # NEW
 
 # Configuración básica de logging para main_daily.py
 log_file_path = Path(__file__).parent / "main_daily.log"
@@ -111,19 +112,36 @@ def main():
     extractores_path = base_path / "extractores"
     gmail_sender_path = base_path / "gmail_sender"
 
-    scripts_to_run = [
+    scripts_to_run_before_upload = [
         (extractores_path / "2.DIARIO.daily_urls_extraction.VCLI.py", "2.DIARIO.daily_urls_extraction.VCLI.py", []),
         (extractores_path / "4.DIARIO.SEMANAL.SCRAPER.NEOAUTO.SUPABASE.PARA.CRON.py", "4.DIARIO.SEMANAL.SCRAPER.NEOAUTO.SUPABASE.PARA.CRON.py", []),
         (extractores_path / "5.DIARIO.SEMANAL.Procesador_txt.a.json.DEEPSEEK_VCLI.py", "5.DIARIO.SEMANAL.Procesador_txt.a.json.DEEPSEEK_VCLI.py", []),
         (extractores_path / "6.json_a_supabase.DEEP.SEEK.CRON.VCLI.py", "6.json_a_supabase.DEEP.SEEK.CRON.VCLI.py", []),
         (base_path / "main.py", "main.py", []),
-        (gmail_sender_path / "gmail_sender.py", "gmail_sender.py", ["--enviar-correos", "--produccion"])
     ]
 
-    for script_path, script_name, args in scripts_to_run:
+    for script_path, script_name, args in scripts_to_run_before_upload:
         if not run_script(script_path, script_name, args):
             logger.critical(f"Orquestación detenida debido a un error en {script_name}.")
             sys.exit(1)
+
+    # --- NEW: Google Drive Upload ---
+    logger.info("Iniciando subida de archivos a Google Drive...")
+    drive_link = drive_uploader.main_upload_logic()
+    if drive_link:
+        logger.info(f"Archivos subidos a Google Drive. Enlace principal: {drive_link}")
+    else:
+        logger.warning("La subida a Google Drive falló o no se generó un enlace.")
+    
+    # --- NEW: Call gmail_sender.py with the Drive link ---
+    gmail_sender_script_path = gmail_sender_path / "gmail_sender.py"
+    gmail_sender_args = ["--enviar-correos", "--produccion"]
+    if drive_link:
+        gmail_sender_args.extend(["--drive-link", drive_link])
+
+    if not run_script(gmail_sender_script_path, "gmail_sender.py", gmail_sender_args):
+        logger.critical("Orquestación detenida debido a un error en gmail_sender.py.")
+        sys.exit(1)
 
     logger.info("=" * 60)
     logger.info("Proceso diario completado exitosamente.")

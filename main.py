@@ -213,11 +213,22 @@ def run_market_analysis():
     # Isolate leads from the last 48 hours from the daily data
     df_processed_leads['DateTime'] = pd.to_datetime(df_processed_leads['DateTime'], errors='coerce', utc=True)
     max_timestamp_leads = df_processed_leads['DateTime'].dropna().max()
-    df_leads_latest_session = df_processed_leads[df_processed_leads['DateTime'] >= (max_timestamp_leads - timedelta(hours=48))].copy()
+    df_leads_latest_session = df_processed_leads[df_processed_leads['DateTime'] >= (max_timestamp_leads - timedelta(days=15))].copy()
     logger.info(f"Se aislaron {len(df_leads_latest_session)} leads de la última sesión de la tabla diaria.")
     print("--- df_leads_latest_session sample with SourceDB ---")
     print(df_leads_latest_session[['URL', 'DateTime', 'SourceDB']].head()) # Adjust columns as needed for a quick check
     print("----------------------------------------------------")
+
+    # Identificar leads dentro de las últimas 48 horas desde el df_processed_leads original
+    # Esto es independiente del filtro de 15 días para el dashboard principal
+    df_leads_last_48h = df_processed_leads[df_processed_leads['DateTime'] >= (max_timestamp_leads - timedelta(hours=48))].copy()
+
+    # Obtener los modelos que tienen leads en las últimas 48h
+    modelos_con_leads_48h = set(df_leads_last_48h['Model_Base'].unique())
+
+    # Añadir un flag al dashboard_df para indicar si el modelo tiene leads en las últimas 48h
+    dashboard_df['tiene_leads_48h'] = dashboard_df['model_original_case'].isin(modelos_con_leads_48h)
+
     # Lógica de estilo para el gráfico de burbujas
     if 'unico_dueno' in df_leads_latest_session.columns:
         mask_unico_dueno = df_leads_latest_session['unico_dueno'].astype(str).str.lower() == 'true'
@@ -314,11 +325,17 @@ def run_market_analysis():
         df_report['Kilometers'] = pd.to_numeric(df_report['Kilometers'], errors='coerce').fillna(0).astype(int).map('{:,.0f}'.format)
         df_report['DateTime'] = pd.to_datetime(df_report['DateTime']).dt.strftime('%Y-%m-%d')
         
+        # --- NEW: Add and format 'unico_dueno' column ---
+        if 'unico_dueno' in df_report.columns:
+            df_report['Unico_Dueno'] = df_report['unico_dueno'].apply(lambda x: 'SI' if str(x).lower() == 'true' else 'NO')
+        else:
+            df_report['Unico_Dueno'] = 'N/A'
+
         # Crear enlaces
         df_report['URL'] = df_report['URL'].apply(lambda x: f'<a href="{x}">Ver Anuncio</a>')
         df_report['Análisis de Modelo'] = df_report['slug'].apply(lambda x: f'<a href="../model_pages/semanal/{x}.html">Ver Análisis</a>')
 
-        columns_to_display = ['Make', 'Model', 'Year', 'Price', 'Kilometers', 'Oportunidad_Precio', 'URL', 'Análisis de Modelo', 'DateTime', 'SourceDB']
+        columns_to_display = ['Make', 'Model', 'Year', 'Price', 'Kilometers', 'Unico_Dueno', 'Oportunidad_Precio', 'URL', 'Análisis de Modelo', 'DateTime', 'SourceDB']
         df_report_final = df_report[columns_to_display]
 
         # --- 2. Generar Reporte HTML Completo ---

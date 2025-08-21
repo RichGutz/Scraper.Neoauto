@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {{
     const listingsValueSpan = document.getElementById('listings-value');
     const priceValueSpan = document.getElementById('price-value');
     const unicoDuenoCheckbox = document.getElementById('unico-dueno-checkbox');
+    const ultimas48hCheckbox = document.getElementById('ultimas-48h-checkbox'); // NEW
 
     const marcas = {json.dumps(marcas_unicas)};
     marcas.forEach(marca => {{
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {{
         const minListings = parseInt(listingsSlider.value);
         const maxPrice = parseFloat(priceSlider.value);
         const unicoDuenoChecked = unicoDuenoCheckbox.checked;
+        const ultimas48hChecked = ultimas48hCheckbox.checked; // NEW
         
         fsrValueSpan.textContent = (minFsr * 100).toFixed(0) + '%';
         listingsValueSpan.textContent = minListings;
@@ -147,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function() {{
             const listingsMatch = d.unique_listings >= minListings;
             const priceMatch = d.median_price ? d.median_price <= maxPrice : true;
             const unicoDuenoMatch = !unicoDuenoChecked || (unicoDuenoChecked && d.marker_border_color === 'red');
-            return makeMatch && fsrMatch && listingsMatch && priceMatch && unicoDuenoMatch;
+            const ultimas48hMatch = !ultimas48hChecked || (ultimas48hChecked && d.tiene_leads_48h === true); // NEW
+            return makeMatch && fsrMatch && listingsMatch && priceMatch && unicoDuenoMatch && ultimas48hMatch; // MODIFIED
         }});
 
         updateBubbleChart(filteredData);
@@ -218,6 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {{
     listingsSlider.addEventListener('input', updateDashboard);
     priceSlider.addEventListener('input', updateDashboard);
     unicoDuenoCheckbox.addEventListener('change', updateDashboard);
+    ultimas48hCheckbox.addEventListener('change', updateDashboard); // NEW
     
     bubbleChartDiv.on('plotly_click', function(data){{
         if(data.points.length > 0) {{
@@ -260,6 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {{
                     <div class="control-group">
                         <label for="unico-dueno-checkbox">Mostrar solo con 'Único Dueño'</label>
                         <input type="checkbox" id="unico-dueno-checkbox">
+                    </div>
+                    <div class="control-group">
+                        <label for="ultimas-48h-checkbox">Mostrar solo leads (últimas 48h)</label>
+                        <input type="checkbox" id="ultimas-48h-checkbox">
                     </div>
                     <div class="control-group">
                         <label>Ratio Venta Rápida Mín: <span id="fsr-value" class="slider-value"></span></label>

@@ -120,12 +120,19 @@ def leer_destinatarios_y_asuntos(filename):
         logger.error(f"ERROR reading recipients file '{filename}': {e}")
         return None
 
-def crear_mensaje_email(destinatario_email, asunto, cuerpo_html):
+def crear_mensaje_email(destinatario_email, asunto, cuerpo_html, drive_link=None): # MODIFIED SIGNATURE
     mensaje = MIMEMultipart()
     mensaje['to'] = destinatario_email
     mensaje['from'] = 'me'
     mensaje['subject'] = asunto
-    mensaje.attach(MIMEText(cuerpo_html, 'html'))
+    
+    full_html_content = cuerpo_html
+    if drive_link:
+        # Add a prominent link at the top of the email body
+        drive_link_html = f'<p style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">Puedes acceder al análisis completo en Google Drive aquí: <a href="{drive_link}" style="color: #1a73e8; text-decoration: none; font-weight: bold;">Acceder al Dashboard en Google Drive</a></p><br>'
+        full_html_content = drive_link_html + cuerpo_html # Prepend the link
+        
+    mensaje.attach(MIMEText(full_html_content, 'html')) # Use full_html_content
     return {'raw': base64.urlsafe_b64encode(mensaje.as_bytes()).decode()}
 
 def mover_correo_a_papelera(service_gmail, message_id):
@@ -141,6 +148,7 @@ def main():
     parser.add_argument('--produccion', action='store_true', help='Indicates a production run.')
     parser.add_argument('--ciclos', type=int, default=1, help='Number of sending cycles.')
     parser.add_argument('--retardo-segundos', type=int, default=0, help='Delay in seconds between cycles.')
+    parser.add_argument('--drive-link', type=str, help='Google Drive link to include in the email.', default=None) # NEW
     args = parser.parse_args()
 
     logger.info("--- INITIATING EMAIL SENDER SCRIPT ---")
@@ -184,7 +192,7 @@ def main():
         logger.info(f"--- Starting send cycle {i + 1} of {args.ciclos} ---")
         for dest_info in destinatarios_info:
             logger.info(f"Preparing email for: {dest_info['email']}")
-            mensaje_final = crear_mensaje_email(dest_info['email'], new_subject, cuerpo_html)
+            mensaje_final = crear_mensaje_email(dest_info['email'], new_subject, cuerpo_html, args.drive_link) # MODIFIED
             try:
                 sent_message = service_gmail.users().messages().send(userId='me', body=mensaje_final).execute()
                 logger.info(f"  SUCCESS. Email sent. Message ID: {sent_message['id']}")

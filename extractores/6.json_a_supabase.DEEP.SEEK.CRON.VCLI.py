@@ -2,13 +2,12 @@
 Importador de Datos JSON a Supabase.
 
 Este script es el puente final entre los datos procesados localmente y la base
-de datos central en la nube. Su función es tomar los archivos JSON estructurados
+db de datos central en la nube. Su función es tomar los archivos JSON estructurados
 y cargarlos en la tabla de Supabase correspondiente.
 
 Funcionalidad Principal:
 1.  **Búsqueda de Archivos JSON**: Escanea el directorio `results_json` en busca
-    de nuevos archivos .json que no hayan sido procesados (que no contengan
-    `_procesado` en su nombre).
+    de nuevos archivos .json.
 
 2.  **Conexión a Supabase**: Establece una conexión con el cliente de Supabase
     para poder realizar operaciones en la base de datos.
@@ -22,15 +21,14 @@ Funcionalidad Principal:
 
 4.  **Verificación de Duplicados**: Realiza una consulta a Supabase para verificar
     si la URL del anuncio ya existe en la tabla. Si ya existe, omite la
-    inserción para evitar registros duplicados y mantener la integridad de los datos.
+    inserción para evitar registros duplicados.
 
 5.  **Inserción de Datos**: Si la validación es exitosa y no es un duplicado,
     inserta el nuevo registro en la tabla `autos_detalles_diarios`.
 
-6.  **Marcado de Archivos Procesados**: Tras una inserción exitosa, renombra el
-    archivo .json original, añadiéndole el sufijo `_procesado.json`. Esto
-    previene que el mismo archivo sea procesado e insertado múltiples veces en
-    futuras ejecuciones.
+6.  **Movimiento de Archivos Procesados**: Tras el intento de procesamiento (exitoso o no),
+    mueve el archivo .json a la subcarpeta `PROCESADO` para evitar que sea procesado
+    nuevamente y mantener limpio el directorio de entrada.
 
 Este script asegura que solo datos válidos, enriquecidos y no duplicados sean
 cargados a la base de datos, completando el ciclo de extracción y carga (ETL).
@@ -38,9 +36,11 @@ cargados a la base de datos, completando el ciclo de extracción y carga (ETL).
 import os
 import json
 import re
+import shutil
 from dotenv import load_dotenv
 from supabase import create_client, Client
 from typing import Dict, Any, Optional
+from pathlib import Path
 
 # --- Configuración ---
 load_dotenv()
@@ -53,7 +53,9 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     exit(1)
 
 SUPABASE_TABLE_NAME: str = 'autos_detalles_diarios'
-JSON_INPUT_FOLDER: str = 'results_json' # <-- FIX: Changed from 'extractores/results_json'
+SCRIPT_DIR = Path(__file__).resolve().parent
+JSON_INPUT_FOLDER: Path = SCRIPT_DIR / 'results_json'
+PROCESSED_FOLDER: Path = JSON_INPUT_FOLDER / 'PROCESADO'
 
 # --- Inicialización de Supabase Client ---
 try:
@@ -64,10 +66,6 @@ except Exception as e:
     exit(1)
 
 # --- Funciones de Procesamiento ---
-
-def archivo_ya_procesado(nombre_archivo: str) -> bool:
-    """Verifica si el archivo ya fue procesado (contiene '_procesado' en el nombre)."""
-    return '_procesado' in nombre_archivo
 
 def extraer_datos_de_url(url: str) -> Dict[str, Optional[str]]:
     """Intenta extraer Marca, Modelo y Año de una URL de Neoauto."""
@@ -139,57 +137,70 @@ def validar_y_extraer_datos(json_data: Dict[str, Any], filename: str) -> Optiona
     return mapped_data
 
 def importar_json_a_supabase(filepath: str):
-    """Procesa un archivo JSON y lo inserta en Supabase."""
+    """
+    Procesa un archivo JSON, lo inserta en Supabase y finalmente lo mueve a la carpeta de procesados.
+    """
     filename = os.path.basename(filepath)
-    print(f"Procesando archivo: {filename}")
+    print(f"--- Iniciando procesamiento para: {filename} ---")
 
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            json_data = json.load(f)
-    except Exception as e:
-        print(f"Error al leer JSON en '{filename}': {e}")
-        return
-
-    data_to_insert = validar_y_extraer_datos(json_data, filename)
-    if data_to_insert is None:
-        return
-
-    url_to__check = data_to_insert['URL']
-    try:
-        response = supabase.from_(SUPABASE_TABLE_NAME).select("URL").eq("URL", url_to_check).execute()
-        
-        if response.data:
-            print(f"URL '{url_to_check}' ya existe en Supabase. Omitiendo.")
+        # Paso 1: Leer y validar el archivo JSON
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                json_data = json.load(f)
+        except Exception as e:
+            print(f"Error al leer o parsear JSON en '{filename}': {e}")
             return
-    except Exception as e:
-        print(f"Error al verificar URL duplicada en Supabase para '{filename}': {e}")
-        return
 
-    try:
-        response = supabase.from_(SUPABASE_TABLE_NAME).insert(data_to_insert).execute()
-        if response.data:
-            print(f"Datos de '{filename}' insertados exitosamente.")
-            
-            # Renombrar archivo como procesado
-            nuevo_nombre = filename.replace('.json', '_procesado.json')
-            nuevo_path = os.path.join(os.path.dirname(filepath), nuevo_nombre)
-            os.rename(filepath, nuevo_path)
-            print(f"Archivo renombrado a: {nuevo_nombre}")
-        else:
-            print(f"La inserción de '{filename}' no devolvió datos. Respuesta: {response}")
-    except Exception as e:
-        print(f"Error al insertar datos de '{filename}' en Supabase: {e}")
+        data_to_insert = validar_y_extraer_datos(json_data, filename)
+        if data_to_insert is None:
+            return
+
+        # Paso 2: Verificar si la URL ya existe en Supabase
+        url_to_check = data_to_insert['URL']
+        try:
+            response = supabase.from_(SUPABASE_TABLE_NAME).select("URL").eq("URL", url_to_check).execute()
+            if response.data:
+                print(f"URL '{url_to_check}' ya existe en Supabase. Omitiendo inserción.")
+                return
+        except Exception as e:
+            print(f"Error al verificar URL duplicada en Supabase para '{filename}': {e}")
+            return
+
+        # Paso 3: Insertar los datos en Supabase
+        try:
+            response = supabase.from_(SUPABASE_TABLE_NAME).insert(data_to_insert).execute()
+            if response.data:
+                print(f"Datos de '{filename}' insertados exitosamente.")
+            else:
+                print(f"Inserción de '{filename}' completada (la API no devolvió datos, lo cual es normal).")
+        except Exception as e:
+            print(f"Error al insertar datos de '{filename}' en Supabase: {e}")
+
+    finally:
+        # Paso final: Mover el archivo a la carpeta de procesados
+        try:
+            destination_path = PROCESSED_FOLDER / filename
+            shutil.move(str(filepath), str(destination_path))
+            print(f"Archivo '{filename}' movido a '{destination_path}'")
+        except Exception as e:
+            print(f"¡CRÍTICO! Error al mover el archivo procesado '{filename}': {e}")
+            print("El archivo podría ser procesado de nuevo en la siguiente ejecución.")
+        print(f"--- Fin del procesamiento para: {filename} ---")
 
 # --- Flujo Principal ---
 if __name__ == "__main__":
-    if not os.path.exists(JSON_INPUT_FOLDER):
+    if not JSON_INPUT_FOLDER.exists():
         print(f"Error: La carpeta de entrada '{JSON_INPUT_FOLDER}' no existe.")
         exit(1)
 
-    # Filtrar solo archivos JSON no procesados
+    # Crear la carpeta de destino para los archivos procesados si no existe
+    PROCESSED_FOLDER.mkdir(exist_ok=True)
+
+    # Obtener la lista de archivos JSON a procesar, asegurándose de que sean archivos y no directorios
     json_files = [
         f for f in os.listdir(JSON_INPUT_FOLDER) 
-        if f.endswith('.json') and not archivo_ya_procesado(f)
+        if f.endswith('.json') and os.path.isfile(os.path.join(JSON_INPUT_FOLDER, f))
     ]
 
     if not json_files:

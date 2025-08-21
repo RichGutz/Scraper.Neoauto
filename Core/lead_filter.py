@@ -37,15 +37,15 @@ def filter_attractive_leads(df_leads: pd.DataFrame, df_metrics: pd.DataFrame) ->
     
     if leads_filtered_year.empty: return pd.DataFrame()
 
-    # Single owner filter
-    leads_unico_dueno = leads_filtered_year[leads_filtered_year['unico_dueno'].astype(str).str.lower() == 'true'].copy()
-    logger.info(f"LEAD_FILTER: {len(leads_unico_dueno)} leads encontrados de un único dueño.")
-
-    if leads_unico_dueno.empty: return pd.DataFrame()
+    # Single owner filter (REMOVED as per request V2)
+    # leads_unico_dueno = leads_filtered_year[leads_filtered_year['unico_dueno'].astype(str).str.lower() == 'true'].copy()
+    # logger.info(f"LEAD_FILTER: {len(leads_unico_dueno)} leads encontrados de un único dueño.")
+    # if leads_unico_dueno.empty: return pd.DataFrame()
 
     # Merge with metrics
+    # The dataframe `leads_filtered_year` is used now, instead of `leads_unico_dueno`
     metrics_for_join = df_metrics[['Make', 'Model', 'mean_price', 'mean_year']].copy()
-    leads_with_metrics = pd.merge(leads_unico_dueno, metrics_for_join, on=['Make', 'Model'], how='left')
+    leads_with_metrics = pd.merge(leads_filtered_year, metrics_for_join, on=['Make', 'Model'], how='left')
 
     # Price filter
     attractive_leads = leads_with_metrics[leads_with_metrics['Price'] < leads_with_metrics['mean_price']].copy()
