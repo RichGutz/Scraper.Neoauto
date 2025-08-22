@@ -1,0 +1,7 @@
+Sistema Operativo: Instalar una distribución de Linux ligera y estable como Ubuntu Server o Debian en tu laptop ThinkPad T430s. Ambas son opciones perfectas para un servidor, ya que son eficientes en recursos y muy seguras.
+
+Software: Instalar Python y todas las librerías que necesites para tus proyectos de scraping (requests, BeautifulSoup, Selenium, etc.).
+
+Acceso Remoto: Conectarte y administrar tu laptop-servidor de forma segura desde tu laptop principal a través de SSH (Secure Shell). Esto te permitirá ejecutar tus scripts, monitorear su progreso y realizar cualquier cambio que necesites, todo sin tener que abrir la tapa de la laptop-servidor.
+
+Ejecución: Programar tus scripts de Python para que se ejecuten automáticamente usando herramientas como cron, de modo que trabajen las 24 horas del día, los 7 días de la semana, sin que tú tengas que hacer nada

@@ -1,0 +1,20 @@
+Ahora viene el ultimo paso, la creacion del main_daily.py
+
+Ejecutara en SERIE, un scripts depues de que el otro haya terminado:
+
+Carpeta : C:\Users\rguti\Scraper.Neoauto\extractores
+
+1. 2.DIARIO.daily_urls_extraction.VCLI.py
+
+2. 4.DIARIO.SEMANAL.SCRAPER.NEOAUTO.SUPABASE.PARA.CRON.py
+
+3. 5.DIARIO.SEMANAL.Procesador_txt.a.json.DEEPSEEK_VCLI.py
+
+4. 6.json_a_supabase.DEEP.SEEK.CRON.VCLI.py
+
+Carpeta: C:\Users\rguti\Scraper.Neoauto
+
+5. main.py (verifica que ya tiene el gmail sender dentro)
+
+Crea un main_daily.py sin tocar los demas scripts que ya estan en GITHUB.!!
+ 

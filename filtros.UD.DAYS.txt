@@ -1,0 +1,3 @@
+Current Plan:
+1. Add 'SourceDB' column to the tables in individual models.
+2. Add two future columns (details to be defined) to the tables in individual models.

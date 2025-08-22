@@ -1,0 +1,29 @@
+# Plan de Mejoras para Multi-Scraping (Enfoque Simplificado)
+
+**Objetivo:** Permitir que múltiples instancias del script de scraping se ejecuten en paralelo de forma segura y eficiente, sin procesar la misma URL dos veces.
+
+**Estrategia Principal:** Utilizar la columna booleana `procesado` existente. La selección de una URL y su marcación como "en proceso" se combinarán en una única operación atómica y segura a nivel de base de datos.
+
+**Pasos de Implementación:**
+
+1.  **Función en Base de Datos (RPC en Supabase):**
+    *   Se creará una única función en PostgreSQL llamada `get_next_unprocessed_url`.
+    *   **Lógica Atómica:** Esta función realizará las siguientes acciones en una sola transacción:
+        1.  Buscará **una** URL de la tabla especificada donde `procesado = FALSE`.
+        2.  Utilizará `FOR UPDATE SKIP LOCKED` para asegurar que dos scripts no puedan seleccionar la misma fila simultáneamente.
+        3.  Actualizará esa fila, estableciendo `procesado = TRUE` de inmediato.
+        4.  Devolverá (`RETURNING`) la URL que acaba de ser actualizada.
+    *   **Ventaja:** Este enfoque elimina completamente las condiciones de carrera y es muy eficiente.
+
+2.  **Modificaciones en el Script de Python (`4.DIARIO.SEMANAL.SCRAPER.NEOAUTO.SUPABASE.PARA.CRON.py`):**
+    *   **Eliminación de `update_supabase_status`:** Esta función ya no es necesaria, ya que el estado se actualiza en el momento de la selección. El código será más limpio.
+    *   **Nueva Función de Obtención:** Se creará una función `get_url_via_rpc` que llamará a la función `get_next_unprocessed_url` de Supabase.
+    *   **Bucle de Procesamiento:** El script principal (`run_scraping_session`) se modificará para que no pida una lista de URLs al principio. En su lugar, entrará en un bucle `while True` que:
+        1.  Llama a `get_url_via_rpc` para pedir una nueva URL.
+        2.  Si la función devuelve una URL, la procesa.
+        3.  Si la función devuelve `None` (nulo), significa que no hay más trabajo, y el bucle termina.
+
+**Resumen de Beneficios:**
+*   **Simple:** No se necesitan nuevas columnas en la base de datos.
+*   **Seguro:** La concurrencia se maneja de forma robusta en la base de datos.
+*   **Eficiente:** Menos llamadas a la base de datos y un código de Python más sencillo.

@@ -55,12 +55,12 @@
     </div>
         
     <div class="chart-card" id="detailChartContainer">
-        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABon0Btsskmm2ifQNlkk002aZ9ARhdddNFpn0CyySabbGqfQB988MEHa59AjC666KJrn0D44IMPPmyfQGWTTTbZbJ9A0UUXXXRtn0A++OCDD26fQKuqqqqqbp9AF1100UVvn0CEDz744G+fQPDBBx98cJ9AXXTRRRdxn0DKJptssnGfQDbZZJNNcp9Ao4suuuhyn0AQPvjgg3OfQHzwwQcfdJ9A6aKLLrp0n0BVVVVVVXWfQMIHH3zwdZ9AL7rooot2n0CbbLLJJnefQAgffPDBd59AdNFFF114n0Dhgw8++HifQE422WSTeZ9Auuiiiy56n0Anm2yyyXqfQJNNNtlke59AAAAAAAB8n0Btsskmm3yfQNlkk002fZ9ARhdddNF9n0CyySabbH6fQB988MEHf59AjC666KJ\u002fn0D44IMPPoCfQGWTTTbZgJ9A0UUXXXSBn0A++OCDD4KfQKuqqqqqgp9AF1100UWDn0CEDz744IOfQPDBBx98hJ9AXXTRRReFn0DKJptssoWfQDbZZJNNhp9Ao4suuuiGn0AQPvjgg4efQHzwwQcfiJ9A6aKLLrqIn0BVVVVVVYmfQMIHH3zwiZ9AL7rooouKn0CbbLLJJoufQAgffPDBi59AdNFFF12Mn0Dhgw8++IyfQE422WSTjZ9Auuiiiy6On0Anm2yyyY6fQJNNNtlkj59AAAAAAACQn0Btsskmm5CfQNlkk002kZ9ARhdddNGRn0CyySabbJKfQB988MEHk59AjC666KKTn0D44IMPPpSfQGWTTTbZlJ9A0UUXXXSVn0A++OCDD5afQKuqqqqqlp9AF1100UWXn0CEDz744JefQPDBBx98mJ9AXXTRRReZn0DKJptsspmfQDbZZJNNmp9Ao4suuuian0AQPvjgg5ufQHzwwQcfnJ9A6aKLLrqcn0BVVVVVVZ2fQMIHH3zwnZ9AL7rooouen0CbbLLJJp+fQAgffPDBn59AdNFFF12gn0Dhgw8++KCfQE422WSToZ9Auuiiiy6in0Anm2yyyaKfQJNNNtlko59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACa0EDB09hn3D3RQALwNtYiutFAlThZE+YS0kCFjn7nOEzSQMvU5RouatJAK+3Nddhw0kAGunXASmTSQGwdHMOXSNJA5\u002fn\u002fRdIh0kAxMWARDfTRQMOle+1aw9FAIjqRos6T0UDsz9\u002f4emnRQN5JprhySNFAwokjqsg00UAWcpaVjzLRQOTkPUPaRdFApsRYe7ty0UCM8yUGRr3RQK\u002ffN92QKdJAWHZR0yu\u002f0kDth5TeZY3TQBoUBkqapNRA3harYCQV1kDfiYhtX+\u002fXQERwo7umQ9pArwpQvc8e3UCHnK\u002fMfCzgQFQPo8PX0OFAr2Lgw7hT40AJo8XNX4zkQCTUsOEMUuVAAAAAAAB85UBAnbk7+\u002fHkQLPqhfLI3eNARJK1lLV54kCIRZmSDQDhQDZaA7k6Vt9AcfJ+xWJq3UBARfocDa\u002fcQFKl70U8RN1AiHnGdNLe3kCvJNKGRJbgQFxKV7qM7eFAdmwFhx5M40CgUO+e1ojkQF2Zb2wFf+VASErUl+Iq5kBZidkbZZfmQLydHMKVz+ZAhs86VH3e5kCXZdGbJM\u002fmQDt29H2UrOZAqjYbnuyB5kC1qUBef1rmQCl6E\u002f6lQeZAslNCvblC5kBL4XvbE2nmQMTObpgNwOZAIvt6Si5S50Dnq6diuB3oQFFfz3N8F+lASUOi3gw06kBfi9AD\u002fGfrQJxjCkTcp+xA\u002f\u002f\u002f\u002f\u002fz\u002fo7UDu9YQqHh\u002fvQJ88ff\u002f\u002fI\u002fBAi5Vypemv8ECY0uTtwjHxQBlElr8CqPFA1jdJASAR8kCot7e6kmvyQGxxOtX+tfJAnJkIO0Hv8kAFgJ2lOhbzQERzdM7LKfNAecIIb9Uo80CvvNVAOBLzQGt\u002fWxVU5\u002fJAYaudC\u002fy78kBHzS9CSKzyQFaEBdRa1PJAo3AS3FVQ80DXMUp1Wzz0QBD0bdhytPVAwpx57F++90DY2DapOi76QL0403li0fxAy0B8yTZ1\u002f0Cquq+Bi\u002fMAQWYzVUkx+gFBn0tFcTy1AkHryRavXAsDQd5wYLhB4wJBSga5QpsjAkHoS7cDGbMAQbsV5GHV8PxAAAAAAIC09kA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABon0Btsskmm2ifQNlkk002aZ9ARhdddNFpn0CyySabbGqfQB988MEHa59AjC666KJrn0D44IMPPmyfQGWTTTbZbJ9A0UUXXXRtn0A++OCDD26fQKuqqqqqbp9AF1100UVvn0CEDz744G+fQPDBBx98cJ9AXXTRRRdxn0DKJptssnGfQDbZZJNNcp9Ao4suuuhyn0AQPvjgg3OfQHzwwQcfdJ9A6aKLLrp0n0BVVVVVVXWfQMIHH3zwdZ9AL7rooot2n0CbbLLJJnefQAgffPDBd59AdNFFF114n0Dhgw8++HifQE422WSTeZ9Auuiiiy56n0Anm2yyyXqfQJNNNtlke59AAAAAAAB8n0Btsskmm3yfQNlkk002fZ9ARhdddNF9n0CyySabbH6fQB988MEHf59AjC666KJ\u002fn0D44IMPPoCfQGWTTTbZgJ9A0UUXXXSBn0A++OCDD4KfQKuqqqqqgp9AF1100UWDn0CEDz744IOfQPDBBx98hJ9AXXTRRReFn0DKJptssoWfQDbZZJNNhp9Ao4suuuiGn0AQPvjgg4efQHzwwQcfiJ9A6aKLLrqIn0BVVVVVVYmfQMIHH3zwiZ9AL7rooouKn0CbbLLJJoufQAgffPDBi59AdNFFF12Mn0Dhgw8++IyfQE422WSTjZ9Auuiiiy6On0Anm2yyyY6fQJNNNtlkj59AAAAAAACQn0Btsskmm5CfQNlkk002kZ9ARhdddNGRn0CyySabbJKfQB988MEHk59AjC666KKTn0D44IMPPpSfQGWTTTbZlJ9A0UUXXXSVn0A++OCDD5afQKuqqqqqlp9AF1100UWXn0CEDz744JefQPDBBx98mJ9AXXTRRReZn0DKJptsspmfQDbZZJNNmp9Ao4suuuian0AQPvjgg5ufQHzwwQcfnJ9A6aKLLrqcn0BVVVVVVZ2fQMIHH3zwnZ9AL7rooouen0CbbLLJJp+fQAgffPDBn59AdNFFF12gn0Dhgw8++KCfQE422WSToZ9Auuiiiy6in0Anm2yyyaKfQJNNNtlko59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACa0EDHQR1Kbv+gQFX6GdOBnsHADk3re6mC0MAuZlBRaUnVwCGRNc2dctfA7fwTU2RN18DS52RG2ijVwJCDoQodVNHA4ymGBpQ8yMBPDgtP+lm3wKr7YgZ+QpNAa\u002f586xdlwUC7Cs1IkFXQQPuAGHYXztdAxMEnGgTN3kCqw8BonIHiQIRIVhzMEOVAfNsXdoLs5kA220jEMO3nQIjLYz1z6+dADUWJZW7j5kCLFbPOjSDlQPnhohj3+OJA+1ca48\u002fC4EAuS7abe6jdQGneTfHMBttA4ScKnU1B2kDCGbf1n0vbQF9EGj4nlN1AeG0youxC4EAjEGTr1cXhQGKiumFKCONA7cRO7MS\u002f40BhYOXBb7jjQIKc9FcyGeNAIeyec6Mf4kDSxgbaWQnhQN6dTlDsE+BAhNAxN+P53kB4+rj\u002foQHfQOSwkAPbLeBALU0SMoFW4UDJ7srCNMniQMksJO1mVORAlZ2H6IjG5UDW3l7sC+7mQN7\u002f+Sf6n+dAzXLMUiDi50D+GXXZJdDnQNJzcozMhedA\u002f\u002fxCPNYe50CnM2W5BLfmQF8atb0OauZAIF2ARHxK5kAnWN52WFbmQNuCR9XoiOZAiFQ04HLd5kCZQx0YPE\u002fnQMnIev2J2edAduWNX9B36EDN50b0NyjpQKTXINf+6ulAOgIe3HDA6kD+uEDX2ajrQJxHi5yFpOxAAAAAAMCz7UDk3q8x8dTuQAif5tHy\u002fu9ATlh\u002fbl2T8EAgPqmnnyDxQPY4nhK7ofFAB36LrSoR8kCL\u002fQ96f2nyQFPerz+iqPJAApPec9PQ8kBGZa\u002fXneTyQPadNSyM5vJAXYaEMinZ8kB3Z6+r\u002f77yQPkVTRZ5nPJAHJeUIdGD8kA1roBQdY3yQOQrAqHa0fJAOuIJEXZp80BKooievGz0QHlG7FcK9PVALbMw8xQD+EDMFV2df2\u002f6QK6vu6KxCP1AKraWTxKe\u002f0BVLxx4hP8AQTB1dWh+\u002fQFBREb8nqqwAkGIwdXBvAADQR8CJ3do1QJBUiYVZWEWAkFYSMUxW6sAQX8TuQYT+PxAAAAAAEDg9kA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-35i-2017-1836881",216],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-30d-2017-1841166",548],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-40i-2022-1840297",1229],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-2013-1838910",1370],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-35i-2016-1840896",1453],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-50i-2015-1563358",1517]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"4QcAAOEHAADmBwAA3QcAAOAHAADfBwAA"},"y":{"dtype":"f8","bdata":"AAAAAIDA5EAAAAAAgHvjQAAAAAAAC\u002fNAAAAAAAAX0UAAAAAAAMPeQAAAAAAAfOVA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"BMW X6 - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
+        <div>                            <div id="detailChartPlotlyDiv" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("detailChartPlotlyDiv")) {                    Plotly.newPlot(                        "detailChartPlotlyDiv",                        [{"line":{"dash":"dash"},"mode":"lines","name":"Mediana Hist\u00f3rica","x":{"dtype":"f8","bdata":"AAAAAABon0Btsskmm2ifQNlkk002aZ9ARhdddNFpn0CyySabbGqfQB988MEHa59AjC666KJrn0D44IMPPmyfQGWTTTbZbJ9A0UUXXXRtn0A++OCDD26fQKuqqqqqbp9AF1100UVvn0CEDz744G+fQPDBBx98cJ9AXXTRRRdxn0DKJptssnGfQDbZZJNNcp9Ao4suuuhyn0AQPvjgg3OfQHzwwQcfdJ9A6aKLLrp0n0BVVVVVVXWfQMIHH3zwdZ9AL7rooot2n0CbbLLJJnefQAgffPDBd59AdNFFF114n0Dhgw8++HifQE422WSTeZ9Auuiiiy56n0Anm2yyyXqfQJNNNtlke59AAAAAAAB8n0Btsskmm3yfQNlkk002fZ9ARhdddNF9n0CyySabbH6fQB988MEHf59AjC666KJ\u002fn0D44IMPPoCfQGWTTTbZgJ9A0UUXXXSBn0A++OCDD4KfQKuqqqqqgp9AF1100UWDn0CEDz744IOfQPDBBx98hJ9AXXTRRReFn0DKJptssoWfQDbZZJNNhp9Ao4suuuiGn0AQPvjgg4efQHzwwQcfiJ9A6aKLLrqIn0BVVVVVVYmfQMIHH3zwiZ9AL7rooouKn0CbbLLJJoufQAgffPDBi59AdNFFF12Mn0Dhgw8++IyfQE422WSTjZ9Auuiiiy6On0Anm2yyyY6fQJNNNtlkj59AAAAAAACQn0Btsskmm5CfQNlkk002kZ9ARhdddNGRn0CyySabbJKfQB988MEHk59AjC666KKTn0D44IMPPpSfQGWTTTbZlJ9A0UUXXXSVn0A++OCDD5afQKuqqqqqlp9AF1100UWXn0CEDz744JefQPDBBx98mJ9AXXTRRReZn0DKJptsspmfQDbZZJNNmp9Ao4suuuian0AQPvjgg5ufQHzwwQcfnJ9A6aKLLrqcn0BVVVVVVZ2fQMIHH3zwnZ9AL7rooouen0CbbLLJJp+fQAgffPDBn59AdNFFF12gn0Dhgw8++KCfQE422WSToZ9Auuiiiy6in0Anm2yyyaKfQJNNNtlko59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACa0EDB09hn3D3RQALwNtYiutFAlThZE+YS0kCFjn7nOEzSQMvU5RouatJAK+3Nddhw0kAGunXASmTSQGwdHMOXSNJA5\u002fn\u002fRdIh0kAxMWARDfTRQMOle+1aw9FAIjqRos6T0UDsz9\u002f4emnRQN5JprhySNFAwokjqsg00UAWcpaVjzLRQOTkPUPaRdFApsRYe7ty0UCM8yUGRr3RQK\u002ffN92QKdJAWHZR0yu\u002f0kDth5TeZY3TQBoUBkqapNRA3harYCQV1kDfiYhtX+\u002fXQERwo7umQ9pArwpQvc8e3UCHnK\u002fMfCzgQFQPo8PX0OFAr2Lgw7hT40AJo8XNX4zkQCTUsOEMUuVAAAAAAAB85UBAnbk7+\u002fHkQLPqhfLI3eNARJK1lLV54kCIRZmSDQDhQDZaA7k6Vt9AcfJ+xWJq3UBARfocDa\u002fcQFKl70U8RN1AiHnGdNLe3kCvJNKGRJbgQFxKV7qM7eFAdmwFhx5M40CgUO+e1ojkQF2Zb2wFf+VASErUl+Iq5kBZidkbZZfmQLydHMKVz+ZAhs86VH3e5kCXZdGbJM\u002fmQDt29H2UrOZAqjYbnuyB5kC1qUBef1rmQCl6E\u002f6lQeZAslNCvblC5kBL4XvbE2nmQMTObpgNwOZAIvt6Si5S50Dnq6diuB3oQFFfz3N8F+lASUOi3gw06kBfi9AD\u002fGfrQJxjCkTcp+xA\u002f\u002f\u002f\u002f\u002fz\u002fo7UDu9YQqHh\u002fvQJ88ff\u002f\u002fI\u002fBAi5Vypemv8ECY0uTtwjHxQBlElr8CqPFA1jdJASAR8kCot7e6kmvyQGxxOtX+tfJAnJkIO0Hv8kAFgJ2lOhbzQERzdM7LKfNAecIIb9Uo80CvvNVAOBLzQGt\u002fWxVU5\u002fJAYaudC\u002fy78kBHzS9CSKzyQFaEBdRa1PJAo3AS3FVQ80DXMUp1Wzz0QBD0bdhytPVAwpx57F++90DY2DapOi76QL0403li0fxAy0B8yTZ1\u002f0Cquq+Bi\u002fMAQWYzVUkx+gFBn0tFcTy1AkHryRavXAsDQd5wYLhB4wJBSga5QpsjAkHoS7cDGbMAQbsV5GHV8PxAAAAAAIC09kA="},"type":"scatter"},{"line":{"dash":"dash"},"mode":"lines","name":"Promedio Hist\u00f3rico","x":{"dtype":"f8","bdata":"AAAAAABon0Btsskmm2ifQNlkk002aZ9ARhdddNFpn0CyySabbGqfQB988MEHa59AjC666KJrn0D44IMPPmyfQGWTTTbZbJ9A0UUXXXRtn0A++OCDD26fQKuqqqqqbp9AF1100UVvn0CEDz744G+fQPDBBx98cJ9AXXTRRRdxn0DKJptssnGfQDbZZJNNcp9Ao4suuuhyn0AQPvjgg3OfQHzwwQcfdJ9A6aKLLrp0n0BVVVVVVXWfQMIHH3zwdZ9AL7rooot2n0CbbLLJJnefQAgffPDBd59AdNFFF114n0Dhgw8++HifQE422WSTeZ9Auuiiiy56n0Anm2yyyXqfQJNNNtlke59AAAAAAAB8n0Btsskmm3yfQNlkk002fZ9ARhdddNF9n0CyySabbH6fQB988MEHf59AjC666KJ\u002fn0D44IMPPoCfQGWTTTbZgJ9A0UUXXXSBn0A++OCDD4KfQKuqqqqqgp9AF1100UWDn0CEDz744IOfQPDBBx98hJ9AXXTRRReFn0DKJptssoWfQDbZZJNNhp9Ao4suuuiGn0AQPvjgg4efQHzwwQcfiJ9A6aKLLrqIn0BVVVVVVYmfQMIHH3zwiZ9AL7rooouKn0CbbLLJJoufQAgffPDBi59AdNFFF12Mn0Dhgw8++IyfQE422WSTjZ9Auuiiiy6On0Anm2yyyY6fQJNNNtlkj59AAAAAAACQn0Btsskmm5CfQNlkk002kZ9ARhdddNGRn0CyySabbJKfQB988MEHk59AjC666KKTn0D44IMPPpSfQGWTTTbZlJ9A0UUXXXSVn0A++OCDD5afQKuqqqqqlp9AF1100UWXn0CEDz744JefQPDBBx98mJ9AXXTRRReZn0DKJptsspmfQDbZZJNNmp9Ao4suuuian0AQPvjgg5ufQHzwwQcfnJ9A6aKLLrqcn0BVVVVVVZ2fQMIHH3zwnZ9AL7rooouen0CbbLLJJp+fQAgffPDBn59AdNFFF12gn0Dhgw8++KCfQE422WSToZ9Auuiiiy6in0Anm2yyyaKfQJNNNtlko59AAAAAAACkn0A="},"y":{"dtype":"f8","bdata":"AAAAAACa0EDHQR1Kbv+gQFX6GdOBnsHADk3re6mC0MAuZlBRaUnVwCGRNc2dctfA7fwTU2RN18DS52RG2ijVwJCDoQodVNHA4ymGBpQ8yMBPDgtP+lm3wKr7YgZ+QpNAa\u002f586xdlwUC7Cs1IkFXQQPuAGHYXztdAxMEnGgTN3kCqw8BonIHiQIRIVhzMEOVAfNsXdoLs5kA220jEMO3nQIjLYz1z6+dADUWJZW7j5kCLFbPOjSDlQPnhohj3+OJA+1ca48\u002fC4EAuS7abe6jdQGneTfHMBttA4ScKnU1B2kDCGbf1n0vbQF9EGj4nlN1AeG0youxC4EAjEGTr1cXhQGKiumFKCONA7cRO7MS\u002f40BhYOXBb7jjQIKc9FcyGeNAIeyec6Mf4kDSxgbaWQnhQN6dTlDsE+BAhNAxN+P53kB4+rj\u002foQHfQOSwkAPbLeBALU0SMoFW4UDJ7srCNMniQMksJO1mVORAlZ2H6IjG5UDW3l7sC+7mQN7\u002f+Sf6n+dAzXLMUiDi50D+GXXZJdDnQNJzcozMhedA\u002f\u002fxCPNYe50CnM2W5BLfmQF8atb0OauZAIF2ARHxK5kAnWN52WFbmQNuCR9XoiOZAiFQ04HLd5kCZQx0YPE\u002fnQMnIev2J2edAduWNX9B36EDN50b0NyjpQKTXINf+6ulAOgIe3HDA6kD+uEDX2ajrQJxHi5yFpOxAAAAAAMCz7UDk3q8x8dTuQAif5tHy\u002fu9ATlh\u002fbl2T8EAgPqmnnyDxQPY4nhK7ofFAB36LrSoR8kCL\u002fQ96f2nyQFPerz+iqPJAApPec9PQ8kBGZa\u002fXneTyQPadNSyM5vJAXYaEMinZ8kB3Z6+r\u002f77yQPkVTRZ5nPJAHJeUIdGD8kA1roBQdY3yQOQrAqHa0fJAOuIJEXZp80BKooievGz0QHlG7FcK9PVALbMw8xQD+EDMFV2df2\u002f6QK6vu6KxCP1AKraWTxKe\u002f0BVLxx4hP8AQTB1dWh+\u002fQFBREb8nqqwAkGIwdXBvAADQR8CJ3do1QJBUiYVZWEWAkFYSMUxW6sAQX8TuQYT+PxAAAAAAEDg9kA="},"type":"scatter"},{"customdata":[["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-m-2016-1846000",128],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-40i-2024-1820210",500],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-40i-2023-1845781",780],["https:\u002f\u002fneoauto.com\u002fauto\u002fseminuevo\u002fbmw-x6-40i-2022-1844399",1083],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-40i-2022-1840297",1345],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-2013-1838910",1753],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-30d-2017-1841166",2237],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-35i-2016-1840896",2298],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-35i-2017-1836881",2622],["https:\u002f\u002fneoauto.com\u002fauto\u002fseminuevo\u002fbmw-x6-40i-2021-1841219",3021],["https:\u002f\u002fneoauto.com\u002fauto\u002fseminuevo\u002fbmw-x6-2022-1837483",3273],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-50i-2012-1845347",3525],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-40i-2020-1845134",3532],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-2015-1844877",3800],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-m-2023-1844958",3914],["https:\u002f\u002fneoauto.com\u002fauto\u002fusado\u002fbmw-x6-35i-2011-1842781",4203]],"hovertemplate":"\u003cb\u003eLead\u003c\u002fb\u003e\u003cbr\u003eA\u00f1o: %{x}\u003cbr\u003ePrecio: $%{y:,.0f}\u003cbr\u003e\u003ci\u003eClick para ver anuncio\u003c\u002fi\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":["#2ca02c","#2ca02c","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#d62728","#d62728","#2ca02c","#2ca02c","#2ca02c","#d62728","#d62728","#2ca02c","#d62728"],"size":10},"mode":"markers","name":"Leads","x":{"dtype":"i4","bdata":"3wcAAOgHAADnBwAA5gcAAOYHAADdBwAA4AcAAN8HAADhBwAA5QcAAOYHAADbBwAA5AcAAN8HAADnBwAA2gcAAA=="},"y":{"dtype":"f8","bdata":"AAAAAIDg50AAAAAAwGn3QAAAAACAMfdAAAAAAMDx8UAAAAAAAAvzQAAAAAAAF9FAAAAAAIB740AAAAAAAMndQAAAAACAQ+RAAAAAAIBP8kAAAAAAAMCiQAAAAAAAiONAAAAAAAC970AAAAAAAEDPQAAAAADA6wJBAAAAAAAE0EA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"yaxis":{"title":{"text":"Precio"},"tickprefix":"$","tickformat":",.0f"},"title":{"text":"BMW X6 - Tendencia y Leads"},"xaxis":{"title":{"text":"A\u00f1o del Modelo"}},"legend":{"title":{"text":"Leyenda"}},"meta":{"leads_trace_index":2}},                        {"responsive": true}                    )                };            </script>        </div>
     </div>
     </div>
     <div class="right-column">
         <div class="leads-section">
-            <h3>Leads Identificados (6)</h3>
+            <h3>Leads Identificados (16)</h3>
             <table class="leads-table">
                 <thead>
                     <tr>
@@ -70,57 +70,171 @@
                         <th>Distrito</th>
                         <th data-column-index="4" data-column-type="numeric">Aparic. <span class="sort-arrow"></span></th>
                         <th>Link</th>
+                        <th>DateTime</th>
+                        <th>SourceDB</th>
                     </tr>
                 </thead>
                 <tbody id="leads-table-body">
                     
-            <tr class="leads-table-row" id="lead-row-216" data-point-index="216">
-                <td>$42,500</td>
-                <td>73,000</td>
-                <td>2017</td>
+            <tr class="leads-table-row" id="lead-row-128" data-point-index="128">
+                <td>$48,900</td>
+                <td>58</td>
+                <td>2015</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-m-2016-1846000" target="_blank">Ver</a></td>
+                <td>2025-08-19</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-500" data-point-index="500">
+                <td>$95,900</td>
+                <td>5,000</td>
+                <td>2024</td>
+                <td>La Molina</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-40i-2024-1820210" target="_blank">Ver</a></td>
+                <td>2025-08-14</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-780" data-point-index="780">
+                <td>$95,000</td>
+                <td>13,811</td>
+                <td>2023</td>
                 <td>San Isidro</td>
-                <td>7</td>
-                <td><a href="https://neoauto.com/auto/usado/bmw-x6-35i-2017-1836881" target="_blank">Ver</a></td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-40i-2023-1845781" target="_blank">Ver</a></td>
+                <td>2025-08-11</td>
+                <td>Daily</td>
             </tr>
-            <tr class="leads-table-row" id="lead-row-548" data-point-index="548">
-                <td>$39,900</td>
-                <td>57,000</td>
-                <td>2017</td>
-                <td>Santiago de Surco</td>
-                <td>2</td>
-                <td><a href="https://neoauto.com/auto/usado/bmw-x6-30d-2017-1841166" target="_blank">Ver</a></td>
+            <tr class="leads-table-row" id="lead-row-1083" data-point-index="1083">
+                <td>$73,500</td>
+                <td>28,000</td>
+                <td>2022</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/seminuevo/bmw-x6-40i-2022-1844399" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
             </tr>
-            <tr class="leads-table-row" id="lead-row-1229" data-point-index="1229">
+            <tr class="leads-table-row" id="lead-row-1345" data-point-index="1345">
                 <td>$78,000</td>
                 <td>65,000</td>
                 <td>2022</td>
                 <td>Miraflores</td>
-                <td>4</td>
+                <td>1</td>
                 <td><a href="https://neoauto.com/auto/usado/bmw-x6-40i-2022-1840297" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
             </tr>
-            <tr class="leads-table-row" id="lead-row-1370" data-point-index="1370">
+            <tr class="leads-table-row" id="lead-row-1753" data-point-index="1753">
                 <td>$17,500</td>
                 <td>108,000</td>
                 <td>2013</td>
                 <td>Santiago de Surco</td>
-                <td>4</td>
+                <td>1</td>
                 <td><a href="https://neoauto.com/auto/usado/bmw-x6-2013-1838910" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
             </tr>
-            <tr class="leads-table-row" id="lead-row-1453" data-point-index="1453">
-                <td>$31,500</td>
-                <td>121,000</td>
+            <tr class="leads-table-row" id="lead-row-2237" data-point-index="2237">
+                <td>$39,900</td>
+                <td>57,000</td>
                 <td>2016</td>
-                <td>San Isidro</td>
-                <td>2</td>
-                <td><a href="https://neoauto.com/auto/usado/bmw-x6-35i-2016-1840896" target="_blank">Ver</a></td>
+                <td>Santiago de Surco</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-30d-2017-1841166" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
             </tr>
-            <tr class="leads-table-row" id="lead-row-1517" data-point-index="1517">
-                <td>$44,000</td>
-                <td>48,000</td>
+            <tr class="leads-table-row" id="lead-row-2298" data-point-index="2298">
+                <td>$30,500</td>
+                <td>121,000</td>
                 <td>2015</td>
                 <td>Santiago de Surco</td>
-                <td>9</td>
-                <td><a href="https://neoauto.com/auto/usado/bmw-x6-50i-2015-1563358" target="_blank">Ver</a></td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-35i-2016-1840896" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-2622" data-point-index="2622">
+                <td>$41,500</td>
+                <td>73,000</td>
+                <td>2017</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-35i-2017-1836881" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3021" data-point-index="3021">
+                <td>$75,000</td>
+                <td>32,484</td>
+                <td>2021</td>
+                <td>La Victoria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/seminuevo/bmw-x6-40i-2021-1841219" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3273" data-point-index="3273">
+                <td>$2,400</td>
+                <td>27,000</td>
+                <td>2022</td>
+                <td>La Victoria</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/seminuevo/bmw-x6-2022-1837483" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3525" data-point-index="3525">
+                <td>$40,000</td>
+                <td>52</td>
+                <td>2011</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-50i-2012-1845347" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3532" data-point-index="3532">
+                <td>$65,000</td>
+                <td>55,000</td>
+                <td>2020</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-40i-2020-1845134" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3800" data-point-index="3800">
+                <td>$16,000</td>
+                <td>44</td>
+                <td>2015</td>
+                <td>Lima</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-2015-1844877" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-3914" data-point-index="3914">
+                <td>$155,000</td>
+                <td>9,600</td>
+                <td>2023</td>
+                <td>San Isidro</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-m-2023-1844958" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
+            </tr>
+            <tr class="leads-table-row" id="lead-row-4203" data-point-index="4203">
+                <td>$16,400</td>
+                <td>93,200</td>
+                <td>2010</td>
+                <td>Miraflores</td>
+                <td>1</td>
+                <td><a href="https://neoauto.com/auto/usado/bmw-x6-35i-2011-1842781" target="_blank">Ver</a></td>
+                <td>2025-08-08</td>
+                <td>Daily</td>
             </tr>
                 </tbody>
             </table>
