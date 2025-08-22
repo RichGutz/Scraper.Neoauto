@@ -1,0 +1,15 @@
+streamlit
+requests
+reportlab
+jinja2
+python-dotenv
+supabase-py
+fastapi
+pydantic
+uvicorn
+pdfplumber
+beautifulsoup4
+selenium
+webdriver-manager
+pandas
+weasyprint
